@@ -82,7 +82,7 @@ void Update()
     if (_is2DView)
     {
         
-        iTween.MoveTo(this.gameObject, _camera2DPosition, 2);
+        //iTween.MoveTo(this.gameObject, _camera2DPosition, 2);
         trackingIn2d();
         
         
@@ -90,7 +90,7 @@ void Update()
     else
     {
 
-        iTween.MoveTo(this.gameObject, _cameraFirstPersonPosition, 2);
+        //iTween.MoveTo(this.gameObject, _cameraFirstPersonPosition, 2);
         trackingInFP();
         
         
