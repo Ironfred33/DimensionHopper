@@ -129,7 +129,7 @@ void trackingInFP()
 
     float pitch = Input.GetAxis ("Mouse Y") * -1f * sensitivity;
 
-    float yaw = Input.GetAxis ("Mouse X") * sensitivity;
+    float yaw = Input.GetAxis("Mouse X") * sensitivity;
 
 
 
