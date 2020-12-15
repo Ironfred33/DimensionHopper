@@ -85,7 +85,7 @@ void Update()
         //iTween.MoveTo(this.gameObject, _camera2DPosition, 2);
         trackingIn2d();
         
-        
+        Debug.Log("Hi");
     }
     else
     {
