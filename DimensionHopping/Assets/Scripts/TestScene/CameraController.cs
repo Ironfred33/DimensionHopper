@@ -44,7 +44,7 @@ void Update()
     Debug.Log("Position des Empty Childs: " + FPPposition.transform.position);
 
 
-    _camera2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y, trackingTarget.position.z - 10);
+    //_camera2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y, trackingTarget.position.z - 10);
 
     _cameraFirstPersonPosition = FPPposition.transform.position;
 
@@ -60,7 +60,7 @@ void Update()
         if (_is2DView)
         {
             _is2DView = false;
-            //transform.eulerAngles = new Vector3( 0, 90, 0);			
+            		
             
             transform.eulerAngles = new Vector3(0, FPPposition.transform.rotation.eulerAngles.y, 0);        
             }
@@ -68,33 +68,26 @@ void Update()
         {
             _is2DView = true;
 
-            //set2DCameraAngle();
+            set2DCameraAngle();
 
             
-            transform.eulerAngles = new Vector3( 0, 0, 0);
+          
         }
 
     }
 
-    // das iTween ist noch buggy, wird sich aber vielleicht eh erledigen wenn wir das selbst coden
 
     if (_is2DView)
     {
-        
-        //iTween.MoveTo(this.gameObject, _camera2DPosition, 2);
-        trackingIn2d();
-        //set2DCameraAngle();
-        
     
+        trackingIn2d();
+
     }
     else
     {
 
-        //iTween.MoveTo(this.gameObject, _cameraFirstPersonPosition, 2);
         trackingInFP();
-        
-        
-        
+     
     }
     
 }
@@ -102,9 +95,34 @@ void Update()
 
 void trackingIn2d()
 {
-    // _camera2DPosition ist der Vector3 der sich immer parallel zum Player mitbewegt und die festgelegte Position der 2D-Kamera speichert
 
-    transform.position = _camera2DPosition;
+    if (player.transform.rotation.eulerAngles.y > 45.1 && player.transform.rotation.eulerAngles.y <= 135.0) 
+    {
+
+
+        transform.position = new Vector3(trackingTarget.position.x, trackingTarget.position.y, trackingTarget.position.z - 10);
+
+
+    }
+    else if(player.transform.rotation.eulerAngles.y > 135.1 && player.transform.rotation.eulerAngles.y <= 225)
+    {
+     
+        transform.position = new Vector3(trackingTarget.position.x -10, trackingTarget.position.y, trackingTarget.position.z );
+
+    }
+    else if((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
+    {
+        transform.position = new Vector3(trackingTarget.position.x, trackingTarget.position.y, trackingTarget.position.z + 10 );
+
+
+    }
+    else if(player.transform.rotation.eulerAngles.y >= 315.1 && player.transform.rotation.eulerAngles.y <= 359.9 || player.transform.rotation.eulerAngles.y >= 0 && player.transform.rotation.eulerAngles.y <= 45)
+    {
+     
+        transform.position = new Vector3(trackingTarget.position.x +10, trackingTarget.position.y, trackingTarget.position.z);
+
+    }
+
 
 }
 
@@ -160,7 +178,7 @@ void set2DCameraAngle() {
 
 
     }
-    else if((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 269.9) || (player.transform.rotation.eulerAngles.y > -90 && player.transform.rotation.eulerAngles.y < -45))
+    else if((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
     {
         Debug.Log("transform Camera z +10");
 
@@ -169,7 +187,7 @@ void set2DCameraAngle() {
 
 
     }
-    else if(player.transform.rotation.eulerAngles.y >= -45 && player.transform.rotation.eulerAngles.y < 45)
+    else if(player.transform.rotation.eulerAngles.y >= 315.1 && player.transform.rotation.eulerAngles.y <= 359.9 || player.transform.rotation.eulerAngles.y >= 0 && player.transform.rotation.eulerAngles.y <= 45)
     {
         Debug.Log("transform Camera x + 10");
 
@@ -178,53 +196,6 @@ void set2DCameraAngle() {
     }
 
 }
-
-
-
-
-// If- Abfrage Funktion in Update: 
-
-/*
-
-
- Wenn _is2D == true & Wenn Spieler Y-Rotation zwischen  45.01 und 135, 
- 
- dann Kamera: 
- 
- transform.eulerAngles = new Vector3( 0, 0, 0);
-
- und _camera2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y, trackingTarget.position.z - 10)
-
-
-Wenn _is2D == true & Wenn Spieler Y-Rotation zwischen 135.01 und 225
-
- dann Kamera: transform.eulerAngles = new Vector3(0 , 90, 0);
-
- und _camera2DPosition = new Vector3(trackingTarget.position.x -10, trackingTarget.position.y, trackingTarget.position.z )
-
-
-
- Wenn _is2D == true & Wenn Spieler Y-Rotation zwischen 225.1 und 269,9 ODER zwischen -90 und -45 
-
- dann Kamera: transform.eulerAngles = new Vector3(0 , 180, 0);
-
- und _camera2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y, trackingTarget.position.z + 10 )
-
-
-else:
-
- dann Kamera: transform.eulerAngles = new Vector3(0 , -90, 0)
-
- und _camera2DPosition = new Vector3(trackingTarget.position.x +10, trackingTarget.position.y, trackingTarget.position.z)
-
-*/
-
-
-
-
-
-
-
 
 
 
