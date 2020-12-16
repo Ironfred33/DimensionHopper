@@ -33,12 +33,12 @@ public class PlayerController : MonoBehaviour
 
         if (cameraControl._is2DView)
         {
-            Debug.Log("_is2DView is true.");
+            //Debug.Log("_is2DView is true.");
             controller2DPerspective();
         }
         else
         {
-            Debug.Log("_is2DView is false");
+            //Debug.Log("_is2DView is false");
             controllerFPPerspective();
         }
       

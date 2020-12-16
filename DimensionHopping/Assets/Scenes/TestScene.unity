@@ -3416,7 +3416,7 @@ MonoBehaviour:
   camera2DDefaultPosition: {x: 0, y: 0, z: -10}
   _camera2DPosition: {x: 0, y: 0, z: 0}
   _cameraFirstPersonPosition: {x: 0, y: 0, z: 0}
-  sensitivity: 5
+  sensitivity: 2
 --- !u!1001 &1416682883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4946,5 +4946,10 @@ PrefabInstance:
       propertyPath: cameraControl
       value: 
       objectReference: {fileID: 1338931247}
+    - target: {fileID: 6350847493891267804, guid: 95ef0bbbc5f36844f82b17df65c0c2b4,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95ef0bbbc5f36844f82b17df65c0c2b4, type: 3}

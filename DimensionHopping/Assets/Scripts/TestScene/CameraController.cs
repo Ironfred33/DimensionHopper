@@ -24,6 +24,8 @@ private Vector3 _camera2DPosition;
 [SerializeField]
 private Vector3 _cameraFirstPersonPosition;
 
+
+
 public float sensitivity = 5.0f;
 
 
@@ -39,14 +41,14 @@ private void Start()
 void Update()
 {
 
-    Debug.Log("Position des Empty Childs: " + FPPposition.transform.position);
+    //Debug.Log("Position des Empty Childs: " + FPPposition.transform.position);
 
 
     _camera2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y, trackingTarget.position.z - 10);
 
     _cameraFirstPersonPosition = FPPposition.transform.position;
 
-    Debug.Log(FPPposition);
+    //Debug.Log(FPPposition);
 
     
     // Debug.Log("Camera 2D Position: " + _camera2DPosition);
@@ -58,19 +60,16 @@ void Update()
         if (_is2DView)
         {
             _is2DView = false;
-
-
-
-            // Die nächste Zeile sorgt dafür, dass sich die Kamera um 90 Grad dreht, wenn FPP eingenommen wird.
-            // klappt aber nur einmal, ist also auch buggy :D 
-
-            transform.eulerAngles = new Vector3( 0, 90, 0);
+ 
+            transform.eulerAngles = new Vector3(0, FPPposition.transform.rotation.eulerAngles.y, 0);
+            //transform.eulerAngles = new Vector3( 0, 90, 0);
         }
         else
         {
             _is2DView = true;
 
-            // Ich denke hier liegt das Problem, das "zurückswitchen" muss man irgendwie anders bewerkstelligen
+            //set2DCameraAngle();
+
             
             transform.eulerAngles = new Vector3( 0, 0, 0);
         }
@@ -84,8 +83,9 @@ void Update()
         
         //iTween.MoveTo(this.gameObject, _camera2DPosition, 2);
         trackingIn2d();
+        //set2DCameraAngle();
         
-        Debug.Log("Hi");
+    
     }
     else
     {
@@ -99,16 +99,6 @@ void Update()
     
 }
 
-/*
-IEnumerator waitForSeconds(int seconds)
-    {
-
-        yield return new WaitForSeconds(seconds);
-        
-
-
-    }
-*/
 
 void trackingIn2d()
 {
@@ -146,9 +136,94 @@ void trackingInFP()
 
     transform.position = _cameraFirstPersonPosition;
 
-   
+}
+
+
+
+void set2DCameraAngle() {
+
+    if (player.transform.rotation.eulerAngles.y > 45.1 && player.transform.rotation.eulerAngles.y <= 135.0) 
+    {
+        Debug.Log("transform Cameraposition z - 10");
+
+        transform.eulerAngles = new Vector3( 0, 0, 0);
+
+
+    }
+    else if(player.transform.rotation.eulerAngles.y > 135.1 && player.transform.rotation.eulerAngles.y <= 225)
+    {
+        Debug.Log("transform Cameraposition x - 10");
+
+        transform.eulerAngles = new Vector3(0 , 90, 0);
+
+
+    }
+    else if((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 269.9) || (player.transform.rotation.eulerAngles.y > -90 && player.transform.rotation.eulerAngles.y < -45))
+    {
+        Debug.Log("transform Camera z +10");
+
+        transform.eulerAngles = new Vector3(0 , 180, 0);
+
+
+
+    }
+    else if(player.transform.rotation.eulerAngles.y >= -45 && player.transform.rotation.eulerAngles.y < 45)
+    {
+        Debug.Log("transform Camera x + 10");
+
+        transform.eulerAngles = new Vector3(0 , -90, 0);
+
+    }
 
 }
+
+
+
+
+// If- Abfrage Funktion in Update: 
+
+/*
+
+
+ Wenn _is2D == true & Wenn Spieler Y-Rotation zwischen  45.01 und 135, 
+ 
+ dann Kamera: 
+ 
+ transform.eulerAngles = new Vector3( 0, 0, 0);
+
+ und _camera2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y, trackingTarget.position.z - 10)
+
+
+Wenn _is2D == true & Wenn Spieler Y-Rotation zwischen 135.01 und 225
+
+ dann Kamera: transform.eulerAngles = new Vector3(0 , 90, 0);
+
+ und _camera2DPosition = new Vector3(trackingTarget.position.x -10, trackingTarget.position.y, trackingTarget.position.z )
+
+
+
+ Wenn _is2D == true & Wenn Spieler Y-Rotation zwischen 225.1 und 269,9 ODER zwischen -90 und -45 
+
+ dann Kamera: transform.eulerAngles = new Vector3(0 , 180, 0);
+
+ und _camera2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y, trackingTarget.position.z + 10 )
+
+
+else:
+
+ dann Kamera: transform.eulerAngles = new Vector3(0 , -90, 0)
+
+ und _camera2DPosition = new Vector3(trackingTarget.position.x +10, trackingTarget.position.y, trackingTarget.position.z)
+
+*/
+
+
+
+
+
+
+
+
 
 
 }
