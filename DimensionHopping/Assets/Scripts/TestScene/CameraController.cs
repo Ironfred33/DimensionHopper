@@ -64,7 +64,7 @@ void Update()
             // Die nächste Zeile sorgt dafür, dass sich die Kamera um 90 Grad dreht, wenn FPP eingenommen wird.
             // klappt aber nur einmal, ist also auch buggy :D 
 
-            transform.eulerAngles = new Vector3( 0, 90, 0);
+            transform.eulerAngles = new Vector3( 0, FPPposition.transform.rotation.eulerAngles.y, 0);
         }
         else
         {
