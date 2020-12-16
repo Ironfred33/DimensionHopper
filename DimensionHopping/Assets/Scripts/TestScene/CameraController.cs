@@ -60,7 +60,10 @@ void Update()
         if (_is2DView)
         {
             _is2DView = false;
-            //transform.eulerAngles = new Vector3( 0, 90, 0);			transform.eulerAngles = new Vector3(0, FPPposition.transform.rotation.eulerAngles.y, 0);        }
+            //transform.eulerAngles = new Vector3( 0, 90, 0);			
+            
+            transform.eulerAngles = new Vector3(0, FPPposition.transform.rotation.eulerAngles.y, 0);        
+            }
         else
         {
             _is2DView = true;
