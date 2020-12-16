@@ -5273,14 +5273,11 @@ PrefabInstance:
       objectReference: {fileID: 1338931247}
     - target: {fileID: 6350847493891267804, guid: 95ef0bbbc5f36844f82b17df65c0c2b4,
         type: 3}
-<<<<<<< HEAD
-=======
       propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6350847493891267804, guid: 95ef0bbbc5f36844f82b17df65c0c2b4,
         type: 3}
->>>>>>> df08bb3e65650b8e93225971d58fb7219c5a3257
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
