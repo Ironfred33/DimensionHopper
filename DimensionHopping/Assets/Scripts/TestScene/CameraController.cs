@@ -41,14 +41,14 @@ private void Start()
 void Update()
 {
 
-    //Debug.Log("Position des Empty Childs: " + FPPposition.transform.position);
+    Debug.Log("Position des Empty Childs: " + FPPposition.transform.position);
 
 
     _camera2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y, trackingTarget.position.z - 10);
 
     _cameraFirstPersonPosition = FPPposition.transform.position;
 
-    //Debug.Log(FPPposition);
+    Debug.Log(FPPposition);
 
     
     // Debug.Log("Camera 2D Position: " + _camera2DPosition);
@@ -60,10 +60,7 @@ void Update()
         if (_is2DView)
         {
             _is2DView = false;
- 
-            transform.eulerAngles = new Vector3(0, FPPposition.transform.rotation.eulerAngles.y, 0);
-            //transform.eulerAngles = new Vector3( 0, 90, 0);
-        }
+            //transform.eulerAngles = new Vector3( 0, 90, 0);			transform.eulerAngles = new Vector3(0, FPPposition.transform.rotation.eulerAngles.y, 0);        }
         else
         {
             _is2DView = true;
@@ -119,7 +116,9 @@ void trackingInFP()
 
     float pitch = Input.GetAxis ("Mouse Y") * -1f * sensitivity;
 
-    float yaw = Input.GetAxis ("Mouse X") * sensitivity;
+    float yaw = Input.GetAxis("Mouse X") * sensitivity;
+
+    //float yaw = Input.GetAxis("Mouse X") * sensitivity;
 
 
 
