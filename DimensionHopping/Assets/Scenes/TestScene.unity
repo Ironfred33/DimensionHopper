@@ -3304,11 +3304,10 @@ MonoBehaviour:
   trackingTarget: {fileID: 566093840}
   FPPposition: {fileID: 1826215434}
   player: {fileID: 1800427906}
+  cameraDistance2DP: 10
+  cameraHeight2DP: 2
   _is2DView: 0
-  camera2DDefaultPosition: {x: 0, y: 0, z: -10}
-  _camera2DPosition: {x: 0, y: 0, z: 0}
-  _cameraFirstPersonPosition: {x: 0, y: 0, z: 0}
-  sensitivity: 200
+  sensitivityFPP: 200
 --- !u!1001 &1416682883
 PrefabInstance:
   m_ObjectHideFlags: 0
