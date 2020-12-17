@@ -68,9 +68,8 @@ public class PlayerController : MonoBehaviour
             player.transform.Translate(0, 0, horizontalMovement * speed2D * Time.deltaTime);
         }
 
-
-
-        else if (Input.GetKey(KeyCode.Space) && isOnGround)
+   
+        if (Input.GetKey(KeyCode.Space) && isOnGround)
         {
             rb.AddForce(transform.up * jumpForce);
             Debug.Log("Addforce!");
@@ -83,23 +82,29 @@ public class PlayerController : MonoBehaviour
     void controllerFPPerspective()
     {
 
+        float horizontalMovement = Input.GetAxis("Horizontal");
+        float verticalMovement = Input.GetAxis("Vertical");
+
+
         if (Input.GetKey(KeyCode.W))
         {
-            player.transform.Translate(Vector3.forward * speedFP * Time.deltaTime);
+            player.transform.Translate(0, 0, verticalMovement * speedFP * Time.deltaTime);
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            player.transform.Translate(Vector3.back * speedFP * Time.deltaTime);
+            player.transform.Translate(0, 0, verticalMovement * speedFP * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.D))
+        
+        if (Input.GetKey(KeyCode.D))
         {
-            player.transform.Translate(Vector3.right * speedFP * Time.deltaTime);
+            player.transform.Translate(horizontalMovement * speedFP * Time.deltaTime, 0, 0);
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            player.transform.Translate(Vector3.left * speedFP * Time.deltaTime);
+            player.transform.Translate(horizontalMovement * speedFP * Time.deltaTime, 0, 0);
         }
-        else if (Input.GetKey(KeyCode.Space) && isOnGround)
+        
+        if (Input.GetKey(KeyCode.Space) && isOnGround)
         {
             rb.AddForce(transform.up * jumpForce);
             Debug.Log("Addforce!");
