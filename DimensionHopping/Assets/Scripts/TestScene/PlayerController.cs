@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed = 60;
 
     public CameraController cameraControl;
+    public Transform groundCheck;
+    public float groundRadius;
+    public LayerMask groundMask;
+    bool isOnGround;
 
     public GameObject player;
 
@@ -41,6 +45,8 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("_is2DView is false");
             controllerFPPerspective();
         }
+
+        isOnGround = Physics.CheckSphere(groundCheck.position, groundRadius, groundMask);
       
     }
 
@@ -63,9 +69,8 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        // noch checken, ob grounded, und übernehmen zu FPPperspectiveController
 
-        else if (Input.GetKey(KeyCode.Space))
+        else if (Input.GetKey(KeyCode.Space) && isOnGround)
         {
             rb.AddForce(transform.up * jumpForce);
             Debug.Log("Addforce!");
@@ -94,7 +99,7 @@ public class PlayerController : MonoBehaviour
         {
             player.transform.Translate(Vector3.left * speedFP * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.Space))
+        else if (Input.GetKey(KeyCode.Space) && isOnGround)
         {
             rb.AddForce(transform.up * jumpForce);
             Debug.Log("Addforce!");
