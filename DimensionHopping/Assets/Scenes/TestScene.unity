@@ -3357,7 +3357,7 @@ MonoBehaviour:
   positionFPP: {fileID: 1826215435}
   curve2DToFPP: {fileID: 11400000, guid: fec995c759ed53c4ca0cd75a87d041f7, type: 2}
   curveFPPTo2D: {fileID: 11400000, guid: 3a042c1af5fe5314da2a4acf843ca6d0, type: 2}
-  weight: 3
+  weight: 5
   switchingFrom2DtoFPP: 0
   switchingFromFPPto2D: 0
   inFPP: 0
@@ -5531,7 +5531,7 @@ PrefabInstance:
     - target: {fileID: 6350847493792627992, guid: 95ef0bbbc5f36844f82b17df65c0c2b4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6350847493792627992, guid: 95ef0bbbc5f36844f82b17df65c0c2b4,
         type: 3}
