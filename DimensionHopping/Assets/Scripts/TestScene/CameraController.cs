@@ -11,6 +11,10 @@ public class CameraController : MonoBehaviour
 
     public GameObject player;
 
+    public Vector3 current2DPosition;
+
+    public Vector3 current2DEulerAngles;
+
     public int cameraDistance2DP = 10;
 
     public int cameraHeight2DP = 2;
@@ -26,8 +30,8 @@ public class CameraController : MonoBehaviour
     //bool für die späteren Player Movement Scripts
 
     public bool _is2DView;
-
-    private Vector3 _camera2DDefaultPosition;
+    
+    // private Vector3 _camera2DDefaultPosition;
 
     private Vector3 _cameraFirstPersonPosition;
 
@@ -38,7 +42,7 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        transform.position = _camera2DDefaultPosition;
+        current2DPosition = transform.position;
         _is2DView = true;
 
 
@@ -51,72 +55,43 @@ public class CameraController : MonoBehaviour
         _cameraFirstPersonPosition = FPPposition.transform.position;
 
 
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            if (_is2DView)
-            {
-                _is2DView = false;
-            		
-            
-                transform.eulerAngles = new Vector3(0, FPPposition.transform.rotation.eulerAngles.y, 0);        
-                }
-            else
-            {
-                _is2DView = true;
-
-                set2DCameraAngle();
-
-            
-          
-            }
-
-        }
-
-
-        if (_is2DView)
+        if (!_is2DView)
         {
     
-            trackingIn2d();
+            TrackingInFP();
 
-        }
-        else
-        {
-
-            trackingInFP();
-     
         }
     
     }
 
 
-    void trackingIn2d()
+    public void TrackingIn2d()
     {
 
         if (player.transform.rotation.eulerAngles.y > 45.1 && player.transform.rotation.eulerAngles.y <= 135.0) 
         {
 
 
-            transform.position = new Vector3(trackingTarget.position.x, trackingTarget.position.y + cameraHeight2DP, trackingTarget.position.z - cameraDistance2DP);
+            current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + cameraHeight2DP, trackingTarget.position.z - cameraDistance2DP);
 
 
         }
         else if(player.transform.rotation.eulerAngles.y > 135.1 && player.transform.rotation.eulerAngles.y <= 225)
         {
      
-            transform.position = new Vector3(trackingTarget.position.x -cameraDistance2DP, trackingTarget.position.y + cameraHeight2DP, trackingTarget.position.z );
+            current2DPosition = new Vector3(trackingTarget.position.x -cameraDistance2DP, trackingTarget.position.y + cameraHeight2DP, trackingTarget.position.z );
 
         }
         else if((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
         {
-            transform.position = new Vector3(trackingTarget.position.x, trackingTarget.position.y + cameraHeight2DP, trackingTarget.position.z + cameraDistance2DP );
+            current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + cameraHeight2DP, trackingTarget.position.z + cameraDistance2DP );
 
 
         }
         else if(player.transform.rotation.eulerAngles.y >= 315.1 && player.transform.rotation.eulerAngles.y <= 359.9 || player.transform.rotation.eulerAngles.y >= 0 && player.transform.rotation.eulerAngles.y <= 45)
         {
      
-            transform.position = new Vector3(trackingTarget.position.x + cameraDistance2DP, trackingTarget.position.y + cameraHeight2DP, trackingTarget.position.z);
+            current2DPosition = new Vector3(trackingTarget.position.x + cameraDistance2DP, trackingTarget.position.y + cameraHeight2DP, trackingTarget.position.z);
 
         }
 
@@ -124,7 +99,7 @@ public class CameraController : MonoBehaviour
     }
 
 
-    void trackingInFP()
+    void TrackingInFP()
     {
 
         // Der Code hier steuert die Maus in der FPP. Das mit dem Pitch und Yaw hab ich aus dem Internet, soll verhindern dass sich die
@@ -150,14 +125,8 @@ public class CameraController : MonoBehaviour
         //float yaw = Input.GetAxis("Mouse X") * sensitivityFPP;
 
 
-
-    
-
         player.transform.Rotate(yaw * Vector3.up);
         transform.localRotation = Quaternion.Euler(xRotationFPP, (-yRotationFPP + 90f), 0f);
-
-
-
 
         // Kamera transformt die Position und bleibt immer an der Position des Empty Gameobjects "FPPPosition", das ein Child des Players ist 
 
@@ -167,26 +136,26 @@ public class CameraController : MonoBehaviour
 
 
 
-    void set2DCameraAngle() {
+    public void Set2DCameraAngle() {
 
         if (player.transform.rotation.eulerAngles.y > 45.1 && player.transform.rotation.eulerAngles.y <= 135.0) 
         {
 
-            transform.eulerAngles = new Vector3( cameraRotation2DP, 0, 0);
+            current2DEulerAngles = new Vector3( cameraRotation2DP, 0, 0);
 
 
         }
         else if(player.transform.rotation.eulerAngles.y > 135.1 && player.transform.rotation.eulerAngles.y <= 225)
         {
 
-            transform.eulerAngles = new Vector3(cameraRotation2DP, 90, 0);
+            current2DEulerAngles = new Vector3(cameraRotation2DP, 90, 0);
 
 
         }
         else if((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
         {
 
-            transform.eulerAngles = new Vector3(cameraRotation2DP, 180, 0);
+            current2DEulerAngles = new Vector3(cameraRotation2DP, 180, 0);
 
 
 
@@ -194,7 +163,7 @@ public class CameraController : MonoBehaviour
         else if(player.transform.rotation.eulerAngles.y >= 315.1 && player.transform.rotation.eulerAngles.y <= 359.9 || player.transform.rotation.eulerAngles.y >= 0 && player.transform.rotation.eulerAngles.y <= 45)
         {
 
-            transform.eulerAngles = new Vector3(cameraRotation2DP, -90, 0);
+            current2DEulerAngles = new Vector3(cameraRotation2DP, -90, 0);
 
         }
 

@@ -3313,12 +3313,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1338931243}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 10, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 0.6666667, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2, y: 2, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 566093840}
-  m_RootOrder: 3
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1338931247
 MonoBehaviour:
@@ -3327,7 +3327,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1338931243}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93010e3408e17324f9f7d09bca372bbd, type: 3}
   m_Name: 
@@ -3335,6 +3335,8 @@ MonoBehaviour:
   trackingTarget: {fileID: 566093840}
   FPPposition: {fileID: 1826215434}
   player: {fileID: 1800427906}
+  current2DPosition: {x: 0, y: 0, z: 0}
+  current2DEulerAngles: {x: 0, y: 0, z: 0}
   cameraDistance2DP: 10
   cameraHeight2DP: 2
   cameraRotation2DP: 0
@@ -3353,14 +3355,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1338931243}
-  position2D: {fileID: 613546734}
-  positionFPP: {fileID: 1826215435}
+  cameraControl: {fileID: 1338931247}
+  playerControl: {fileID: 1800427907}
   curve2DToFPP: {fileID: 11400000, guid: fec995c759ed53c4ca0cd75a87d041f7, type: 2}
   curveFPPTo2D: {fileID: 11400000, guid: 3a042c1af5fe5314da2a4acf843ca6d0, type: 2}
   weight: 5
   switchingFrom2DtoFPP: 0
   switchingFromFPPto2D: 0
-  inFPP: 0
   duration: 3
 --- !u!1001 &1416682883
 PrefabInstance:
@@ -4553,15 +4554,21 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6350847493278635272}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1826215434 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1826215434, guid: 95ef0bbbc5f36844f82b17df65c0c2b4,
+--- !u!114 &1800427907 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6350847493891267803, guid: 95ef0bbbc5f36844f82b17df65c0c2b4,
     type: 3}
   m_PrefabInstance: {fileID: 6350847493278635272}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1826215435 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1826215435, guid: 95ef0bbbc5f36844f82b17df65c0c2b4,
+  m_GameObject: {fileID: 1800427906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c477ba3b972804e45aa05bbda660bad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1826215434 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1826215434, guid: 95ef0bbbc5f36844f82b17df65c0c2b4,
     type: 3}
   m_PrefabInstance: {fileID: 6350847493278635272}
   m_PrefabAsset: {fileID: 0}

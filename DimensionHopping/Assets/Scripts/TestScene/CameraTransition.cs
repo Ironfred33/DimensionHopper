@@ -5,8 +5,9 @@ using UnityEngine;
 public class CameraTransition : MonoBehaviour
 {
     public GameObject cam;
-    public Transform position2D;
-    public Transform positionFPP;
+    public CameraController cameraControl;
+    public PlayerController playerControl;
+    private Quaternion _rotation2DP;
 
     public animCurve curve2DToFPP;
     public animCurve curveFPPTo2D;
@@ -16,18 +17,23 @@ public class CameraTransition : MonoBehaviour
 
     public bool switchingFrom2DtoFPP = false;
     public bool switchingFromFPPto2D = false;
-    public bool inFPP = false;
 
     public float duration;
-    private float elapsed;
-    private float dt;
+    private float _elapsed;
+    private float _dt;
+
 
     private void Update()
     {
+        _rotation2DP = Quaternion.Euler(cameraControl.current2DEulerAngles);
+
+        
         if(Input.GetKeyDown(KeyCode.H))
         {
-            if(inFPP)
+            if(!cameraControl._is2DView)
             {
+                cameraControl.Set2DCameraAngle();
+                cameraControl.TrackingIn2d();
                 switchingFromFPPto2D = true;
             }
 
@@ -40,53 +46,82 @@ public class CameraTransition : MonoBehaviour
         
     }
 
+    // Regelt die Camera Transition zwischen 2D und FPP
+    
     private IEnumerator CamTransition()
     {
-        elapsed = 0f;
+        _elapsed = 0f;
 
         // Wechselt von 2D zur FPP
 
         if(switchingFrom2DtoFPP)
         {
-            while (elapsed <= duration)
+            TogglePlayerControl();
+
+            while (_elapsed <= duration)
             {
-                dt = Time.deltaTime;
-                elapsed = elapsed + dt;
+                _dt = Time.deltaTime;
+                _elapsed = _elapsed + _dt;
                 Debug.Log("Running");
 
                 // Interpoliert Position und Rotation
                 
-                cam.transform.position = Vector3.Lerp(position2D.position, positionFPP.position, elapsed / duration) + (new Vector3(curve2DToFPP.curve.Evaluate(elapsed), 0f, 0f) * weight);
-                cam.transform.rotation = Quaternion.Lerp(position2D.rotation, positionFPP.rotation, elapsed / duration);
+                cam.transform.position = Vector3.Lerp(cameraControl.current2DPosition, cameraControl.FPPposition.transform.position, _elapsed / duration) + (new Vector3(curve2DToFPP.curve.Evaluate(_elapsed), 0f, 0f) * weight);
+                cam.transform.rotation = Quaternion.Lerp(_rotation2DP, cameraControl.FPPposition.transform.rotation, _elapsed / duration);
 
                 switchingFrom2DtoFPP = false;
-                inFPP = true;
+                cameraControl._is2DView = false;
                 yield return null;
             }
+
+            cameraControl._is2DView = false;
+            TogglePlayerControl();
         }
 
         // Wechselt von FPP zu 2D
 
         else if (switchingFromFPPto2D)
         {
-            while (elapsed <= duration)
+            TogglePlayerControl();
+
+            while (_elapsed <= duration)
             {
-                dt = Time.deltaTime;
-                elapsed = elapsed + dt;
+                _dt = Time.deltaTime;
+                _elapsed = _elapsed + _dt;
                 Debug.Log("Running");
 
                 // Interpoliert Position und Rotation
 
-                cam.transform.position = Vector3.Lerp(positionFPP.position, position2D.position, elapsed / duration) + (new Vector3(curveFPPTo2D.curve.Evaluate(elapsed), 0f, 0f) * weight);
-                cam.transform.rotation = Quaternion.Lerp(positionFPP.rotation, position2D.rotation, elapsed / duration);
+                cam.transform.position = Vector3.Lerp(cameraControl.FPPposition.transform.position, cameraControl.current2DPosition, _elapsed / duration) + (new Vector3(curveFPPTo2D.curve.Evaluate(_elapsed), 0f, 0f) * weight);
+                cam.transform.rotation = Quaternion.Lerp(cameraControl.FPPposition.transform.rotation, _rotation2DP, _elapsed / duration);
 
                 switchingFromFPPto2D = false;
-                inFPP = false;
+                cameraControl._is2DView = true;
                 yield return null;
             }
+
+            cameraControl._is2DView = true;
+            TogglePlayerControl();
         }
 
 
+    }
+
+    // Sorgt dafür, dass man während der Animation weder sich selbst, noch die Kamera drehen oder bewegen kann
+    
+    void TogglePlayerControl()
+    {
+        if(switchingFrom2DtoFPP || switchingFromFPPto2D)
+        {
+            cameraControl.enabled = false;
+            playerControl.enabled = false;
+        }
+
+        else if(!switchingFrom2DtoFPP && !switchingFromFPPto2D)
+        {
+            cameraControl.enabled = true;
+            playerControl.enabled = true;
+        }
     }
 
 

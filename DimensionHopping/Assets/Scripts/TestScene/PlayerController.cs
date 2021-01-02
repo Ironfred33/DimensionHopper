@@ -38,12 +38,12 @@ public class PlayerController : MonoBehaviour
         if (cameraControl._is2DView)
         {
             //Debug.Log("_is2DView is true.");
-            controller2DPerspective();
+            Controller2DPerspective();
         }
         else
         {
             //Debug.Log("_is2DView is false");
-            controllerFPPerspective();
+            ControllerFPPerspective();
         }
 
         isOnGround = Physics.CheckSphere(groundCheck.position, groundRadius, groundMask);
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void controller2DPerspective() 
+    void Controller2DPerspective() 
     {
 
         float horizontalMovement = Input.GetAxis("Horizontal");
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void controllerFPPerspective()
+    void ControllerFPPerspective()
     {
 
         float horizontalMovement = Input.GetAxis("Horizontal");
