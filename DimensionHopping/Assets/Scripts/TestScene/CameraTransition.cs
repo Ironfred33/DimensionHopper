@@ -43,6 +43,7 @@ public class CameraTransition : MonoBehaviour
             }
             StartCoroutine(CamTransition());
         }
+
         
     }
 

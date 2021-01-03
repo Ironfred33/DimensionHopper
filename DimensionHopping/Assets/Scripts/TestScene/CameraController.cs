@@ -61,6 +61,11 @@ public class CameraController : MonoBehaviour
             TrackingInFP();
 
         }
+        
+        else if(_is2DView)
+        {
+            TrackingIn2d();
+        }
     
     }
 
@@ -73,6 +78,7 @@ public class CameraController : MonoBehaviour
 
 
             current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + cameraHeight2DP, trackingTarget.position.z - cameraDistance2DP);
+            transform.position = current2DPosition;
 
 
         }
@@ -80,11 +86,14 @@ public class CameraController : MonoBehaviour
         {
      
             current2DPosition = new Vector3(trackingTarget.position.x -cameraDistance2DP, trackingTarget.position.y + cameraHeight2DP, trackingTarget.position.z );
+            transform.position = current2DPosition;
+
 
         }
         else if((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
         {
             current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + cameraHeight2DP, trackingTarget.position.z + cameraDistance2DP );
+            transform.position = current2DPosition;
 
 
         }
@@ -92,6 +101,7 @@ public class CameraController : MonoBehaviour
         {
      
             current2DPosition = new Vector3(trackingTarget.position.x + cameraDistance2DP, trackingTarget.position.y + cameraHeight2DP, trackingTarget.position.z);
+            transform.position = current2DPosition;
 
         }
 
