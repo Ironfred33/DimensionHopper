@@ -5,6 +5,8 @@ using UnityEngine;
 public class CameraTransition : MonoBehaviour
 {
     public GameObject cam;
+    public GameObject externalVariables;
+    EVCameraTransition extVars;
     public CameraController cameraControl;
     public PlayerController playerControl;
     private Quaternion _rotation2DP;
@@ -12,15 +14,15 @@ public class CameraTransition : MonoBehaviour
     public animCurve curve2DToFPP;
     public animCurve curveFPPTo2D;
 
-    // Gibt an, wie weit die Kurve ausholt
-    public float weight;
-
     public bool switchingFrom2DtoFPP = false;
     public bool switchingFromFPPto2D = false;
-
-    public float duration;
     private float _elapsed;
     private float _dt;
+
+    private void Start()
+    {
+        extVars = externalVariables.GetComponent<EVCameraTransition>();
+    }
 
 
     private void Update()
@@ -59,7 +61,7 @@ public class CameraTransition : MonoBehaviour
         {
             TogglePlayerControl();
 
-            while (_elapsed <= duration)
+            while (_elapsed <= extVars.duration)
             {
                 _dt = Time.deltaTime;
                 _elapsed = _elapsed + _dt;
@@ -67,8 +69,8 @@ public class CameraTransition : MonoBehaviour
 
                 // Interpoliert Position und Rotation
                 
-                cam.transform.position = Vector3.Lerp(cameraControl.current2DPosition, cameraControl.FPPposition.transform.position, _elapsed / duration) + (new Vector3(curve2DToFPP.curve.Evaluate(_elapsed), 0f, 0f) * weight);
-                cam.transform.rotation = Quaternion.Lerp(_rotation2DP, cameraControl.FPPposition.transform.rotation, _elapsed / duration);
+                cam.transform.position = Vector3.Lerp(cameraControl.current2DPosition, cameraControl.FPPposition.transform.position, _elapsed / extVars.duration) + (new Vector3(curve2DToFPP.curve.Evaluate(_elapsed), 0f, 0f) * extVars.curveIntensity);
+                cam.transform.rotation = Quaternion.Lerp(_rotation2DP, cameraControl.FPPposition.transform.rotation, _elapsed / extVars.duration);
 
                 switchingFrom2DtoFPP = false;
                 cameraControl._is2DView = false;
@@ -85,7 +87,7 @@ public class CameraTransition : MonoBehaviour
         {
             TogglePlayerControl();
 
-            while (_elapsed <= duration)
+            while (_elapsed <= extVars.duration)
             {
                 _dt = Time.deltaTime;
                 _elapsed = _elapsed + _dt;
@@ -93,8 +95,8 @@ public class CameraTransition : MonoBehaviour
 
                 // Interpoliert Position und Rotation
 
-                cam.transform.position = Vector3.Lerp(cameraControl.FPPposition.transform.position, cameraControl.current2DPosition, _elapsed / duration) + (new Vector3(curveFPPTo2D.curve.Evaluate(_elapsed), 0f, 0f) * weight);
-                cam.transform.rotation = Quaternion.Lerp(cameraControl.FPPposition.transform.rotation, _rotation2DP, _elapsed / duration);
+                cam.transform.position = Vector3.Lerp(cameraControl.FPPposition.transform.position, cameraControl.current2DPosition, _elapsed / extVars.duration) + (new Vector3(curveFPPTo2D.curve.Evaluate(_elapsed), 0f, 0f) * extVars.curveIntensity);
+                cam.transform.rotation = Quaternion.Lerp(cameraControl.FPPposition.transform.rotation, _rotation2DP, _elapsed / extVars.duration);
 
                 switchingFromFPPto2D = false;
                 cameraControl._is2DView = true;

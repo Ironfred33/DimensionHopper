@@ -6,42 +6,24 @@ public class CameraController : MonoBehaviour
 {
   
     public Transform trackingTarget;
-
+    public GameObject externalVariables;
+    EVCamera extVars;
     public GameObject FPPposition;
-
     public GameObject player;
-
     public Vector3 current2DPosition;
-
     public Vector3 current2DEulerAngles;
 
-    public int cameraDistance2DP = 10;
-
-    public int cameraHeight2DP = 2;
-
-    public float cameraRotation2DP;
-
     float xRotationFPP = 0f;
-
     float yRotationFPP = 0f;
-
-
-
-    //bool für die späteren Player Movement Scripts
-
     public bool _is2DView;
-    
-    // private Vector3 _camera2DDefaultPosition;
-
     private Vector3 _cameraFirstPersonPosition;
-
-
-
-    public float sensitivityFPP = 5.0f;
+    //public float extVars.mouseSensitivityFP = 5.0f;
 
 
     private void Start()
     {
+        extVars = externalVariables.GetComponent<EVCamera>();
+        
         current2DPosition = transform.position;
         _is2DView = true;
 
@@ -59,12 +41,14 @@ public class CameraController : MonoBehaviour
         {
     
             TrackingInFP();
+            //Set2DCameraAngle();
 
         }
         
         else if(_is2DView)
         {
             TrackingIn2d();
+            //Set2DCameraAngle();
         }
     
     }
@@ -77,7 +61,7 @@ public class CameraController : MonoBehaviour
         {
 
 
-            current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + cameraHeight2DP, trackingTarget.position.z - cameraDistance2DP);
+            current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z - extVars.cameraDistance2DP);
             transform.position = current2DPosition;
 
 
@@ -85,14 +69,14 @@ public class CameraController : MonoBehaviour
         else if(player.transform.rotation.eulerAngles.y > 135.1 && player.transform.rotation.eulerAngles.y <= 225)
         {
      
-            current2DPosition = new Vector3(trackingTarget.position.x -cameraDistance2DP, trackingTarget.position.y + cameraHeight2DP, trackingTarget.position.z );
+            current2DPosition = new Vector3(trackingTarget.position.x -extVars.cameraDistance2DP, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z );
             transform.position = current2DPosition;
 
 
         }
         else if((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
         {
-            current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + cameraHeight2DP, trackingTarget.position.z + cameraDistance2DP );
+            current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z + extVars.cameraDistance2DP );
             transform.position = current2DPosition;
 
 
@@ -100,7 +84,7 @@ public class CameraController : MonoBehaviour
         else if(player.transform.rotation.eulerAngles.y >= 315.1 && player.transform.rotation.eulerAngles.y <= 359.9 || player.transform.rotation.eulerAngles.y >= 0 && player.transform.rotation.eulerAngles.y <= 45)
         {
      
-            current2DPosition = new Vector3(trackingTarget.position.x + cameraDistance2DP, trackingTarget.position.y + cameraHeight2DP, trackingTarget.position.z);
+            current2DPosition = new Vector3(trackingTarget.position.x + extVars.cameraDistance2DP, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z);
             transform.position = current2DPosition;
 
         }
@@ -119,9 +103,9 @@ public class CameraController : MonoBehaviour
 
      
         
-        float pitch = Input.GetAxis ("Mouse Y") * sensitivityFPP * Time.deltaTime;
+        float pitch = Input.GetAxis ("Mouse Y") * extVars.mouseSensitivityFP * Time.deltaTime;
 
-        float yaw = Input.GetAxis("Mouse X") * sensitivityFPP * Time.deltaTime;
+        float yaw = Input.GetAxis("Mouse X") * extVars.mouseSensitivityFP * Time.deltaTime;
 
 
 
@@ -132,7 +116,7 @@ public class CameraController : MonoBehaviour
 
         Debug.Log("XRotation = " + pitch);
 
-        //float yaw = Input.GetAxis("Mouse X") * sensitivityFPP;
+        //float yaw = Input.GetAxis("Mouse X") * extVars.mouseSensitivityFP;
 
 
         player.transform.Rotate(yaw * Vector3.up);
@@ -151,21 +135,21 @@ public class CameraController : MonoBehaviour
         if (player.transform.rotation.eulerAngles.y > 45.1 && player.transform.rotation.eulerAngles.y <= 135.0) 
         {
 
-            current2DEulerAngles = new Vector3( cameraRotation2DP, 0, 0);
+            current2DEulerAngles = new Vector3( extVars.cameraXRotation2DP, 0, 0);
 
 
         }
         else if(player.transform.rotation.eulerAngles.y > 135.1 && player.transform.rotation.eulerAngles.y <= 225)
         {
 
-            current2DEulerAngles = new Vector3(cameraRotation2DP, 90, 0);
+            current2DEulerAngles = new Vector3(extVars.cameraXRotation2DP, 90, 0);
 
 
         }
         else if((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
         {
 
-            current2DEulerAngles = new Vector3(cameraRotation2DP, 180, 0);
+            current2DEulerAngles = new Vector3(extVars.cameraXRotation2DP, 180, 0);
 
 
 
@@ -173,7 +157,7 @@ public class CameraController : MonoBehaviour
         else if(player.transform.rotation.eulerAngles.y >= 315.1 && player.transform.rotation.eulerAngles.y <= 359.9 || player.transform.rotation.eulerAngles.y >= 0 && player.transform.rotation.eulerAngles.y <= 45)
         {
 
-            current2DEulerAngles = new Vector3(cameraRotation2DP, -90, 0);
+            current2DEulerAngles = new Vector3(extVars.cameraXRotation2DP, -90, 0);
 
         }
 
