@@ -11,6 +11,7 @@ public class EVPlayer : MonoBehaviour
     public float jumpForce2D = 1.0f;
     public float jumpForceFP = 1.0f;
     public float rotationSpeedFP; 
+    public Vector3 spawnPoint;
 
 
 

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FPPposition
   - 2DPposition
+  - Deadly
   layers:
   - Default
   - TransparentFX

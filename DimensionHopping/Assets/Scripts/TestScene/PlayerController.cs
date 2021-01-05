@@ -103,4 +103,19 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.collider.CompareTag ("Deadly")) 
+     {
+        
+        Debug.Log("Dead!");
+        player.transform.position = extVars.spawnPoint;
+        Debug.Log("Respawned.");
+        
+        }
+        
+    }
+
+
 }

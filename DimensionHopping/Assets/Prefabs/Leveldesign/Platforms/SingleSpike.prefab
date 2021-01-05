@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3564233714332863067}
   - component: {fileID: 8096760092724471487}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: SingleSpike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
