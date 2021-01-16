@@ -5,7 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(transform.gameObject);
+    }
+
     // Lädt die nächste Szene
     public void LoadNextScene()
     {
