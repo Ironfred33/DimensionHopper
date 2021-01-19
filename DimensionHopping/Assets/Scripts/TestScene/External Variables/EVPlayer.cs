@@ -12,6 +12,8 @@ public class EVPlayer : MonoBehaviour
     public float jumpForceFP = 1.0f;
     public float rotationSpeedFP; 
     public Vector3 spawnPoint;
+    public int maxHearts;
+    public float timeLimit;
 
 
 

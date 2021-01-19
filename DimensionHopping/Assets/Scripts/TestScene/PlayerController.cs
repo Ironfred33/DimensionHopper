@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public GameObject player;
 
     public Rigidbody rb;
+    public PlayerHealth health;
 
     
         void Start()
@@ -106,16 +107,22 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
 
-        if (collision.collider.CompareTag ("Deadly")) 
-     {
-        
-        Debug.Log("Dead!");
-        player.transform.position = extVars.spawnPoint;
-        Debug.Log("Respawned.");
-        
-        }
+        if (collision.collider.CompareTag("Deadly"))
+        {
+            health.currentHearts -= 1;
+            Debug.Log("Lost a heart");
+
+            if(health.currentHearts <= 0)
+            {
+                Debug.Log("Dead!");
+                player.transform.position = extVars.spawnPoint;
+                Debug.Log("Respawned.");
+            }
+        }     
         
     }
-
-
+        
 }
+
+
+
