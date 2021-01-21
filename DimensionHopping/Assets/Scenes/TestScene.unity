@@ -127,7 +127,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1242
+  m_Name: pb_Mesh-1452
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3053,7 +3053,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1284
+  m_Name: pb_Mesh-1494
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3361,7 +3361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curveIntensity: 5
-  duration: 3
+  duration: 1
 --- !u!114 &1305083210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3795,6 +3795,7 @@ MonoBehaviour:
   externalVariables: {fileID: 1305083207}
   cameraControl: {fileID: 1338931247}
   playerControl: {fileID: 1800427907}
+  player: {fileID: 1800427906}
   curve2DToFPP: {fileID: 11400000, guid: fec995c759ed53c4ca0cd75a87d041f7, type: 2}
   curveFPPTo2D: {fileID: 11400000, guid: 3a042c1af5fe5314da2a4acf843ca6d0, type: 2}
   switchingFrom2DtoFPP: 0
@@ -4115,7 +4116,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16548
+  m_Name: pb_Mesh16606
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6777,7 +6778,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89

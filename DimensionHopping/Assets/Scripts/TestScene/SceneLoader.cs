@@ -24,5 +24,10 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void LoadEndScreen()
+    {
+        SceneManager.LoadScene("EndScreen");
+    }
+
 
 }

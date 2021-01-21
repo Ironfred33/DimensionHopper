@@ -11,6 +11,8 @@ public class CameraTransition : MonoBehaviour
     public PlayerController playerControl;
     private Quaternion _rotation2DP;
 
+    public GameObject player;
+
     public animCurve curve2DToFPP;
     public animCurve curveFPPTo2D;
 
@@ -29,10 +31,10 @@ public class CameraTransition : MonoBehaviour
     {
         _rotation2DP = Quaternion.Euler(cameraControl.current2DEulerAngles);
 
-        
-        if(Input.GetKeyDown(KeyCode.H))
+
+        if (Input.GetKeyDown(KeyCode.H))
         {
-            if(!cameraControl._is2DView)
+            if (!cameraControl._is2DView)
             {
                 cameraControl.Set2DCameraAngle();
                 cameraControl.TrackingIn2d();
@@ -44,20 +46,61 @@ public class CameraTransition : MonoBehaviour
                 switchingFrom2DtoFPP = true;
             }
             StartCoroutine(CamTransition());
+
+
+
+             //           Rotation des Spielers wieder an Achse anpassen
+            /*
+            if (player.transform.rotation.eulerAngles.y > 45.1 && player.transform.rotation.eulerAngles.y <= 135.0)
+            {
+
+
+                //player.transform.Rotate(0, 90, 0,Space.World);
+                player.transform.rotation = Quaternion.Euler(0, 90, 0);
+                transform.rotation = Quaternion.Euler(0, 90, 0);
+
+
+            }
+            else if (player.transform.rotation.eulerAngles.y > 135.1 && player.transform.rotation.eulerAngles.y <= 225)
+            {
+
+                player.transform.rotation = Quaternion.Euler(0, 180, 0);
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+
+
+
+            }
+            else if ((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
+            {
+
+
+                player.transform.rotation = Quaternion.Euler(0, 270, 0);
+                transform.rotation = Quaternion.Euler(0, 270, 0);
+
+
+            }
+            else if (player.transform.rotation.eulerAngles.y >= 315.1 && player.transform.rotation.eulerAngles.y <= 359.9 || player.transform.rotation.eulerAngles.y >= 0 && player.transform.rotation.eulerAngles.y <= 45)
+            {
+
+                player.transform.rotation = Quaternion.Euler(0, 0, 0);
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+
+            }
+            */
         }
 
-        
+
     }
 
     // Regelt die Camera Transition zwischen 2D und FPP
-    
+
     private IEnumerator CamTransition()
     {
         _elapsed = 0f;
 
         // Wechselt von 2D zur FPP
 
-        if(switchingFrom2DtoFPP)
+        if (switchingFrom2DtoFPP)
         {
             TogglePlayerControl();
 
@@ -68,7 +111,7 @@ public class CameraTransition : MonoBehaviour
                 Debug.Log("Running");
 
                 // Interpoliert Position und Rotation
-                
+
                 cam.transform.position = Vector3.Lerp(cameraControl.current2DPosition, cameraControl.FPPposition.transform.position, _elapsed / extVars.duration) + (new Vector3(curve2DToFPP.curve.Evaluate(_elapsed), 0f, 0f) * extVars.curveIntensity);
                 cam.transform.rotation = Quaternion.Lerp(_rotation2DP, cameraControl.FPPposition.transform.rotation, _elapsed / extVars.duration);
 
@@ -111,16 +154,16 @@ public class CameraTransition : MonoBehaviour
     }
 
     // Sorgt dafür, dass man während der Animation weder sich selbst, noch die Kamera drehen oder bewegen kann
-    
+
     void TogglePlayerControl()
     {
-        if(switchingFrom2DtoFPP || switchingFromFPPto2D)
+        if (switchingFrom2DtoFPP || switchingFromFPPto2D)
         {
             cameraControl.enabled = false;
             playerControl.enabled = false;
         }
 
-        else if(!switchingFrom2DtoFPP && !switchingFromFPPto2D)
+        else if (!switchingFrom2DtoFPP && !switchingFromFPPto2D)
         {
             cameraControl.enabled = true;
             playerControl.enabled = true;

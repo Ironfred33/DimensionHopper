@@ -117,6 +117,8 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Dead!");
                 player.transform.position = extVars.spawnPoint;
                 Debug.Log("Respawned.");
+                health.currentHearts = extVars.maxHearts;
+                Debug.Log("Hearts set back to maxHearts");
             }
         }     
         

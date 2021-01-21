@@ -41,14 +41,14 @@ public class CameraController : MonoBehaviour
         {
     
             TrackingInFP();
-            //Set2DCameraAngle();
+          
 
         }
         
         else if(_is2DView)
         {
             TrackingIn2d();
-            //Set2DCameraAngle();
+            
         }
     
     }
@@ -129,13 +129,15 @@ public class CameraController : MonoBehaviour
     }
 
 
-
+    
     public void Set2DCameraAngle() {
 
+            // AUSRICHTUNG: FRONT ZUR WORLD X - ACHSE
         if (player.transform.rotation.eulerAngles.y > 45.1 && player.transform.rotation.eulerAngles.y <= 135.0) 
         {
 
-            current2DEulerAngles = new Vector3( extVars.cameraXRotation2DP, 0, 0);
+            current2DEulerAngles = new Vector3(extVars.cameraXRotation2DP, 0, 0);
+
 
 
         }
@@ -162,7 +164,7 @@ public class CameraController : MonoBehaviour
         }
 
     }
-
+    
 
 
 }
