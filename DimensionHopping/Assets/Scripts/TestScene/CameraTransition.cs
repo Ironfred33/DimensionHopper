@@ -11,6 +11,10 @@ public class CameraTransition : MonoBehaviour
     public PlayerController playerControl;
     private Quaternion _rotation2DP;
 
+    public GameObject block;
+    public GameObject crane;
+    public RedButton rb;
+
     public GameObject player;
 
     public animCurve curve2DToFPP;
@@ -35,17 +39,35 @@ public class CameraTransition : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             if (!cameraControl._is2DView)
-            {
+            {  
+                
                 cameraControl.Set2DCameraAngle();
                 cameraControl.TrackingIn2d();
                 switchingFromFPPto2D = true;
+
             }
 
             else
             {
+                
                 switchingFrom2DtoFPP = true;
+
+                
+
             }
             StartCoroutine(CamTransition());
+
+            if(!cameraControl._is2DView)
+            {
+                crane.transform.position = crane.GetComponent<Crane>().positionFPP;
+            }
+
+            else if(cameraControl._is2DView)
+            {
+                block.transform.position = block.GetComponent<Block>().position2D;
+                crane.transform.position = crane.GetComponent<Crane>().position2D;
+            }
+
 
 
 
@@ -120,6 +142,7 @@ public class CameraTransition : MonoBehaviour
                 yield return null;
             }
 
+            
             cameraControl._is2DView = false;
             TogglePlayerControl();
         }
