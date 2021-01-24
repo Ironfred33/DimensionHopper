@@ -67,48 +67,6 @@ public class CameraTransition : MonoBehaviour
                 block.transform.position = block.GetComponent<Block>().position2D;
                 crane.transform.position = crane.GetComponent<Crane>().position2D;
             }
-
-
-
-
-             //           Rotation des Spielers wieder an Achse anpassen
-            /*
-            if (player.transform.rotation.eulerAngles.y > 45.1 && player.transform.rotation.eulerAngles.y <= 135.0)
-            {
-
-
-                //player.transform.Rotate(0, 90, 0,Space.World);
-                player.transform.rotation = Quaternion.Euler(0, 90, 0);
-                transform.rotation = Quaternion.Euler(0, 90, 0);
-
-
-            }
-            else if (player.transform.rotation.eulerAngles.y > 135.1 && player.transform.rotation.eulerAngles.y <= 225)
-            {
-
-                player.transform.rotation = Quaternion.Euler(0, 180, 0);
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-
-
-
-            }
-            else if ((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
-            {
-
-
-                player.transform.rotation = Quaternion.Euler(0, 270, 0);
-                transform.rotation = Quaternion.Euler(0, 270, 0);
-
-
-            }
-            else if (player.transform.rotation.eulerAngles.y >= 315.1 && player.transform.rotation.eulerAngles.y <= 359.9 || player.transform.rotation.eulerAngles.y >= 0 && player.transform.rotation.eulerAngles.y <= 45)
-            {
-
-                player.transform.rotation = Quaternion.Euler(0, 0, 0);
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-
-            }
-            */
         }
 
 

@@ -54,6 +54,9 @@ public class CameraController : MonoBehaviour
     }
 
 
+    // Hier wird auch der Player in die entsprechende Richtung gedreht, das vielleicht noch irgendwo reinhauen, wo es nicht in Update ist, weil es sonst evtl. zu Performanceeinbußen kommt
+    // und irgendwie kann es sein dass in der PitchScene etwas verbuggt ist, konnte es bisher aber noch nicht reproduzieren
+
     public void TrackingIn2d()
     {
 
@@ -63,6 +66,7 @@ public class CameraController : MonoBehaviour
 
             current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z - extVars.cameraDistance2DP);
             transform.position = current2DPosition;
+            player.transform.rotation = Quaternion.Euler(0, 90, 0);
 
 
         }
@@ -71,6 +75,7 @@ public class CameraController : MonoBehaviour
      
             current2DPosition = new Vector3(trackingTarget.position.x -extVars.cameraDistance2DP, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z );
             transform.position = current2DPosition;
+            player.transform.rotation = Quaternion.Euler(0, 180, 0);
 
 
         }
@@ -78,7 +83,7 @@ public class CameraController : MonoBehaviour
         {
             current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z + extVars.cameraDistance2DP );
             transform.position = current2DPosition;
-
+            player.transform.rotation = Quaternion.Euler(0, 270, 0);
 
         }
         else if(player.transform.rotation.eulerAngles.y >= 315.1 && player.transform.rotation.eulerAngles.y <= 359.9 || player.transform.rotation.eulerAngles.y >= 0 && player.transform.rotation.eulerAngles.y <= 45)
@@ -86,6 +91,7 @@ public class CameraController : MonoBehaviour
      
             current2DPosition = new Vector3(trackingTarget.position.x + extVars.cameraDistance2DP, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z);
             transform.position = current2DPosition;
+            player.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         }
 
