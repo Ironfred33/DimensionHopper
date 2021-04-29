@@ -16,15 +16,22 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rb;
     public PlayerHealth health;
 
+    public Animator anim;
+
     
-        void Start()
+    void Start()
     {
         rb = player.GetComponent<Rigidbody>();
 
         extVars = externalVariables.GetComponent<EVPlayer>();
     }
 
-    // Update is called once per frame
+
+    private void Update()
+    {
+        // animations
+
+    }
     void FixedUpdate()
     {
 
