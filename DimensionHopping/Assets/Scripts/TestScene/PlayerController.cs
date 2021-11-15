@@ -2,8 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerState
+{
+    Idle,
+    Running,
+    Jumping
+}
 public class PlayerController : MonoBehaviour
 {
+    private PlayerState state;
     public GameObject externalVariables;
     EVPlayer extVars;
     public CameraController cameraControl;
@@ -11,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public float groundRadius;
     public LayerMask groundMask;
     bool isOnGround;
+    private float movement = 0f;
+    public bool lookRight = true;
     public GameObject player;
 
     public Rigidbody rb;
@@ -30,6 +39,23 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // animations
+        if(state == PlayerState.Idle)
+        {
+            anim.SetBool("isRunning", false);
+            anim.SetBool("isJumping", false);
+        }
+
+        else if (state == PlayerState.Running)
+        {
+            anim.SetBool("isRunning", true);
+            anim.SetBool("isJumping", false);
+        }
+
+        else if(state == PlayerState.Jumping)
+        {
+            anim.SetBool("isJumping", true);
+            anim.SetBool("isRunning", false);
+        }
 
     }
     void FixedUpdate()
@@ -58,19 +84,28 @@ public class PlayerController : MonoBehaviour
         {
 
             player.transform.Translate(0, 0, horizontalMovement * extVars.speed2D *  Time.deltaTime);
+            state = PlayerState.Running;
 
         }
         else if (Input.GetKey(KeyCode.A))
         {
 
             player.transform.Translate(0, 0, horizontalMovement * extVars.speed2D * Time.deltaTime);
+            state = PlayerState.Running;
+            
+        }
+        else
+        {
+            state = PlayerState.Idle;
         }
 
    
         if (Input.GetKey(KeyCode.Space) && isOnGround)
         {
             rb.AddForce(transform.up * extVars.jumpForce2D);
- 
+            state = PlayerState.Jumping;
+
+
         }
 
 
@@ -86,26 +121,31 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             player.transform.Translate(0, 0, verticalMovement * extVars.speedFP * Time.deltaTime);
+            state = PlayerState.Running;
         }
         else if (Input.GetKey(KeyCode.S))
         {
             player.transform.Translate(0, 0, verticalMovement * extVars.speedFP * Time.deltaTime);
+            state = PlayerState.Running;
         }
         
         if (Input.GetKey(KeyCode.D))
         {
             player.transform.Translate(horizontalMovement * extVars.speedFP * Time.deltaTime, 0, 0);
+            state = PlayerState.Running;
         }
         else if (Input.GetKey(KeyCode.A))
         {
             player.transform.Translate(horizontalMovement * extVars.speedFP * Time.deltaTime, 0, 0);
+            state = PlayerState.Running;
         }
         
         if (Input.GetKey(KeyCode.Space) && isOnGround)
         {
             rb.AddForce(transform.up * extVars.jumpForceFP);
             Debug.Log("Addforce!");
- 
+            anim.SetBool("isJumping", true);
+
         }
 
 
@@ -130,6 +170,23 @@ public class PlayerController : MonoBehaviour
         }     
         
     }
+
+    /*private void FlipSide()
+    {
+        if (movement > 0 && !lookRight)
+        {
+            transform.Rotate(0f, 180f, 0f);
+
+            lookRight = true;
+        }
+
+        else if (movement < 0 && lookRight)
+        {
+            transform.Rotate(0f, -180f, 0f);
+
+            lookRight = false;
+        }
+    } */
         
 }
 
