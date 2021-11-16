@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7123726539426643510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7123726539426643514}
+  - component: {fileID: 7123726539426643509}
+  - component: {fileID: 7123726539426643508}
+  - component: {fileID: 7123726539426643511}
+  m_Layer: 0
+  m_Name: External Variables
+  m_TagString: ExternalVariables
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7123726539426643514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7123726539426643510}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 307.7714, y: 0.0677693, z: 56.89274}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7123726539426643509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7123726539426643510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 982d3e9818115e4448dfa9db8302a43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed2D: 5
+  speedFP: 5
+  jumpForce2D: 25
+  jumpForceFP: 25
+  rotationSpeedFP: 0
+  spawnPoint: {x: 1, y: 2, z: 0}
+  maxHearts: 3
+  timeLimit: 0
+--- !u!114 &7123726539426643508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7123726539426643510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff0ccdd8ff327f148a23bd3220fb7745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraDistance2DP: 10
+  cameraHeight2DP: 2
+  cameraXRotation2DP: 0
+  mouseSensitivityFP: 400
+--- !u!114 &7123726539426643511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7123726539426643510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e354d261ce893234a8ed470078b5d0d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curveIntensity: 5
+  duration: 3

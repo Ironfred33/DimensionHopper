@@ -1041,8 +1041,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8554892796048905220}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: TrackingPoint
+  m_TagString: PlayerTrackingPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1055,7 +1055,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8554892796048905223}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0.2}
+  m_LocalPosition: {x: 0.000000029802326, y: 1.5, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8157053365127418858}
@@ -1138,7 +1138,7 @@ GameObject:
   - component: {fileID: 8554892795707864834}
   m_Layer: 0
   m_Name: character_v2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1150,7 +1150,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8824940349515581776}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.98395866, z: 0, w: 0.17839688}
   m_LocalPosition: {x: 2.4275815, y: 1, z: -0.06894469}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1190,8 +1190,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.309836, z: 1}
-  m_Center: {x: 0, y: 0.65491796, z: 0}
+  m_Size: {x: 1, y: 1.8486643, z: 1}
+  m_Center: {x: 0, y: 0.88550377, z: 0}
 --- !u!95 &8554892795707864839
 Animator:
   serializedVersion: 3
@@ -1243,13 +1243,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c477ba3b972804e45aa05bbda660bad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  externalVariables: {fileID: 0}
+  extVars: {fileID: 0}
   cameraControl: {fileID: 0}
   groundCheck: {fileID: 8554892796903071226}
   groundRadius: 0.4
   groundMask:
     serializedVersion: 2
     m_Bits: 256
+  lookRight: 1
   player: {fileID: 8824940349515581776}
   rb: {fileID: 8554892795707864836}
   health: {fileID: 8554892795707864837}

@@ -11,8 +11,8 @@ public enum PlayerState
 public class PlayerController : MonoBehaviour
 {
     private PlayerState state;
-    public GameObject externalVariables;
-    EVPlayer extVars;
+    //public GameObject externalVariables;
+    public EVPlayer extVars;
     public CameraController cameraControl;
     public Transform groundCheck;
     public float groundRadius;
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = player.GetComponent<Rigidbody>();
 
-        extVars = externalVariables.GetComponent<EVPlayer>();
+        //extVars = externalVariables.GetComponent<EVPlayer>();
     }
 
 
