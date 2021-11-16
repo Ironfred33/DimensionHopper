@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
 {
   
     public Transform trackingTarget;
+
     public GameObject externalVariables;
     EVCamera extVars;
     public GameObject FPPposition;
@@ -33,6 +34,12 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+
+        Debug.Log("CAMERACONTROLLER UPDATE TRIGGERED");
+
+        Debug.Log("Tracking Target: " + trackingTarget.position);
+
+        //Debug.Log("FPP Position: " + FPPposition.position.x, FPPposition.y)
 
         _cameraFirstPersonPosition = FPPposition.transform.position;
 
