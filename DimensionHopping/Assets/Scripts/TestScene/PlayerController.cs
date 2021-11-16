@@ -99,6 +99,7 @@ public class PlayerController : MonoBehaviour
             state = PlayerState.Idle;
         }
 
+
    
         if (Input.GetKey(KeyCode.Space) && isOnGround)
         {
@@ -139,6 +140,7 @@ public class PlayerController : MonoBehaviour
             player.transform.Translate(horizontalMovement * extVars.speedFP * Time.deltaTime, 0, 0);
             state = PlayerState.Running;
         }
+
         
         if (Input.GetKey(KeyCode.Space) && isOnGround)
         {
