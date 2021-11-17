@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
 
    
-        if (Input.GetKey(KeyCode.Space) && isOnGround)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
             rb.AddForce(transform.up * extVars.jumpForce2D);
             state = PlayerState.Jumping;
@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
         }
 
         
-        if (Input.GetKey(KeyCode.Space) && isOnGround)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !player.GetComponent<WallRun_v2>().isWallRunning)
         {
             rb.AddForce(transform.up * extVars.jumpForceFP);
             Debug.Log("Addforce!");
