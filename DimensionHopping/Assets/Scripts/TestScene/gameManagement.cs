@@ -7,14 +7,10 @@ public class gameManagement : MonoBehaviour
     
 
     public GameObject externalVariables;
-    
+    public Vector3 SpawnCoords;
     private GameObject _playerPrefab;
-
     private EVPlayer _externalVariablesPlayerScript;
-
     private EVCamera _externalVariablesCameraScript;
-
-    //private EVCameraTransition _externalVariablesCameraTransitionScript;
     private PlayerHealth _playerHealthScript;
     private PlayerController _playerControllerScript;
     private CameraTransition _cameraTransitionScript;
@@ -22,10 +18,6 @@ public class gameManagement : MonoBehaviour
     private Transform _trackingTarget;
     private GameObject _trackingPoint;
     
-
- 
-    public Vector3 SpawnCoords;
-
     void Awake()
     {
 
@@ -33,29 +25,21 @@ public class gameManagement : MonoBehaviour
 
         SpawnPlayer();
 
+    }
+
+    public void SpawnPlayer()
+    {
+
+        Instantiate(_playerPrefab, SpawnCoords, Quaternion.Euler(0, 90, 0));
+
         GetAllComponents();
         
         AssignComponentsToPlayer();
 
         AssignComponentsToCamera();
 
-        
-
-
-    }
-
-    void Start() {
-
-        
-
         FinalCameraSetup();
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void LoadPrefab()
@@ -69,11 +53,7 @@ public class gameManagement : MonoBehaviour
         _playerHealthScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         _playerControllerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         _externalVariablesPlayerScript = externalVariables.GetComponent<EVPlayer>();
-        _cameraControlScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
-        //_externalVariablesCameraScript = externalVariables.GetComponent<EVCamera>();
-        //_externalVariablesCameraTransitionScript = externalVariables.GetComponent<EVCameraTransition>();
-
-        
+        _cameraControlScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();      
         _cameraTransitionScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraTransition>();
 
 
@@ -90,12 +70,8 @@ public class gameManagement : MonoBehaviour
     void AssignComponentsToCamera()
     {
 
-        
-        //_cameraControlScript.extVars = _externalVariablesCameraScript;
         _cameraControlScript.externalVariables = externalVariables;
-        
         _cameraControlScript.player = GameObject.FindGameObjectWithTag("Player");
-
         _cameraTransitionScript.externalVariables = externalVariables;
         _cameraTransitionScript.playerControl = _playerControllerScript;
         _cameraTransitionScript.player = GameObject.FindGameObjectWithTag("Player");
@@ -115,11 +91,5 @@ public class gameManagement : MonoBehaviour
 
 
 
-    public void SpawnPlayer()
-    {
-
-        Instantiate(_playerPrefab, SpawnCoords, Quaternion.identity);
-        Debug.Log(_playerPrefab.name);
-
-    }
+    
 }
