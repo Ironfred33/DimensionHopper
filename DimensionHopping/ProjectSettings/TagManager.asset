@@ -9,6 +9,7 @@ TagManager:
   - Deadly
   - ExternalVariables
   - PlayerTrackingPoint
+  - RunnableWall
   layers:
   - Default
   - TransparentFX
