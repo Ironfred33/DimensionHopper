@@ -5,11 +5,11 @@ using UnityEngine;
 public class WallRun_v2 : MonoBehaviour
 {
     public Transform orientation;
-    public Transform cam;
+    public Camera cam;
     public float wallDistance;
 
-    private bool _wallLeft = false;
-    private bool _wallRight = false;
+    public bool _wallLeft = false;
+    public bool _wallRight = false;
     public bool isWallRunning = false;
 
     public float upForce;
@@ -18,67 +18,99 @@ public class WallRun_v2 : MonoBehaviour
     private RaycastHit _leftWallHit;
     private RaycastHit _rightWallHit;
 
+    public float minHeight;
+
+    public float wallRunFOV;
+    public float normalFOV;
+
     private Rigidbody rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        cam = Camera.main;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         WallCheck();
     }
 
+    private void Update()
+    {
+        WallJump();
+
+        if (isWallRunning && _wallLeft)
+        {
+            cam.transform.Rotate(0f, 0f, -30f);
+        }
+
+        else if (isWallRunning && _wallRight)
+        {
+            cam.transform.Rotate(0f, 0f, 30f);
+        }
+    }
+
     public void WallCheck()
     {
+        // Check if player is close to a wall
         _wallLeft = Physics.Raycast(transform.position, -orientation.right, out _leftWallHit, wallDistance);
+        Debug.DrawRay(transform.position, -orientation.right, Color.green);
+
         _wallRight = Physics.Raycast(transform.position, orientation.right, out _rightWallHit, wallDistance);
+        Debug.DrawRay(transform.position, orientation.right, Color.red);
     }
 
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.CompareTag("RunnableWall"))
+        if(transform.position.y >= minHeight)
         {
-            rb.useGravity = false;
-
-            if(_wallRight)
+            if (collision.transform.CompareTag("RunnableWall"))
             {
-                cam.localEulerAngles = new Vector3(0f, 0f, 10f);
-            }
 
-            else if (_wallLeft)
-            {
-                cam.localEulerAngles = new Vector3(0f, 0f, -10f);
+                cam.fieldOfView = wallRunFOV;
+
+                rb.velocity = new Vector3(0, 0, 0);
+                rb.useGravity = false;
+
             }
         }
+        
     }
 
     private void OnCollisionStay(Collision collision)
     {
         if(collision.transform.CompareTag("RunnableWall"))
         {
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                if(_wallLeft)
-                {
-                    rb.AddForce(Vector3.up * upForce * Time.deltaTime);
-                    rb.AddForce(orientation.right * sideForce * Time.deltaTime);
-                }
-
-                else if (_wallLeft)
-                {
-                    rb.AddForce(Vector3.up * upForce * Time.deltaTime);
-                    rb.AddForce(-orientation.right * sideForce * Time.deltaTime);
-                }
-            }
+            isWallRunning = true;
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
+        cam.fieldOfView = normalFOV;
+        cam.transform.Rotate(0f, 0f, 0f);
+
         rb.useGravity = true;
-        cam.localEulerAngles = new Vector3(0f, 0f, 0f);
+        isWallRunning = false;
+    }
+
+    private void WallJump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && isWallRunning)
+        {
+            if (_wallLeft)
+            {
+                rb.AddForce(Vector3.up * upForce * Time.deltaTime);
+                rb.AddForce(orientation.right * sideForce * Time.deltaTime);
+            }
+
+            else if (_wallRight)
+            {
+                rb.AddForce(Vector3.up * upForce * Time.deltaTime);
+                rb.AddForce(-orientation.right * sideForce * Time.deltaTime);
+            }
+        }
     }
 }

@@ -57,10 +57,6 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isRunning", false);
         }
 
-    }
-    void FixedUpdate()
-    {
-
         if (cameraControl._is2DView)
         {
             controller2DPerspective();
@@ -70,9 +66,14 @@ public class PlayerController : MonoBehaviour
             controllerFPPerspective();
         }
 
+    }
+    void FixedUpdate()
+    {
+
         isOnGround = Physics.CheckSphere(groundCheck.position, groundRadius, groundMask);
       
     }
+
 
 
     void controller2DPerspective() 
