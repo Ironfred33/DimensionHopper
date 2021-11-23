@@ -11,10 +11,11 @@ public class CameraTransition : MonoBehaviour
     public PlayerController playerControl;
     private Quaternion _rotation2DP;
 
+    /*
     public GameObject block;
     public GameObject crane;
     public RedButton rb;
-
+    */
     public GameObject player;
 
     public animCurve curve2DToFPP;
@@ -56,7 +57,7 @@ public class CameraTransition : MonoBehaviour
 
             }
             StartCoroutine(CamTransition());
-
+            /*
             if(!cameraControl._is2DView)
             {
                 crane.transform.position = crane.GetComponent<Crane>().positionFPP;
@@ -67,6 +68,7 @@ public class CameraTransition : MonoBehaviour
                 block.transform.position = block.GetComponent<Block>().position2D;
                 crane.transform.position = crane.GetComponent<Crane>().position2D;
             }
+            */
         }
 
 

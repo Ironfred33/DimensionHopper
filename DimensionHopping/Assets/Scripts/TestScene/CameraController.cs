@@ -32,7 +32,7 @@ public class CameraController : MonoBehaviour
     }
 
 
-    void Update()
+    void LateUpdate()
     {
 
         Debug.Log("CAMERACONTROLLER UPDATE TRIGGERED");
