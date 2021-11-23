@@ -5,7 +5,7 @@ using UnityEngine;
 public class gameManagement : MonoBehaviour
 {
     
-
+    private bool gamePaused;
     public GameObject externalVariables;
     public Vector3 SpawnCoords;
     private GameObject _playerPrefab;
@@ -41,6 +41,9 @@ public class gameManagement : MonoBehaviour
         FinalCameraSetup();
 
     }
+
+
+    
 
     void LoadPrefab()
     {
@@ -86,6 +89,11 @@ public class gameManagement : MonoBehaviour
         _cameraControlScript.FPPposition = _trackingPoint;
 
     }
+
+    
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,7 +48,7 @@ public class CameraTransition : MonoBehaviour
 
             }
 
-            else
+            else if (cameraControl._is2DView)
             {
                 
                 switchingFrom2DtoFPP = true;
@@ -57,6 +57,8 @@ public class CameraTransition : MonoBehaviour
 
             }
             StartCoroutine(CamTransition());
+            
+            
             /*
             if(!cameraControl._is2DView)
             {
