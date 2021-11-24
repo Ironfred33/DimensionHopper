@@ -6,9 +6,8 @@ using UnityEngine.UI;
 public class gameManagement : MonoBehaviour
 {
     
-    private bool gamePaused;
-    public GameObject externalVariables;
     public Vector3 SpawnCoords;
+    private GameObject _externalVariables;
     private GameObject _playerPrefab;
     private EVPlayer _externalVariablesPlayerScript;
     private EVCamera _externalVariablesCameraScript;
@@ -62,9 +61,11 @@ public class gameManagement : MonoBehaviour
         _playerControllerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
 
-        // External Variables Scripts
+        // External Variables und Script
 
-        _externalVariablesPlayerScript = externalVariables.GetComponent<EVPlayer>();
+        _externalVariables = GameObject.FindGameObjectWithTag("ExternalVariables");
+
+        _externalVariablesPlayerScript = _externalVariables.GetComponent<EVPlayer>();
 
 
         // Camera Scripts
@@ -105,11 +106,11 @@ public class gameManagement : MonoBehaviour
     void AssignComponentsToCamera()
     {
 
-        _cameraControlScript.externalVariables = externalVariables;
+        _cameraControlScript.externalVariables = _externalVariables;
 
         _cameraControlScript.player = GameObject.FindGameObjectWithTag("Player");
 
-        _cameraTransitionScript.externalVariables = externalVariables;
+        _cameraTransitionScript.externalVariables = _externalVariables;
 
         _cameraTransitionScript.playerControl = _playerControllerScript;
 
