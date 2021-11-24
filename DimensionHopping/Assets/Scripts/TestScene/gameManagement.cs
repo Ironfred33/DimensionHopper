@@ -1,6 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class gameManagement : MonoBehaviour
 {
@@ -17,7 +18,8 @@ public class gameManagement : MonoBehaviour
     private CameraController _cameraControlScript;
     private Transform _trackingTarget;
     private GameObject _trackingPoint;
-    
+    private GameObject _canvas;
+    private List <GameObject> _heartImages = new List <GameObject>();
     void Awake()
     {
 
@@ -53,19 +55,49 @@ public class gameManagement : MonoBehaviour
 
     void GetAllComponents()
     {
+        // Player Scripts
+
         _playerHealthScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+
         _playerControllerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+
+
+        // External Variables Scripts
+
         _externalVariablesPlayerScript = externalVariables.GetComponent<EVPlayer>();
-        _cameraControlScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();      
+
+
+        // Camera Scripts
+
+        _cameraControlScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();    
+
         _cameraTransitionScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraTransition>();
+
+
+        // Canvas Gameobject
+
+        _canvas = GameObject.FindGameObjectWithTag("Canvas");
 
 
     }
 
     void AssignComponentsToPlayer()
     {
+        // Player Health Script
+
         _playerHealthScript.externalPlayer = _externalVariablesPlayerScript;
+
+        
+        // Herz-Images des Canvas hinzufügen
+
+        for (int i = 0; i < 3; i++)
+        {
+        _playerHealthScript.hearts[i] = _canvas.transform.GetChild(i).GetComponent<Image>();
+        }
+
+
         _playerControllerScript.extVars = _externalVariablesPlayerScript;
+
         _playerControllerScript.cameraControl = _cameraControlScript;
 
     }
@@ -74,9 +106,13 @@ public class gameManagement : MonoBehaviour
     {
 
         _cameraControlScript.externalVariables = externalVariables;
+
         _cameraControlScript.player = GameObject.FindGameObjectWithTag("Player");
+
         _cameraTransitionScript.externalVariables = externalVariables;
+
         _cameraTransitionScript.playerControl = _playerControllerScript;
+
         _cameraTransitionScript.player = GameObject.FindGameObjectWithTag("Player");
 
     }
@@ -84,8 +120,11 @@ public class gameManagement : MonoBehaviour
     void FinalCameraSetup()
     {
         _trackingTarget = GameObject.FindGameObjectWithTag("Player").transform;
+
         _cameraControlScript.trackingTarget = _trackingTarget;
+
         _trackingPoint = GameObject.FindGameObjectWithTag("PlayerTrackingPoint");
+        
         _cameraControlScript.FPPposition = _trackingPoint;
 
     }
