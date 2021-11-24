@@ -98,7 +98,6 @@ public class CameraTransition : MonoBehaviour
 
                 cam.transform.position = Vector3.Lerp(cameraControl.current2DPosition, cameraControl.FPPposition.transform.position, _elapsed / extVars.duration) + (new Vector3(curve2DToFPP.curve.Evaluate(_elapsed), 0f, 0f) * extVars.curveIntensity);
                 
-                // -------------------- HIER SITZT DER BÖSE BUG  -------------------------
                 cam.transform.rotation = Quaternion.Lerp(_rotation2DP, cameraControl.FPPposition.transform.rotation, _elapsed / extVars.duration);
 
                 switchingFrom2DtoFPP = false;

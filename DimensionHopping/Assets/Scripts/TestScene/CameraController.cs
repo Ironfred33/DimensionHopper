@@ -16,6 +16,8 @@ public class CameraController : MonoBehaviour
 
     float xRotationFPP = 0f;
     float yRotationFPP = 0f;
+
+    bool yRotationReset;
     public bool _is2DView;
     private Vector3 _cameraFirstPersonPosition;
     //public float extVars.mouseSensitivityFP = 5.0f;
@@ -54,6 +56,7 @@ public class CameraController : MonoBehaviour
         
         else if(_is2DView)
         {
+            yRotationReset = false;
             TrackingIn2d();
             
         }
@@ -73,6 +76,8 @@ public class CameraController : MonoBehaviour
             current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z - extVars.cameraDistance2DP);
             transform.position = current2DPosition;
             player.transform.rotation = Quaternion.Euler(0, 90, 0);
+            yRotationFPP = 0;
+            
 
 
         }
@@ -82,7 +87,7 @@ public class CameraController : MonoBehaviour
             current2DPosition = new Vector3(trackingTarget.position.x -extVars.cameraDistance2DP, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z );
             transform.position = current2DPosition;
             player.transform.rotation = Quaternion.Euler(0, 180, 0);
-
+            yRotationFPP = 270;
 
         }
         else if((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
@@ -90,6 +95,7 @@ public class CameraController : MonoBehaviour
             current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z + extVars.cameraDistance2DP );
             transform.position = current2DPosition;
             player.transform.rotation = Quaternion.Euler(0, 270, 0);
+            yRotationFPP = 180;
 
         }
         else if(player.transform.rotation.eulerAngles.y >= 315.1 && player.transform.rotation.eulerAngles.y <= 359.9 || player.transform.rotation.eulerAngles.y >= 0 && player.transform.rotation.eulerAngles.y <= 45)
@@ -98,7 +104,7 @@ public class CameraController : MonoBehaviour
             current2DPosition = new Vector3(trackingTarget.position.x + extVars.cameraDistance2DP, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z);
             transform.position = current2DPosition;
             player.transform.rotation = Quaternion.Euler(0, 0, 0);
-
+            yRotationFPP = 90;
         }
 
 
@@ -112,7 +118,12 @@ public class CameraController : MonoBehaviour
         // z-Achse auch verschiebt. Frag mich nicht wie das funktioniert, aber davor hat sich auch öfter mal die z-Achse verschoben
         // dafür gibts eventuell auch noch eine bessere Lösung mit gimbal lock.
 
+        // if(!yRotationReset)
+        // {
+        //     transform.rotation = _yRotation ;
 
+        //     yRotationReset = true;
+        // }
      
         
         float pitch = Input.GetAxis ("Mouse Y") * extVars.mouseSensitivityFP * Time.deltaTime;
@@ -131,8 +142,11 @@ public class CameraController : MonoBehaviour
         //float yaw = Input.GetAxis("Mouse X") * extVars.mouseSensitivityFP;
 
 
+        // ------------------------------------ HIER BUG ------------------------------
+
         player.transform.Rotate(yaw * Vector3.up);
-        transform.localRotation = Quaternion.Euler(xRotationFPP, (-yRotationFPP + 90f), 0f);
+
+        transform.rotation = Quaternion.Euler(xRotationFPP, (-yRotationFPP + 90 ), 0f);
 
         // Kamera transformt die Position und bleibt immer an der Position des Empty Gameobjects "FPPPosition", das ein Child des Players ist 
 
