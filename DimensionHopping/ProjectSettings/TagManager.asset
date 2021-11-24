@@ -10,6 +10,7 @@ TagManager:
   - ExternalVariables
   - PlayerTrackingPoint
   - RunnableWall
+  - Canvas
   layers:
   - Default
   - TransparentFX

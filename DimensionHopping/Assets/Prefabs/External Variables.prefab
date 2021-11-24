@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed2D: 5
   speedFP: 5
-  jumpForce2D: 25
-  jumpForceFP: 25
+  jumpForce2D: 300
+  jumpForceFP: 300
   rotationSpeedFP: 0
   spawnPoint: {x: 1, y: 2, z: 0}
   maxHearts: 3
@@ -81,5 +81,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e354d261ce893234a8ed470078b5d0d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curveIntensity: 5
-  duration: 3
+  curveIntensity: 2
+  duration: 1

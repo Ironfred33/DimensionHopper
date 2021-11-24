@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -62,7 +62,6 @@ public class CameraController : MonoBehaviour
 
 
     // Hier wird auch der Player in die entsprechende Richtung gedreht, das vielleicht noch irgendwo reinhauen, wo es nicht in Update ist, weil es sonst evtl. zu Performanceeinbußen kommt
-    // und irgendwie kann es sein dass in der PitchScene etwas verbuggt ist, konnte es bisher aber noch nicht reproduzieren
 
     public void TrackingIn2d()
     {
@@ -111,7 +110,7 @@ public class CameraController : MonoBehaviour
 
         // Der Code hier steuert die Maus in der FPP. Das mit dem Pitch und Yaw hab ich aus dem Internet, soll verhindern dass sich die
         // z-Achse auch verschiebt. Frag mich nicht wie das funktioniert, aber davor hat sich auch öfter mal die z-Achse verschoben
-        // dafür gibts eventuell auch noch eine bessere Lösung mit gimbal lock (heißt doch so oder?) oder sowas.
+        // dafür gibts eventuell auch noch eine bessere Lösung mit gimbal lock.
 
 
      

@@ -1136,6 +1136,7 @@ GameObject:
   - component: {fileID: 8554892795707864839}
   - component: {fileID: 8554892795707864837}
   - component: {fileID: 8554892795707864834}
+  - component: {fileID: -2324460300814063482}
   m_Layer: 0
   m_Name: character_v2
   m_TagString: Player
@@ -1255,6 +1256,29 @@ MonoBehaviour:
   rb: {fileID: 8554892795707864836}
   health: {fileID: 8554892795707864837}
   anim: {fileID: 8554892795707864839}
+--- !u!114 &-2324460300814063482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8824940349515581776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8cae78992a6b641a7b4178dd21c4e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 8554892796048905220}
+  cam: {fileID: 0}
+  wallDistance: 1.5
+  _wallLeft: 0
+  _wallRight: 0
+  isWallRunning: 0
+  upForce: 20000
+  sideForce: 20000
+  minHeight: 1
+  wallRunFOV: 110
+  normalFOV: 60
 --- !u!1 &9041653901627227994
 GameObject:
   m_ObjectHideFlags: 0
