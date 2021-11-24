@@ -9,12 +9,14 @@ public class gameManagement : MonoBehaviour
     public Vector3 SpawnCoords;
     private GameObject _externalVariables;
     private GameObject _playerPrefab;
+    private GameObject _player;
     private EVPlayer _externalVariablesPlayerScript;
     private EVCamera _externalVariablesCameraScript;
     private PlayerHealth _playerHealthScript;
     private PlayerController _playerControllerScript;
     private CameraTransition _cameraTransitionScript;
     private CameraController _cameraControlScript;
+    private Timer _timerScript;
     private Transform _trackingTarget;
     private GameObject _trackingPoint;
     private GameObject _canvas;
@@ -39,7 +41,7 @@ public class gameManagement : MonoBehaviour
 
         AssignComponentsToCamera();
 
-        FinalCameraSetup();
+        AssignComponentsToCanvas();
 
     }
 
@@ -54,11 +56,17 @@ public class gameManagement : MonoBehaviour
 
     void GetAllComponents()
     {
+
+        // Player
+
+        _player = GameObject.FindGameObjectWithTag("Player");
+
+
         // Player Scripts
 
-        _playerHealthScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+        _playerHealthScript = _player.GetComponent<PlayerHealth>();
 
-        _playerControllerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        _playerControllerScript = _player.GetComponent<PlayerController>();
 
 
         // External Variables und Script
@@ -75,9 +83,11 @@ public class gameManagement : MonoBehaviour
         _cameraTransitionScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraTransition>();
 
 
-        // Canvas Gameobject
+        // Canvas und Timer
 
         _canvas = GameObject.FindGameObjectWithTag("Canvas");
+
+        _timerScript = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
 
 
     }
@@ -90,6 +100,7 @@ public class gameManagement : MonoBehaviour
 
         
         // Herz-Images des Canvas hinzufügen
+        // Falls es jemals mehr Herzen geben sollte, unten optimieren. Ist noch mit maximal 3 Children gehardcoded
 
         for (int i = 0; i < 3; i++)
         {
@@ -108,19 +119,15 @@ public class gameManagement : MonoBehaviour
 
         _cameraControlScript.externalVariables = _externalVariables;
 
-        _cameraControlScript.player = GameObject.FindGameObjectWithTag("Player");
+        _cameraControlScript.player = _player;
 
         _cameraTransitionScript.externalVariables = _externalVariables;
 
         _cameraTransitionScript.playerControl = _playerControllerScript;
 
-        _cameraTransitionScript.player = GameObject.FindGameObjectWithTag("Player");
+        _cameraTransitionScript.player = _player;
 
-    }
-
-    void FinalCameraSetup()
-    {
-        _trackingTarget = GameObject.FindGameObjectWithTag("Player").transform;
+        _trackingTarget = _player.transform;
 
         _cameraControlScript.trackingTarget = _trackingTarget;
 
@@ -128,6 +135,11 @@ public class gameManagement : MonoBehaviour
         
         _cameraControlScript.FPPposition = _trackingPoint;
 
+    }
+
+    void AssignComponentsToCanvas()
+    {
+        _timerScript.externalPlayer = _externalVariablesPlayerScript;
     }
 
     

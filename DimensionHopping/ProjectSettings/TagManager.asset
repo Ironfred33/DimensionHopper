@@ -11,6 +11,7 @@ TagManager:
   - PlayerTrackingPoint
   - RunnableWall
   - Canvas
+  - Timer
   layers:
   - Default
   - TransparentFX

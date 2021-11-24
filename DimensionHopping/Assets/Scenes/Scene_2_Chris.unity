@@ -360,6 +360,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7123726539426643509, guid: 79f23514fd86ce741a716663f5b47813,
+        type: 3}
+      propertyPath: timeLimit
+      value: 77
+      objectReference: {fileID: 0}
     - target: {fileID: 7123726539426643510, guid: 79f23514fd86ce741a716663f5b47813,
         type: 3}
       propertyPath: m_Name
@@ -1926,6 +1931,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8762688223577534341, guid: 9e44f5a600176b5479b9457199f5ce26,
+        type: 3}
+      propertyPath: m_TagString
+      value: Timer
+      objectReference: {fileID: 0}
     - target: {fileID: 8762688223998745802, guid: 9e44f5a600176b5479b9457199f5ce26,
         type: 3}
       propertyPath: m_Pivot.x
