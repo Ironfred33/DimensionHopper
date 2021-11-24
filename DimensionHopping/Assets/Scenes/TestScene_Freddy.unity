@@ -2172,7 +2172,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 107, y: -23.99997}
+  m_AnchoredPosition: {x: 107, y: -24}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &587773751
@@ -4075,7 +4075,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 27, y: -23.99997}
+  m_AnchoredPosition: {x: 27, y: -24}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1060726164
@@ -4674,9 +4674,6 @@ MonoBehaviour:
   externalVariables: {fileID: 1305083207}
   cameraControl: {fileID: 1338931247}
   playerControl: {fileID: 1488275342}
-  block: {fileID: 0}
-  crane: {fileID: 0}
-  rb: {fileID: 0}
   player: {fileID: 1488275340}
   curve2DToFPP: {fileID: 11400000, guid: fec995c759ed53c4ca0cd75a87d041f7, type: 2}
   curveFPPTo2D: {fileID: 11400000, guid: 3a042c1af5fe5314da2a4acf843ca6d0, type: 2}
