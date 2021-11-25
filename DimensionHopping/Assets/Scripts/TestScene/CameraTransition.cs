@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,10 +11,11 @@ public class CameraTransition : MonoBehaviour
     public PlayerController playerControl;
     private Quaternion _rotation2DP;
 
+    /*
     public GameObject block;
     public GameObject crane;
     public RedButton rb;
-
+    */
     public GameObject player;
 
     public animCurve curve2DToFPP;
@@ -47,7 +48,7 @@ public class CameraTransition : MonoBehaviour
 
             }
 
-            else
+            else if (cameraControl._is2DView)
             {
                 
                 switchingFrom2DtoFPP = true;
@@ -56,7 +57,9 @@ public class CameraTransition : MonoBehaviour
 
             }
             StartCoroutine(CamTransition());
-
+            
+            
+            /*
             if(!cameraControl._is2DView)
             {
                 crane.transform.position = crane.GetComponent<Crane>().positionFPP;
@@ -67,6 +70,7 @@ public class CameraTransition : MonoBehaviour
                 block.transform.position = block.GetComponent<Block>().position2D;
                 crane.transform.position = crane.GetComponent<Crane>().position2D;
             }
+            */
         }
 
 
@@ -93,6 +97,7 @@ public class CameraTransition : MonoBehaviour
                 // Interpoliert Position und Rotation
 
                 cam.transform.position = Vector3.Lerp(cameraControl.current2DPosition, cameraControl.FPPposition.transform.position, _elapsed / extVars.duration) + (new Vector3(curve2DToFPP.curve.Evaluate(_elapsed), 0f, 0f) * extVars.curveIntensity);
+                
                 cam.transform.rotation = Quaternion.Lerp(_rotation2DP, cameraControl.FPPposition.transform.rotation, _elapsed / extVars.duration);
 
                 switchingFrom2DtoFPP = false;

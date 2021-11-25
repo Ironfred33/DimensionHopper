@@ -1136,6 +1136,7 @@ GameObject:
   - component: {fileID: 8554892795707864839}
   - component: {fileID: 8554892795707864837}
   - component: {fileID: 8554892795707864834}
+  - component: {fileID: -2324460300814063482}
   m_Layer: 0
   m_Name: character_v2
   m_TagString: Player
@@ -1150,7 +1151,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8824940349515581776}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
   m_LocalPosition: {x: 2.4275815, y: 1, z: -0.06894469}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1177,7 +1178,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &8554892795707864835
 BoxCollider:
@@ -1186,7 +1187,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8824940349515581776}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 10d67850a96756d4292375bbc03377fa, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1229,8 +1230,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  fullHeart: {fileID: 0}
-  emptyHeart: {fileID: 0}
+  fullHeart: {fileID: 21300000, guid: 509ddd4d5a6295a4786b84a23c25a82a, type: 3}
+  emptyHeart: {fileID: 21300000, guid: 2c81d802bbe18ae418e17786ed7b5981, type: 3}
 --- !u!114 &8554892795707864834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1255,6 +1256,29 @@ MonoBehaviour:
   rb: {fileID: 8554892795707864836}
   health: {fileID: 8554892795707864837}
   anim: {fileID: 8554892795707864839}
+--- !u!114 &-2324460300814063482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8824940349515581776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8cae78992a6b641a7b4178dd21c4e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 8554892796048905220}
+  cam: {fileID: 0}
+  wallDistance: 1.5
+  _wallLeft: 0
+  _wallRight: 0
+  isWallRunning: 0
+  upForce: 20000
+  sideForce: 20000
+  minHeight: 1
+  wallRunFOV: 110
+  normalFOV: 60
 --- !u!1 &9041653901627227994
 GameObject:
   m_ObjectHideFlags: 0

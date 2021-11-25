@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
 
     public Animator anim;
 
+    private bool _gamePaused;
+
     
     void Start()
     {
@@ -64,6 +66,16 @@ public class PlayerController : MonoBehaviour
         else
         {
             controllerFPPerspective();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape) && !_gamePaused)
+        {
+            PauseGame();
+        }
+
+        else if(Input.GetKeyDown(KeyCode.Escape) && _gamePaused)
+        {
+            ResumeGame();
         }
 
     }
@@ -175,6 +187,20 @@ public class PlayerController : MonoBehaviour
         }     
         
     }
+
+
+    void PauseGame()
+    {
+        Time.timeScale = 0;
+        _gamePaused = true;
+    }
+
+    void ResumeGame()
+    {
+        Time.timeScale = 1;
+        _gamePaused = false;
+    }
+
 
     /*private void FlipSide()
     {
