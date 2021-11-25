@@ -81,9 +81,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e354d261ce893234a8ed470078b5d0d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  curveIntensity: 5
-=======
   curveIntensity: 2
->>>>>>> 497190d88275400c3e8d68234b6c4ab4d9436360
   duration: 1
