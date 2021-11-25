@@ -54,12 +54,14 @@ public class PlayerControllerAlt : MonoBehaviour
         {
 
             player.transform.Translate(0, 0, horizontalMovement * speed2D *  Time.deltaTime);
+            player.transform.localScale = new Vector3(1, 1, -1);
 
         }
         else if (Input.GetKey(KeyCode.A))
         {
 
             player.transform.Translate(0, 0, horizontalMovement * speed2D * Time.deltaTime);
+            player.transform.localScale = new Vector3(1, 1, 1);
         }
 
 

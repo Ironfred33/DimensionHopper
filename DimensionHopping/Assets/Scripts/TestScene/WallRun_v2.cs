@@ -38,17 +38,20 @@ public class WallRun_v2 : MonoBehaviour
 
     private void Update()
     {
-        WallJump();
 
         if (isWallRunning && _wallLeft)
         {
             cam.transform.Rotate(0f, 0f, -30f);
+            Debug.Log("Left Tilt");
         }
 
         else if (isWallRunning && _wallRight)
         {
             cam.transform.Rotate(0f, 0f, 30f);
+            Debug.Log("Right Tilt");
         }
+
+        WallJump();
     }
 
     public void WallCheck()
@@ -89,11 +92,16 @@ public class WallRun_v2 : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        cam.fieldOfView = normalFOV;
-        cam.transform.Rotate(0f, 0f, 0f);
 
-        rb.useGravity = true;
-        isWallRunning = false;
+        if (collision.transform.CompareTag("RunnableWall"))
+            {
+            cam.fieldOfView = normalFOV;
+            cam.transform.rotation = Quaternion.Euler(0, 90, 0);
+
+            rb.useGravity = true;
+            isWallRunning = false;
+            }
+
     }
 
     private void WallJump()

@@ -8,9 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: d94395c69495bae47ac693ade176828a
-  - enabled: 1
-    path: Assets/Scenes/Old Scenes/TestScene_Chris.unity
-    guid: ad8f960e6cbb1884baf9a7c6c24ad130
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/TestScene_Freddy.unity
     guid: aa14ba1819e70ed4ab7d9850e5b18a9f

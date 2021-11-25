@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
         {
 
             player.transform.Translate(0, 0, horizontalMovement * extVars.speed2D *  Time.deltaTime);
+            player.transform.localScale = new Vector3(1, 1, 1);
             state = PlayerState.Running;
 
         }
@@ -92,6 +93,7 @@ public class PlayerController : MonoBehaviour
         {
 
             player.transform.Translate(0, 0, horizontalMovement * extVars.speed2D * Time.deltaTime);
+            player.transform.localScale = new Vector3(1, 1, -1);
             state = PlayerState.Running;
             
         }
