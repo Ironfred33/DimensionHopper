@@ -2517,6 +2517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldAxis: 0
   worldAxisTargetPoint: 2
+  transitionDuration: 1
 --- !u!1 &1103289860
 GameObject:
   m_ObjectHideFlags: 0
@@ -2961,7 +2962,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16696
+  m_Name: pb_Mesh16694
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3682,6 +3683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldAxis: 1
   worldAxisTargetPoint: -1.5
+  transitionDuration: 1
 --- !u!4 &1980297508
 Transform:
   m_ObjectHideFlags: 0

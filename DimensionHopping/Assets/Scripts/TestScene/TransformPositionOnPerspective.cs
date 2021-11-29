@@ -18,6 +18,10 @@ public class TransformPositionOnPerspective : MonoBehaviour
     private Vector3 _transformFirstPoint;
     private Vector3 _transformSecondPoint;
 
+    private float _elapsed;
+
+    public float transitionDuration;
+
 
     void Start()
     {
@@ -35,19 +39,58 @@ public class TransformPositionOnPerspective : MonoBehaviour
     }
 
 
-    void TransformPosition()
+    // void TransformPosition()
+    // {
+
+    //     if (transform.position == _transformFirstPoint)
+    //     {
+    //         transform.position = _transformSecondPoint;
+    //     }
+    //     else if (transform.position == _transformSecondPoint)
+    //     {
+    //         transform.position = _transformFirstPoint;
+    //     }
+
+
+    // }
+
+    void TagThisGameObject()
     {
+
+
+
+    }
+
+    private IEnumerator TransformPosition(Vector3 firstPos, Vector3 secPos)
+    {
+        _elapsed = 0f;
 
         if (transform.position == _transformFirstPoint)
         {
-            transform.position = _transformSecondPoint;
+
+            while (_elapsed <= transitionDuration)
+            {
+                _elapsed += Time.deltaTime;
+                transform.position = Vector3.Lerp(transform.position, _transformSecondPoint, _elapsed / transitionDuration);
+                 yield return null;
+            }
+
         }
         else if (transform.position == _transformSecondPoint)
         {
-            transform.position = _transformFirstPoint;
+            while (_elapsed <= transitionDuration)
+            {
+                _elapsed += Time.deltaTime;
+                transform.position = Vector3.Lerp(transform.position, _transformFirstPoint, _elapsed / transitionDuration);
+                 yield return null;
+            }
         }
 
+
+
     }
+
+
 
 
 
@@ -58,7 +101,7 @@ public class TransformPositionOnPerspective : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
 
-            TransformPosition();
+            StartCoroutine(TransformPosition(_transformFirstPoint, _transformSecondPoint));
 
 
         }
