@@ -69,6 +69,7 @@ public class CameraController : MonoBehaviour
     public void TrackingIn2d()
     {
 
+        // Weltachsen Richtung:   X Positiv
         if (player.transform.rotation.eulerAngles.y > 45.1 && player.transform.rotation.eulerAngles.y <= 135.0) 
         {
 
@@ -81,6 +82,9 @@ public class CameraController : MonoBehaviour
 
 
         }
+
+
+        // Weltachsen Richtung:   Z Negativ 
         else if(player.transform.rotation.eulerAngles.y > 135.1 && player.transform.rotation.eulerAngles.y <= 225)
         {
      
@@ -90,6 +94,9 @@ public class CameraController : MonoBehaviour
             yRotationFPP = 270;
 
         }
+
+
+        // Weltachsen Richtung:   X Negativ 
         else if((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
         {
             current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z + extVars.cameraDistance2DP );
@@ -98,6 +105,9 @@ public class CameraController : MonoBehaviour
             yRotationFPP = 180;
 
         }
+
+
+        // Weltachsen Richtung:    Z Positiv
         else if(player.transform.rotation.eulerAngles.y >= 315.1 && player.transform.rotation.eulerAngles.y <= 359.9 || player.transform.rotation.eulerAngles.y >= 0 && player.transform.rotation.eulerAngles.y <= 45)
         {
      
