@@ -12,6 +12,10 @@ TagManager:
   - RunnableWall
   - Canvas
   - Timer
+  - PGOxPositive
+  - PGOxNegative
+  - PGOzPositive
+  - PGOzNegative
   layers:
   - Default
   - TransparentFX

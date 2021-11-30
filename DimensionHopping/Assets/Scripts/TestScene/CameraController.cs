@@ -17,7 +17,6 @@ public class CameraController : MonoBehaviour
     float xRotationFPP = 0f;
     float yRotationFPP = 0f;
 
-    bool yRotationReset;
     public bool _is2DView;
     private Vector3 _cameraFirstPersonPosition;
     //public float extVars.mouseSensitivityFP = 5.0f;
@@ -56,7 +55,7 @@ public class CameraController : MonoBehaviour
         
         else if(_is2DView)
         {
-            yRotationReset = false;
+    
             TrackingIn2d();
             
         }
@@ -69,7 +68,7 @@ public class CameraController : MonoBehaviour
     public void TrackingIn2d()
     {
 
-        // Weltachsen Richtung:   X Positiv
+        // Weltachsen Ausrichtung des Spielers:   X Positive
         if (player.transform.rotation.eulerAngles.y > 45.1 && player.transform.rotation.eulerAngles.y <= 135.0) 
         {
 
@@ -84,7 +83,7 @@ public class CameraController : MonoBehaviour
         }
 
 
-        // Weltachsen Richtung:   Z Negativ 
+        // Weltachsen Ausrichtung des Spielers:   Z Negative 
         else if(player.transform.rotation.eulerAngles.y > 135.1 && player.transform.rotation.eulerAngles.y <= 225)
         {
      
@@ -96,7 +95,7 @@ public class CameraController : MonoBehaviour
         }
 
 
-        // Weltachsen Richtung:   X Negativ 
+        // Weltachsen Ausrichtung des Spielers:   X Negative 
         else if((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
         {
             current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z + extVars.cameraDistance2DP );
@@ -107,7 +106,7 @@ public class CameraController : MonoBehaviour
         }
 
 
-        // Weltachsen Richtung:    Z Positiv
+        // Weltachsen Ausrichtung des Spielers:    Z Positive
         else if(player.transform.rotation.eulerAngles.y >= 315.1 && player.transform.rotation.eulerAngles.y <= 359.9 || player.transform.rotation.eulerAngles.y >= 0 && player.transform.rotation.eulerAngles.y <= 45)
         {
      
@@ -128,14 +127,7 @@ public class CameraController : MonoBehaviour
         // z-Achse auch verschiebt. Frag mich nicht wie das funktioniert, aber davor hat sich auch öfter mal die z-Achse verschoben
         // dafür gibts eventuell auch noch eine bessere Lösung mit gimbal lock.
 
-        // if(!yRotationReset)
-        // {
-        //     transform.rotation = _yRotation ;
-
-        //     yRotationReset = true;
-        // }
      
-        
         float pitch = Input.GetAxis ("Mouse Y") * extVars.mouseSensitivityFP * Time.deltaTime;
 
         float yaw = Input.GetAxis("Mouse X") * extVars.mouseSensitivityFP * Time.deltaTime;

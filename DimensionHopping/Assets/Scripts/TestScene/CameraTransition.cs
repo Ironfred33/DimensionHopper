@@ -11,6 +11,8 @@ public class CameraTransition : MonoBehaviour
     public PlayerController playerControl;
     private Quaternion _rotation2DP;
 
+    public TransformPositionOnPerspective transformPos;
+
     /*
     public GameObject block;
     public GameObject crane;

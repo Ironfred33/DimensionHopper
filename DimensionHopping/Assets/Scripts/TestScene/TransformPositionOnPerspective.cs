@@ -8,6 +8,11 @@ public class TransformPositionOnPerspective : MonoBehaviour
     public enum WorldAxis
     {
 
+        PGOxPositive,
+        PGOxNegative,
+        PGOzPositive,
+        PGOzNegative,
+
         xAxis,
         zAxis,
 
@@ -25,63 +30,77 @@ public class TransformPositionOnPerspective : MonoBehaviour
 
     void Start()
     {
-        _transformFirstPoint = this.transform.position;
 
-        if (worldAxis == WorldAxis.zAxis)
-        {
-            _transformSecondPoint = new Vector3(_transformFirstPoint.x, _transformFirstPoint.y, worldAxisTargetPoint);
-        }
-        else if (worldAxis == WorldAxis.xAxis)
-        {
-            _transformSecondPoint = new Vector3(worldAxisTargetPoint, _transformFirstPoint.y, transform.position.z);
-        }
+        AssignPoints();
+        TagThisGameObject();
 
     }
 
+    void AssignPoints()
+    {
+        // First Point
 
-    // void TransformPosition()
-    // {
+        _transformFirstPoint = this.transform.position;
 
-    //     if (transform.position == _transformFirstPoint)
-    //     {
-    //         transform.position = _transformSecondPoint;
-    //     }
-    //     else if (transform.position == _transformSecondPoint)
-    //     {
-    //         transform.position = _transformFirstPoint;
-    //     }
+        // Second Point
+        
+        if (worldAxis == WorldAxis.PGOxPositive || worldAxis == WorldAxis.PGOxNegative)
+        {
+            _transformSecondPoint = new Vector3(_transformFirstPoint.x, _transformFirstPoint.y, worldAxisTargetPoint);
+        }
+        else if (worldAxis == WorldAxis.PGOzPositive|| worldAxis == WorldAxis.PGOzNegative)
+        {
+            _transformSecondPoint = new Vector3(worldAxisTargetPoint, _transformFirstPoint.y, transform.position.z);
+        }
+    }
 
-
-    // }
 
     void TagThisGameObject()
     {
 
+        switch(worldAxis)
+        {
+            case (WorldAxis.PGOxPositive):
+            gameObject.tag = "PGOxPositive";
+            break;
 
+            case (WorldAxis.PGOxNegative):
+            gameObject.tag = "PGOxNegative";
+            break;
+
+            case (WorldAxis.PGOzPositive):
+            gameObject.tag = "PGOzPositive";
+            break;
+
+            case (WorldAxis.PGOzNegative):
+            gameObject.tag = "PGOzNegative";
+            break;
+
+        }
 
     }
 
-    private IEnumerator TransformPosition(Vector3 firstPos, Vector3 secPos)
+    public IEnumerator TransformPosition(Vector3 firstPos, Vector3 secPos, float duration)
     {
         _elapsed = 0f;
 
         if (transform.position == _transformFirstPoint)
         {
 
-            while (_elapsed <= transitionDuration)
+            while (_elapsed <= duration)
             {
                 _elapsed += Time.deltaTime;
-                transform.position = Vector3.Lerp(transform.position, _transformSecondPoint, _elapsed / transitionDuration);
+                transform.position = Vector3.Lerp(transform.position, _transformSecondPoint, _elapsed / duration);
                  yield return null;
             }
 
         }
         else if (transform.position == _transformSecondPoint)
         {
-            while (_elapsed <= transitionDuration)
+            while (_elapsed <= duration)
             {
                 _elapsed += Time.deltaTime;
-                transform.position = Vector3.Lerp(transform.position, _transformFirstPoint, _elapsed / transitionDuration);
+                transform.position = Vector3.Lerp(transform.position, _transformFirstPoint, _elapsed / duration);
                  yield return null;
             }
         }
@@ -101,7 +120,7 @@ public class TransformPositionOnPerspective : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
 
-            StartCoroutine(TransformPosition(_transformFirstPoint, _transformSecondPoint));
+            StartCoroutine(TransformPosition(_transformFirstPoint, _transformSecondPoint, transitionDuration));
 
 
         }
