@@ -11,10 +11,10 @@ public class CameraTransition : MonoBehaviour
     public PlayerController playerControl;
     private Quaternion _rotation2DP;
 
-    public GameObject[] arrayPGOxPositive;
-    public GameObject[] arrayPGOxNegative;
-    public GameObject[] arrayPGOzPositive;
-    public GameObject[] arrayPGOzNegative;
+    private GameObject[] _arrayPGOxPositive;
+    private GameObject[] _arrayPGOxNegative;
+    private GameObject[] _arrayPGOzPositive;
+    private GameObject[] _arrayPGOzNegative;
 
     private TransformPositionOnPerspective _transformPGOScript;
 
@@ -32,7 +32,12 @@ public class CameraTransition : MonoBehaviour
     public bool switchingFromFPPto2D = false;
 
 
-    public List<TransformPositionOnPerspective> transformScripts = new List<TransformPositionOnPerspective>();
+    public List<TransformPositionOnPerspective> transformScriptsPGOxPositive = new List<TransformPositionOnPerspective>();
+    public List<TransformPositionOnPerspective> transformScriptsPGOxNegative = new List<TransformPositionOnPerspective>();
+    public List<TransformPositionOnPerspective> transformScriptsPGOzPositive = new List<TransformPositionOnPerspective>();
+    public List<TransformPositionOnPerspective> transformScriptsPGOzNegative = new List<TransformPositionOnPerspective>();
+
+
     //public TransformPositionOnPerspective[] transformPos;
     private float _elapsed;
     private float _dt;
@@ -93,10 +98,10 @@ public class CameraTransition : MonoBehaviour
 
     void GetAllPGOs()
     {
-        arrayPGOxPositive = GameObject.FindGameObjectsWithTag("PGOxPositive");
-        arrayPGOxNegative = GameObject.FindGameObjectsWithTag("PGOxNegative");
-        arrayPGOzPositive = GameObject.FindGameObjectsWithTag("PGOzPositive");
-        arrayPGOzNegative = GameObject.FindGameObjectsWithTag("PGOzNegative");
+        _arrayPGOxPositive = GameObject.FindGameObjectsWithTag("PGOxPositive");
+        _arrayPGOxNegative = GameObject.FindGameObjectsWithTag("PGOxNegative");
+        _arrayPGOzPositive = GameObject.FindGameObjectsWithTag("PGOzPositive");
+        _arrayPGOzNegative = GameObject.FindGameObjectsWithTag("PGOzNegative");
 
     }
 
@@ -104,25 +109,78 @@ public class CameraTransition : MonoBehaviour
     {
 
 
-        if (arrayPGOxPositive != null)
-        {   
-            foreach (GameObject obj in arrayPGOxPositive)
-            { 
-                transformScripts.Add(obj.GetComponent<TransformPositionOnPerspective>());
+        if (_arrayPGOxPositive != null)
+        {
+            foreach (GameObject obj in _arrayPGOxPositive)
+            {
+                transformScriptsPGOxPositive.Add(obj.GetComponent<TransformPositionOnPerspective>());
             }
 
         }
 
+        if (_arrayPGOxNegative != null)
+        {
+            foreach (GameObject obj in _arrayPGOxNegative)
+            {
+                transformScriptsPGOxNegative.Add(obj.GetComponent<TransformPositionOnPerspective>());
+            }
+        }
+
+        if (_arrayPGOzPositive != null)
+        {
+            foreach (GameObject obj in _arrayPGOzPositive)
+            {
+                transformScriptsPGOzPositive.Add(obj.GetComponent<TransformPositionOnPerspective>());
+            }
+        }
+
+        if(_arrayPGOzNegative != null)
+        {
+            foreach (GameObject obj in _arrayPGOzNegative)
+            {
+                transformScriptsPGOzNegative.Add(obj.GetComponent<TransformPositionOnPerspective>());
+            }
+        }
+
     }
+
 
     void TransformPGOPositions()
     {
 
-        foreach (TransformPositionOnPerspective script in transformScripts)
-            { 
+        if (transformScriptsPGOxPositive != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.xPositive)
+        {
+            foreach (TransformPositionOnPerspective script in transformScriptsPGOxPositive)
+            {
                 StartCoroutine(script.TransformPosition(extVars.duration));
-    
+
             }
+        }
+
+        if(transformScriptsPGOxNegative != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.xNegative)
+        {
+            foreach (TransformPositionOnPerspective script in transformScriptsPGOxNegative)
+            {
+                StartCoroutine(script.TransformPosition(extVars.duration));
+            }
+        }
+
+        if(transformScriptsPGOzPositive != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.zPositive)
+        {
+            foreach (TransformPositionOnPerspective script in transformScriptsPGOzPositive)
+            {
+                StartCoroutine(script.TransformPosition(extVars.duration));
+            }
+        }
+
+        if(transformScriptsPGOzNegative != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.zNegative)
+        {
+            foreach (TransformPositionOnPerspective script in transformScriptsPGOzNegative)
+            {
+                StartCoroutine(script.TransformPosition(extVars.duration));
+            }
+        }
+
 
 
     }

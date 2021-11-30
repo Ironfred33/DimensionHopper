@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +23,7 @@ public class TransformPositionOnPerspective : MonoBehaviour
     private float _elapsed;
 
     public float transitionDuration;
+    private bool _isTransforming;
 
 
 
@@ -85,7 +86,10 @@ public class TransformPositionOnPerspective : MonoBehaviour
     {
         _elapsed = 0f;
 
-        if (transform.position == _transformFirstPoint)
+        //if(!_isTransforming)
+        //{
+            //_isTransforming = true;
+            if (transform.position == _transformFirstPoint)
         {
 
             while (_elapsed <= duration)
@@ -105,26 +109,10 @@ public class TransformPositionOnPerspective : MonoBehaviour
                  yield return null;
             }
         }
+    
+    
 
 
-
-    }
-
+    }}
 
 
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-
-            StartCoroutine(TransformPosition(transitionDuration));
-
-
-        }
-
-    }
-}

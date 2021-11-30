@@ -19,7 +19,18 @@ public class CameraController : MonoBehaviour
 
     public bool _is2DView;
     private Vector3 _cameraFirstPersonPosition;
-    //public float extVars.mouseSensitivityFP = 5.0f;
+    
+    public enum PlayerOrientation {
+
+        xPositive,
+        xNegative,
+        zPositive,
+        zNegative
+
+
+    }
+
+    public PlayerOrientation playerOrientation;
 
 
     private void Start()
@@ -77,7 +88,8 @@ public class CameraController : MonoBehaviour
             transform.position = current2DPosition;
             player.transform.rotation = Quaternion.Euler(0, 90, 0);
             yRotationFPP = 0;
-            
+            playerOrientation = PlayerOrientation.xPositive;
+                	
 
 
         }
@@ -91,6 +103,7 @@ public class CameraController : MonoBehaviour
             transform.position = current2DPosition;
             player.transform.rotation = Quaternion.Euler(0, 180, 0);
             yRotationFPP = 270;
+            playerOrientation = PlayerOrientation.zNegative;
 
         }
 
@@ -102,6 +115,7 @@ public class CameraController : MonoBehaviour
             transform.position = current2DPosition;
             player.transform.rotation = Quaternion.Euler(0, 270, 0);
             yRotationFPP = 180;
+            playerOrientation = PlayerOrientation.xNegative;
 
         }
 
@@ -114,6 +128,7 @@ public class CameraController : MonoBehaviour
             transform.position = current2DPosition;
             player.transform.rotation = Quaternion.Euler(0, 0, 0);
             yRotationFPP = 90;
+            playerOrientation = PlayerOrientation.zPositive;
         }
 
 
