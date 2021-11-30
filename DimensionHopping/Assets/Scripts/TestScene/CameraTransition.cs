@@ -11,7 +11,12 @@ public class CameraTransition : MonoBehaviour
     public PlayerController playerControl;
     private Quaternion _rotation2DP;
 
-    public TransformPositionOnPerspective transformPos;
+    public GameObject[] arrayPGOxPositive;
+    public GameObject[] arrayPGOxNegative;
+    public GameObject[] arrayPGOzPositive;
+    public GameObject[] arrayPGOzNegative;
+
+    private TransformPositionOnPerspective _transformPGOScript;
 
     /*
     public GameObject block;
@@ -25,12 +30,18 @@ public class CameraTransition : MonoBehaviour
 
     public bool switchingFrom2DtoFPP = false;
     public bool switchingFromFPPto2D = false;
+
+
+    public List<TransformPositionOnPerspective> transformScripts = new List<TransformPositionOnPerspective>();
+    //public TransformPositionOnPerspective[] transformPos;
     private float _elapsed;
     private float _dt;
 
     private void Start()
     {
         extVars = externalVariables.GetComponent<EVCameraTransition>();
+        GetAllPGOs();
+        GetAllPGOScripts();
     }
 
 
@@ -42,25 +53,27 @@ public class CameraTransition : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             if (!cameraControl._is2DView)
-            {  
-                
+            {
+
                 cameraControl.Set2DCameraAngle();
                 cameraControl.TrackingIn2d();
                 switchingFromFPPto2D = true;
+
+
 
             }
 
             else if (cameraControl._is2DView)
             {
-                
+
                 switchingFrom2DtoFPP = true;
 
-                
+
 
             }
             StartCoroutine(CamTransition());
-            
-            
+
+
             /*
             if(!cameraControl._is2DView)
             {
@@ -74,6 +87,42 @@ public class CameraTransition : MonoBehaviour
             }
             */
         }
+
+
+    }
+
+    void GetAllPGOs()
+    {
+        arrayPGOxPositive = GameObject.FindGameObjectsWithTag("PGOxPositive");
+        arrayPGOxNegative = GameObject.FindGameObjectsWithTag("PGOxNegative");
+        arrayPGOzPositive = GameObject.FindGameObjectsWithTag("PGOzPositive");
+        arrayPGOzNegative = GameObject.FindGameObjectsWithTag("PGOzNegative");
+
+    }
+
+    void GetAllPGOScripts()
+    {
+
+
+        if (arrayPGOxPositive != null)
+        {   
+            foreach (GameObject obj in arrayPGOxPositive)
+            { 
+                transformScripts.Add(obj.GetComponent<TransformPositionOnPerspective>());
+            }
+
+        }
+
+    }
+
+    void TransformPGOPositions()
+    {
+
+        foreach (TransformPositionOnPerspective script in transformScripts)
+            { 
+                StartCoroutine(script.TransformPosition(extVars.duration));
+    
+            }
 
 
     }
@@ -94,12 +143,14 @@ public class CameraTransition : MonoBehaviour
             {
                 _dt = Time.deltaTime;
                 _elapsed = _elapsed + _dt;
-                Debug.Log("Running");
+                //Debug.Log("Running");
 
                 // Interpoliert Position und Rotation
 
+                TransformPGOPositions();
+
                 cam.transform.position = Vector3.Lerp(cameraControl.current2DPosition, cameraControl.FPPposition.transform.position, _elapsed / extVars.duration) + (new Vector3(curve2DToFPP.curve.Evaluate(_elapsed), 0f, 0f) * extVars.curveIntensity);
-                
+
                 cam.transform.rotation = Quaternion.Lerp(_rotation2DP, cameraControl.FPPposition.transform.rotation, _elapsed / extVars.duration);
 
                 switchingFrom2DtoFPP = false;
@@ -107,7 +158,7 @@ public class CameraTransition : MonoBehaviour
                 yield return null;
             }
 
-            
+
             cameraControl._is2DView = false;
             TogglePlayerControl();
         }
@@ -122,7 +173,9 @@ public class CameraTransition : MonoBehaviour
             {
                 _dt = Time.deltaTime;
                 _elapsed = _elapsed + _dt;
-                Debug.Log("Running");
+                //Debug.Log("Running");
+
+                TransformPGOPositions();
 
                 // Interpoliert Position und Rotation
 

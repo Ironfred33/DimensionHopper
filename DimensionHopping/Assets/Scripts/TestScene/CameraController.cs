@@ -36,9 +36,9 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
 
-        Debug.Log("CAMERACONTROLLER UPDATE TRIGGERED");
+       // Debug.Log("CAMERACONTROLLER UPDATE TRIGGERED");
 
-        Debug.Log("Tracking Target: " + trackingTarget.position);
+        //Debug.Log("Tracking Target: " + trackingTarget.position);
 
         //Debug.Log("FPP Position: " + FPPposition.position.x, FPPposition.y)
 

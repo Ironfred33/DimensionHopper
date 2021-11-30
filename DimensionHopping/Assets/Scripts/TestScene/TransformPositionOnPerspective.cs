@@ -13,9 +13,6 @@ public class TransformPositionOnPerspective : MonoBehaviour
         PGOzPositive,
         PGOzNegative,
 
-        xAxis,
-        zAxis,
-
     }
 
     public WorldAxis worldAxis;
@@ -28,7 +25,8 @@ public class TransformPositionOnPerspective : MonoBehaviour
     public float transitionDuration;
 
 
-    void Start()
+
+    void Awake()
     {
 
         AssignPoints();
@@ -80,7 +78,10 @@ public class TransformPositionOnPerspective : MonoBehaviour
 
     }
 
-    public IEnumerator TransformPosition(Vector3 firstPos, Vector3 secPos, float duration)
+    // DURATION FUNKTIONIERT MOMENTAN NOCH NICHT KORREKT
+    // BEI ZB. 5 SEKUNDEN PASSIERT DIE TRANSITION TROTZDEM IN NUR CA. 1 SEC
+
+    public IEnumerator TransformPosition(float duration)
     {
         _elapsed = 0f;
 
@@ -120,7 +121,7 @@ public class TransformPositionOnPerspective : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
 
-            StartCoroutine(TransformPosition(_transformFirstPoint, _transformSecondPoint, transitionDuration));
+            StartCoroutine(TransformPosition(transitionDuration));
 
 
         }
