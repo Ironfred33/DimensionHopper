@@ -23,6 +23,7 @@ public class CameraTransition : MonoBehaviour
     public GameObject crane;
     public RedButton rb;
     */
+
     public GameObject player;
 
     public animCurve curve2DToFPP;
@@ -64,8 +65,6 @@ public class CameraTransition : MonoBehaviour
                 cameraControl.TrackingIn2d();
                 switchingFromFPPto2D = true;
 
-
-
             }
 
             else if (cameraControl._is2DView)
@@ -73,7 +72,11 @@ public class CameraTransition : MonoBehaviour
 
                 switchingFrom2DtoFPP = true;
 
-
+                if(playerControl.playerIsFlipped)
+                {
+                    player.transform.localScale = new Vector3(1, 1, 1);
+                    playerControl.playerIsFlipped = false;
+                }
 
             }
             StartCoroutine(CamTransition());
@@ -134,7 +137,7 @@ public class CameraTransition : MonoBehaviour
             }
         }
 
-        if(_arrayPGOzNegative != null)
+        if (_arrayPGOzNegative != null)
         {
             foreach (GameObject obj in _arrayPGOzNegative)
             {
@@ -157,7 +160,7 @@ public class CameraTransition : MonoBehaviour
             }
         }
 
-        if(transformScriptsPGOxNegative != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.xNegative)
+        if (transformScriptsPGOxNegative != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.xNegative)
         {
             foreach (TransformPositionOnPerspective script in transformScriptsPGOxNegative)
             {
@@ -165,7 +168,7 @@ public class CameraTransition : MonoBehaviour
             }
         }
 
-        if(transformScriptsPGOzPositive != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.zPositive)
+        if (transformScriptsPGOzPositive != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.zPositive)
         {
             foreach (TransformPositionOnPerspective script in transformScriptsPGOzPositive)
             {
@@ -173,7 +176,7 @@ public class CameraTransition : MonoBehaviour
             }
         }
 
-        if(transformScriptsPGOzNegative != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.zNegative)
+        if (transformScriptsPGOzNegative != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.zNegative)
         {
             foreach (TransformPositionOnPerspective script in transformScriptsPGOzNegative)
             {
@@ -208,8 +211,19 @@ public class CameraTransition : MonoBehaviour
                 TransformPGOPositions();
 
                 cam.transform.position = Vector3.Lerp(cameraControl.current2DPosition, cameraControl.FPPposition.transform.position, _elapsed / extVars.duration) + (new Vector3(curve2DToFPP.curve.Evaluate(_elapsed), 0f, 0f) * extVars.curveIntensity);
-
+                
                 cam.transform.rotation = Quaternion.Lerp(_rotation2DP, cameraControl.FPPposition.transform.rotation, _elapsed / extVars.duration);
+
+                // if (!playerControl.playerIsFlipped)
+                // {
+                //     cam.transform.rotation = Quaternion.Lerp(_rotation2DP,cameraControl.FPPposition.transform.rotation,  _elapsed / extVars.duration);
+                // }
+                // else if (playerControl.playerIsFlipped)
+                // {
+                //     cameraControl.FPPposition.transform.rotation = Quaternion.Lerp(_rotation2DP, new Quaternion(0, cameraControl.FPPposition.transform.rotation.y + 180, 0, 0), _elapsed / extVars.duration);
+                // }
+
+                
 
                 switchingFrom2DtoFPP = false;
                 cameraControl._is2DView = false;
