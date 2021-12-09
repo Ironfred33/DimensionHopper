@@ -18,9 +18,9 @@ public class TransformPositionOnPerspective : MonoBehaviour
     public WorldAxis worldAxis;
     public float worldAxisTargetPoint;
 
-    public animCurve transitionCurve;
+    //public animCurve transitionCurve;
     private Vector3 _transformFirstPoint;
-    private Vector3 _transformSecondPoint;
+    public Vector3 _transformSecondPoint;
 
     private EVCameraTransition _EVcamTransitionScript;
 
