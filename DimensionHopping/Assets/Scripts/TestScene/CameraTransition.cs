@@ -29,6 +29,8 @@ public class CameraTransition : MonoBehaviour
     public animCurve curve2DToFPP;
     public animCurve curveFPPTo2D;
 
+    private float _transitionTime;
+
     public bool switchingFrom2DtoFPP = false;
     public bool switchingFromFPPto2D = false;
 
@@ -60,10 +62,9 @@ public class CameraTransition : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.H) && !_transitionInProgress)
         {
-            Debug.Log("H gedrückt");
-            Debug.Log("Transition Bool: " + _transitionInProgress);
+        
             _transitionInProgress = true;
-            Debug.Log("Transition Bool: " + _transitionInProgress);
+    
 
             if (!cameraControl._is2DView)
             {
@@ -71,6 +72,7 @@ public class CameraTransition : MonoBehaviour
                 cameraControl.Set2DCameraAngle();
                 cameraControl.TrackingIn2d();
                 switchingFromFPPto2D = true;
+         
 
             }
 
@@ -78,6 +80,7 @@ public class CameraTransition : MonoBehaviour
             {
 
                 switchingFrom2DtoFPP = true;
+              
 
                 if(playerControl.playerIsFlipped)
                 {
@@ -124,6 +127,7 @@ public class CameraTransition : MonoBehaviour
             {
                 _dt = Time.deltaTime;
                 _elapsed = _elapsed + _dt;
+                _transitionTime = _elapsed + _dt;
                 //Debug.Log("Running");
 
                 // Interpoliert Position und Rotation
@@ -149,7 +153,7 @@ public class CameraTransition : MonoBehaviour
                 cameraControl._is2DView = false;
                 yield return null;
             }
-
+            Debug.Log("Transition Time: " + _transitionTime);
 
             cameraControl._is2DView = false;
             _transitionInProgress = false;
@@ -262,7 +266,7 @@ public class CameraTransition : MonoBehaviour
         {
             foreach (TransformPositionOnPerspective script in transformScriptsPGOxPositive)
             {
-                StartCoroutine(script.TransformPosition(extVars.duration));
+                StartCoroutine(script.TransformPosition());
 
             }
         }
@@ -271,7 +275,7 @@ public class CameraTransition : MonoBehaviour
         {
             foreach (TransformPositionOnPerspective script in transformScriptsPGOxNegative)
             {
-                StartCoroutine(script.TransformPosition(extVars.duration));
+                StartCoroutine(script.TransformPosition());
             }
         }
 
@@ -279,7 +283,7 @@ public class CameraTransition : MonoBehaviour
         {
             foreach (TransformPositionOnPerspective script in transformScriptsPGOzPositive)
             {
-                StartCoroutine(script.TransformPosition(extVars.duration));
+                StartCoroutine(script.TransformPosition());
             }
         }
 
@@ -287,7 +291,7 @@ public class CameraTransition : MonoBehaviour
         {
             foreach (TransformPositionOnPerspective script in transformScriptsPGOzNegative)
             {
-                StartCoroutine(script.TransformPosition(extVars.duration));
+                StartCoroutine(script.TransformPosition());
             }
         }
 
