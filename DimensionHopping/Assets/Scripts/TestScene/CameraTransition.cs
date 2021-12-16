@@ -57,6 +57,11 @@ public class CameraTransition : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.H))
         {
+            // end running/jumping animation
+            playerControl.GetComponent<Animator>().SetBool("isRunning", false);
+            playerControl.GetComponent<Animator>().SetBool("isJumping", false);
+            playerControl.state = PlayerState.Idle;
+
             if (!cameraControl._is2DView)
             {
 

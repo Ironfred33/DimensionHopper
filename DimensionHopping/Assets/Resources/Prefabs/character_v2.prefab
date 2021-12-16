@@ -1270,7 +1270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 8554892796048905220}
   cam: {fileID: 0}
-  wallDistance: 1.5
+  wallDistance: 3
   _wallLeft: 0
   _wallRight: 0
   isWallRunning: 0

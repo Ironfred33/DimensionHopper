@@ -10,7 +10,7 @@ public enum PlayerState
 }
 public class PlayerController : MonoBehaviour
 {
-    private PlayerState state;
+    public PlayerState state;
     //public GameObject externalVariables;
     public EVPlayer extVars;
     public CameraController cameraControl;
