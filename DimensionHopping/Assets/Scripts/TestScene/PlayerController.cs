@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     public Animator anim;
 
+    public bool playerIsFlipped;
     private bool _gamePaused;
 
     
@@ -98,6 +99,10 @@ public class PlayerController : MonoBehaviour
 
             player.transform.Translate(0, 0, horizontalMovement * extVars.speed2D *  Time.deltaTime);
             player.transform.localScale = new Vector3(1, 1, 1);
+            //cameraControl.FPPposition.transform.localScale = new Vector3(1, 1, 1);
+
+            playerIsFlipped = false;
+
             state = PlayerState.Running;
 
         }
@@ -106,6 +111,13 @@ public class PlayerController : MonoBehaviour
 
             player.transform.Translate(0, 0, horizontalMovement * extVars.speed2D * Time.deltaTime);
             player.transform.localScale = new Vector3(1, 1, -1);
+            //player.transform.Rotate(0, 180, 0);
+
+            //cameraControl.FPPposition.transform.Rotate(0, 180, 0);
+            
+
+            playerIsFlipped = true;
+
             state = PlayerState.Running;
             
         }
@@ -136,24 +148,72 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            player.transform.Translate(0, 0, verticalMovement * extVars.speedFP * Time.deltaTime);
-            state = PlayerState.Running;
+            
+            if(!playerIsFlipped)
+            {
+                player.transform.Translate(0, 0, verticalMovement * extVars.speedFP * Time.deltaTime);
+                state = PlayerState.Running;
+            }
+            else if(playerIsFlipped)
+            {
+                player.transform.Translate(0, 0, - verticalMovement * extVars.speedFP * Time.deltaTime);
+                state = PlayerState.Running;
+            }
+            
+            
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            player.transform.Translate(0, 0, verticalMovement * extVars.speedFP * Time.deltaTime);
-            state = PlayerState.Running;
+
+            if(!playerIsFlipped)
+            {
+                player.transform.Translate(0, 0, verticalMovement * extVars.speedFP * Time.deltaTime);
+                state = PlayerState.Running;
+            }
+            else if(playerIsFlipped)
+            {
+                player.transform.Translate(0, 0, - verticalMovement * extVars.speedFP * Time.deltaTime);
+                state = PlayerState.Running;
+            }
+            
         }
         
         if (Input.GetKey(KeyCode.D))
         {
-            player.transform.Translate(horizontalMovement * extVars.speedFP * Time.deltaTime, 0, 0);
-            state = PlayerState.Running;
+
+            if(!playerIsFlipped)
+            {
+                player.transform.Translate(horizontalMovement * extVars.speedFP * Time.deltaTime, 0, 0);
+                state = PlayerState.Running;
+            }
+            else if(playerIsFlipped)
+            {
+                player.transform.Translate(- horizontalMovement * extVars.speedFP * Time.deltaTime, 0, 0);
+                state = PlayerState.Running;
+            }
+
+
+
+            // player.transform.Translate(horizontalMovement * extVars.speedFP * Time.deltaTime, 0, 0);
+            // state = PlayerState.Running;
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            player.transform.Translate(horizontalMovement * extVars.speedFP * Time.deltaTime, 0, 0);
-            state = PlayerState.Running;
+
+            if(!playerIsFlipped)
+            {
+                player.transform.Translate(horizontalMovement * extVars.speedFP * Time.deltaTime, 0, 0);
+                state = PlayerState.Running;
+            }
+            else if(playerIsFlipped)
+            {
+                player.transform.Translate(- horizontalMovement * extVars.speedFP * Time.deltaTime, 0, 0);
+                state = PlayerState.Running;
+            }
+
+            
+            // player.transform.Translate(horizontalMovement * extVars.speedFP * Time.deltaTime, 0, 0);
+            // state = PlayerState.Running;
         }
 
         

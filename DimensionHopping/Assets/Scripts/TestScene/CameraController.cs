@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-  
+
     public Transform trackingTarget;
 
     public GameObject externalVariables;
@@ -14,13 +14,18 @@ public class CameraController : MonoBehaviour
     public Vector3 current2DPosition;
     public Vector3 current2DEulerAngles;
 
+    //public bool playerIsFlipped;
+
+    private bool rotated;
+
     float xRotationFPP = 0f;
     float yRotationFPP = 0f;
 
     public bool _is2DView;
     private Vector3 _cameraFirstPersonPosition;
-    
-    public enum PlayerOrientation {
+
+    public enum PlayerOrientation
+    {
 
         xPositive,
         xNegative,
@@ -36,7 +41,7 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         extVars = externalVariables.GetComponent<EVCamera>();
-        
+
         current2DPosition = transform.position;
         _is2DView = true;
 
@@ -47,7 +52,7 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
 
-       // Debug.Log("CAMERACONTROLLER UPDATE TRIGGERED");
+        // Debug.Log("CAMERACONTROLLER UPDATE TRIGGERED");
 
         //Debug.Log("Tracking Target: " + trackingTarget.position);
 
@@ -56,21 +61,22 @@ public class CameraController : MonoBehaviour
         _cameraFirstPersonPosition = FPPposition.transform.position;
 
 
+
         if (!_is2DView)
         {
-    
+
             TrackingInFP();
-          
+
 
         }
-        
-        else if(_is2DView)
+
+        else if (_is2DView)
         {
-    
+
             TrackingIn2d();
-            
+
         }
-    
+
     }
 
 
@@ -80,26 +86,37 @@ public class CameraController : MonoBehaviour
     {
 
         // Weltachsen Ausrichtung des Spielers:   X Positive
-        if (player.transform.rotation.eulerAngles.y > 45.1 && player.transform.rotation.eulerAngles.y <= 135.0) 
+        if (player.transform.rotation.eulerAngles.y > 45.1 && player.transform.rotation.eulerAngles.y <= 135.0)
         {
 
 
             current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z - extVars.cameraDistance2DP);
             transform.position = current2DPosition;
             player.transform.rotation = Quaternion.Euler(0, 90, 0);
+
+            //  if (!playerIsFlipped)
+            // {
+            //     yRotationFPP = 0;
+            //     playerOrientation = PlayerOrientation.xPositive;
+            // }
+            // else if (playerIsFlipped)
+            // {
+            //     yRotationFPP = 180;
+            //     playerOrientation = PlayerOrientation.xNegative;
+            // }
+
+
             yRotationFPP = 0;
             playerOrientation = PlayerOrientation.xPositive;
-                	
+
 
 
         }
-
-
         // Weltachsen Ausrichtung des Spielers:   Z Negative 
-        else if(player.transform.rotation.eulerAngles.y > 135.1 && player.transform.rotation.eulerAngles.y <= 225)
+        else if (player.transform.rotation.eulerAngles.y > 135.1 && player.transform.rotation.eulerAngles.y <= 225)
         {
-     
-            current2DPosition = new Vector3(trackingTarget.position.x -extVars.cameraDistance2DP, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z );
+
+            current2DPosition = new Vector3(trackingTarget.position.x - extVars.cameraDistance2DP, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z);
             transform.position = current2DPosition;
             player.transform.rotation = Quaternion.Euler(0, 180, 0);
             yRotationFPP = 270;
@@ -109,11 +126,12 @@ public class CameraController : MonoBehaviour
 
 
         // Weltachsen Ausrichtung des Spielers:   X Negative 
-        else if((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
+        else if ((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
         {
-            current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z + extVars.cameraDistance2DP );
+            current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z + extVars.cameraDistance2DP);
             transform.position = current2DPosition;
             player.transform.rotation = Quaternion.Euler(0, 270, 0);
+
             yRotationFPP = 180;
             playerOrientation = PlayerOrientation.xNegative;
 
@@ -121,9 +139,9 @@ public class CameraController : MonoBehaviour
 
 
         // Weltachsen Ausrichtung des Spielers:    Z Positive
-        else if(player.transform.rotation.eulerAngles.y >= 315.1 && player.transform.rotation.eulerAngles.y <= 359.9 || player.transform.rotation.eulerAngles.y >= 0 && player.transform.rotation.eulerAngles.y <= 45)
+        else if (player.transform.rotation.eulerAngles.y >= 315.1 && player.transform.rotation.eulerAngles.y <= 359.9 || player.transform.rotation.eulerAngles.y >= 0 && player.transform.rotation.eulerAngles.y <= 45)
         {
-     
+
             current2DPosition = new Vector3(trackingTarget.position.x + extVars.cameraDistance2DP, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z);
             transform.position = current2DPosition;
             player.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -142,8 +160,8 @@ public class CameraController : MonoBehaviour
         // z-Achse auch verschiebt. Frag mich nicht wie das funktioniert, aber davor hat sich auch öfter mal die z-Achse verschoben
         // dafür gibts eventuell auch noch eine bessere Lösung mit gimbal lock.
 
-     
-        float pitch = Input.GetAxis ("Mouse Y") * extVars.mouseSensitivityFP * Time.deltaTime;
+
+        float pitch = Input.GetAxis("Mouse Y") * extVars.mouseSensitivityFP * Time.deltaTime;
 
         float yaw = Input.GetAxis("Mouse X") * extVars.mouseSensitivityFP * Time.deltaTime;
 
@@ -163,7 +181,7 @@ public class CameraController : MonoBehaviour
 
         player.transform.Rotate(yaw * Vector3.up);
 
-        transform.rotation = Quaternion.Euler(xRotationFPP, (-yRotationFPP + 90 ), 0f);
+        transform.rotation = Quaternion.Euler(xRotationFPP, (-yRotationFPP + 90), 0f);
 
         // Kamera transformt die Position und bleibt immer an der Position des Empty Gameobjects "FPPPosition", das ein Child des Players ist 
 
@@ -172,11 +190,12 @@ public class CameraController : MonoBehaviour
     }
 
 
-    
-    public void Set2DCameraAngle() {
 
-            // AUSRICHTUNG: FRONT ZUR WORLD X - ACHSE
-        if (player.transform.rotation.eulerAngles.y > 45.1 && player.transform.rotation.eulerAngles.y <= 135.0) 
+    public void Set2DCameraAngle()
+    {
+
+        // AUSRICHTUNG: FRONT ZUR WORLD X - ACHSE
+        if (player.transform.rotation.eulerAngles.y > 45.1 && player.transform.rotation.eulerAngles.y <= 135.0)
         {
 
             current2DEulerAngles = new Vector3(extVars.cameraXRotation2DP, 0, 0);
@@ -184,14 +203,14 @@ public class CameraController : MonoBehaviour
 
 
         }
-        else if(player.transform.rotation.eulerAngles.y > 135.1 && player.transform.rotation.eulerAngles.y <= 225)
+        else if (player.transform.rotation.eulerAngles.y > 135.1 && player.transform.rotation.eulerAngles.y <= 225)
         {
 
             current2DEulerAngles = new Vector3(extVars.cameraXRotation2DP, 90, 0);
 
 
         }
-        else if((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
+        else if ((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
         {
 
             current2DEulerAngles = new Vector3(extVars.cameraXRotation2DP, 180, 0);
@@ -199,7 +218,7 @@ public class CameraController : MonoBehaviour
 
 
         }
-        else if(player.transform.rotation.eulerAngles.y >= 315.1 && player.transform.rotation.eulerAngles.y <= 359.9 || player.transform.rotation.eulerAngles.y >= 0 && player.transform.rotation.eulerAngles.y <= 45)
+        else if (player.transform.rotation.eulerAngles.y >= 315.1 && player.transform.rotation.eulerAngles.y <= 359.9 || player.transform.rotation.eulerAngles.y >= 0 && player.transform.rotation.eulerAngles.y <= 45)
         {
 
             current2DEulerAngles = new Vector3(extVars.cameraXRotation2DP, -90, 0);
@@ -207,7 +226,7 @@ public class CameraController : MonoBehaviour
         }
 
     }
-    
+
 
 
 }
