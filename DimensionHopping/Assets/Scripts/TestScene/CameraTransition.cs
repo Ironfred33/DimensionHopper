@@ -62,7 +62,7 @@ public class CameraTransition : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.H) && !_transitionInProgress)
         {
-			transitionInProgress = true            
+            _transitionInProgress = true;            
 			// end running/jumping animation
             playerControl.GetComponent<Animator>().SetBool("isRunning", false);
             playerControl.GetComponent<Animator>().SetBool("isJumping", false);
