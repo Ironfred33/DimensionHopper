@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "New Curve", menuName = "Curve")] 
-public class animCurve : ScriptableObject
+public class AnimCurve : ScriptableObject
 {
     public AnimationCurve curve;
 

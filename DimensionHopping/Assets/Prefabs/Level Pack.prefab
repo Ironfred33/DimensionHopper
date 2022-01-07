@@ -520,6 +520,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: drone
       objectReference: {fileID: 0}
+    - target: {fileID: 2409593150668655577, guid: a23ba3cd186d1eb4ebdf51501d40a9e5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Drone
+      objectReference: {fileID: 0}
     - target: {fileID: 3043105793783206243, guid: a23ba3cd186d1eb4ebdf51501d40a9e5,
         type: 3}
       propertyPath: m_RootOrder

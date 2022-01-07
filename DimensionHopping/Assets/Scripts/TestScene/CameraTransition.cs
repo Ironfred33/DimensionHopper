@@ -26,8 +26,8 @@ public class CameraTransition : MonoBehaviour
 
     public GameObject player;
 
-    public animCurve curve2DToFPP;
-    public animCurve curveFPPTo2D;
+    public AnimCurve curve2DToFPP;
+    public AnimCurve curveFPPTo2D;
 
     private float _transitionTime;
 
