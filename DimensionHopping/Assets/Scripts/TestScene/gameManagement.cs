@@ -112,6 +112,8 @@ public class gameManagement : MonoBehaviour
 
         _playerControllerScript.cameraControl = _cameraControlScript;
 
+        _playerControllerScript.cameraTransition = _cameraTransitionScript;
+
     }
 
     void AssignComponentsToCamera()

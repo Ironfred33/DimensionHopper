@@ -31,8 +31,6 @@ public class PlayerController : MonoBehaviour
     public bool playerIsFlipped;
     private bool _gamePaused;
 
-    private string[] _PGOTags = { "PGOzNegative", "PGOzPositive", "PGOxNegative", "PGOxPositive" };
-
     
     void Start()
     {
@@ -247,16 +245,18 @@ public class PlayerController : MonoBehaviour
                 health.currentHearts = extVars.maxHearts;
                 Debug.Log("Hearts set back to maxHearts");
             }
-        }     
-        
+        }
+        else if(cameraTransition._transitionInProgress && collision.collider.CompareTag("PGOzNegative") || collision.collider.CompareTag("PGOzPositive") || collision.collider.CompareTag("PGOxPositive") || collision.collider.CompareTag("PGOxNegative"))
+        {
+            Debug.Log("Parenting");
+            this.transform.SetParent(collision.collider.transform);
+        }
+
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionExit(Collision collision)
     {
-        if (cameraTransition._transitionInProgress && collision.collider.CompareTag("PGOzNegative") || collision.collider.CompareTag("PGOzPositive") || collision.collider.CompareTag("PGOxPositive") || collision.collider.CompareTag("PGOxNegative"))
-        {
-            collision.collider.transform.SetParent(transform);
-        }
+        this.transform.SetParent(null);
     }
 
 
