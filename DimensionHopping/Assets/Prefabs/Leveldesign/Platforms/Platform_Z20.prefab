@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 1760514800643716440}
   - component: {fileID: 3089724399644522186}
   - component: {fileID: 4791285159233386517}
-  m_Layer: 0
-  m_Name: Platform_20Z_2X
+  m_Layer: 8
+  m_Name: Platform_Z20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

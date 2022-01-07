@@ -24,6 +24,8 @@ public class CameraController : MonoBehaviour
     public bool _is2DView;
     private Vector3 _cameraFirstPersonPosition;
 
+    public float smoothing = 0.05f;
+
     public enum PlayerOrientation
     {
 
@@ -91,7 +93,10 @@ public class CameraController : MonoBehaviour
 
 
             current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z - extVars.cameraDistance2DP);
-            transform.position = current2DPosition;
+            //transform.position = current2DPosition;
+
+            transform.position = Vector3.Lerp(transform.position, current2DPosition , smoothing);
+
             player.transform.rotation = Quaternion.Euler(0, 90, 0);
 
             //  if (!playerIsFlipped)
@@ -117,7 +122,11 @@ public class CameraController : MonoBehaviour
         {
 
             current2DPosition = new Vector3(trackingTarget.position.x - extVars.cameraDistance2DP, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z);
-            transform.position = current2DPosition;
+            
+            //transform.position = current2DPosition;
+
+            transform.position = Vector3.Lerp(transform.position, current2DPosition , smoothing);
+
             player.transform.rotation = Quaternion.Euler(0, 180, 0);
             yRotationFPP = 270;
             playerOrientation = PlayerOrientation.zNegative;
@@ -129,7 +138,10 @@ public class CameraController : MonoBehaviour
         else if ((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
         {
             current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z + extVars.cameraDistance2DP);
-            transform.position = current2DPosition;
+
+            //transform.position = current2DPosition;
+            transform.position = Vector3.Lerp(transform.position, current2DPosition , smoothing);
+
             player.transform.rotation = Quaternion.Euler(0, 270, 0);
 
             yRotationFPP = 180;
@@ -143,7 +155,9 @@ public class CameraController : MonoBehaviour
         {
 
             current2DPosition = new Vector3(trackingTarget.position.x + extVars.cameraDistance2DP, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z);
-            transform.position = current2DPosition;
+
+            //transform.position = current2DPosition;
+            transform.position = Vector3.Lerp(transform.position, current2DPosition , smoothing);
             player.transform.rotation = Quaternion.Euler(0, 0, 0);
             yRotationFPP = 90;
             playerOrientation = PlayerOrientation.zPositive;
