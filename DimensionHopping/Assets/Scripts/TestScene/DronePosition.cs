@@ -9,6 +9,7 @@ public class DronePosition : MonoBehaviour
     private int _droneHeight;
     private int _droneDistance;
     public int droneClipping;
+    public float smoothing;
 
     // Start is called before the first frame update
     void Start()
@@ -16,15 +17,14 @@ public class DronePosition : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player");
         _droneHeight = GetComponent<EVCamera>().cameraHeight2DP;
         _droneDistance = GetComponent<EVCamera>().cameraDistance2DP;
+        offset = new Vector3(0, _droneHeight, -_droneDistance - droneClipping);
+
+        transform.position = _player.transform.position + offset;
 
 
     }
-
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        offset = new Vector3(0, _droneHeight, -_droneDistance - droneClipping);
-        transform.position = _player.transform.position + offset;
-        
+        transform.position = Vector3.Lerp(transform.position, _player.transform.position + offset, smoothing);
     }
 }
