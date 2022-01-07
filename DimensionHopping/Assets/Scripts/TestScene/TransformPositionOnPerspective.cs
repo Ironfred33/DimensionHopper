@@ -14,6 +14,11 @@ public class TransformPositionOnPerspective : MonoBehaviour
         PGOzNegative,
 
     }
+    private Material _blueGlow;
+    private Material _redGlow;
+    private Material _yellowGlow;
+    private Material _greenGlow;
+
 
     public WorldAxis worldAxis;
     public float worldAxisTargetPoint;
@@ -28,7 +33,6 @@ public class TransformPositionOnPerspective : MonoBehaviour
 
     private float _dt;
 
-
     private float _transitionTime;
 
 
@@ -36,12 +40,16 @@ public class TransformPositionOnPerspective : MonoBehaviour
     {
 
         AssignPoints();
-        TagThisGameObject();
+        LoadGlows();
+        TagThisAndGetGlow();
         GetDuration();
 
 
 
+
     }
+
+
 
     void AssignPoints()
     {
@@ -66,31 +74,46 @@ public class TransformPositionOnPerspective : MonoBehaviour
         Debug.Log("Duration im PGO Script: " + _EVcamTransitionScript.duration);
     }
 
+     void LoadGlows()
+    {
+        _blueGlow = Resources.Load("Materials/Glows/Glow_Blue") as Material;
+        _redGlow = Resources.Load("Materials/Glows/Glow_Red") as Material;
+        _yellowGlow = Resources.Load("Materials/Glows/Glow_Yellow") as Material;
+        _greenGlow = Resources.Load("Materials/Glows/Glow_Green") as Material;
+    }
 
-    void TagThisGameObject()
+
+    void TagThisAndGetGlow()
     {
 
         switch (worldAxis)
         {
             case (WorldAxis.PGOxPositive):
                 gameObject.tag = "PGOxPositive";
+                GetComponent<Renderer>().material = _blueGlow;
+                
                 break;
 
             case (WorldAxis.PGOxNegative):
                 gameObject.tag = "PGOxNegative";
+                GetComponent<Renderer>().material = _redGlow;
                 break;
 
             case (WorldAxis.PGOzPositive):
                 gameObject.tag = "PGOzPositive";
+                GetComponent<Renderer>().material = _greenGlow;
                 break;
 
             case (WorldAxis.PGOzNegative):
                 gameObject.tag = "PGOzNegative";
+                GetComponent<Renderer>().material = _yellowGlow;
                 break;
 
         }
 
     }
+
+   
 
 
     void GetDuration()
@@ -113,7 +136,7 @@ public class TransformPositionOnPerspective : MonoBehaviour
             while (_elapsed <= _EVcamTransitionScript.duration)
             {
                 _dt = Time.deltaTime;
-                transform.position = Vector3.Lerp(transform.position, _transformSecondPoint, _elapsed / _EVcamTransitionScript.duration) ;
+                transform.position = Vector3.Lerp(transform.position, _transformSecondPoint, _elapsed / _EVcamTransitionScript.duration);
                 _elapsed += _dt;
                 yield return null;
             }
@@ -124,7 +147,7 @@ public class TransformPositionOnPerspective : MonoBehaviour
             while (_elapsed <= _EVcamTransitionScript.duration)
             {
                 _dt = Time.deltaTime;
-                
+
                 transform.position = Vector3.Lerp(transform.position, _transformFirstPoint, _elapsed / _EVcamTransitionScript.duration * _EVcamTransitionScript.curveIntensity);
                 _elapsed += _dt;
                 yield return null;

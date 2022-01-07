@@ -16,6 +16,7 @@ TagManager:
   - PGOxNegative
   - PGOzPositive
   - PGOzNegative
+  - Drone
   layers:
   - Default
   - TransparentFX

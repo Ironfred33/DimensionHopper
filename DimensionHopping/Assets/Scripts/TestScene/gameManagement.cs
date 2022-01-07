@@ -3,30 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class gameManagement : MonoBehaviour
+public class GameManagement : MonoBehaviour
 {
-    
+
     public Vector3 SpawnCoords;
     private GameObject _externalVariables;
     private GameObject _playerPrefab;
     private GameObject _player;
     private EVPlayer _externalVariablesPlayerScript;
-    private EVCamera _externalVariablesCameraScript;
     private PlayerHealth _playerHealthScript;
     private PlayerController _playerControllerScript;
     private CameraTransition _cameraTransitionScript;
     private CameraController _cameraControlScript;
+    public DronePosition _dronePositionScript;
     private Timer _timerScript;
     private Transform _trackingTarget;
     private GameObject _trackingPoint;
     private GameObject _canvas;
-    private List <GameObject> _heartImages = new List <GameObject>();
+    public GameObject _drone;
+    private List<GameObject> _heartImages = new List<GameObject>();
     void Awake()
     {
 
         LoadPrefab();
 
         SpawnPlayer();
+
+        AssignComponentsToCamera();
+
+        AssignComponentsToCanvas();
+
+        AssignRemainingComponents();
 
     }
 
@@ -36,17 +43,13 @@ public class gameManagement : MonoBehaviour
         Instantiate(_playerPrefab, SpawnCoords, Quaternion.Euler(0, 90, 0));
 
         GetAllComponents();
-        
+
         AssignComponentsToPlayer();
-
-        AssignComponentsToCamera();
-
-        AssignComponentsToCanvas();
 
     }
 
 
-    
+
 
     void LoadPrefab()
     {
@@ -78,7 +81,7 @@ public class gameManagement : MonoBehaviour
 
         // Camera Scripts
 
-        _cameraControlScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();    
+        _cameraControlScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
 
         _cameraTransitionScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraTransition>();
 
@@ -89,6 +92,12 @@ public class gameManagement : MonoBehaviour
 
         _timerScript = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
 
+        // Drohne
+
+        _drone = GameObject.FindGameObjectWithTag("Drone");
+
+        _dronePositionScript = _drone.GetComponent<DronePosition>();
+
 
     }
 
@@ -98,13 +107,13 @@ public class gameManagement : MonoBehaviour
 
         _playerHealthScript.externalPlayer = _externalVariablesPlayerScript;
 
-        
+
         // Herz-Images des Canvas hinzufügen
         // Falls es jemals mehr Herzen geben sollte, unten optimieren. Ist noch mit maximal 3 Children gehardcoded
 
         for (int i = 0; i < 3; i++)
         {
-        _playerHealthScript.hearts[i] = _canvas.transform.GetChild(i).GetComponent<Image>();
+            _playerHealthScript.hearts[i] = _canvas.transform.GetChild(i).GetComponent<Image>();
         }
 
 
@@ -132,7 +141,7 @@ public class gameManagement : MonoBehaviour
         _cameraControlScript.trackingTarget = _trackingTarget;
 
         _trackingPoint = GameObject.FindGameObjectWithTag("PlayerTrackingPoint");
-        
+
         _cameraControlScript.FPPposition = _trackingPoint;
 
     }
@@ -142,7 +151,13 @@ public class gameManagement : MonoBehaviour
         _timerScript.externalPlayer = _externalVariablesPlayerScript;
     }
 
-    
+
+    void AssignRemainingComponents()
+    {
+        _dronePositionScript.cameraEV = _externalVariables.GetComponent<EVCamera>();
+
+
+    }
 
 
 
@@ -151,5 +166,7 @@ public class gameManagement : MonoBehaviour
 
 
 
-    
+
+
+
 }
