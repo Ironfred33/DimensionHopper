@@ -29,6 +29,7 @@ public class TransformPositionOnPerspective : MonoBehaviour
     private float _dt;
 
 
+    private float _transitionTime;
 
 
     void Awake()
