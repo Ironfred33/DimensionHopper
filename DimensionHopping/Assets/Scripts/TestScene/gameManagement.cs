@@ -15,12 +15,12 @@ public class GameManagement : MonoBehaviour
     private PlayerController _playerControllerScript;
     private CameraTransition _cameraTransitionScript;
     private CameraController _cameraControlScript;
-    public DronePosition _dronePositionScript;
+    private DronePosition _dronePositionScript;
     private Timer _timerScript;
     private Transform _trackingTarget;
     private GameObject _trackingPoint;
     private GameObject _canvas;
-    public GameObject _drone;
+    private GameObject _drone;
     private List<GameObject> _heartImages = new List<GameObject>();
     void Awake()
     {
