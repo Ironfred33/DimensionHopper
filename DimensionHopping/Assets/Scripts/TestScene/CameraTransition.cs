@@ -45,7 +45,7 @@ public class CameraTransition : MonoBehaviour
     private float _elapsed;
     private float _dt;
 
-    private bool _transitionInProgress;
+    public bool _transitionInProgress;
 
     private void Start()
     {

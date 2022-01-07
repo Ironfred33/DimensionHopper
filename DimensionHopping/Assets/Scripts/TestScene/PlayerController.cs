@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     //public GameObject externalVariables;
     public EVPlayer extVars;
     public CameraController cameraControl;
+    public CameraTransition cameraTransition;
     public Transform groundCheck;
     public float groundRadius;
     public LayerMask groundMask;
@@ -29,6 +30,8 @@ public class PlayerController : MonoBehaviour
 
     public bool playerIsFlipped;
     private bool _gamePaused;
+
+    private string[] _PGOTags = { "PGOzNegative", "PGOzPositive", "PGOxNegative", "PGOxPositive" };
 
     
     void Start()
@@ -246,6 +249,14 @@ public class PlayerController : MonoBehaviour
             }
         }     
         
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (cameraTransition._transitionInProgress && collision.collider.CompareTag("PGOzNegative") || collision.collider.CompareTag("PGOzPositive") || collision.collider.CompareTag("PGOxPositive") || collision.collider.CompareTag("PGOxNegative"))
+        {
+            collision.collider.transform.SetParent(transform);
+        }
     }
 
 
