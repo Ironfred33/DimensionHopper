@@ -33,6 +33,8 @@ public class TransformPositionOnPerspective : MonoBehaviour
 
     private float _dt;
 
+    public AnimCurve curvePGO;
+
     private float _transitionTime;
 
 
@@ -136,8 +138,10 @@ public class TransformPositionOnPerspective : MonoBehaviour
             while (_elapsed <= _EVcamTransitionScript.duration)
             {
                 _dt = Time.deltaTime;
-                transform.position = Vector3.Lerp(transform.position, _transformSecondPoint, _elapsed / _EVcamTransitionScript.duration);
                 _elapsed += _dt;
+                transform.position = Vector3.Lerp(_transformFirstPoint, _transformSecondPoint, _elapsed /  _EVcamTransitionScript.duration);
+
+               
                 yield return null;
             }
 
@@ -147,9 +151,10 @@ public class TransformPositionOnPerspective : MonoBehaviour
             while (_elapsed <= _EVcamTransitionScript.duration)
             {
                 _dt = Time.deltaTime;
-
-                transform.position = Vector3.Lerp(transform.position, _transformFirstPoint, _elapsed / _EVcamTransitionScript.duration * _EVcamTransitionScript.curveIntensity);
                 _elapsed += _dt;
+
+                transform.position = Vector3.Lerp(_transformSecondPoint, _transformFirstPoint, _elapsed / _EVcamTransitionScript.duration);
+        
                 yield return null;
             }
         }

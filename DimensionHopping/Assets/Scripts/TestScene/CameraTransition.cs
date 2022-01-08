@@ -94,6 +94,7 @@ public class CameraTransition : MonoBehaviour
 
             }
             StartCoroutine(CamTransition());
+            TransformPGOPositions();
 
 
             /*
@@ -125,7 +126,7 @@ public class CameraTransition : MonoBehaviour
         if (switchingFrom2DtoFPP)
         {
             TogglePlayerControl();
-            TransformPGOPositions();
+            //TransformPGOPositions();
             
 
             while (_elapsed <= extVars.duration)
@@ -173,7 +174,7 @@ public class CameraTransition : MonoBehaviour
 
             DisableObject(compass);
             TogglePlayerControl();
-            TransformPGOPositions();
+            //TransformPGOPositions();
 
             while (_elapsed <= extVars.duration)
             {
