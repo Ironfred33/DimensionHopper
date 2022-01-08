@@ -4,29 +4,54 @@ using UnityEngine;
 
 public class DronePosition : MonoBehaviour
 {
-    private GameObject _player;
-    private Vector3 offset;
-    private int _droneHeight;
-    private int _droneDistance;
-    public int droneClipping;
+    public Vector3 _clippingVector;
+    public float clippingValue;
     public EVCamera cameraEV;
+
+    public CameraController camControl;
+    private Vector3 _newDronePosition;
+    private Quaternion _newDroneRotation;
 
     // Start is called before the first frame update
     void Start()
     {
+        _clippingVector = new Vector3 (0, 0, clippingValue);
+        transform.position = camControl.current2DPosition - _clippingVector;
+    }
+
+    private void Update()
+    {
+        _newDroneRotation = Quaternion.Euler(camControl.current2DEulerAngles);
+
+        Debug.Log("current rotation:" + transform.localEulerAngles);
 
 
-        _player = GameObject.FindGameObjectWithTag("Player");
-        _droneHeight = cameraEV.cameraHeight2DP;
-        _droneDistance = cameraEV.cameraDistance2DP;
-        offset = new Vector3(0, _droneHeight, -_droneDistance - droneClipping);
+        if(transform.localEulerAngles.y >= 175.0 && transform.localEulerAngles.y <= 185)
+        {
+            _clippingVector = new Vector3(0, 0, -clippingValue);
+        }
+        else if(transform.localEulerAngles.y >= 85 && transform.localEulerAngles.y <= 95)
+        {
+            _clippingVector = new Vector3(clippingValue, 0, 0);
+        }
 
-        transform.position = _player.transform.position + offset;
+        else if(transform.localEulerAngles.y >= 265 && transform.localEulerAngles.y <= 275)
+        {
+            _clippingVector = new Vector3(-clippingValue, 0, 0);
+        }
 
+        else
+        {
+            _clippingVector = new Vector3(0, 0, clippingValue);
+        }
+
+        _newDronePosition = camControl.current2DPosition - _clippingVector;
+        
 
     }
     void LateUpdate()
     {
-        transform.position = Vector3.Lerp(transform.position, _player.transform.position + offset, cameraEV.smoothing);
+        transform.position = Vector3.Lerp(transform.position, _newDronePosition, cameraEV.smoothing);
+        transform.rotation = Quaternion.Lerp(transform.rotation, _newDroneRotation, cameraEV.smoothing);
     }
 }

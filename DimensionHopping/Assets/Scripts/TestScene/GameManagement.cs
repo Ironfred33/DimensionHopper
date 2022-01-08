@@ -157,7 +157,7 @@ public class GameManagement : MonoBehaviour
     void AssignRemainingComponents()
     {
         _dronePositionScript.cameraEV = _externalVariables.GetComponent<EVCamera>();
-
+        _dronePositionScript.camControl = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
 
     }
 
