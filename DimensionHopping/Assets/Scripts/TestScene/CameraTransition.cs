@@ -16,6 +16,8 @@ public class CameraTransition : MonoBehaviour
     private GameObject[] _arrayPGOzPositive;
     private GameObject[] _arrayPGOzNegative;
 
+    public GameObject compass;
+
     private TransformPositionOnPerspective _transformPGOScript;
 
     /*
@@ -124,6 +126,7 @@ public class CameraTransition : MonoBehaviour
         {
             TogglePlayerControl();
             TransformPGOPositions();
+            
 
             while (_elapsed <= extVars.duration)
             {
@@ -159,6 +162,7 @@ public class CameraTransition : MonoBehaviour
 
             cameraControl._is2DView = false;
             _transitionInProgress = false;
+            EnableObject(compass);
             TogglePlayerControl();
         }
 
@@ -166,6 +170,8 @@ public class CameraTransition : MonoBehaviour
 
         else if (switchingFromFPPto2D)
         {
+
+            DisableObject(compass);
             TogglePlayerControl();
             TransformPGOPositions();
 
@@ -299,6 +305,19 @@ public class CameraTransition : MonoBehaviour
 
 
 
+    }
+
+    void DisableObject(GameObject obj)
+    {
+
+        obj.SetActive(false);
+
+    }
+
+    void EnableObject(GameObject obj)
+    {
+
+        obj.SetActive(true);
     }
 
 
