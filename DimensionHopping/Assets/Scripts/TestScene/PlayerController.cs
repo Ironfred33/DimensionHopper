@@ -246,18 +246,24 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Hearts set back to maxHearts");
             }
         }
-        else if(cameraTransition._transitionInProgress && collision.collider.CompareTag("PGOzNegative") || collision.collider.CompareTag("PGOzPositive") || collision.collider.CompareTag("PGOxPositive") || collision.collider.CompareTag("PGOxNegative"))
+
+    }
+
+    // Lets character stay on moving platform
+    private void OnCollisionStay(Collision collisionInfo)
+    {
+        if(cameraTransition._transitionInProgress && collisionInfo.collider.CompareTag("PGOzNegative") || collisionInfo.collider.CompareTag("PGOzPositive") || collisionInfo.collider.CompareTag("PGOxPositive") || collisionInfo.collider.CompareTag("PGOxNegative"))
         {
             Debug.Log("Parenting");
-            this.transform.SetParent(collision.collider.transform);
+            this.transform.SetParent(collisionInfo.collider.transform);
         }
-
     }
 
     private void OnCollisionExit(Collision collision)
     {
         this.transform.SetParent(null);
     }
+    
 
 
     void PauseGame()
