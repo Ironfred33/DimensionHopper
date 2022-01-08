@@ -60,7 +60,7 @@ public class CameraTransition : MonoBehaviour
         _rotation2DP = Quaternion.Euler(cameraControl.current2DEulerAngles);
 
 
-        if (Input.GetKeyDown(KeyCode.H) && !_transitionInProgress)
+        if (Input.GetKeyDown(KeyCode.C) && !_transitionInProgress)
         {
             _transitionInProgress = true;            
 			// end running/jumping animation
