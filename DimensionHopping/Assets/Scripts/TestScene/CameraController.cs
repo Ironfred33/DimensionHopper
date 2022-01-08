@@ -186,7 +186,7 @@ public class CameraController : MonoBehaviour
         xRotationFPP -= pitch;
         xRotationFPP = Mathf.Clamp(xRotationFPP, -60f, 60f);
 
-        Debug.Log("XRotation = " + pitch);
+        //Debug.Log("XRotation = " + pitch);
 
         //float yaw = Input.GetAxis("Mouse X") * extVars.mouseSensitivityFP;
 

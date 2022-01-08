@@ -16,6 +16,8 @@ public class CameraTransition : MonoBehaviour
     private GameObject[] _arrayPGOzPositive;
     private GameObject[] _arrayPGOzNegative;
 
+    public GameObject compass;
+
     private TransformPositionOnPerspective _transformPGOScript;
 
     /*
@@ -60,7 +62,7 @@ public class CameraTransition : MonoBehaviour
         _rotation2DP = Quaternion.Euler(cameraControl.current2DEulerAngles);
 
 
-        if (Input.GetKeyDown(KeyCode.H) && !_transitionInProgress)
+        if (Input.GetKeyDown(KeyCode.C) && !_transitionInProgress)
         {
             _transitionInProgress = true;            
 			// end running/jumping animation
@@ -92,6 +94,7 @@ public class CameraTransition : MonoBehaviour
 
             }
             StartCoroutine(CamTransition());
+            TransformPGOPositions();
 
 
             /*
@@ -123,7 +126,8 @@ public class CameraTransition : MonoBehaviour
         if (switchingFrom2DtoFPP)
         {
             TogglePlayerControl();
-            TransformPGOPositions();
+            //TransformPGOPositions();
+            
 
             while (_elapsed <= extVars.duration)
             {
@@ -159,6 +163,7 @@ public class CameraTransition : MonoBehaviour
 
             cameraControl._is2DView = false;
             _transitionInProgress = false;
+            EnableObject(compass);
             TogglePlayerControl();
         }
 
@@ -166,8 +171,10 @@ public class CameraTransition : MonoBehaviour
 
         else if (switchingFromFPPto2D)
         {
+
+            DisableObject(compass);
             TogglePlayerControl();
-            TransformPGOPositions();
+            //TransformPGOPositions();
 
             while (_elapsed <= extVars.duration)
             {
@@ -299,6 +306,19 @@ public class CameraTransition : MonoBehaviour
 
 
 
+    }
+
+    void DisableObject(GameObject obj)
+    {
+
+        obj.SetActive(false);
+
+    }
+
+    void EnableObject(GameObject obj)
+    {
+
+        obj.SetActive(true);
     }
 
 
