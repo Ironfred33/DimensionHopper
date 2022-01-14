@@ -33,8 +33,6 @@ public class TransformPositionOnPerspective : MonoBehaviour
 
     private float _dt;
 
-    public AnimCurve curvePGO;
-
     private float _transitionTime;
 
 
@@ -46,11 +44,7 @@ public class TransformPositionOnPerspective : MonoBehaviour
         TagThisAndGetGlow();
         GetDuration();
 
-
-
-
     }
-
 
 
     void AssignPoints()
@@ -117,15 +111,11 @@ public class TransformPositionOnPerspective : MonoBehaviour
 
    
 
-
     void GetDuration()
     {
         _EVcamTransitionScript = GameObject.FindGameObjectWithTag("ExternalVariables").GetComponent<EVCameraTransition>();
 
     }
-
-    // DURATION FUNKTIONIERT MOMENTAN NOCH NICHT KORREKT
-    // BEI ZB. 5 SEKUNDEN PASSIERT DIE TRANSITION TROTZDEM IN NUR CA. 1 SEC
 
     public IEnumerator TransformPosition()
     {

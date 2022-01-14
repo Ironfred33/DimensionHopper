@@ -18,6 +18,8 @@ public class CameraTransition : MonoBehaviour
 
     public GameObject compass;
 
+    public GameObject crossHair;
+
     private TransformPositionOnPerspective _transformPGOScript;
 
     /*
@@ -54,6 +56,9 @@ public class CameraTransition : MonoBehaviour
         extVars = externalVariables.GetComponent<EVCameraTransition>();
         GetAllPGOs();
         GetAllPGOScripts();
+
+        // if(cameraControl._is2DView) DisableObject(compass);
+        // else if(!cameraControl._is2DView) EnableObject(compass);
     }
 
 
@@ -164,6 +169,7 @@ public class CameraTransition : MonoBehaviour
             cameraControl._is2DView = false;
             _transitionInProgress = false;
             EnableObject(compass);
+            EnableObject(crossHair);
             TogglePlayerControl();
         }
 
@@ -173,6 +179,7 @@ public class CameraTransition : MonoBehaviour
         {
 
             DisableObject(compass);
+            DisableObject(crossHair);
             TogglePlayerControl();
             //TransformPGOPositions();
 
