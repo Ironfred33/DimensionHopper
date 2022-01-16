@@ -1244,8 +1244,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c477ba3b972804e45aa05bbda660bad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
   extVars: {fileID: 0}
   cameraControl: {fileID: 0}
+  cameraTransition: {fileID: 0}
   groundCheck: {fileID: 8554892796903071226}
   groundRadius: 0.4
   groundMask:
@@ -1256,6 +1258,7 @@ MonoBehaviour:
   rb: {fileID: 8554892795707864836}
   health: {fileID: 8554892795707864837}
   anim: {fileID: 8554892795707864839}
+  playerIsFlipped: 0
 --- !u!114 &-2324460300814063482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1270,12 +1273,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 8554892796048905220}
   cam: {fileID: 0}
-  wallDistance: 3
+  wallDistance: 1
   _wallLeft: 0
   _wallRight: 0
   isWallRunning: 0
-  upForce: 20000
-  sideForce: 20000
+  upForce: 650
+  sideForce: 500
   minHeight: 1
   wallRunFOV: 110
   normalFOV: 60

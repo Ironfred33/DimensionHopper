@@ -110,14 +110,16 @@ public class WallRun_v2 : MonoBehaviour
         {
             if (_wallLeft)
             {
-                rb.AddForce(Vector3.up * upForce * Time.deltaTime);
-                rb.AddForce(orientation.right * sideForce * Time.deltaTime);
+                Debug.Log("Wall is left");
+                rb.AddForce(Vector3.up * upForce * Time.deltaTime, ForceMode.Impulse);
+                rb.AddForce(orientation.right * sideForce * Time.deltaTime, ForceMode.Impulse);
+                Debug.Log("Wall Jump");
             }
 
             else if (_wallRight)
             {
-                rb.AddForce(Vector3.up * upForce * Time.deltaTime);
-                rb.AddForce(-orientation.right * sideForce * Time.deltaTime);
+                rb.AddForce(Vector3.up * upForce * Time.deltaTime, ForceMode.Impulse);
+                rb.AddForce(-orientation.right * sideForce * Time.deltaTime, ForceMode.Impulse);
             }
         }
     }
