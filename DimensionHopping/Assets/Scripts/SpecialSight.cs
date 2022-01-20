@@ -14,9 +14,14 @@ public class SpecialSight : MonoBehaviour
 
     public GameObject copy;
 
-    public bool finishedCoolDown;
+    public bool activeCoolDown;
 
-    public bool finishedSightTime;
+    public bool activeSightTime;
+
+    private float _elapsed;
+    public GameObject instantiatedCopy;
+
+    public GameObject instantiatedMovingCopy;
 
 
     public float coolDown;
@@ -32,12 +37,18 @@ public class SpecialSight : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.V) && !activeCoolDown)
         {
             ShootRay();
+
         }
 
     }
+
+
+
+    // COLLIDER ENTFERNEN, DAMIT SPIELER NICHT WIRKLICH AUF DIESE PLATTFORMEN KANN
+    // BEIDE COPYS BLINKEN LASSEN BZW OPACITY WEGNEHMEN
 
 
     void ShootRay()
@@ -59,6 +70,9 @@ public class SpecialSight : MonoBehaviour
                 transformSecondPoint = scriptPGO.transformSecondPoint;
 
                 CreateCopy(hit);
+                StartCoroutine(TrackCoolDown());
+                StartCoroutine(TrackSightTime());
+                StartCoroutine(TransformCopyPosition());
 
             }
 
@@ -68,21 +82,128 @@ public class SpecialSight : MonoBehaviour
 
     void CreateCopy(RaycastHit hit)
     {
+        //GameObject instantiatedCopy;
+        //Transform instantiatedCopy;
 
-        // gibt alle gameobjects zurück, auch den player, wenn er zu dem zeitpunkt auf der plattform steht
         copy = hit.transform.gameObject;
 
-        if(hit.collider.gameObject.transform.position == transformFirstPoint) Instantiate(copy, transformSecondPoint, Quaternion.identity);
-        else if(hit.collider.gameObject.transform.position == transformSecondPoint) Instantiate(copy, transformFirstPoint, Quaternion.identity);
-        
+        if (hit.collider.gameObject.transform.position == transformFirstPoint)
+        {
+
+            instantiatedCopy = Instantiate(copy, transformSecondPoint, Quaternion.identity);
+
+            instantiatedMovingCopy = Instantiate(copy, transformFirstPoint, Quaternion.identity);
+
+
+        }
+        else if (hit.collider.gameObject.transform.position == transformSecondPoint)
+        {
+            instantiatedCopy = Instantiate(copy, transformFirstPoint, Quaternion.identity);
+
+            instantiatedMovingCopy = Instantiate(copy, transformSecondPoint, Quaternion.identity);
+
+        }
+
 
     }
 
-    IEnumerator WaitForSecond(float time)
+
+    IEnumerator TrackCoolDown()
+    {
+        float _elapsed = 0f;
+        float _dt;
+        activeCoolDown = true;
+
+        while (_elapsed <= coolDown)
+        {
+            _dt = Time.deltaTime;
+            _elapsed += _dt;
+
+            yield return null;
+
+        }
+
+        activeCoolDown = false;
+
+
+    }
+
+    IEnumerator TrackSightTime()
     {
 
-        return null;
+        float _elapsed = 0f;
+        float _dt;
+        activeSightTime = true;
+
+        while (_elapsed <= sightTime)
+        {
+            _dt = Time.deltaTime;
+            _elapsed += _dt;
+
+            yield return null;
+
+        }
+
+        Destroy(instantiatedCopy);
+        activeSightTime = false;
+
     }
+
+
+    IEnumerator TransformCopyPosition()
+    {
+        _elapsed = 0f;
+        float _dt;
+
+        if (instantiatedMovingCopy.transform.position == transformFirstPoint)
+        {
+
+            while (_elapsed <= sightTime)
+            {
+                _dt = Time.deltaTime;
+                _elapsed += _dt;
+
+                instantiatedMovingCopy.transform.position = Vector3.Lerp(transformFirstPoint, transformSecondPoint, _elapsed / sightTime);
+
+
+
+                yield return null;
+            }
+
+        }
+        else if (instantiatedMovingCopy.transform.position == transformSecondPoint)
+        {
+
+            while (_elapsed <= sightTime)
+            {
+                _dt = Time.deltaTime;
+                _elapsed += _dt;
+
+                instantiatedMovingCopy.transform.position = Vector3.Lerp(transformSecondPoint, transformFirstPoint, _elapsed / sightTime);
+
+
+
+                yield return null;
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+        Destroy(instantiatedMovingCopy);
+
+
+
+
+
+    }
+
 
 
 }
