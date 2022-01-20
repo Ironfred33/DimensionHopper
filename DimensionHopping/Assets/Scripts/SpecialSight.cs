@@ -18,20 +18,19 @@ public class SpecialSight : MonoBehaviour
 
     public bool activeSightTime;
 
-    public float transparency;
 
     private float _elapsed;
     public GameObject instantiatedCopy;
 
     public GameObject instantiatedMovingCopy;
 
+    public EVSpecialSight specialSightEV;
 
-    public float coolDown;
-    public float sightTime;
-    public float range;
     // Start is called before the first frame update
     void Start()
     {
+
+        specialSightEV = GameObject.FindGameObjectWithTag("ExternalVariables").GetComponent<EVSpecialSight>();
 
     }
 
@@ -58,7 +57,7 @@ public class SpecialSight : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range))
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, specialSightEV.sightRange))
         {
 
             if (hit.transform.tag == "PGOxPositive" || hit.transform.tag == "PGOzPositive" || hit.transform.tag == "PGOxNegative" || hit.transform.tag == "PGOzNegative")
@@ -98,8 +97,8 @@ public class SpecialSight : MonoBehaviour
 
             instantiatedMovingCopy = Instantiate(copy, transformFirstPoint, Quaternion.identity);
 
-            instantiatedCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, transparency);
-            instantiatedMovingCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, transparency);
+            instantiatedCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
+            instantiatedMovingCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
 
 
         }
@@ -110,8 +109,8 @@ public class SpecialSight : MonoBehaviour
             instantiatedMovingCopy = Instantiate(copy, transformSecondPoint, Quaternion.identity);
 
             
-            instantiatedCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, transparency);
-            instantiatedMovingCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, transparency);
+            instantiatedCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
+            instantiatedMovingCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
           
 
         }
@@ -126,7 +125,7 @@ public class SpecialSight : MonoBehaviour
         float _dt;
         activeCoolDown = true;
 
-        while (_elapsed <= coolDown)
+        while (_elapsed <= specialSightEV.coolDown)
         {
             _dt = Time.deltaTime;
             _elapsed += _dt;
@@ -147,7 +146,7 @@ public class SpecialSight : MonoBehaviour
         float _dt;
         activeSightTime = true;
 
-        while (_elapsed <= sightTime)
+        while (_elapsed <= specialSightEV.sightTime)
         {
             _dt = Time.deltaTime;
             _elapsed += _dt;
@@ -170,12 +169,12 @@ public class SpecialSight : MonoBehaviour
         if (instantiatedMovingCopy.transform.position == transformFirstPoint)
         {
 
-            while (_elapsed <= sightTime)
+            while (_elapsed <= specialSightEV.sightTime)
             {
                 _dt = Time.deltaTime;
                 _elapsed += _dt;
 
-                instantiatedMovingCopy.transform.position = Vector3.Lerp(transformFirstPoint, transformSecondPoint, _elapsed / sightTime);
+                instantiatedMovingCopy.transform.position = Vector3.Lerp(transformFirstPoint, transformSecondPoint, _elapsed / specialSightEV.sightTime);
 
 
 
@@ -186,12 +185,12 @@ public class SpecialSight : MonoBehaviour
         else if (instantiatedMovingCopy.transform.position == transformSecondPoint)
         {
 
-            while (_elapsed <= sightTime)
+            while (_elapsed <= specialSightEV.sightTime)
             {
                 _dt = Time.deltaTime;
                 _elapsed += _dt;
 
-                instantiatedMovingCopy.transform.position = Vector3.Lerp(transformSecondPoint, transformFirstPoint, _elapsed / sightTime);
+                instantiatedMovingCopy.transform.position = Vector3.Lerp(transformSecondPoint, transformFirstPoint, _elapsed / specialSightEV.sightTime);
 
 
 

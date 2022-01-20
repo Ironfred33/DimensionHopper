@@ -168,6 +168,28 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1535753780}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &197414357 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2757309063020325806, guid: 186d6350790e79f4ab3901e4b08e80d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1535753780}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &197414362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197414357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b95ca4cc4ece3694eb9d100b20fd2ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformTransparency: 0.2
+  coolDown: 4
+  sightTime: 2
+  sightRange: 15
 --- !u!1001 &269725955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2442,12 +2464,9 @@ MonoBehaviour:
   copy: {fileID: 0}
   activeCoolDown: 0
   activeSightTime: 0
-  transparency: 0.2
   instantiatedCopy: {fileID: 0}
   instantiatedMovingCopy: {fileID: 0}
-  coolDown: 4
-  sightTime: 2
-  range: 15
+  specialSightEV: {fileID: 0}
 --- !u!43 &1867028933
 Mesh:
   m_ObjectHideFlags: 0
