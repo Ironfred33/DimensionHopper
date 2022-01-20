@@ -18,6 +18,8 @@ public class SpecialSight : MonoBehaviour
 
     public bool activeSightTime;
 
+    public float transparency;
+
     private float _elapsed;
     public GameObject instantiatedCopy;
 
@@ -87,12 +89,17 @@ public class SpecialSight : MonoBehaviour
 
         copy = hit.transform.gameObject;
 
+        
+
         if (hit.collider.gameObject.transform.position == transformFirstPoint)
         {
 
             instantiatedCopy = Instantiate(copy, transformSecondPoint, Quaternion.identity);
 
             instantiatedMovingCopy = Instantiate(copy, transformFirstPoint, Quaternion.identity);
+
+            instantiatedCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, transparency);
+            instantiatedMovingCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, transparency);
 
 
         }
@@ -101,6 +108,11 @@ public class SpecialSight : MonoBehaviour
             instantiatedCopy = Instantiate(copy, transformFirstPoint, Quaternion.identity);
 
             instantiatedMovingCopy = Instantiate(copy, transformSecondPoint, Quaternion.identity);
+
+            
+            instantiatedCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, transparency);
+            instantiatedMovingCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, transparency);
+          
 
         }
 
