@@ -29,6 +29,10 @@ public class GameManagement : MonoBehaviour
 
         SpawnPlayer();
 
+        GetAllComponents();
+
+        AssignComponentsToPlayer();
+
         AssignComponentsToCamera();
 
         AssignComponentsToCanvas();
@@ -42,9 +46,9 @@ public class GameManagement : MonoBehaviour
 
         Instantiate(_playerPrefab, SpawnCoords, Quaternion.Euler(0, 90, 0));
 
-        GetAllComponents();
+        //GetAllComponents();
 
-        AssignComponentsToPlayer();
+        //AssignComponentsToPlayer();
 
     }
 
