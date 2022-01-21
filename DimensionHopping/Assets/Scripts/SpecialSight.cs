@@ -97,8 +97,7 @@ public class SpecialSight : MonoBehaviour
 
             instantiatedMovingCopy = Instantiate(copy, transformFirstPoint, Quaternion.identity);
 
-            instantiatedCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
-            instantiatedMovingCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
+            HandleCopies();
 
 
         }
@@ -108,13 +107,36 @@ public class SpecialSight : MonoBehaviour
 
             instantiatedMovingCopy = Instantiate(copy, transformSecondPoint, Quaternion.identity);
 
-            
-            instantiatedCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
-            instantiatedMovingCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
+            HandleCopies();
           
 
         }
 
+
+    }
+
+    void HandleCopies()
+    {
+
+
+        instantiatedCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
+        instantiatedMovingCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
+
+        DeleteColliders();
+
+    }
+
+    void DeleteColliders()
+    {
+        Collider col;
+
+        col = instantiatedCopy.GetComponent<Collider>();
+
+        Destroy(col);
+
+        col = instantiatedMovingCopy.GetComponent<Collider>();
+
+        Destroy(col);
 
     }
 
@@ -198,14 +220,6 @@ public class SpecialSight : MonoBehaviour
             }
 
         }
-
-
-
-
-
-
-
-
 
         Destroy(instantiatedMovingCopy);
 
