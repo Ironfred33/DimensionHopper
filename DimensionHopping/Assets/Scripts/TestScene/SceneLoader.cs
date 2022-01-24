@@ -29,5 +29,11 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene("EndScreen");
     }
 
+    public void ReLoadCurrentScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
+    }
+
 
 }
