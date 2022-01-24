@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5543582286888644866}
   - component: {fileID: 5543582286888644867}
+  - component: {fileID: 7030399829826191956}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -43,6 +44,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 985e47045f73f594ea7494b7aecbc679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  externalVariables: {fileID: 7123726539426643510, guid: 79f23514fd86ce741a716663f5b47813,
-    type: 3}
   SpawnCoords: {x: 1, y: 2, z: 0}
+--- !u!114 &7030399829826191956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5543582286888644876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a866e4e784af38a4ca8791490969deab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseGame: 0
+  restart: 0

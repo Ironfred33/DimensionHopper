@@ -1137,7 +1137,6 @@ GameObject:
   - component: {fileID: 8554892795707864837}
   - component: {fileID: 8554892795707864834}
   - component: {fileID: -2324460300814063482}
-  - component: {fileID: 291142309655879019}
   m_Layer: 0
   m_Name: character_v2
   m_TagString: Player
@@ -1283,20 +1282,6 @@ MonoBehaviour:
   minHeight: 1
   wallRunFOV: 110
   normalFOV: 60
---- !u!114 &291142309655879019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8824940349515581776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a866e4e784af38a4ca8791490969deab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseGame: 27
-  restart: 291
 --- !u!1 &9041653901627227994
 GameObject:
   m_ObjectHideFlags: 0
