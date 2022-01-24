@@ -226,6 +226,11 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        if(!Input.anyKey)
+        {
+            state = PlayerState.Idle;
+        }
+
 
     }
 

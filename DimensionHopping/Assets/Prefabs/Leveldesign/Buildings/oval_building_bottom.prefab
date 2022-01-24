@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2353670196311563871}
-  - component: {fileID: 2820190080569416654}
+  - component: {fileID: 7295366945666846176}
   m_Layer: 0
-  m_Name: oval_building 1
+  m_Name: oval_building_bottom
   m_TagString: RunnableWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,8 +32,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!136 &2820190080569416654
-CapsuleCollider:
+--- !u!65 &7295366945666846176
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -42,10 +42,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 2.55583
-  m_Height: 9.431231
-  m_Direction: 1
-  m_Center: {x: 0.34059152, y: 4.2217536, z: 0.012292863}
+  serializedVersion: 2
+  m_Size: {x: 5.470032, y: 1.351145, z: 3.4211724}
+  m_Center: {x: 0.04141467, y: 0.60700995, z: -0.026238477}
 --- !u!1 &8051472884696950628
 GameObject:
   m_ObjectHideFlags: 0
