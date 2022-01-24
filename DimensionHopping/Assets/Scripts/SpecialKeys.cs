@@ -8,12 +8,15 @@ public class SpecialKeys : MonoBehaviour
 
     private bool _gamePaused;
 
-    public KeyCode pauseGame;
+    public KeyCode pauseGameKey;
 
-    public KeyCode restart;
+    public KeyCode restartKey;
+
+    private SceneLoader _sceneLoaderScript;
+
     void Start()
     {
-        
+        _sceneLoaderScript = GetComponent<SceneLoader>();
     }
 
     
@@ -22,18 +25,28 @@ public class SpecialKeys : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetKeyDown(pauseGame) && !_gamePaused)
+        if(Input.GetKeyDown(pauseGameKey) && !_gamePaused)
         {
             PauseGame();
         }
 
-        else if(Input.GetKeyDown(pauseGame) && _gamePaused)
+        else if(Input.GetKeyDown(pauseGameKey) && _gamePaused)
         {
             ResumeGame();
+        }
+
+        if(Input.GetKeyDown(restartKey))
+        {
+            ReloadScene();
         }
         
     }
 
+
+    void ReloadScene()
+    {   
+        _sceneLoaderScript.ReLoadCurrentScene();
+    }
 
 
 
