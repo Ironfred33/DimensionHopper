@@ -47,6 +47,8 @@ public class SpecialSight : MonoBehaviour
     }
 
 
+    // Test für Commit
+
 
     // COLLIDER ENTFERNEN, DAMIT SPIELER NICHT WIRKLICH AUF DIESE PLATTFORMEN KANN
     // BEIDE COPYS BLINKEN LASSEN BZW OPACITY WEGNEHMEN
