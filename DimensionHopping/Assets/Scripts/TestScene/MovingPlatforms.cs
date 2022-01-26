@@ -16,7 +16,7 @@ public class MovingPlatforms : MonoBehaviour
         _movingToTarget = true;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         _elapsed += Time.deltaTime;
 
