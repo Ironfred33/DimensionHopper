@@ -56,6 +56,7 @@ public class EnemyAI : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("PGOzNegative") || collision.gameObject.CompareTag("PGOzPositive") || collision.gameObject.CompareTag("PGOxPositive") || collision.gameObject.CompareTag("PGOxNegative"))
         {
+            Debug.Log("Enemy knocked");
             enemyAgent.enabled = false;
         }
     }
