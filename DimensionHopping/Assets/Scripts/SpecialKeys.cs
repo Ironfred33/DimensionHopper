@@ -12,6 +12,10 @@ public class SpecialKeys : MonoBehaviour
 
     public KeyCode restartKey;
 
+    public KeyCode loadNextSceneKey;
+
+    public KeyCode loadLastSceneKey;
+
     private SceneLoader _sceneLoaderScript;
 
     void Start()
@@ -39,6 +43,16 @@ public class SpecialKeys : MonoBehaviour
         {
             ReloadScene();
         }
+
+        if(Input.GetKeyDown(loadNextSceneKey))
+        {
+            LoadNextScene();
+        }
+
+        if(Input.GetKeyDown(loadLastSceneKey))
+        {
+            LoadLastScene();
+        }
         
     }
 
@@ -60,6 +74,16 @@ public class SpecialKeys : MonoBehaviour
     {
         Time.timeScale = 1;
         _gamePaused = false;
+    }
+
+    void LoadNextScene()
+    {
+        _sceneLoaderScript.LoadNextScene();
+    }
+
+    void LoadLastScene()
+    {
+        _sceneLoaderScript.LoadLastScene();
     }
 
 }

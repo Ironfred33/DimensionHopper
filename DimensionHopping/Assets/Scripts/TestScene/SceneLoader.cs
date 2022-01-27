@@ -17,6 +17,12 @@ public class SceneLoader : MonoBehaviour
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex + 1);
     }
+
+    public void LoadLastScene()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex - 1);
+    }
     
     // Lädt erste Szene (vermutlich Hauptmenü dann später)
     public void LoadStartScene()

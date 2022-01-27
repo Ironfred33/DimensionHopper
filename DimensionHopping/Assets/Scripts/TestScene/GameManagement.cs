@@ -21,6 +21,9 @@ public class GameManagement : MonoBehaviour
     private GameObject _trackingPoint;
     private GameObject _canvas;
     private GameObject _drone;
+    private SceneLoader _sceneLoaderScript;
+    private Goal _goalScript;
+
     private List<GameObject> _heartImages = new List<GameObject>();
     void Awake()
     {
@@ -102,6 +105,14 @@ public class GameManagement : MonoBehaviour
 
         _dronePositionScript = _drone.GetComponent<DronePosition>();
 
+        // Ziel
+
+        _goalScript = GameObject.FindGameObjectWithTag("Finish").GetComponent<Goal>();
+
+        // Sceneloader
+
+        _sceneLoaderScript = this.GetComponent<SceneLoader>();
+
 
     }
 
@@ -162,6 +173,7 @@ public class GameManagement : MonoBehaviour
     {
         _dronePositionScript.cameraEV = _externalVariables.GetComponent<EVCamera>();
         _dronePositionScript.camControl = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
+        _goalScript.sceneLoad = _sceneLoaderScript;
 
     }
 
