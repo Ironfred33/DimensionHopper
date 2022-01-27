@@ -52,6 +52,14 @@ public class EnemyAI : MonoBehaviour
         destPoint = (destPoint + 1) % waypoints.Length;
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("PGOzNegative") || collision.gameObject.CompareTag("PGOzPositive") || collision.gameObject.CompareTag("PGOxPositive") || collision.gameObject.CompareTag("PGOxNegative"))
+        {
+            enemyAgent.enabled = false;
+        }
+    }
+
 
 }
 

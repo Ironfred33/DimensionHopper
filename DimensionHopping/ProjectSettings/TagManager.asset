@@ -19,6 +19,7 @@ TagManager:
   - Drone
   - Compass
   - MovingPlatform
+  - OutOfBonds
   layers:
   - Default
   - TransparentFX
