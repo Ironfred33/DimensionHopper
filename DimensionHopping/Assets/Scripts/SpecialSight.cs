@@ -26,6 +26,9 @@ public class SpecialSight : MonoBehaviour
 
     public EVSpecialSight specialSightEV;
 
+    public GameObject parent;
+    private List<GameObject> squadlist = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -90,7 +93,7 @@ public class SpecialSight : MonoBehaviour
 
         copy = hit.transform.gameObject;
 
-        
+
 
         if (hit.collider.gameObject.transform.position == transformFirstPoint)
         {
@@ -110,7 +113,7 @@ public class SpecialSight : MonoBehaviour
             instantiatedMovingCopy = Instantiate(copy, transformSecondPoint, Quaternion.identity);
 
             HandleCopies();
-          
+
 
         }
 
@@ -125,6 +128,8 @@ public class SpecialSight : MonoBehaviour
         instantiatedMovingCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
 
         DeleteColliders();
+        CheckForChild(instantiatedCopy);
+        CheckForChild(instantiatedMovingCopy);
 
     }
 
@@ -141,6 +146,24 @@ public class SpecialSight : MonoBehaviour
         Destroy(col);
 
     }
+
+
+    void CheckForChild(GameObject copy)
+    {
+        if (copy.transform.childCount == 1)
+        {
+            DeleteChild(copy);
+        }
+        else Debug.Log("No Child");
+
+    }
+
+    void DeleteChild(GameObject copy)
+    {
+        Destroy(copy.gameObject.transform.GetChild(0).gameObject);
+    }
+
+    
 
 
     IEnumerator TrackCoolDown()
@@ -224,9 +247,6 @@ public class SpecialSight : MonoBehaviour
         }
 
         Destroy(instantiatedMovingCopy);
-
-
-
 
 
     }
