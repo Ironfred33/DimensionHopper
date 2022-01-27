@@ -261,6 +261,15 @@ public class PlayerController : MonoBehaviour
         this.transform.SetParent(null);
     }
     
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("OutOfBounds"))
+        {
+            Debug.Log("Out of Bounds");
+            player.transform.position = extVars.spawnPoint;
+            health.currentHearts = extVars.maxHearts;
+        }
+    }
 
 
 
