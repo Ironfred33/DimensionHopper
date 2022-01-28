@@ -99,7 +99,7 @@ public class GameManagement : MonoBehaviour
 
         _canvas = GameObject.FindGameObjectWithTag("Canvas");
 
-        _timerScript = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
+        //_timerScript = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
 
         // Drohne
 
@@ -167,7 +167,7 @@ public class GameManagement : MonoBehaviour
 
     void AssignComponentsToCanvas()
     {
-        _timerScript.externalPlayer = _externalVariablesPlayerScript;
+        //_timerScript.externalPlayer = _externalVariablesPlayerScript;
     }
 
 

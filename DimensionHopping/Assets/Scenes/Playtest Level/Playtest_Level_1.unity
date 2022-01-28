@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -793,7 +793,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28176
+  m_Name: pb_Mesh17168
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2714,18 +2714,6 @@ MonoBehaviour:
   secondPosition: {fileID: 29783794}
   movementTime: 3
   _movingToTarget: 0
---- !u!114 &252885217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 252885210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8082fb4016845414b9033c64b1a2bbcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &302408473
 GameObject:
   m_ObjectHideFlags: 0
@@ -2865,7 +2853,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28022
+  m_Name: pb_Mesh17020
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3285,7 +3273,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27822
+  m_Name: pb_Mesh16848
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4208,6 +4196,11 @@ PrefabInstance:
       propertyPath: crossHair
       value: 
       objectReference: {fileID: 336656912}
+    - target: {fileID: 4396692959680965876, guid: 186d6350790e79f4ab3901e4b08e80d0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5580240931251168804, guid: 186d6350790e79f4ab3901e4b08e80d0,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -7145,18 +7138,6 @@ MonoBehaviour:
   secondPosition: {fileID: 1663917119}
   movementTime: 3
   _movingToTarget: 0
---- !u!114 &1001939425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1001939418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8082fb4016845414b9033c64b1a2bbcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1007269363
 GameObject:
   m_ObjectHideFlags: 0
@@ -7770,7 +7751,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27984
+  m_Name: pb_Mesh16986
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8275,30 +8256,6 @@ MonoBehaviour:
   worldAxisTargetPoint: 18
   transformFirstPoint: {x: 0, y: 0, z: 0}
   transformSecondPoint: {x: 0, y: 0, z: 0}
---- !u!114 &1273553881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273553879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8082fb4016845414b9033c64b1a2bbcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1273553887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273553879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8082fb4016845414b9033c64b1a2bbcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1286609204
 GameObject:
   m_ObjectHideFlags: 0
@@ -13235,18 +13192,6 @@ MonoBehaviour:
   secondPosition: {fileID: 616297455}
   movementTime: 3
   _movingToTarget: 0
---- !u!114 &8869087398867189916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8869087398867189909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8082fb4016845414b9033c64b1a2bbcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8952255877831431650
 PrefabInstance:
   m_ObjectHideFlags: 0
