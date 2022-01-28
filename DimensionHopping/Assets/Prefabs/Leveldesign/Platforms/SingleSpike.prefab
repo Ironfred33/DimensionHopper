@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 1596001116443909438}
   - component: {fileID: 3564233714332863067}
   - component: {fileID: 8096760092724471487}
+  - component: {fileID: 3605604410175952392}
   m_Layer: 0
   m_Name: SingleSpike
-  m_TagString: Untagged
+  m_TagString: Deadly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -554,3 +555,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!136 &3605604410175952392
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8907590225944924117}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.1
+  m_Height: 0.75
+  m_Direction: 1
+  m_Center: {x: -0.1, y: 0.375, z: 0}

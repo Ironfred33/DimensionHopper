@@ -11,6 +11,9 @@ public class MovingPlatforms : MonoBehaviour
     private float _elapsed;
     public bool _movingToTarget;
 
+    private GameObject _mover;
+    private Vector3 _offset;
+
     void Start()
     {
         _movingToTarget = true;
@@ -43,7 +46,5 @@ public class MovingPlatforms : MonoBehaviour
             }
         }
     }
-
-
 
 }

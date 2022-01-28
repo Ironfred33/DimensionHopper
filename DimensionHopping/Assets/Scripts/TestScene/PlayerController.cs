@@ -249,7 +249,7 @@ public class PlayerController : MonoBehaviour
     // Lets character stay on moving platform
     private void OnCollisionStay(Collision collisionInfo)
     {
-        if(cameraTransition._transitionInProgress && collisionInfo.collider.CompareTag("PGOzNegative") || collisionInfo.collider.CompareTag("PGOzPositive") || collisionInfo.collider.CompareTag("PGOxPositive") || collisionInfo.collider.CompareTag("PGOxNegative"))
+        if(cameraTransition._transitionInProgress && collisionInfo.collider.CompareTag("PGOzNegative") || collisionInfo.collider.CompareTag("PGOzPositive") || collisionInfo.collider.CompareTag("PGOxPositive") || collisionInfo.collider.CompareTag("PGOxNegative") || collisionInfo.collider.CompareTag("MovingPlatform"))
         {
             Debug.Log("Parenting");
             this.transform.SetParent(collisionInfo.collider.transform);
@@ -268,6 +268,17 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Out of Bounds");
             player.transform.position = extVars.spawnPoint;
             health.currentHearts = extVars.maxHearts;
+        }
+
+        if (other.gameObject.CompareTag("Deadly"))
+        {
+            health.currentHearts -= 1;
+
+            if(health.currentHearts <= 0)
+            {
+                player.transform.position = extVars.spawnPoint;
+                health.currentHearts = extVars.maxHearts;
+            }
         }
     }
 
