@@ -667,6 +667,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseGameKey: 27
   restartKey: 290
+  loadNextSceneKey: 0
+  loadLastSceneKey: 0
 --- !u!114 &2083424070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1163,6 +1165,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 4f900e905b73b154d8e9bc2fff5d6537,
         type: 3}
+    - target: {fileID: 8762688223037902168, guid: 9e44f5a600176b5479b9457199f5ce26,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8762688223547155924, guid: 9e44f5a600176b5479b9457199f5ce26,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8762688223577534341, guid: 9e44f5a600176b5479b9457199f5ce26,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8762688223577534341, guid: 9e44f5a600176b5479b9457199f5ce26,
         type: 3}
       propertyPath: m_TagString

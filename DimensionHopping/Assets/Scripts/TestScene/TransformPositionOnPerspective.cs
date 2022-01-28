@@ -153,6 +153,22 @@ public class TransformPositionOnPerspective : MonoBehaviour
 
 
     }
+
+    void OnCollisionStay(Collision collisionInfo)
+    {
+        if(collisionInfo.collider.CompareTag("MovingPlatform"))
+        {
+            Debug.Log("Parenting");
+            transform.SetParent(collisionInfo.collider.transform);
+        }
+            
+    }
+
+    void OnCollisionExit(Collision other)
+    {
+        transform.SetParent(null);
+    }
+
 }
 
 
