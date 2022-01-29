@@ -25,10 +25,13 @@ public class WallRun_v2 : MonoBehaviour
 
     private Rigidbody rb;
 
+    private SFX _soundEffects;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         cam = Camera.main;
+        _soundEffects = GetComponent<SFX>();
     }
 
     void FixedUpdate()
@@ -108,6 +111,7 @@ public class WallRun_v2 : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isWallRunning)
         {
+            _soundEffects.PlayJumpSound();
             if (_wallLeft)
             {
                 Debug.Log("Wall is left");

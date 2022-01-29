@@ -11,25 +11,34 @@ public class SFX : MonoBehaviour
         _source = GetComponent<AudioSource>();
     }
 
-    void PlayGameOverSound()
+    /*void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            PlayJumpSound();
+        }
+    }
+    */
+
+    public void PlayGameOverSound()
     {
         _source.clip = effects[0];
         _source.Play();
     }
 
-    void PlayJumpSound()
+    public void PlayJumpSound()
     {
         _source.clip = effects[1];
         _source.Play();
     }
 
-    void PlayDamageSound()
+    public void PlayDamageSound()
     {
         _source.clip = effects[2];
         _source.Play();
     }
 
-    void PlayPerspectiveSwitchSound()
+    public void PlayPerspectiveSwitchSound()
     {
         _source.clip = effects[3];
         _source.Play();
