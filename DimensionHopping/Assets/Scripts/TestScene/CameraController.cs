@@ -51,7 +51,7 @@ public class CameraController : MonoBehaviour
     }
 
 
-    void LateUpdate()
+    void Update()
     {
 
         // Debug.Log("CAMERACONTROLLER UPDATE TRIGGERED");
@@ -79,6 +79,41 @@ public class CameraController : MonoBehaviour
 
         }
 
+        if (player.transform.rotation.eulerAngles.y > 45.1 && player.transform.rotation.eulerAngles.y <= 135.0)
+        {
+
+
+            current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z - extVars.cameraDistance2DP);
+
+
+
+        }
+        // Weltachsen Ausrichtung des Spielers:   Z Negative 
+        else if (player.transform.rotation.eulerAngles.y > 135.1 && player.transform.rotation.eulerAngles.y <= 225)
+        {
+
+            current2DPosition = new Vector3(trackingTarget.position.x - extVars.cameraDistance2DP, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z);
+            
+
+        }
+
+
+        // Weltachsen Ausrichtung des Spielers:   X Negative 
+        else if ((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
+        {
+            current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z + extVars.cameraDistance2DP);
+
+        }
+
+
+        // Weltachsen Ausrichtung des Spielers:    Z Positive
+        else if (player.transform.rotation.eulerAngles.y >= 315.1 && player.transform.rotation.eulerAngles.y <= 359.9 || player.transform.rotation.eulerAngles.y >= 0 && player.transform.rotation.eulerAngles.y <= 45)
+        {
+
+            current2DPosition = new Vector3(trackingTarget.position.x + extVars.cameraDistance2DP, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z);
+
+        }
+
     }
 
 
@@ -92,7 +127,6 @@ public class CameraController : MonoBehaviour
         {
 
 
-            current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z - extVars.cameraDistance2DP);
             //transform.position = current2DPosition;
 
             transform.position = Vector3.Lerp(transform.position, current2DPosition , smoothing);
@@ -121,7 +155,6 @@ public class CameraController : MonoBehaviour
         else if (player.transform.rotation.eulerAngles.y > 135.1 && player.transform.rotation.eulerAngles.y <= 225)
         {
 
-            current2DPosition = new Vector3(trackingTarget.position.x - extVars.cameraDistance2DP, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z);
             
             //transform.position = current2DPosition;
 
@@ -137,7 +170,6 @@ public class CameraController : MonoBehaviour
         // Weltachsen Ausrichtung des Spielers:   X Negative 
         else if ((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
         {
-            current2DPosition = new Vector3(trackingTarget.position.x, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z + extVars.cameraDistance2DP);
 
             //transform.position = current2DPosition;
             transform.position = Vector3.Lerp(transform.position, current2DPosition , smoothing);
@@ -153,8 +185,6 @@ public class CameraController : MonoBehaviour
         // Weltachsen Ausrichtung des Spielers:    Z Positive
         else if (player.transform.rotation.eulerAngles.y >= 315.1 && player.transform.rotation.eulerAngles.y <= 359.9 || player.transform.rotation.eulerAngles.y >= 0 && player.transform.rotation.eulerAngles.y <= 45)
         {
-
-            current2DPosition = new Vector3(trackingTarget.position.x + extVars.cameraDistance2DP, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z);
 
             //transform.position = current2DPosition;
             transform.position = Vector3.Lerp(transform.position, current2DPosition , smoothing);

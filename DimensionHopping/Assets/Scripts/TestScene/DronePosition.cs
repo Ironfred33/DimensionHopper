@@ -21,6 +21,8 @@ public class DronePosition : MonoBehaviour
 
     private void Update()
     {
+        
+        
         _newDroneRotation = Quaternion.Euler(camControl.current2DEulerAngles);
 
 
@@ -44,7 +46,9 @@ public class DronePosition : MonoBehaviour
         }
 
         _newDronePosition = camControl.current2DPosition - _clippingVector;
+
         
+
 
     }
     void LateUpdate()

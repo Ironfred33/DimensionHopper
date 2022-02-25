@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6975901636769486986}
   - component: {fileID: 7579163118779301849}
   - component: {fileID: 6218613735866090549}
+  - component: {fileID: 193434420796389103}
   m_Layer: 0
   m_Name: Spikes
   m_TagString: Deadly
@@ -2798,3 +2799,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!65 &193434420796389103
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8974758146946621956}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6000004, y: 0.9590969, z: 2}
+  m_Center: {x: -0.23499966, y: 0.47954845, z: 0.64999986}

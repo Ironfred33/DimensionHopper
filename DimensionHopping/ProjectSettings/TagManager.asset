@@ -18,6 +18,8 @@ TagManager:
   - PGOzNegative
   - Drone
   - Compass
+  - MovingPlatform
+  - OutOfBounds
   layers:
   - Default
   - TransparentFX
@@ -29,7 +31,7 @@ TagManager:
   - 
   - Ground
   - Player
-  - 
+  - Volume
   - 
   - 
   - 

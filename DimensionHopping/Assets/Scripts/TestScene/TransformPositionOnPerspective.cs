@@ -24,8 +24,8 @@ public class TransformPositionOnPerspective : MonoBehaviour
     public float worldAxisTargetPoint;
 
     //public animCurve transitionCurve;
-    private Vector3 _transformFirstPoint;
-    public Vector3 _transformSecondPoint;
+    public Vector3 transformFirstPoint;
+    public Vector3 transformSecondPoint;
 
     private EVCameraTransition _EVcamTransitionScript;
 
@@ -51,17 +51,17 @@ public class TransformPositionOnPerspective : MonoBehaviour
     {
         // First Point
 
-        _transformFirstPoint = this.transform.position;
+        transformFirstPoint = this.transform.position;
 
         // Second Point
 
         if (worldAxis == WorldAxis.PGOxPositive || worldAxis == WorldAxis.PGOxNegative)
         {
-            _transformSecondPoint = new Vector3(_transformFirstPoint.x, _transformFirstPoint.y, worldAxisTargetPoint);
+            transformSecondPoint = new Vector3(transformFirstPoint.x, transformFirstPoint.y, worldAxisTargetPoint);
         }
         else if (worldAxis == WorldAxis.PGOzPositive || worldAxis == WorldAxis.PGOzNegative)
         {
-            _transformSecondPoint = new Vector3(worldAxisTargetPoint, _transformFirstPoint.y, transform.position.z);
+            transformSecondPoint = new Vector3(worldAxisTargetPoint, transformFirstPoint.y, transform.position.z);
         }
     }
 
@@ -122,28 +122,28 @@ public class TransformPositionOnPerspective : MonoBehaviour
         _elapsed = 0f;
 
 
-        if (transform.position == _transformFirstPoint)
+        if (transform.position == transformFirstPoint)
         {
 
             while (_elapsed <= _EVcamTransitionScript.duration)
             {
                 _dt = Time.deltaTime;
                 _elapsed += _dt;
-                transform.position = Vector3.Lerp(_transformFirstPoint, _transformSecondPoint, _elapsed /  _EVcamTransitionScript.duration);
+                transform.position = Vector3.Lerp(transformFirstPoint, transformSecondPoint, _elapsed /  _EVcamTransitionScript.duration);
 
                
                 yield return null;
             }
 
         }
-        else if (transform.position == _transformSecondPoint)
+        else if (transform.position == transformSecondPoint)
         {
             while (_elapsed <= _EVcamTransitionScript.duration)
             {
                 _dt = Time.deltaTime;
                 _elapsed += _dt;
 
-                transform.position = Vector3.Lerp(_transformSecondPoint, _transformFirstPoint, _elapsed / _EVcamTransitionScript.duration);
+                transform.position = Vector3.Lerp(transformSecondPoint, transformFirstPoint, _elapsed / _EVcamTransitionScript.duration);
         
                 yield return null;
             }
@@ -153,6 +153,22 @@ public class TransformPositionOnPerspective : MonoBehaviour
 
 
     }
+
+    void OnCollisionStay(Collision collisionInfo)
+    {
+        if(collisionInfo.collider.CompareTag("MovingPlatform"))
+        {
+            Debug.Log("Parenting");
+            transform.SetParent(collisionInfo.collider.transform);
+        }
+            
+    }
+
+    void OnCollisionExit(Collision other)
+    {
+        transform.SetParent(null);
+    }
+
 }
 
 

@@ -70,15 +70,7 @@ public class PlayerController : MonoBehaviour
             controllerFPPerspective();
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape) && !_gamePaused)
-        {
-            PauseGame();
-        }
-
-        else if(Input.GetKeyDown(KeyCode.Escape) && _gamePaused)
-        {
-            ResumeGame();
-        }
+        
 
     }
     void FixedUpdate()
@@ -226,6 +218,11 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        if(!Input.anyKey)
+        {
+            state = PlayerState.Idle;
+        }
+
 
     }
 
@@ -252,7 +249,7 @@ public class PlayerController : MonoBehaviour
     // Lets character stay on moving platform
     private void OnCollisionStay(Collision collisionInfo)
     {
-        if(cameraTransition._transitionInProgress && collisionInfo.collider.CompareTag("PGOzNegative") || collisionInfo.collider.CompareTag("PGOzPositive") || collisionInfo.collider.CompareTag("PGOxPositive") || collisionInfo.collider.CompareTag("PGOxNegative"))
+        if(cameraTransition._transitionInProgress && collisionInfo.collider.CompareTag("PGOzNegative") || collisionInfo.collider.CompareTag("PGOzPositive") || collisionInfo.collider.CompareTag("PGOxPositive") || collisionInfo.collider.CompareTag("PGOxNegative") || collisionInfo.collider.CompareTag("MovingPlatform"))
         {
             Debug.Log("Parenting");
             this.transform.SetParent(collisionInfo.collider.transform);
@@ -264,19 +261,28 @@ public class PlayerController : MonoBehaviour
         this.transform.SetParent(null);
     }
     
-
-
-    void PauseGame()
+    void OnTriggerEnter(Collider other)
     {
-        Time.timeScale = 0;
-        _gamePaused = true;
+        if(other.gameObject.CompareTag("OutOfBounds"))
+        {
+            Debug.Log("Out of Bounds");
+            player.transform.position = extVars.spawnPoint;
+            health.currentHearts = extVars.maxHearts;
+        }
+
+        if (other.gameObject.CompareTag("Deadly"))
+        {
+            health.currentHearts -= 1;
+
+            if(health.currentHearts <= 0)
+            {
+                player.transform.position = extVars.spawnPoint;
+                health.currentHearts = extVars.maxHearts;
+            }
+        }
     }
 
-    void ResumeGame()
-    {
-        Time.timeScale = 1;
-        _gamePaused = false;
-    }
+
 
 
     /*private void FlipSide()

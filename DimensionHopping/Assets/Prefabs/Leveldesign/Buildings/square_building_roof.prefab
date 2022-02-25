@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1794450851992202846}
   - component: {fileID: 2264627780147533427}
   - component: {fileID: 2264627780147533436}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: square_building_roof
   m_TagString: RunnableWall
   m_Icon: {fileID: 0}
@@ -44,8 +44,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.9161124, y: 9.690408, z: 4.9788685}
-  m_Center: {x: -0.08666856, y: 4.345204, z: 0.019036293}
+  m_Size: {x: 4.9161124, y: 0.48058102, z: 4.912426}
+  m_Center: {x: -0.08666856, y: 8.950125, z: -0.014184952}
 --- !u!23 &2264627780147533436
 MeshRenderer:
   m_ObjectHideFlags: 0
