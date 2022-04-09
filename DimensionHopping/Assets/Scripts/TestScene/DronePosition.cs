@@ -25,8 +25,6 @@ public class DronePosition : MonoBehaviour
         
         _newDroneRotation = Quaternion.Euler(camControl.current2DEulerAngles);
 
-        Debug.Log("current rotation:" + transform.localEulerAngles);
-
 
         if(transform.localEulerAngles.y >= 175.0 && transform.localEulerAngles.y <= 185)
         {
