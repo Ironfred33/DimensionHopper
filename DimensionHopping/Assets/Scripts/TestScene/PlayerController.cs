@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     public bool playerIsFlipped;
     private bool _gamePaused;
 
-    private SFX _soundEffects;
+    public SFX soundEffects;
 
     
     void Start()
@@ -39,8 +39,6 @@ public class PlayerController : MonoBehaviour
         rb = player.GetComponent<Rigidbody>();
 
         //extVars = externalVariables.GetComponent<EVPlayer>();
-
-        _soundEffects = GetComponent<SFX>();
 
 
     }
@@ -83,6 +81,12 @@ public class PlayerController : MonoBehaviour
     {
 
         isOnGround = Physics.CheckSphere(groundCheck.position, groundRadius, groundMask);
+
+        float globalGravity = -9.81f;
+        Vector3 gravity = globalGravity * extVars.gravityScale * Vector3.up;
+        rb.AddForce(gravity, ForceMode.Acceleration);
+
+
       
     }
 
@@ -129,11 +133,26 @@ public class PlayerController : MonoBehaviour
    
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
-            _soundEffects.PlayJumpSound();
-            rb.AddForce(transform.up * extVars.jumpForce2D);
+            soundEffects.PlayJumpSound();
+            rb.AddForce(transform.up * extVars.jumpForce2D, ForceMode.Impulse);
             state = PlayerState.Jumping;
+        }
 
+        else if(isOnGround)
+        {
+            extVars.gravityScale = 0;
+        }
 
+        else
+        {
+            if(rb.velocity.y < 0)
+            {
+                extVars.gravityScale = extVars.gravity * extVars.fallMultiplier;
+            }
+            else if(rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+            {
+                extVars.gravityScale = extVars.gravity * (extVars.fallMultiplier / 2);
+            }
         }
 
 
@@ -219,7 +238,7 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !player.GetComponent<WallRun_v2>().isWallRunning)
         {
-            _soundEffects.PlayJumpSound();
+            soundEffects.PlayJumpSound();
             rb.AddForce(transform.up * extVars.jumpForceFP);
             Debug.Log("Addforce!");
             anim.SetBool("isJumping", true);
@@ -240,7 +259,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.collider.CompareTag("Deadly"))
         {
-            _soundEffects.PlayDamageSound();
+            soundEffects.PlayDamageSound();
             health.currentHearts -= 1;
             Debug.Log("Lost a heart");
 
@@ -282,7 +301,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Deadly"))
         {
-            _soundEffects.PlayDamageSound();
+            soundEffects.PlayDamageSound();
             health.currentHearts -= 1;
 
             if(health.currentHearts <= 0)
@@ -293,25 +312,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-
-
-    /*private void FlipSide()
-    {
-        if (movement > 0 && !lookRight)
-        {
-            transform.Rotate(0f, 180f, 0f);
-
-            lookRight = true;
-        }
-
-        else if (movement < 0 && lookRight)
-        {
-            transform.Rotate(0f, -180f, 0f);
-
-            lookRight = false;
-        }
-    } */
         
 }
 
