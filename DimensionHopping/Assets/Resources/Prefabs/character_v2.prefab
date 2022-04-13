@@ -1249,8 +1249,9 @@ MonoBehaviour:
   upForce: 450
   sideForce: 300
   minHeight: 1
-  wallRunFOV: 110
-  normalFOV: 60
+  wallRunDownForce: 20
+  wallRunVolume: {fileID: 8836118606483729504, guid: bf98d481b8a3b9344a25609c6c331b05,
+    type: 3}
 --- !u!1 &9041653901627227994
 GameObject:
   m_ObjectHideFlags: 0
