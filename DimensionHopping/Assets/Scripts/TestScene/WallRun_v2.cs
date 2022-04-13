@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class WallRun_v2 : MonoBehaviour
 {
@@ -21,22 +20,18 @@ public class WallRun_v2 : MonoBehaviour
 
     public float minHeight;
 
-    public float wallRunDownForce;
-
-    public Volume wallRunVolume;
+    public float wallRunFOV;
+    public float normalFOV;
 
     private Rigidbody rb;
 
-    private float _currentWallRunningDuration;
-
-    private bool _wallJumping;
+    private SFX _soundEffects;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         cam = Camera.main;
-
-        wallRunVolume.weight = 0f;
+        _soundEffects = GetComponent<SFX>();
     }
 
     void FixedUpdate()
@@ -51,22 +46,12 @@ public class WallRun_v2 : MonoBehaviour
         {
             cam.transform.Rotate(0f, 0f, -30f);
             Debug.Log("Left Tilt");
-            wallRunVolume.weight = 1;
-
-            _currentWallRunningDuration += Time.deltaTime;
-            rb.velocity += Vector3.down * wallRunDownForce * Time.deltaTime;
-
-
         }
 
         else if (isWallRunning && _wallRight)
         {
             cam.transform.Rotate(0f, 0f, 30f);
             Debug.Log("Right Tilt");
-            wallRunVolume.weight = 1;
-
-            _currentWallRunningDuration += Time.deltaTime;
-            rb.velocity += Vector3.down * wallRunDownForce * Time.deltaTime;
         }
 
         WallJump();
@@ -90,6 +75,7 @@ public class WallRun_v2 : MonoBehaviour
             if (collision.transform.CompareTag("RunnableWall"))
             {
 
+                cam.fieldOfView = wallRunFOV;
 
                 rb.velocity = new Vector3(0, 0, 0);
                 rb.useGravity = false;
@@ -112,17 +98,11 @@ public class WallRun_v2 : MonoBehaviour
 
         if (collision.transform.CompareTag("RunnableWall"))
             {
+            cam.fieldOfView = normalFOV;
             cam.transform.rotation = Quaternion.Euler(0, 90, 0);
 
             rb.useGravity = true;
             isWallRunning = false;
-
-            _currentWallRunningDuration = 0f;
-            if(_wallJumping == false)
-            {
-                rb.velocity = new Vector3(0,0,0);
-            }
-            
             }
 
     }
@@ -131,7 +111,7 @@ public class WallRun_v2 : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isWallRunning)
         {
-            _wallJumping = true;
+            _soundEffects.PlayJumpSound();
             if (_wallLeft)
             {
                 Debug.Log("Wall is left");
@@ -145,7 +125,6 @@ public class WallRun_v2 : MonoBehaviour
                 rb.AddForce(Vector3.up * upForce * Time.deltaTime, ForceMode.Impulse);
                 rb.AddForce(-orientation.right * sideForce * Time.deltaTime, ForceMode.Impulse);
             }
-            _wallJumping = false;
         }
     }
 }

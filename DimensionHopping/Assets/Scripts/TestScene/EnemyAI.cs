@@ -11,8 +11,12 @@ public class EnemyAI : MonoBehaviour
 
     private NavMeshAgent enemyAgent;
 
+    private GameObject fireParticles;
+
     void Start()
     {
+        fireParticles = transform.Find("FireParticles").gameObject;
+        
         enemyAgent = GetComponent<NavMeshAgent>();
 
         
@@ -58,6 +62,7 @@ public class EnemyAI : MonoBehaviour
         {
             Debug.Log("Enemy knocked");
             enemyAgent.enabled = false;
+            fireParticles.SetActive(false);
         }
     }
 

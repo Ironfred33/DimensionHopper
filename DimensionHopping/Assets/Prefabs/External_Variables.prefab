@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7123726539426643508}
   - component: {fileID: 7123726539426643511}
   m_Layer: 0
-  m_Name: External Variables
+  m_Name: External_Variables
   m_TagString: ExternalVariables
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,11 +48,14 @@ MonoBehaviour:
   speed2D: 5
   speedFP: 5
   jumpForce2D: 300
-  jumpForceFP: 300
+  jumpForceFP: 5
   rotationSpeedFP: 0
   spawnPoint: {x: 1, y: 2, z: 0}
   maxHearts: 3
   timeLimit: 0
+  gravity: -9.81
+  gravityScale: 1
+  fallMultiplier: 5
 --- !u!114 &7123726539426643508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +72,7 @@ MonoBehaviour:
   cameraHeight2DP: 2
   cameraXRotation2DP: 0
   mouseSensitivityFP: 400
+  smoothing: 0.05
 --- !u!114 &7123726539426643511
 MonoBehaviour:
   m_ObjectHideFlags: 0

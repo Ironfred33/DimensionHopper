@@ -15,6 +15,14 @@ public class EVPlayer : MonoBehaviour
     public int maxHearts;
     public float timeLimit;
 
+    public float gravity;
+
+    public float gravityScale;
+
+    public float fallMultiplier;
+
+
+
 
 
 
