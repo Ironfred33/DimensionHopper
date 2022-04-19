@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed2D: 5
   speedFP: 5
-  jumpForce2D: 300
-  jumpForceFP: 5
+  jumpForce2D: 20
+  jumpForceFP: 20
   rotationSpeedFP: 0
   spawnPoint: {x: 1, y: 2, z: 0}
   maxHearts: 3
@@ -56,6 +56,7 @@ MonoBehaviour:
   gravity: -9.81
   gravityScale: 1
   fallMultiplier: 5
+  linearDrag: 2
 --- !u!114 &7123726539426643508
 MonoBehaviour:
   m_ObjectHideFlags: 0

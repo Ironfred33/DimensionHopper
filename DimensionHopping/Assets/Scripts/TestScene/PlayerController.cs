@@ -133,18 +133,19 @@ public class PlayerController : MonoBehaviour
    
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
+            
             soundEffects.PlayJumpSound();
-            rb.AddForce(transform.up * extVars.jumpForce2D, ForceMode.Impulse);
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            rb.drag = extVars.linearDrag * 0.15f;
+            Debug.Log("Jumped" + Vector3.up.normalized * extVars.jumpForce2D);
+            rb.AddForce(Vector3.up.normalized * extVars.jumpForce2D, ForceMode.Impulse);
             state = PlayerState.Jumping;
         }
 
-        else if(isOnGround)
+        
+        if(!isOnGround)
         {
-            extVars.gravityScale = 0;
-        }
-
-        else
-        {
+            extVars.gravityScale = 1;
             if(rb.velocity.y < 0)
             {
                 extVars.gravityScale = extVars.gravity * extVars.fallMultiplier;
@@ -154,6 +155,14 @@ public class PlayerController : MonoBehaviour
                 extVars.gravityScale = extVars.gravity * (extVars.fallMultiplier / 2);
             }
         }
+        
+        else
+        {
+            extVars.gravityScale = 0;
+            rb.drag = extVars.linearDrag;
+        }
+
+        
 
 
     }
@@ -238,12 +247,33 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !player.GetComponent<WallRun_v2>().isWallRunning)
         {
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            rb.drag = extVars.linearDrag * 0.15f;
             soundEffects.PlayJumpSound();
-            rb.AddForce(transform.up * extVars.jumpForceFP);
+            rb.AddForce(Vector3.up.normalized * extVars.jumpForceFP, ForceMode.Impulse);
             Debug.Log("Addforce!");
             anim.SetBool("isJumping", true);
             
 
+        }
+
+        if(!isOnGround)
+        {
+            extVars.gravityScale = 1;
+            if(rb.velocity.y < 0)
+            {
+                extVars.gravityScale = extVars.gravity * extVars.fallMultiplier;
+            }
+            else if(rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+            {
+                extVars.gravityScale = extVars.gravity * (extVars.fallMultiplier / 2);
+            }
+        }
+        
+        else
+        {
+            extVars.gravityScale = 0;
+            rb.drag = extVars.linearDrag;
         }
 
         if(!Input.anyKey)

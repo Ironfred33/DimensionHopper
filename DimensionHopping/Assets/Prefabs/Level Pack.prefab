@@ -1065,12 +1065,12 @@ PrefabInstance:
     - target: {fileID: 7123726539426643509, guid: 79f23514fd86ce741a716663f5b47813,
         type: 3}
       propertyPath: jumpForce2D
-      value: 350
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7123726539426643509, guid: 79f23514fd86ce741a716663f5b47813,
         type: 3}
       propertyPath: jumpForceFP
-      value: 350
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7123726539426643509, guid: 79f23514fd86ce741a716663f5b47813,
         type: 3}

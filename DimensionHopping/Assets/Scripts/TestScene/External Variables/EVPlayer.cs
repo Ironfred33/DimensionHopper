@@ -21,6 +21,8 @@ public class EVPlayer : MonoBehaviour
 
     public float fallMultiplier;
 
+    public float linearDrag;
+
 
 
 
