@@ -23,6 +23,8 @@ public class EVPlayer : MonoBehaviour
 
     public float linearDrag;
 
+    public int maxCollectibles;
+
 
 
 
