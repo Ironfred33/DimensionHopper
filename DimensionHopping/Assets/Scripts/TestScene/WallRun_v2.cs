@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Steuert Wallrun des Spieler-Charakters
 public class WallRun_v2 : MonoBehaviour
 {
     public Transform orientation;
@@ -23,13 +24,13 @@ public class WallRun_v2 : MonoBehaviour
     public float wallRunFOV;
     public float normalFOV;
 
-    private Rigidbody rb;
+    private Rigidbody _rb;
 
     private SFX _soundEffects;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
         cam = Camera.main;
         _soundEffects = GetComponent<SFX>();
     }
@@ -57,9 +58,9 @@ public class WallRun_v2 : MonoBehaviour
         WallJump();
     }
 
+    // Prüft, ob sich rechts und links vom Spieler Wände befinden
     public void WallCheck()
     {
-        // Check if player is close to a wall
         _wallLeft = Physics.Raycast(transform.position, -orientation.right, out _leftWallHit, wallDistance);
         Debug.DrawRay(transform.position, -orientation.right, Color.green);
 
@@ -77,8 +78,8 @@ public class WallRun_v2 : MonoBehaviour
 
                 cam.fieldOfView = wallRunFOV;
 
-                rb.velocity = new Vector3(0, 0, 0);
-                rb.useGravity = false;
+                _rb.velocity = new Vector3(0, 0, 0);
+                _rb.useGravity = false;
 
             }
         }
@@ -101,12 +102,13 @@ public class WallRun_v2 : MonoBehaviour
             cam.fieldOfView = normalFOV;
             cam.transform.rotation = Quaternion.Euler(0, 90, 0);
 
-            rb.useGravity = true;
+            _rb.useGravity = true;
             isWallRunning = false;
             }
 
     }
 
+    // Steuert Walljumps während des Wallruns
     private void WallJump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && isWallRunning)
@@ -115,15 +117,15 @@ public class WallRun_v2 : MonoBehaviour
             if (_wallLeft)
             {
                 Debug.Log("Wall is left");
-                rb.AddForce(Vector3.up * upForce * Time.deltaTime, ForceMode.Impulse);
-                rb.AddForce(orientation.right * sideForce * Time.deltaTime, ForceMode.Impulse);
+                _rb.AddForce(Vector3.up * upForce * Time.deltaTime, ForceMode.Impulse);
+                _rb.AddForce(orientation.right * sideForce * Time.deltaTime, ForceMode.Impulse);
                 Debug.Log("Wall Jump");
             }
 
             else if (_wallRight)
             {
-                rb.AddForce(Vector3.up * upForce * Time.deltaTime, ForceMode.Impulse);
-                rb.AddForce(-orientation.right * sideForce * Time.deltaTime, ForceMode.Impulse);
+                _rb.AddForce(Vector3.up * upForce * Time.deltaTime, ForceMode.Impulse);
+                _rb.AddForce(-orientation.right * sideForce * Time.deltaTime, ForceMode.Impulse);
             }
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Beinhaltet externe Variablen für die Spielerkamera
 public class EVCamera : MonoBehaviour
 {
   

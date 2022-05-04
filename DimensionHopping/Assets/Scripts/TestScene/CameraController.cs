@@ -2,26 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Steuerung der Kamera
 public class CameraController : MonoBehaviour
 {
 
     public Transform trackingTarget;
 
     public GameObject externalVariables;
-    EVCamera extVars;
-    public GameObject FPPposition;
+    public EVCamera extVars;
+    public GameObject fpPosition;
     public GameObject player;
     public Vector3 current2DPosition;
     public Vector3 current2DEulerAngles;
 
-    //public bool playerIsFlipped;
-
-    private bool rotated;
-
     float xRotationFPP = 0f;
     float yRotationFPP = 0f;
 
-    public bool _is2DView;
+    public bool is2DView;
     private Vector3 _cameraFirstPersonPosition;
 
     public float smoothing = 0.05f;
@@ -45,7 +42,7 @@ public class CameraController : MonoBehaviour
         extVars = externalVariables.GetComponent<EVCamera>();
 
         current2DPosition = transform.position;
-        _is2DView = true;
+        is2DView = true;
 
 
     }
@@ -60,11 +57,11 @@ public class CameraController : MonoBehaviour
 
         //Debug.Log("FPP Position: " + FPPposition.position.x, FPPposition.y)
 
-        _cameraFirstPersonPosition = FPPposition.transform.position;
+        _cameraFirstPersonPosition = fpPosition.transform.position;
 
 
 
-        if (!_is2DView)
+        if (!is2DView)
         {
 
             TrackingInFP();
@@ -72,7 +69,7 @@ public class CameraController : MonoBehaviour
 
         }
 
-        else if (_is2DView)
+        else if (is2DView)
         {
 
             TrackingIn2d();

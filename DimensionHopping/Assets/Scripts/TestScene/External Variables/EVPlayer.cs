@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Beinhaltet externe Variablen für den Spieler-Charakter
 public class EVPlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
     
     public float speed2D = 5.0f;
     public float speedFP = 10.0f;

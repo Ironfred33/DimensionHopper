@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Tastenkürzel für Befehle
 public class SpecialKeys : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -56,31 +57,34 @@ public class SpecialKeys : MonoBehaviour
         
     }
 
-
+    // Lädt derzeit laufende Szene neu
     void ReloadScene()
     {   
         _sceneLoaderScript.ReLoadCurrentScene();
     }
 
 
-
+    // Pausiert das Spiel
     void PauseGame()
     {
         Time.timeScale = 0;
         _gamePaused = true;
     }
 
+    // Setzt das Spiel fort
     void ResumeGame()
     {
         Time.timeScale = 1;
         _gamePaused = false;
     }
 
+    // Lädt die nächste Szene
     void LoadNextScene()
     {
         _sceneLoaderScript.LoadNextScene();
     }
 
+    // Lädt die letzte Szene
     void LoadLastScene()
     {
         _sceneLoaderScript.LoadLastScene();

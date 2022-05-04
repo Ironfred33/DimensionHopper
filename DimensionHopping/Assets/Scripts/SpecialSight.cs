@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Steuert die Vorschau des Perspektivwechsels
 public class SpecialSight : MonoBehaviour
 {
 
@@ -27,9 +28,7 @@ public class SpecialSight : MonoBehaviour
     public EVSpecialSight specialSightEV;
 
     public GameObject parent;
-    private List<GameObject> squadlist = new List<GameObject>();
 
-    // Start is called before the first frame update
     void Start()
     {
 
@@ -37,7 +36,6 @@ public class SpecialSight : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -57,6 +55,7 @@ public class SpecialSight : MonoBehaviour
     // BEIDE COPYS BLINKEN LASSEN BZW OPACITY WEGNEHMEN
 
 
+    // Führt Perspektivenvorschau durch, sofern PGO in Range ist 
     void ShootRay()
     {
 
@@ -86,6 +85,7 @@ public class SpecialSight : MonoBehaviour
 
     }
 
+    // Erstellt PGO-Kopie
     void CreateCopy(RaycastHit hit)
     {
         //GameObject instantiatedCopy;
@@ -120,6 +120,7 @@ public class SpecialSight : MonoBehaviour
 
     }
 
+    // Managet PGO-Kopien
     void HandleCopies()
     {
 
@@ -133,6 +134,7 @@ public class SpecialSight : MonoBehaviour
 
     }
 
+    // Löscht Collider auf PGO-Kopien, damit der Spieler nicht auf diesen laufen kann
     void DeleteColliders()
     {
         Collider col;
@@ -148,6 +150,7 @@ public class SpecialSight : MonoBehaviour
     }
 
 
+    // Löscht Child-Objekte der PGOs, sofern vorhanden
     void CheckForChild(GameObject copy)
     {
         if (copy.transform.childCount == 1)
@@ -158,6 +161,7 @@ public class SpecialSight : MonoBehaviour
 
     }
 
+    // Löscht Child-Objekte der PGOs
     void DeleteChild(GameObject copy)
     {
         Destroy(copy.gameObject.transform.GetChild(0).gameObject);
@@ -166,6 +170,7 @@ public class SpecialSight : MonoBehaviour
     
 
 
+    // Überwacht Cooldown
     IEnumerator TrackCoolDown()
     {
         float _elapsed = 0f;
@@ -186,6 +191,7 @@ public class SpecialSight : MonoBehaviour
 
     }
 
+    // Überwacht die Dauer der Perspektivenvorschau
     IEnumerator TrackSightTime()
     {
 
@@ -208,6 +214,7 @@ public class SpecialSight : MonoBehaviour
     }
 
 
+    // Verschiebt PGO-Kopie in Vorschau und löscht sie anschließend am Zielort
     IEnumerator TransformCopyPosition()
     {
         _elapsed = 0f;

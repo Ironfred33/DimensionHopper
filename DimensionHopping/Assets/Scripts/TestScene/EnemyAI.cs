@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// Steuert die Gegner-KI
 public class EnemyAI : MonoBehaviour
 {
     public Vector3[] waypoints;
     public int destPoint = 0;
     public float stoppingDistance = 0.5f;
 
-    private NavMeshAgent enemyAgent;
+    private NavMeshAgent _enemyAgent;
 
-    private GameObject fireParticles;
+    private GameObject _fireParticles;
 
     void Start()
     {
-        fireParticles = transform.Find("FireParticles").gameObject;
+        _fireParticles = transform.Find("FireParticles").gameObject;
         
-        enemyAgent = GetComponent<NavMeshAgent>();
+        _enemyAgent = GetComponent<NavMeshAgent>();
 
         
         // AutoBraking macht den Gegner langsamer, wenn er kurz vor seinem Zielpunkt ist
@@ -30,10 +31,9 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(!enemyAgent.pathPending && enemyAgent.remainingDistance < stoppingDistance)
+        if(!_enemyAgent.pathPending && _enemyAgent.remainingDistance < stoppingDistance)
         {
             GoToNextDestination();
         }
@@ -51,7 +51,7 @@ public class EnemyAI : MonoBehaviour
             return;
         }
 
-        enemyAgent.destination = waypoints[destPoint];
+        _enemyAgent.destination = waypoints[destPoint];
 
         destPoint = (destPoint + 1) % waypoints.Length;
     }
@@ -61,8 +61,8 @@ public class EnemyAI : MonoBehaviour
         if(collision.gameObject.CompareTag("PGOzNegative") || collision.gameObject.CompareTag("PGOzPositive") || collision.gameObject.CompareTag("PGOxPositive") || collision.gameObject.CompareTag("PGOxNegative"))
         {
             Debug.Log("Enemy knocked");
-            enemyAgent.enabled = false;
-            fireParticles.SetActive(false);
+            _enemyAgent.enabled = false;
+            _fireParticles.SetActive(false);
         }
     }
 

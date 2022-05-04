@@ -31,7 +31,7 @@ public class PlayerControllerAlt : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (cameraControl._is2DView)
+        if (cameraControl.is2DView)
         {
             //Debug.Log("_is2DView is true.");
             controller2DPerspective();

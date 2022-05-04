@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Updated die Position der Drohne
 public class DronePosition : MonoBehaviour
 {
-    public Vector3 _clippingVector;
+    public Vector3 clippingVector;
     public float clippingValue;
     public EVCamera cameraEV;
 
@@ -15,8 +16,8 @@ public class DronePosition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _clippingVector = new Vector3 (0, 0, clippingValue);
-        transform.position = camControl.current2DPosition - _clippingVector;
+        clippingVector = new Vector3 (0, 0, clippingValue);
+        transform.position = camControl.current2DPosition - clippingVector;
     }
 
     private void Update()
@@ -28,24 +29,24 @@ public class DronePosition : MonoBehaviour
 
         if(transform.localEulerAngles.y >= 175.0 && transform.localEulerAngles.y <= 185)
         {
-            _clippingVector = new Vector3(0, 0, -clippingValue);
+            clippingVector = new Vector3(0, 0, -clippingValue);
         }
         else if(transform.localEulerAngles.y >= 85 && transform.localEulerAngles.y <= 95)
         {
-            _clippingVector = new Vector3(clippingValue, 0, 0);
+            clippingVector = new Vector3(clippingValue, 0, 0);
         }
 
         else if(transform.localEulerAngles.y >= 265 && transform.localEulerAngles.y <= 275)
         {
-            _clippingVector = new Vector3(-clippingValue, 0, 0);
+            clippingVector = new Vector3(-clippingValue, 0, 0);
         }
 
         else
         {
-            _clippingVector = new Vector3(0, 0, clippingValue);
+            clippingVector = new Vector3(0, 0, clippingValue);
         }
 
-        _newDronePosition = camControl.current2DPosition - _clippingVector;
+        _newDronePosition = camControl.current2DPosition - clippingVector;
 
         
 

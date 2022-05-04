@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Verhindert, dass Spieler von beweglichen Plattformen fällt
 public class PlatformInteraction : MonoBehaviour
 {
     private GameObject _mover;

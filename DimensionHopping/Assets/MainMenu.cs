@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Steuert das Hauptmenü
 public class MainMenu : MonoBehaviour
 {
     public SceneLoader sceneLoad;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Greift Skripts auf und weist sie den entsprechenden Game Objekten zu
 public class GameManagement : MonoBehaviour
 {
 
@@ -46,6 +47,7 @@ public class GameManagement : MonoBehaviour
 
     }
 
+    // Spawnt Spieler an einer vordefinierten Position
     public void SpawnPlayer()
     {
 
@@ -57,15 +59,16 @@ public class GameManagement : MonoBehaviour
 
     }
 
-    // +
+    // 
 
-
+    // Lädt Spieler Prefab
     void LoadPrefab()
     {
         _playerPrefab = Resources.Load("Prefabs/character_v2") as GameObject;
 
     }
 
+    // Weist Spieler-Gameobjekt Komponenten zu
     void GetAllComponents()
     {
 
@@ -118,6 +121,7 @@ public class GameManagement : MonoBehaviour
 
     }
 
+    // Greift externe Skripts auf
     void AssignComponentsToPlayer()
     {
         // Player Health Script
@@ -161,7 +165,7 @@ public class GameManagement : MonoBehaviour
 
         _trackingPoint = GameObject.FindGameObjectWithTag("PlayerTrackingPoint");
 
-        _cameraControlScript.FPPposition = _trackingPoint;
+        _cameraControlScript.fpPosition = _trackingPoint;
 
     }
 

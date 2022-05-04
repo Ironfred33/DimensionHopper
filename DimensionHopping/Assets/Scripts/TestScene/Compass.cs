@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Updated die Rotation des Kompass
 public class Compass : MonoBehaviour
 {
 

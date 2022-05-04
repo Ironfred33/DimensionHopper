@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,7 +33,7 @@ public class RedButton : MonoBehaviour
 
         if (!enemiesDefeated)
         {
-            if (!camControl._is2DView)
+            if (!camControl.is2DView)
             {
                 blockRigidbody.isKinematic = true;
                 yield return new WaitForSeconds(1f);

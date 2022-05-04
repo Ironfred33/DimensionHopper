@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Steuert das Zeitlimit eines Levels
 public class Timer : MonoBehaviour
 {
     public EVPlayer externalPlayer;

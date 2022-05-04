@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Regelt die Interpolation des Perspektivwechsels
 public class CameraLerp : MonoBehaviour
 {
     public Transform positionFPP;

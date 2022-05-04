@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// UI der Herzen
 public class PlayerHealth : MonoBehaviour
 {
     public EVPlayer externalPlayer;

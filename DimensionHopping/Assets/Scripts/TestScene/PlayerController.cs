@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Steuerung des Spieler-Charakters
 public enum PlayerState
 {
     Idle,
@@ -18,12 +19,11 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public float groundRadius;
     public LayerMask groundMask;
-    bool isOnGround;
-    private float movement = 0f;
+    public bool isOnGround;
     public bool lookRight = true;
     public GameObject player;
 
-    public Rigidbody rb;
+    private Rigidbody _rb;
     public PlayerHealth health;
 
     public Animator anim;
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     
     void Start()
     {
-        rb = player.GetComponent<Rigidbody>();
+        _rb = player.GetComponent<Rigidbody>();
 
         //extVars = externalVariables.GetComponent<EVPlayer>();
 
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isRunning", false);
         }
 
-        if (cameraControl._is2DView)
+        if (cameraControl.is2DView)
         {
             controller2DPerspective();
         }
@@ -84,14 +84,14 @@ public class PlayerController : MonoBehaviour
 
         float globalGravity = -9.81f;
         Vector3 gravity = globalGravity * extVars.gravityScale * Vector3.up;
-        rb.AddForce(gravity, ForceMode.Acceleration);
+        _rb.AddForce(gravity, ForceMode.Acceleration);
 
 
       
     }
 
 
-
+    // Steuert den Charakter in der 2D-Seitenansicht
     void controller2DPerspective() 
     {
 
@@ -135,10 +135,10 @@ public class PlayerController : MonoBehaviour
         {
             
             soundEffects.PlayJumpSound();
-            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-            rb.drag = extVars.linearDrag * 0.15f;
+            _rb.velocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
+            _rb.drag = extVars.linearDrag * 0.15f;
             Debug.Log("Jumped" + Vector3.up.normalized * extVars.jumpForce2D);
-            rb.AddForce(Vector3.up.normalized * extVars.jumpForce2D, ForceMode.Impulse);
+            _rb.AddForce(Vector3.up.normalized * extVars.jumpForce2D, ForceMode.Impulse);
             state = PlayerState.Jumping;
         }
 
@@ -146,11 +146,11 @@ public class PlayerController : MonoBehaviour
         if(!isOnGround)
         {
             extVars.gravityScale = 1;
-            if(rb.velocity.y < 0)
+            if(_rb.velocity.y < 0)
             {
                 extVars.gravityScale = extVars.gravity * extVars.fallMultiplier;
             }
-            else if(rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+            else if(_rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
             {
                 extVars.gravityScale = extVars.gravity * (extVars.fallMultiplier / 2);
             }
@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             extVars.gravityScale = 0;
-            rb.drag = extVars.linearDrag;
+            _rb.drag = extVars.linearDrag;
         }
 
         
@@ -167,6 +167,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    // Steuert den Charakter in der Egoperspektive
     void controllerFPPerspective()
     {
 
@@ -247,10 +248,10 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !player.GetComponent<WallRun_v2>().isWallRunning)
         {
-            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-            rb.drag = extVars.linearDrag * 0.15f;
+            _rb.velocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
+            _rb.drag = extVars.linearDrag * 0.15f;
             soundEffects.PlayJumpSound();
-            rb.AddForce(Vector3.up.normalized * extVars.jumpForceFP, ForceMode.Impulse);
+            _rb.AddForce(Vector3.up.normalized * extVars.jumpForceFP, ForceMode.Impulse);
             Debug.Log("Addforce!");
             anim.SetBool("isJumping", true);
             
@@ -260,11 +261,11 @@ public class PlayerController : MonoBehaviour
         if(!isOnGround)
         {
             extVars.gravityScale = 1;
-            if(rb.velocity.y < 0)
+            if(_rb.velocity.y < 0)
             {
                 extVars.gravityScale = extVars.gravity * extVars.fallMultiplier;
             }
-            else if(rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+            else if(_rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
             {
                 extVars.gravityScale = extVars.gravity * (extVars.fallMultiplier / 2);
             }
@@ -273,7 +274,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             extVars.gravityScale = 0;
-            rb.drag = extVars.linearDrag;
+            _rb.drag = extVars.linearDrag;
         }
 
         if(!Input.anyKey)
@@ -308,7 +309,7 @@ public class PlayerController : MonoBehaviour
     // Lets character stay on moving platform
     private void OnCollisionStay(Collision collisionInfo)
     {
-        if(cameraTransition._transitionInProgress && collisionInfo.collider.CompareTag("PGOzNegative") || collisionInfo.collider.CompareTag("PGOzPositive") || collisionInfo.collider.CompareTag("PGOxPositive") || collisionInfo.collider.CompareTag("PGOxNegative") || collisionInfo.collider.CompareTag("MovingPlatform"))
+        if(cameraTransition.transitionInProgress && collisionInfo.collider.CompareTag("PGOzNegative") || collisionInfo.collider.CompareTag("PGOzPositive") || collisionInfo.collider.CompareTag("PGOxPositive") || collisionInfo.collider.CompareTag("PGOxNegative") || collisionInfo.collider.CompareTag("MovingPlatform"))
         {
             Debug.Log("Parenting");
             this.transform.SetParent(collisionInfo.collider.transform);

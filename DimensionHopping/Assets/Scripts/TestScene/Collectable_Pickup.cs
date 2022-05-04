@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Regelt das Aufheben von Collectibles
 public class Collectable_Pickup : MonoBehaviour
 {
     public CollectablesUI collectableUI;
-
 
     public int collectibleOrder;
 

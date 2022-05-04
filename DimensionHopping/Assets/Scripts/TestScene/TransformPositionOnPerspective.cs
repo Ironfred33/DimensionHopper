@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Verschiebt PGOs 
 public class TransformPositionOnPerspective : MonoBehaviour
 {
 
@@ -47,6 +48,7 @@ public class TransformPositionOnPerspective : MonoBehaviour
     }
 
 
+    // Weist Positionen in beiden Perspektiven zu
     void AssignPoints()
     {
         // First Point
@@ -70,6 +72,7 @@ public class TransformPositionOnPerspective : MonoBehaviour
         Debug.Log("Duration im PGO Script: " + _EVcamTransitionScript.duration);
     }
 
+    // Lädt Materialien für Glow Effekt
      void LoadGlows()
     {
         _blueGlow = Resources.Load("Materials/Glows/Glow_Blue") as Material;
@@ -78,7 +81,7 @@ public class TransformPositionOnPerspective : MonoBehaviour
         _greenGlow = Resources.Load("Materials/Glows/Glow_Green") as Material;
     }
 
-
+    // Vergibt Tags an PGOs und weist Materialien entsprechend zu
     void TagThisAndGetGlow()
     {
 
@@ -110,13 +113,14 @@ public class TransformPositionOnPerspective : MonoBehaviour
     }
 
    
-
+    // Greift Dauer des Perspektivwechsels auf
     void GetDuration()
     {
         _EVcamTransitionScript = GameObject.FindGameObjectWithTag("ExternalVariables").GetComponent<EVCameraTransition>();
 
     }
 
+    // Verschiebt PGOs 
     public IEnumerator TransformPosition()
     {
         _elapsed = 0f;

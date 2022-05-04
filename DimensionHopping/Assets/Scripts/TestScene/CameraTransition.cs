@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Regelt den Perspektivwechsel
 public class CameraTransition : MonoBehaviour
 {
     public GameObject cam;
@@ -49,7 +50,7 @@ public class CameraTransition : MonoBehaviour
     private float _elapsed;
     private float _dt;
 
-    public bool _transitionInProgress;
+    public bool transitionInProgress;
 
     private void Start()
     {
@@ -67,15 +68,15 @@ public class CameraTransition : MonoBehaviour
         _rotation2DP = Quaternion.Euler(cameraControl.current2DEulerAngles);
 
 
-        if (Input.GetKeyDown(KeyCode.C) && !_transitionInProgress)
+        if (Input.GetKeyDown(KeyCode.C) && !transitionInProgress)
         {
-            _transitionInProgress = true;            
+            transitionInProgress = true;            
 			// end running/jumping animation
             playerControl.GetComponent<Animator>().SetBool("isRunning", false);
             playerControl.GetComponent<Animator>().SetBool("isJumping", false);
             playerControl.state = PlayerState.Idle;
 
-            if (!cameraControl._is2DView)
+            if (!cameraControl.is2DView)
             {
 
                 cameraControl.Set2DCameraAngle();
@@ -85,7 +86,7 @@ public class CameraTransition : MonoBehaviour
 
             }
 
-            else if (cameraControl._is2DView)
+            else if (cameraControl.is2DView)
             {
 
                 switchingFrom2DtoFPP = true;
@@ -145,9 +146,9 @@ public class CameraTransition : MonoBehaviour
 
                 
 
-                cam.transform.position = Vector3.Lerp(cameraControl.current2DPosition, cameraControl.FPPposition.transform.position, _elapsed / extVars.duration) + (new Vector3(curve2DToFPP.curve.Evaluate(_elapsed), 0f, 0f) * extVars.curveIntensity);
+                cam.transform.position = Vector3.Lerp(cameraControl.current2DPosition, cameraControl.fpPosition.transform.position, _elapsed / extVars.duration) + (new Vector3(curve2DToFPP.curve.Evaluate(_elapsed), 0f, 0f) * extVars.curveIntensity);
                 
-                cam.transform.rotation = Quaternion.Lerp(_rotation2DP, cameraControl.FPPposition.transform.rotation, _elapsed / extVars.duration);
+                cam.transform.rotation = Quaternion.Lerp(_rotation2DP, cameraControl.fpPosition.transform.rotation, _elapsed / extVars.duration);
 
                 // if (!playerControl.playerIsFlipped)
                 // {
@@ -161,13 +162,13 @@ public class CameraTransition : MonoBehaviour
                 
 
                 switchingFrom2DtoFPP = false;
-                cameraControl._is2DView = false;
+                cameraControl.is2DView = false;
                 yield return null;
             }
             Debug.Log("Transition Time: " + _transitionTime);
 
-            cameraControl._is2DView = false;
-            _transitionInProgress = false;
+            cameraControl.is2DView = false;
+            transitionInProgress = false;
             EnableObject(compass);
             EnableObject(crossHair);
             TogglePlayerControl();
@@ -193,16 +194,16 @@ public class CameraTransition : MonoBehaviour
 
                 // Interpoliert Position und Rotation
 
-                cam.transform.position = Vector3.Lerp(cameraControl.FPPposition.transform.position, cameraControl.current2DPosition, _elapsed / extVars.duration) + (new Vector3(curveFPPTo2D.curve.Evaluate(_elapsed), 0f, 0f) * extVars.curveIntensity);
-                cam.transform.rotation = Quaternion.Lerp(cameraControl.FPPposition.transform.rotation, _rotation2DP, _elapsed / extVars.duration);
+                cam.transform.position = Vector3.Lerp(cameraControl.fpPosition.transform.position, cameraControl.current2DPosition, _elapsed / extVars.duration) + (new Vector3(curveFPPTo2D.curve.Evaluate(_elapsed), 0f, 0f) * extVars.curveIntensity);
+                cam.transform.rotation = Quaternion.Lerp(cameraControl.fpPosition.transform.rotation, _rotation2DP, _elapsed / extVars.duration);
 
                 switchingFromFPPto2D = false;
-                cameraControl._is2DView = true;
+                cameraControl.is2DView = true;
                 yield return null;
             }
 
-            cameraControl._is2DView = true;
-            _transitionInProgress = false;
+            cameraControl.is2DView = true;
+            transitionInProgress = false;
             TogglePlayerControl();
         }
 
@@ -226,6 +227,7 @@ public class CameraTransition : MonoBehaviour
         }
     }
 
+    // Greift alle PGOs auf
     void GetAllPGOs()
     {
         _arrayPGOxPositive = GameObject.FindGameObjectsWithTag("PGOxPositive");
@@ -235,6 +237,7 @@ public class CameraTransition : MonoBehaviour
 
     }
 
+    // Weist PGO Script den entsprechenden Objekten zu
     void GetAllPGOScripts()
     {
 
@@ -274,7 +277,7 @@ public class CameraTransition : MonoBehaviour
 
     }
 
-
+    // Verschiebt PGOs sofern die Kamera entsprechend gedreht wird
     void TransformPGOPositions()
     {
 
@@ -315,6 +318,7 @@ public class CameraTransition : MonoBehaviour
 
     }
 
+    // Setzt Gameobjekt inaktiv
     void DisableObject(GameObject obj)
     {
 
@@ -322,6 +326,7 @@ public class CameraTransition : MonoBehaviour
 
     }
 
+    // Setzt Gameobjekt aktiv
     void EnableObject(GameObject obj)
     {
 

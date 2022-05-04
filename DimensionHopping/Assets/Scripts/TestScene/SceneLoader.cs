@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Wird genutzt, um Szenen zu laden
 public class SceneLoader : MonoBehaviour
 {
 
@@ -18,23 +19,26 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(currentSceneIndex + 1);
     }
 
+    // Lädt die letzte Szene
     public void LoadLastScene()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex - 1);
     }
     
-    // Lädt erste Szene (vermutlich Hauptmenü dann später)
+    // Lädt erste Szene (Hauptmenü)
     public void LoadStartScene()
     {
         SceneManager.LoadScene(0);
     }
 
+    // Lädt den Endscreen
     public void LoadEndScreen()
     {
         SceneManager.LoadScene("EndScreen");
     }
 
+    // Lädt die derzeit laufende Szene neu
     public void ReLoadCurrentScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

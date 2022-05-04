@@ -824,7 +824,8 @@ AudioSource:
   m_GameObject: {fileID: 1168294405947620734}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8786658327403455915, guid: c1147fbe470af0648874e7eb53c8b672,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 17357c3a1ee15fb4d93f43b1b64425ef, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.4
@@ -1025,7 +1026,7 @@ MonoBehaviour:
   disks: []
   collectedDisk: {fileID: 0}
   uncollectedDisk: {fileID: 0}
-  _alreadyCollected: 
+  alreadyCollected: 
 --- !u!1 &8099776640306735811
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,7 +1409,7 @@ PrefabInstance:
     - target: {fileID: 404585084931807718, guid: 9e44f5a600176b5479b9457199f5ce26,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2872344752951785800, guid: 9e44f5a600176b5479b9457199f5ce26,
         type: 3}
@@ -1433,7 +1434,7 @@ PrefabInstance:
     - target: {fileID: 6470084682499438719, guid: 9e44f5a600176b5479b9457199f5ce26,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8077578165758270073, guid: 9e44f5a600176b5479b9457199f5ce26,
         type: 3}

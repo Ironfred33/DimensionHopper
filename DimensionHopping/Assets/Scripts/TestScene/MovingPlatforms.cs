@@ -1,7 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Kontrolliert bewegliche Plattformen
 public class MovingPlatforms : MonoBehaviour
 {
     public Transform firstPosition;
@@ -9,7 +10,7 @@ public class MovingPlatforms : MonoBehaviour
 
     public float movementTime;
     private float _elapsed;
-    public bool _movingToTarget;
+    private bool _movingToTarget;
 
     private GameObject _mover;
     private Vector3 _offset;

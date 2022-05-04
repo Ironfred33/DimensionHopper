@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Steuert das Spotlight des Spieler-Charakters
 public class PlayerSpotlight : MonoBehaviour
 {
-    private Transform target;
+    private Transform _target;
     public Vector3 Offset;
 
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        _target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = target.position + Offset;
+        transform.position = _target.position + Offset;
     }
 }

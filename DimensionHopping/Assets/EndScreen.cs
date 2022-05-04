@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Steuert den Endscreen
 public class EndScreen : MonoBehaviour
 {
   

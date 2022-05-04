@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Updated das UI beim Aufheben von Collectibles
 public class CollectablesUI : MonoBehaviour
 {
 
@@ -12,16 +13,18 @@ public class CollectablesUI : MonoBehaviour
 
     public Sprite uncollectedDisk;
 
-    public List<int> _alreadyCollected;
+    public List<int> alreadyCollected;
 
     void Start() 
     {
-        _alreadyCollected = new List<int>();
+        alreadyCollected = new List<int>();
     }
+
+    // Fügt neu gefundenes Collectible der Liste der bereits gefundenen Collectibles hinzu und aktualisiert das UI entsprechend. 
     public void FoundCollectable(int collectNumber)
     {
-        _alreadyCollected.Add(collectNumber);
-        if(_alreadyCollected.Contains(collectNumber))
+        alreadyCollected.Add(collectNumber);
+        if(alreadyCollected.Contains(collectNumber))
             {
                 disks[collectNumber-1].sprite = collectedDisk;
             }

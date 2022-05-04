@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Steuert Tooltips im Tutorial
 public class TutorialToolTips : MonoBehaviour
 {
-    // Start is called before the first frame update
 
     private bool _insideCollider;
     public GameObject textToShow;

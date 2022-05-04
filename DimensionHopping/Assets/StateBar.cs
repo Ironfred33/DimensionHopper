@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Wechselt UI des Perspektivwechsels
 public class StateBar : MonoBehaviour
 {
     public CameraController camControl;
@@ -20,7 +21,7 @@ public class StateBar : MonoBehaviour
     }
     void Update()
     {
-        if(camControl._is2DView)
+        if(camControl.is2DView)
         {
             square.color = _activatedColor;
             cube.color = _deactivedColor;
