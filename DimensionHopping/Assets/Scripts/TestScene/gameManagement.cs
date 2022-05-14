@@ -17,7 +17,6 @@ public class GameManagement : MonoBehaviour
     private CameraTransition _cameraTransitionScript;
     private CameraController _cameraControlScript;
     private DronePosition _dronePositionScript;
-    private Timer _timerScript;
     private Transform _trackingTarget;
     private GameObject _trackingPoint;
     private GameObject _canvas;
@@ -40,8 +39,6 @@ public class GameManagement : MonoBehaviour
         AssignComponentsToPlayer();
 
         AssignComponentsToCamera();
-
-        AssignComponentsToCanvas();
 
         AssignRemainingComponents();
 
@@ -98,11 +95,10 @@ public class GameManagement : MonoBehaviour
         _cameraTransitionScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraTransition>();
 
 
-        // Canvas und Timer
+        // Canvas
 
         _canvas = GameObject.FindGameObjectWithTag("Canvas");
 
-        //_timerScript = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
 
         // Drohne
 
@@ -167,11 +163,6 @@ public class GameManagement : MonoBehaviour
 
         _cameraControlScript.fpPosition = _trackingPoint;
 
-    }
-
-    void AssignComponentsToCanvas()
-    {
-        //_timerScript.externalPlayer = _externalVariablesPlayerScript;
     }
 
 
