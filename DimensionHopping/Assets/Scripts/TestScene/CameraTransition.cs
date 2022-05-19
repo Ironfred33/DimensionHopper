@@ -12,10 +12,10 @@ public class CameraTransition : MonoBehaviour
     public PlayerController playerControl;
     private Quaternion _rotation2DP;
 
-    private GameObject[] _arrayPGOxPositive;
-    private GameObject[] _arrayPGOxNegative;
-    private GameObject[] _arrayPGOzPositive;
-    private GameObject[] _arrayPGOzNegative;
+    public GameObject[] arrayPGOxPositive;
+    public GameObject[] arrayPGOxNegative;
+    public GameObject[] arrayPGOzPositive;
+    public GameObject[] arrayPGOzNegative;
 
     public GameObject compass;
 
@@ -36,14 +36,26 @@ public class CameraTransition : MonoBehaviour
 
     private float _transitionTime;
 
+    private bool _levelGenerator;
+
     public bool switchingFrom2DtoFPP = false;
     public bool switchingFromFPPto2D = false;
 
 
+
+    // PGOskripte in bereits existierendem Level
     public List<TransformPositionOnPerspective> transformScriptsPGOxPositive = new List<TransformPositionOnPerspective>();
     public List<TransformPositionOnPerspective> transformScriptsPGOxNegative = new List<TransformPositionOnPerspective>();
     public List<TransformPositionOnPerspective> transformScriptsPGOzPositive = new List<TransformPositionOnPerspective>();
     public List<TransformPositionOnPerspective> transformScriptsPGOzNegative = new List<TransformPositionOnPerspective>();
+
+
+    // PGOskripte für den Level Generator
+
+    public List<PGO> transformScriptsPGOxPositiveGenerator = new List<PGO>();
+    public List<PGO> transformScriptsPGOxNegativeGenerator = new List<PGO>();
+    public List<PGO> transformScriptsPGOzPositiveGenerator = new List<PGO>();
+    public List<PGO> transformScriptsPGOzNegativeGenerator = new List<PGO>();
 
 
     //public TransformPositionOnPerspective[] transformPos;
@@ -54,12 +66,39 @@ public class CameraTransition : MonoBehaviour
 
     private void Start()
     {
-        extVars = externalVariables.GetComponent<EVCameraTransition>();
-        GetAllPGOs();
-        GetAllPGOScripts();
 
-        // if(cameraControl._is2DView) DisableObject(compass);
-        // else if(!cameraControl._is2DView) EnableObject(compass);
+        extVars = externalVariables.GetComponent<EVCameraTransition>();
+
+        CheckForLevelGeneratorInScene();
+        
+
+        // wenn kein levelgenerator in Szene
+        if (!_levelGenerator)
+        {
+            GetAllPGOs();
+            GetAllPGOScripts();
+
+        }
+
+       
+    }
+
+
+
+    // wird über den levelgenerator zugegriffen, sobald plattformen generiert wurden, um sie zu pgos zu machen
+    public void PGOSetup()
+    {
+
+        Debug.Log("PGO SETUP IN CAM TRANS TRIGGERED");
+        GetAllPGOs();
+        GetAllPGOScriptsGenerator();
+    }
+
+    // überprüft, ob ein levelgenerator in der szene ist
+    void CheckForLevelGeneratorInScene()
+    {
+        if(GameObject.FindGameObjectWithTag("LevelGenerator") != null) _levelGenerator = true;
+        else _levelGenerator = false;
     }
 
 
@@ -70,8 +109,8 @@ public class CameraTransition : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.C) && !transitionInProgress)
         {
-            transitionInProgress = true;            
-			// end running/jumping animation
+            transitionInProgress = true;
+            // end running/jumping animation
             playerControl.GetComponent<Animator>().SetBool("isRunning", false);
             playerControl.GetComponent<Animator>().SetBool("isJumping", false);
             playerControl.state = PlayerState.Idle;
@@ -82,7 +121,7 @@ public class CameraTransition : MonoBehaviour
                 cameraControl.Set2DCameraAngle();
                 cameraControl.TrackingIn2d();
                 switchingFromFPPto2D = true;
-         
+
 
             }
 
@@ -90,9 +129,9 @@ public class CameraTransition : MonoBehaviour
             {
 
                 switchingFrom2DtoFPP = true;
-              
 
-                if(playerControl.playerIsFlipped)
+
+                if (playerControl.playerIsFlipped)
                 {
                     player.transform.localScale = new Vector3(1, 1, 1);
                     playerControl.playerIsFlipped = false;
@@ -100,25 +139,16 @@ public class CameraTransition : MonoBehaviour
 
             }
             StartCoroutine(CamTransition());
-            TransformPGOPositions();
 
+            if(!_levelGenerator) TransformPGOPositions();
+            else if(_levelGenerator) TransformPGOPositionsGenerator();
 
-            /*
-            if(!cameraControl._is2DView)
-            {
-                crane.transform.position = crane.GetComponent<Crane>().positionFPP;
-            }
-
-            else if(cameraControl._is2DView)
-            {
-                block.transform.position = block.GetComponent<Block>().position2D;
-                crane.transform.position = crane.GetComponent<Crane>().position2D;
-            }
-            */
         }
 
 
     }
+
+  
 
 
     // Regelt die Camera Transition zwischen 2D und FPP
@@ -133,33 +163,19 @@ public class CameraTransition : MonoBehaviour
         {
             TogglePlayerControl();
             //TransformPGOPositions();
-            
+
 
             while (_elapsed <= extVars.duration)
             {
                 _dt = Time.deltaTime;
                 _elapsed = _elapsed + _dt;
                 _transitionTime = _elapsed + _dt;
-                //Debug.Log("Running");
 
                 // Interpoliert Position und Rotation
 
-                
-
                 cam.transform.position = Vector3.Lerp(cameraControl.current2DPosition, cameraControl.fpPosition.transform.position, _elapsed / extVars.duration) + (new Vector3(curve2DToFPP.curve.Evaluate(_elapsed), 0f, 0f) * extVars.curveIntensity);
-                
+
                 cam.transform.rotation = Quaternion.Lerp(_rotation2DP, cameraControl.fpPosition.transform.rotation, _elapsed / extVars.duration);
-
-                // if (!playerControl.playerIsFlipped)
-                // {
-                //     cam.transform.rotation = Quaternion.Lerp(_rotation2DP,cameraControl.FPPposition.transform.rotation,  _elapsed / extVars.duration);
-                // }
-                // else if (playerControl.playerIsFlipped)
-                // {
-                //     cameraControl.FPPposition.transform.rotation = Quaternion.Lerp(_rotation2DP, new Quaternion(0, cameraControl.FPPposition.transform.rotation.y + 180, 0, 0), _elapsed / extVars.duration);
-                // }
-
-                
 
                 switchingFrom2DtoFPP = false;
                 cameraControl.is2DView = false;
@@ -190,7 +206,7 @@ public class CameraTransition : MonoBehaviour
                 _elapsed = _elapsed + _dt;
                 //Debug.Log("Running");
 
-                
+
 
                 // Interpoliert Position und Rotation
 
@@ -230,10 +246,48 @@ public class CameraTransition : MonoBehaviour
     // Greift alle PGOs auf
     void GetAllPGOs()
     {
-        _arrayPGOxPositive = GameObject.FindGameObjectsWithTag("PGOxPositive");
-        _arrayPGOxNegative = GameObject.FindGameObjectsWithTag("PGOxNegative");
-        _arrayPGOzPositive = GameObject.FindGameObjectsWithTag("PGOzPositive");
-        _arrayPGOzNegative = GameObject.FindGameObjectsWithTag("PGOzNegative");
+        arrayPGOxPositive = GameObject.FindGameObjectsWithTag("PGOxPositive");
+        arrayPGOxNegative = GameObject.FindGameObjectsWithTag("PGOxNegative");
+        arrayPGOzPositive = GameObject.FindGameObjectsWithTag("PGOzPositive");
+        arrayPGOzNegative = GameObject.FindGameObjectsWithTag("PGOzNegative");
+
+    }
+
+    // Greif alle PGOs auf, wenn das Level zufällig generiert wird
+    void GetAllPGOScriptsGenerator()
+    {
+        if (arrayPGOxPositive != null)
+        {
+            foreach (GameObject obj in arrayPGOxPositive)
+            {
+                transformScriptsPGOxPositiveGenerator.Add(obj.GetComponent<PGO>());
+            }
+
+        }
+
+        if (arrayPGOxNegative != null)
+        {
+            foreach (GameObject obj in arrayPGOxNegative)
+            {
+                transformScriptsPGOxNegativeGenerator.Add(obj.GetComponent<PGO>());
+            }
+        }
+
+        if (arrayPGOzPositive != null)
+        {
+            foreach (GameObject obj in arrayPGOzPositive)
+            {
+                transformScriptsPGOzPositiveGenerator.Add(obj.GetComponent<PGO>());
+            }
+        }
+
+        if (arrayPGOzNegative != null)
+        {
+            foreach (GameObject obj in arrayPGOzNegative)
+            {
+                transformScriptsPGOzNegativeGenerator.Add(obj.GetComponent<PGO>());
+            }
+        }
 
     }
 
@@ -242,34 +296,34 @@ public class CameraTransition : MonoBehaviour
     {
 
 
-        if (_arrayPGOxPositive != null)
+        if (arrayPGOxPositive != null)
         {
-            foreach (GameObject obj in _arrayPGOxPositive)
+            foreach (GameObject obj in arrayPGOxPositive)
             {
                 transformScriptsPGOxPositive.Add(obj.GetComponent<TransformPositionOnPerspective>());
             }
 
         }
 
-        if (_arrayPGOxNegative != null)
+        if (arrayPGOxNegative != null)
         {
-            foreach (GameObject obj in _arrayPGOxNegative)
+            foreach (GameObject obj in arrayPGOxNegative)
             {
                 transformScriptsPGOxNegative.Add(obj.GetComponent<TransformPositionOnPerspective>());
             }
         }
 
-        if (_arrayPGOzPositive != null)
+        if (arrayPGOzPositive != null)
         {
-            foreach (GameObject obj in _arrayPGOzPositive)
+            foreach (GameObject obj in arrayPGOzPositive)
             {
                 transformScriptsPGOzPositive.Add(obj.GetComponent<TransformPositionOnPerspective>());
             }
         }
 
-        if (_arrayPGOzNegative != null)
+        if (arrayPGOzNegative != null)
         {
-            foreach (GameObject obj in _arrayPGOzNegative)
+            foreach (GameObject obj in arrayPGOzNegative)
             {
                 transformScriptsPGOzNegative.Add(obj.GetComponent<TransformPositionOnPerspective>());
             }
@@ -314,6 +368,44 @@ public class CameraTransition : MonoBehaviour
             }
         }
 
+
+
+    }
+
+    void TransformPGOPositionsGenerator()
+    {
+        if (transformScriptsPGOxPositiveGenerator != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.xPositive)
+        {
+            foreach (PGO script in transformScriptsPGOxPositiveGenerator)
+            {
+                StartCoroutine(script.TransformPosition());
+
+            }
+        }
+
+        if (transformScriptsPGOxNegativeGenerator != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.xNegative)
+        {
+            foreach (PGO script in transformScriptsPGOxNegativeGenerator)
+            {
+                StartCoroutine(script.TransformPosition());
+            }
+        }
+
+        if (transformScriptsPGOzPositiveGenerator != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.zPositive)
+        {
+            foreach (PGO script in transformScriptsPGOzPositiveGenerator)
+            {
+                StartCoroutine(script.TransformPosition());
+            }
+        }
+
+        if (transformScriptsPGOzNegativeGenerator != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.zNegative)
+        {
+            foreach (PGO script in transformScriptsPGOzNegativeGenerator)
+            {
+                StartCoroutine(script.TransformPosition());
+            }
+        }
 
 
     }
