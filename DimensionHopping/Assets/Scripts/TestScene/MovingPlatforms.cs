@@ -11,9 +11,10 @@ public class MovingPlatforms : MonoBehaviour
     public float movementTime;
     private float _elapsed;
     private bool _movingToTarget;
-
-    private GameObject _mover;
     private Vector3 _offset;
+
+    public float waitTime;
+    public float elapsedWaitTime;
 
     void Start()
     {
@@ -31,8 +32,14 @@ public class MovingPlatforms : MonoBehaviour
 
             if(_elapsed >= movementTime)
             {
-                _elapsed = 0f;
-                _movingToTarget = false;
+                elapsedWaitTime += Time.deltaTime;
+                if(elapsedWaitTime >= waitTime)
+                {
+                    elapsedWaitTime = 0f;
+                    _elapsed = 0f;
+                    _movingToTarget = false;
+                }           
+                
             }
         }
 
@@ -42,8 +49,14 @@ public class MovingPlatforms : MonoBehaviour
 
             if(_elapsed >= movementTime)
             {
-                _elapsed = 0f;
-                _movingToTarget = true;
+                elapsedWaitTime += Time.deltaTime;
+                if(elapsedWaitTime >= waitTime)
+                {
+                    elapsedWaitTime = 0f;
+                    _elapsed = 0f;
+                    _movingToTarget = true;
+                }   
+                
             }
         }
     }

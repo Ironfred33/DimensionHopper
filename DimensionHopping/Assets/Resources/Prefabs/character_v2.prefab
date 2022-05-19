@@ -1149,7 +1149,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
 --- !u!65 &8554892795707864835
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1161,8 +1161,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.8486643, z: 1}
-  m_Center: {x: 0, y: 0.88550377, z: 0}
+  m_Size: {x: 1, y: 1.8096894, z: 0.30576888}
+  m_Center: {x: -6.302338e-17, y: 0.9049912, z: 0.03568487}
 --- !u!95 &8554892795707864839
 Animator:
   serializedVersion: 3
@@ -1223,13 +1223,14 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
+  isOnGround: 0
   lookRight: 1
   player: {fileID: 8824940349515581776}
-  rb: {fileID: 8554892795707864836}
   health: {fileID: 8554892795707864837}
   anim: {fileID: 8554892795707864839}
   playerIsFlipped: 0
   soundEffects: {fileID: 8444326190716264463}
+  parented: 0
 --- !u!114 &-2324460300814063482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1251,9 +1252,8 @@ MonoBehaviour:
   upForce: 450
   sideForce: 300
   minHeight: 1
-  wallRunDownForce: 20
-  wallRunVolume: {fileID: 8836118606483729504, guid: bf98d481b8a3b9344a25609c6c331b05,
-    type: 3}
+  wallRunFOV: 0
+  normalFOV: 0
 --- !u!1 &9041653901627227994
 GameObject:
   m_ObjectHideFlags: 0

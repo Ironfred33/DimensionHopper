@@ -22,6 +22,8 @@ public class GameManagement : MonoBehaviour
     private GameObject _canvas;
     private GameObject _drone;
     private SceneLoader _sceneLoaderScript;
+    private LevelCompleted _levelCompleted;
+
     private Goal _goalScript;
 
     private List<GameObject> _heartImages = new List<GameObject>();
@@ -98,6 +100,7 @@ public class GameManagement : MonoBehaviour
         // Canvas
 
         _canvas = GameObject.FindGameObjectWithTag("Canvas");
+        _levelCompleted = GameObject.FindGameObjectWithTag("Canvas").GetComponent<LevelCompleted>();
 
 
         // Drohne
@@ -130,7 +133,7 @@ public class GameManagement : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            _playerHealthScript.hearts[i] = _canvas.transform.GetChild(i).GetComponent<Image>();
+            _playerHealthScript.hearts[i] = _canvas.transform.Find("MainGame").GetChild(i).GetComponent<Image>();
         }
 
 
@@ -170,7 +173,7 @@ public class GameManagement : MonoBehaviour
     {
         _dronePositionScript.cameraEV = _externalVariables.GetComponent<EVCamera>();
         _dronePositionScript.camControl = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
-        _goalScript.sceneLoad = _sceneLoaderScript;
+        _levelCompleted.sceneLoad = _sceneLoaderScript;
 
     }
 

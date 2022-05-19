@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private bool _gamePaused;
 
     public SFX soundEffects;
+    public bool parented;
 
     
     void Start()
@@ -307,18 +308,22 @@ public class PlayerController : MonoBehaviour
     }
 
     // Lets character stay on moving platform
+    
     private void OnCollisionStay(Collision collisionInfo)
     {
-        if(cameraTransition.transitionInProgress && collisionInfo.collider.CompareTag("PGOzNegative") || collisionInfo.collider.CompareTag("PGOzPositive") || collisionInfo.collider.CompareTag("PGOxPositive") || collisionInfo.collider.CompareTag("PGOxNegative") || collisionInfo.collider.CompareTag("MovingPlatform"))
+        Debug.Log("Tag =" + collisionInfo.gameObject.tag);
+        if(collisionInfo.collider.CompareTag("PGOzNegative") || collisionInfo.collider.CompareTag("PGOzPositive") || collisionInfo.collider.CompareTag("PGOxPositive") || collisionInfo.collider.CompareTag("PGOxNegative") || collisionInfo.collider.CompareTag("MovingPlatform"))
         {
             Debug.Log("Parenting");
             this.transform.SetParent(collisionInfo.collider.transform);
+            parented = true;
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
         this.transform.SetParent(null);
+        parented = false;
     }
     
     void OnTriggerEnter(Collider other)
@@ -341,6 +346,8 @@ public class PlayerController : MonoBehaviour
                 health.currentHearts = extVars.maxHearts;
             }
         }
+
+
     }
 
         

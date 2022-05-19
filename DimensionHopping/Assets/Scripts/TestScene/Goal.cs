@@ -1,18 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 // Lädt nächste Szene, sobald das Ziel erreicht wird
 public class Goal : MonoBehaviour
 {
-    public SceneLoader sceneLoad;
+    public GameObject mainUI;
+
+    public GameObject levelCompleted;
+
+    public GameObject stateBar;
+
+    public GameObject crossHair;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            sceneLoad.LoadNextScene();
+            mainUI.SetActive(false);
+            levelCompleted.SetActive(true);
+            stateBar.SetActive(false);
+            crossHair.SetActive(false);
+
+            Cursor.visible = true;
         }
     }
 }

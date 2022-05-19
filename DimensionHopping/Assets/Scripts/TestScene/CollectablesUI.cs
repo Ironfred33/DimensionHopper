@@ -9,6 +9,8 @@ public class CollectablesUI : MonoBehaviour
 
     public Image[] disks;
 
+    public Image[] completedDisks;
+
     public Sprite collectedDisk;
 
     public Sprite uncollectedDisk;
@@ -27,6 +29,7 @@ public class CollectablesUI : MonoBehaviour
         if(alreadyCollected.Contains(collectNumber))
             {
                 disks[collectNumber-1].sprite = collectedDisk;
+                completedDisks[collectNumber-1].sprite = collectedDisk;
             }
     }
 
