@@ -27,6 +27,7 @@ public class GameManagement : MonoBehaviour
     private Goal _goalScript;
 
     private List<GameObject> _heartImages = new List<GameObject>();
+
     void Awake()
     {
 
@@ -66,6 +67,9 @@ public class GameManagement : MonoBehaviour
         _playerPrefab = Resources.Load("Prefabs/character_v2") as GameObject;
 
     }
+
+
+    
 
     // Weist Spieler-Gameobjekt Komponenten zu
     void GetAllComponents()
