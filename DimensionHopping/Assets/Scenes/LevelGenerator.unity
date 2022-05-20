@@ -1823,7 +1823,7 @@ MonoBehaviour:
   generateRandomDirections: 0
   generateControlledRandomDirections: 1
   prefabCopy: {fileID: 0}
-  difficulty: 0
+  difficulty: 2
 --- !u!4 &1840093657
 Transform:
   m_ObjectHideFlags: 0

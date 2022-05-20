@@ -21,14 +21,20 @@ public class LevelGeneratorGameManagement : MonoBehaviour
 
     public Vector3 spawnCoordinates;
 
-    private CameraController _camControlScript;
+    [SerializeField] private CameraController _camControlScript;
 
-    private CameraTransition _camTransitionScript;
+    [SerializeField] private CameraTransition _camTransitionScript;
 
-    private PlayerController _playerControlScript;
+    [SerializeField] private PlayerController _playerControlScript;
     private GameObject _player;
 
-    private GameObject _playerPrefab;
+    [SerializeField] private GameObject _playerPrefab;
+
+    [SerializeField] private EVPlayer _extVarsPlayer;
+
+    private PlayerHealth _playerHealthScript;
+
+    
 
     private bool _paused;
 
@@ -53,8 +59,9 @@ public class LevelGeneratorGameManagement : MonoBehaviour
 
         _sceneManagementScript = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<LevelGeneratorSceneManagement>();
         _levelGenerationScript = GameObject.FindGameObjectWithTag("LevelGenerator").GetComponent<GenerateLevel>();
+        _extVarsPlayer = GameObject.FindGameObjectWithTag("ExternalVariables").GetComponent<EVPlayer>();
 
-        _player = Resources.Load("Player") as GameObject;
+        _player = Resources.Load("Prefabs/character_v2") as GameObject;
         spawnCoordinates = new Vector3(1, 2, 0);
 
     }
@@ -135,12 +142,14 @@ public class LevelGeneratorGameManagement : MonoBehaviour
 
     void AssignComponents()
     {
+
+        Debug.Log("ASSIGNCOMPONENTS TRIGGERED");
         _camControlScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
         _camTransitionScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraTransition>();
         _playerControlScript = _playerPrefab.GetComponent<PlayerController>();
 
         _camControlScript.trackingTarget = _playerPrefab.transform;
-        _camControlScript.fpPosition = _playerPrefab.transform.Find("FPPPoint").gameObject;
+        //_camControlScript.fpPosition = _playerPrefab.transform.Find("FPPPoint").gameObject;
         _camControlScript.player = _playerPrefab;
 
         _camTransitionScript.player = _playerPrefab;
@@ -148,6 +157,12 @@ public class LevelGeneratorGameManagement : MonoBehaviour
 
         _playerControlScript.cameraControl = _camControlScript;
         _playerControlScript.cameraTransition = _camTransitionScript;
+
+        _playerControlScript.extVars = _extVarsPlayer;
+        _camControlScript.fpPosition = GameObject.FindGameObjectWithTag("PlayerTrackingPoint");
+
+        _playerHealthScript = _playerPrefab.GetComponent<PlayerHealth>();
+        _playerHealthScript.externalPlayer = _extVarsPlayer;
 
         
     }
