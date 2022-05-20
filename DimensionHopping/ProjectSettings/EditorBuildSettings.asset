@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Playtest Level/EndScreen.unity
     guid: bb628e6c0e17b0c4ca464345becffe3c
+  - enabled: 1
+    path: Assets/Scenes/LevelGenerator.unity
+    guid: d2d577cb80207394fabc9f0d56fd6ff8
   m_configObjects: {}

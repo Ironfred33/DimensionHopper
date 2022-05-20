@@ -12,6 +12,12 @@ public class MainMenu : MonoBehaviour
         sceneLoad.LoadNextScene();
     }
 
+    public void LevelGenerator()
+    {
+        sceneLoad.LoadLevelGeneratorScene();
+    }
+
+
     public void QuitGame()
     {
         Debug.Log("Quitting Game");
