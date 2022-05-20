@@ -13,10 +13,7 @@ public class PlayerHealth : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
-    void Start()
-    {
-        
-    }
+   
 
     // Update is called once per frame
     void Update()

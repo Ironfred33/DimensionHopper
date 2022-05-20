@@ -21,6 +21,10 @@ public class EVPlayer : MonoBehaviour
 
     public float fallMultiplier;
 
+    public float knockBackForce;
+
+    public float invincibleTime;
+
     public float linearDrag;
 
     public int maxCollectibles;

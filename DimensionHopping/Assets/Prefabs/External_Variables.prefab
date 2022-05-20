@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7123726539426643509}
   - component: {fileID: 7123726539426643508}
   - component: {fileID: 7123726539426643511}
+  - component: {fileID: 520051765}
   m_Layer: 0
   m_Name: External_Variables
   m_TagString: ExternalVariables
@@ -47,15 +48,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed2D: 5
   speedFP: 5
-  jumpForce2D: 25
-  jumpForceFP: 25
+  jumpForce2D: 12
+  jumpForceFP: 12
   rotationSpeedFP: 0
   spawnPoint: {x: 1, y: 2, z: 0}
   maxHearts: 3
-  timeLimit: 0
-  gravity: -9.81
+  timeLimit: 77
+  gravity: 1
   gravityScale: 1
   fallMultiplier: 5
+  knockBackForce: 3
   linearDrag: 2
   maxCollectibles: 0
 --- !u!114 &7123726539426643508
@@ -89,3 +91,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curveIntensity: 2
   duration: 1
+--- !u!114 &520051765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7123726539426643510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b95ca4cc4ece3694eb9d100b20fd2ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformTransparency: 0.2
+  coolDown: 4
+  sightTime: 2
+  sightRange: 15

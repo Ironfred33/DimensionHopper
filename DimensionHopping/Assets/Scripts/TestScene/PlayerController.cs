@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     public SFX soundEffects;
     public bool parented;
 
+    private bool _invincible;
+
     
     void Start()
     {
@@ -68,12 +70,15 @@ public class PlayerController : MonoBehaviour
 
         if (cameraControl.is2DView)
         {
-            controller2DPerspective();
+            Controller2DPerspective();
         }
         else
         {
-            controllerFPPerspective();
+            ControllerFPPerspective();
         }
+
+
+    CheckForHearts();
 
         
 
@@ -92,8 +97,24 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    // Playerrespawn wenn alle Herzen verbraucht 
+    void CheckForHearts()
+    {
+
+          if(health.currentHearts <= 0)
+            {
+                Debug.Log("Dead!");
+                player.transform.position = extVars.spawnPoint;
+                Debug.Log("Respawned.");
+                health.currentHearts = extVars.maxHearts;
+                Debug.Log("Hearts set back to maxHearts");
+            }
+
+    }
+
+
     // Steuert den Charakter in der 2D-Seitenansicht
-    void controller2DPerspective() 
+    void Controller2DPerspective() 
     {
 
         float horizontalMovement = Input.GetAxis("Horizontal");
@@ -169,7 +190,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Steuert den Charakter in der Egoperspektive
-    void controllerFPPerspective()
+    void ControllerFPPerspective()
     {
 
         float horizontalMovement = Input.GetAxis("Horizontal");
@@ -292,19 +313,29 @@ public class PlayerController : MonoBehaviour
         if (collision.collider.CompareTag("Deadly"))
         {
             soundEffects.PlayDamageSound();
-            health.currentHearts -= 1;
+            if (!_invincible) health.currentHearts -= 1;
             Debug.Log("Lost a heart");
+            StartCoroutine(InvincibleTime());
+            PlayerKnockBack();
 
-            if(health.currentHearts <= 0)
-            {
-                Debug.Log("Dead!");
-                player.transform.position = extVars.spawnPoint;
-                Debug.Log("Respawned.");
-                health.currentHearts = extVars.maxHearts;
-                Debug.Log("Hearts set back to maxHearts");
-            }
         }
 
+    }
+
+    void PlayerKnockBack()
+    {
+        Debug.Log("KNOCKBACK!");
+        _rb.AddForce(extVars.knockBackForce * Vector3.left, ForceMode.Impulse);
+        _rb.AddForce(extVars.knockBackForce * Vector3.up, ForceMode.Impulse);
+    }
+
+    public IEnumerator InvincibleTime()
+    {
+        _invincible = true;
+
+        yield return new WaitForSeconds(extVars.invincibleTime);
+
+        _invincible = false;
     }
 
     // Lets character stay on moving platform
@@ -335,17 +366,17 @@ public class PlayerController : MonoBehaviour
             health.currentHearts = extVars.maxHearts;
         }
 
-        if (other.gameObject.CompareTag("Deadly"))
-        {
-            soundEffects.PlayDamageSound();
-            health.currentHearts -= 1;
+        // if (other.gameObject.CompareTag("Deadly"))
+        // {
+        //     soundEffects.PlayDamageSound();
+        //     health.currentHearts -= 1;
 
-            if(health.currentHearts <= 0)
-            {
-                player.transform.position = extVars.spawnPoint;
-                health.currentHearts = extVars.maxHearts;
-            }
-        }
+        //     if(health.currentHearts <= 0)
+        //     {
+        //         player.transform.position = extVars.spawnPoint;
+        //         health.currentHearts = extVars.maxHearts;
+        //     }
+        // }
 
 
     }
