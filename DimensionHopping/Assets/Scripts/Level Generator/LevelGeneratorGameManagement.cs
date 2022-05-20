@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
+
 public class LevelGeneratorGameManagement : MonoBehaviour
 {
 
@@ -9,7 +11,7 @@ public class LevelGeneratorGameManagement : MonoBehaviour
 
     private GenerateLevel _levelGenerationScript;
 
-    [SerializeField] private GameObject _canvas;
+    [SerializeField] private GameObject _buttons;
 
     [SerializeField] private bool _sceneReloaded;
 
@@ -111,7 +113,7 @@ public class LevelGeneratorGameManagement : MonoBehaviour
 
         if(_levelGenerationScript.levelGenerated) 
         {
-            _canvas.SetActive(false);
+            _buttons.SetActive(false);
             SpawnPlayer();
         }
         else if(!_levelGenerationScript.levelGenerated) Debug.Log("You need to generate a Level first!");
@@ -124,7 +126,7 @@ public class LevelGeneratorGameManagement : MonoBehaviour
     {
         _sceneManagementScript.ReloadScene();
         _levelGenerationScript.ResetAllRelevantVariables();
-        _canvas.SetActive(true);
+        _buttons.SetActive(true);
         //_playerSpawned = false;
     }
 
@@ -163,6 +165,11 @@ public class LevelGeneratorGameManagement : MonoBehaviour
 
         _playerHealthScript = _playerPrefab.GetComponent<PlayerHealth>();
         _playerHealthScript.externalPlayer = _extVarsPlayer;
+
+        for (int i = 0; i < 3; i++)
+        {
+            _playerHealthScript.hearts[i] = GameObject.FindGameObjectWithTag("Canvas").transform.Find("MainGame").GetChild(i).GetComponent<Image>();
+        }
 
         
     }

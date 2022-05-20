@@ -215,9 +215,9 @@ public class GenerateLevel : MonoBehaviour
 
                 _spawnSecondSpikeChance = 2;
 
-                _PGOFrequencyHighAmount = 6;
+                _PGOFrequencyHighAmount = 4;
 
-                _PGOFrequencyLowAmount = 3;
+                _PGOFrequencyLowAmount = 2;
 
 
 
