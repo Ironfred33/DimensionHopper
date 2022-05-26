@@ -22,7 +22,6 @@ public class GameManagement : MonoBehaviour
     private GameObject _canvas;
     private GameObject _drone;
     private SceneLoader _sceneLoaderScript;
-    private LevelCompleted _levelCompleted;
 
     private Goal _goalScript;
 
@@ -104,7 +103,6 @@ public class GameManagement : MonoBehaviour
         // Canvas
 
         _canvas = GameObject.FindGameObjectWithTag("Canvas");
-        _levelCompleted = GameObject.FindGameObjectWithTag("Canvas").GetComponent<LevelCompleted>();
 
 
         // Drohne
@@ -177,7 +175,6 @@ public class GameManagement : MonoBehaviour
     {
         _dronePositionScript.cameraEV = _externalVariables.GetComponent<EVCamera>();
         _dronePositionScript.camControl = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
-        _levelCompleted.sceneLoad = _sceneLoaderScript;
 
     }
 

@@ -1231,6 +1231,7 @@ MonoBehaviour:
   playerIsFlipped: 0
   soundEffects: {fileID: 8444326190716264463}
   parented: 0
+  canvas: {fileID: 8762688223998745806, guid: 9e44f5a600176b5479b9457199f5ce26, type: 3}
 --- !u!114 &-2324460300814063482
 MonoBehaviour:
   m_ObjectHideFlags: 0

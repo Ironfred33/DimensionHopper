@@ -11,6 +11,7 @@ public enum PlayerState
 }
 public class PlayerController : MonoBehaviour
 {
+
     public PlayerState state;
     //public GameObject externalVariables;
     public EVPlayer extVars;
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
     public SFX soundEffects;
     public bool parented;
 
+    public GameObject canvas;
     private bool _invincible;
 
     
@@ -42,6 +44,8 @@ public class PlayerController : MonoBehaviour
         _rb = player.GetComponent<Rigidbody>();
 
         //extVars = externalVariables.GetComponent<EVPlayer>();
+
+        canvas = GameObject.Find("Canvas");
 
 
     }
@@ -103,11 +107,7 @@ public class PlayerController : MonoBehaviour
 
           if(health.currentHearts <= 0)
             {
-                Debug.Log("Dead!");
-                player.transform.position = extVars.spawnPoint;
-                Debug.Log("Respawned.");
-                health.currentHearts = extVars.maxHearts;
-                Debug.Log("Hearts set back to maxHearts");
+                GameOver();
             }
 
     }
@@ -338,6 +338,15 @@ public class PlayerController : MonoBehaviour
         _invincible = false;
     }
 
+    // Aktiviert GameOverScreen und respawnt Spieler
+    public void GameOver()
+    {
+        canvas.GetComponent<UIManager>().state = UIState.GameOver;
+        player.transform.position = extVars.spawnPoint;
+        health.currentHearts = extVars.maxHearts;
+        
+    }
+
     // Lets character stay on moving platform
     
     private void OnCollisionStay(Collision collisionInfo)
@@ -361,9 +370,7 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("OutOfBounds"))
         {
-            Debug.Log("Out of Bounds");
-            player.transform.position = extVars.spawnPoint;
-            health.currentHearts = extVars.maxHearts;
+            GameOver();
         }
 
         // if (other.gameObject.CompareTag("Deadly"))

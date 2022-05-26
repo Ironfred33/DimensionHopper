@@ -266,6 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de773a3bdc1168c49a77ec29205b0821, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectableUI: {fileID: 0}
+  collectableUI: {fileID: 7333407057388420468, guid: 9e44f5a600176b5479b9457199f5ce26,
+    type: 3}
   collectibleOrder: 1
   collectSound: {fileID: 6470550061567449726}
