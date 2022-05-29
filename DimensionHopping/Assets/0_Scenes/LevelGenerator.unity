@@ -4105,7 +4105,7 @@ MonoBehaviour:
   _spike: {fileID: 0}
   _fourSpikes: {fileID: 0}
   platforms: []
-  maxSegmentLength: 10
+  maxSegmentLength: 15
   _countSegmentLength: 0
   segmentAmount: 100
   platformVerticalRange: 2
