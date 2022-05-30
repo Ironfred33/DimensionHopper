@@ -7,27 +7,16 @@ public class SpecialSight : MonoBehaviour
 {
 
     public Camera camera;
-
     public TransformPositionOnPerspective scriptPGO;
-
     public Vector3 transformFirstPoint;
     public Vector3 transformSecondPoint;
-
     public GameObject copy;
-
     public bool activeCoolDown;
-
     public bool activeSightTime;
-
-
     private float _elapsed;
     public GameObject instantiatedCopy;
-
     public GameObject instantiatedMovingCopy;
-
     public EVSpecialSight specialSightEV;
-
-    public GameObject parent;
 
     void Start()
     {
@@ -46,14 +35,6 @@ public class SpecialSight : MonoBehaviour
         }
 
     }
-
-
-    // Test für Commit
-
-
-    // COLLIDER ENTFERNEN, DAMIT SPIELER NICHT WIRKLICH AUF DIESE PLATTFORMEN KANN
-    // BEIDE COPYS BLINKEN LASSEN BZW OPACITY WEGNEHMEN
-
 
     // Führt Perspektivenvorschau durch, sofern PGO in Range ist 
     void ShootRay()
@@ -94,8 +75,7 @@ public class SpecialSight : MonoBehaviour
     // Erstellt PGO-Kopie
     void CreateCopy(RaycastHit hit)
     {
-        //GameObject instantiatedCopy;
-        //Transform instantiatedCopy;
+    
 
         copy = hit.transform.gameObject;
 

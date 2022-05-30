@@ -18,33 +18,19 @@ public class PGO : MonoBehaviour
     private Material _redGlow;
     private Material _yellowGlow;
     private Material _greenGlow;
-
-
     public WorldAxis worldAxis;
     public float worldAxisTargetPoint;
-
-    //public animCurve transitionCurve;
     public Vector3 transformFirstPoint;
     public Vector3 transformSecondPoint;
-
     private CameraTransition _camTransitionScript;
-
     private float _elapsed;
-
     private float _dt;
-
-    private float _transitionTime;
-
     private GameObject _platformChild;
-
     public float transitionDuration = 1f;
 
 
     public void PlatformSetup()
     {
-
-        // BoxCollider collider = this.gameObject.AddComponent<BoxCollider>() as BoxCollider;
-        // collider.isTrigger = true;
 
         AssignPoints();
         LoadGlows();

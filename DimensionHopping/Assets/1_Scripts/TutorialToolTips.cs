@@ -15,8 +15,6 @@ public class TutorialToolTips : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
 
-            Debug.Log("Triggered!");
-
             EnableObject(textToShow);
 
         }
@@ -31,7 +29,6 @@ public class TutorialToolTips : MonoBehaviour
         {
             DisableObject(textToShow);
 
-            Debug.Log("Exit!");
 
         }
 
