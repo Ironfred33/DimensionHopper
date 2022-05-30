@@ -240,7 +240,7 @@ public class CameraController : MonoBehaviour
         if (player.transform.rotation.eulerAngles.y > 45.1 && player.transform.rotation.eulerAngles.y <= 135.0)
         {
 
-            current2DEulerAngles = new Vector3(extVars.cameraXRotation2DP, 0, 0);
+            current2DEulerAngles = new Vector3(0, 0, 0);
 
 
 
@@ -248,14 +248,14 @@ public class CameraController : MonoBehaviour
         else if (player.transform.rotation.eulerAngles.y > 135.1 && player.transform.rotation.eulerAngles.y <= 225)
         {
 
-            current2DEulerAngles = new Vector3(extVars.cameraXRotation2DP, 90, 0);
+            current2DEulerAngles = new Vector3(0, 90, 0);
 
 
         }
         else if ((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
         {
 
-            current2DEulerAngles = new Vector3(extVars.cameraXRotation2DP, 180, 0);
+            current2DEulerAngles = new Vector3(0, 180, 0);
 
 
 
@@ -263,7 +263,7 @@ public class CameraController : MonoBehaviour
         else if (player.transform.rotation.eulerAngles.y >= 315.1 && player.transform.rotation.eulerAngles.y <= 359.9 || player.transform.rotation.eulerAngles.y >= 0 && player.transform.rotation.eulerAngles.y <= 45)
         {
 
-            current2DEulerAngles = new Vector3(extVars.cameraXRotation2DP, -90, 0);
+            current2DEulerAngles = new Vector3(0, -90, 0);
 
         }
 
