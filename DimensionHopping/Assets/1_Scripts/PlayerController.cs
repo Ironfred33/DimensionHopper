@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
 {
 
     public PlayerState state;
-    //public GameObject externalVariables;
     public EVPlayer extVars;
     public CameraController cameraControl;
     public CameraTransition cameraTransition;
@@ -21,20 +20,13 @@ public class PlayerController : MonoBehaviour
     public float groundRadius;
     public LayerMask groundMask;
     public bool isOnGround;
-    public bool lookRight = true;
     public GameObject player;
-
     private Rigidbody _rb;
     public PlayerHealth health;
-
     public Animator anim;
-
     public bool playerIsFlipped;
-    private bool _gamePaused;
-
     public SFX soundEffects;
     public bool parented;
-
     public GameObject canvas;
     private bool _invincible;
 
@@ -42,8 +34,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rb = player.GetComponent<Rigidbody>();
-
-        //extVars = externalVariables.GetComponent<EVPlayer>();
 
         canvas = GameObject.Find("Canvas");
 
@@ -124,7 +114,7 @@ public class PlayerController : MonoBehaviour
 
             player.transform.Translate(0, 0, horizontalMovement * extVars.speed2D *  Time.deltaTime);
             player.transform.localScale = new Vector3(1, 1, 1);
-            //cameraControl.FPPposition.transform.localScale = new Vector3(1, 1, 1);
+          
 
             playerIsFlipped = false;
 
@@ -136,9 +126,6 @@ public class PlayerController : MonoBehaviour
 
             player.transform.Translate(0, 0, horizontalMovement * extVars.speed2D * Time.deltaTime);
             player.transform.localScale = new Vector3(1, 1, -1);
-            //player.transform.Rotate(0, 180, 0);
-
-            //cameraControl.FPPposition.transform.Rotate(0, 180, 0);
             
 
             playerIsFlipped = true;
@@ -243,10 +230,6 @@ public class PlayerController : MonoBehaviour
                 state = PlayerState.Running;
             }
 
-
-
-            // player.transform.Translate(horizontalMovement * extVars.speedFP * Time.deltaTime, 0, 0);
-            // state = PlayerState.Running;
         }
         else if (Input.GetKey(KeyCode.A))
         {
@@ -261,10 +244,6 @@ public class PlayerController : MonoBehaviour
                 player.transform.Translate(- horizontalMovement * extVars.speedFP * Time.deltaTime, 0, 0);
                 state = PlayerState.Running;
             }
-
-            
-            // player.transform.Translate(horizontalMovement * extVars.speedFP * Time.deltaTime, 0, 0);
-            // state = PlayerState.Running;
         }
 
         

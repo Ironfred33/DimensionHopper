@@ -22,9 +22,7 @@ public class GameManagement : MonoBehaviour
     private GameObject _canvas;
     private GameObject _drone;
     private SceneLoader _sceneLoaderScript;
-
     private Goal _goalScript;
-
     private List<GameObject> _heartImages = new List<GameObject>();
 
     void Awake()
@@ -52,13 +50,8 @@ public class GameManagement : MonoBehaviour
 
         Instantiate(_playerPrefab, SpawnCoords, Quaternion.Euler(0, 90, 0));
 
-        //GetAllComponents();
-
-        //AssignComponentsToPlayer();
-
     }
 
-    // 
 
     // Lädt Spieler Prefab
     void LoadPrefab()
@@ -177,13 +170,6 @@ public class GameManagement : MonoBehaviour
         _dronePositionScript.camControl = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
 
     }
-
-
-
-
-
-
-
 
 
 

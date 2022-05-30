@@ -9,11 +9,11 @@ public class Platform : MonoBehaviour
     public enum CurrentAxis
     {
 
-        noAxis,
-        xPositive,
-        zPositive,
-        xNegative,
-        zNegative
+        NoAxis,
+        XPositive,
+        ZPositive,
+        XNegative,
+        ZNegative
     }
 
     public bool firstPlatform;

@@ -8,39 +8,21 @@ public class LevelGeneratorGameManagement : MonoBehaviour
 {
 
     private LevelGeneratorSceneManagement _sceneManagementScript;
-
     private GenerateLevel _levelGenerationScript;
-
     [SerializeField] private GameObject _buttons;
-
-    [SerializeField] private bool _sceneReloaded;
-
     public KeyCode restartButton;
-
     public KeyCode pauseButton;
-
     public KeyCode playerRespawn;
-
     public Vector3 spawnCoordinates;
-
     [SerializeField] private CameraController _camControlScript;
-
     [SerializeField] private CameraTransition _camTransitionScript;
-
     [SerializeField] private PlayerController _playerControlScript;
     private GameObject _player;
-
     [SerializeField] private GameObject _playerPrefab;
-
     [SerializeField] private EVPlayer _extVarsPlayer;
-
     private PlayerHealth _playerHealthScript;
-
-    
-
     private bool _paused;
 
-    //private bool _playerSpawned;
 
 
 
@@ -99,8 +81,6 @@ public class LevelGeneratorGameManagement : MonoBehaviour
     public void ButtonGenerate()
     {
 
-        //StartCoroutine(_levelGenerationScript.CountGenerationTime());
-
         if (!_levelGenerationScript.levelGenerated) _levelGenerationScript.Generate();
 
 
@@ -110,7 +90,6 @@ public class LevelGeneratorGameManagement : MonoBehaviour
     {
 
         
-
         if(_levelGenerationScript.levelGenerated) 
         {
             _buttons.SetActive(false);
@@ -127,12 +106,10 @@ public class LevelGeneratorGameManagement : MonoBehaviour
         _sceneManagementScript.ReloadScene();
         _levelGenerationScript.ResetAllRelevantVariables();
         _buttons.SetActive(true);
-        //_playerSpawned = false;
     }
 
     void SpawnPlayer()
     {
-        //_playerSpawned = true;
 
         _playerPrefab = Instantiate(_player, spawnCoordinates, Quaternion.identity);
 
@@ -151,7 +128,6 @@ public class LevelGeneratorGameManagement : MonoBehaviour
         _playerControlScript = _playerPrefab.GetComponent<PlayerController>();
 
         _camControlScript.trackingTarget = _playerPrefab.transform;
-        //_camControlScript.fpPosition = _playerPrefab.transform.Find("FPPPoint").gameObject;
         _camControlScript.player = _playerPrefab;
 
         _camTransitionScript.player = _playerPrefab;
@@ -174,9 +150,6 @@ public class LevelGeneratorGameManagement : MonoBehaviour
         
     }
 
-
-
-    
 
     IEnumerator WaitTime(float time)
     {

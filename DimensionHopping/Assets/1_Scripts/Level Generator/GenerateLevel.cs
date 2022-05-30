@@ -6,121 +6,76 @@ using System.Linq;
 public class GenerateLevel : MonoBehaviour
 {
 
-    public int[] generationOrder; // =  new int[] { 0, 1, 2, 3, 3, 0 };
-
+    public int[] generationOrder;
     public GameObject myPrefab;
-
-    [SerializeField]private GameObject _shortLengthPlatform;
-    [SerializeField]private GameObject _midLengthPlatform;
-    [SerializeField]private GameObject _longLengthPlatform;
-
+    [SerializeField] private GameObject _shortLengthPlatform;
+    [SerializeField] private GameObject _midLengthPlatform;
+    [SerializeField] private GameObject _longLengthPlatform;
     [SerializeField] private GameObject _spike;
     [SerializeField] private GameObject _fourSpikes;
-
     public List<GameObject> platforms = new List<GameObject>();
-
     public int maxSegmentLength;
-
-
     [SerializeField] private float _countSegmentLength;
     private GameObject _myPrefabChild;
-
-
     public int segmentAmount;
-
     public int platformVerticalRange;
-
-
+    public VerticalAlignment verticalAlignment;
+    private int _randomNumber;
+    public Vector3 platformSpawnPos;
+    private int _highGapLengthAmount;
+    private int _lowGapLengthAmount;
+    [SerializeField] private int _generatedSegments;
+    private int _directionCounter;
+    private bool _isGenerating;
+    private int _remainingSegmentLength;
+    public bool levelGenerated;
+    public bool segmentGenerated;
+    [SerializeField] private float _spawnAxis;
+    public Platform platformScript;
+    [SerializeField] private CameraTransition _cameraTransitionScript;
+    public bool generateRandomDirections;
+    public bool generateControlledRandomDirections;
+    public GameObject prefabCopy;
+    private int _spikeFrequencyHighAmount;
+    private int _spikeFrequencyLowAmount;
+    private int _spikeFrequency;
+    private int _PGOFrequencyHighAmount;
+    private int _PGOFrequencyLowAmount;
+    private int _PGOFrequency;
+    private bool _firstPlatformIgnored;
+    private bool _firstPlatformMarked;
+    private int _spawnSecondSpikeChance;
+    private Material _goalMaterial;
+    public Difficulty difficulty;
+    private CurrentAxis currentAxis;
+    public enum Difficulty
+    {
+        Easy,
+        Normal,
+        Hard
+    }
+    public enum CurrentAxis
+    {
+        XPositive,
+        XNegative,
+        ZPositive,
+        ZNegative
+    }
     public enum VerticalAlignment
     {
         Downwards,
-
         Even,
-
         Upwards
     }
 
-    public VerticalAlignment verticalAlignment;
-    private int _randomNumber;
-
-    public Vector3 platformSpawnPos;
 
 
-    private int _highGapLengthAmount;
-
-    private int _lowGapLengthAmount;
-
-    [SerializeField] private int _generatedSegments;
-
-    private int _directionCounter;
-
-    private bool _isGenerating;
-
-    private int _remainingSegmentLength;
-
-    public bool levelGenerated;
-
-    public bool segmentGenerated;
-
-    [SerializeField] private float _spawnAxis;
-
-    public Platform platformScript;
-
-    [SerializeField] private CameraTransition _cameraTransitionScript;
-
-    public bool generateRandomDirections;
-
-    public bool generateControlledRandomDirections;
-
-    public GameObject prefabCopy;
-
-
-    private int _spikeFrequencyHighAmount;
-
-    private int _spikeFrequencyLowAmount;
-
-    private int _spikeFrequency;
-
-    private int _PGOFrequencyHighAmount;
-    private int _PGOFrequencyLowAmount;
-
-    private int _PGOFrequency;
-
-    private bool _firstPlatformIgnored;
-
-    private bool _firstPlatformMarked;
-
-
-
-    private int _spawnSecondSpikeChance;
-
-    private Material _goalMaterial;
-    public enum Difficulty
-    {
-        EASY,
-        NORMAL,
-        HARD
-    }
-
-
-    public enum CurrentAxis
-    {
-        xPositive,
-        xNegative,
-        zPositive,
-        zNegative
-    }
-
-
-    public Difficulty difficulty;
-
-    private CurrentAxis currentAxis;
 
 
     void Start()
     {
         Setup();
-    
+
 
     }
 
@@ -136,7 +91,6 @@ public class GenerateLevel : MonoBehaviour
     void Setup()
     {
 
-        //StartCoroutine(CountGenerationTime());
 
         LoadPrefabs();
 
@@ -144,7 +98,6 @@ public class GenerateLevel : MonoBehaviour
 
         SetDifficulty();
 
-        //PGO PGOscript = 
 
 
     }
@@ -161,7 +114,7 @@ public class GenerateLevel : MonoBehaviour
 
         switch (difficulty)
         {
-            case (Difficulty.EASY):
+            case (Difficulty.Easy):
 
                 _highGapLengthAmount = 4;
                 _lowGapLengthAmount = 1;
@@ -178,14 +131,10 @@ public class GenerateLevel : MonoBehaviour
 
 
 
-                //_spikeFrequency = 4;
-
-
-
 
                 break;
 
-            case (Difficulty.NORMAL):
+            case (Difficulty.Normal):
 
                 _highGapLengthAmount = 5;
                 _lowGapLengthAmount = 2;
@@ -204,7 +153,7 @@ public class GenerateLevel : MonoBehaviour
 
                 break;
 
-            case (Difficulty.HARD):
+            case (Difficulty.Hard):
 
                 _highGapLengthAmount = 6;
                 _lowGapLengthAmount = 3;
@@ -259,6 +208,7 @@ public class GenerateLevel : MonoBehaviour
         // komplett entgegengesetzte generiert werden. Dafür entstehen aber teilsweise sehr interessante Level
 
         if (generateRandomDirections) GenerateRandomDirections();
+
         // Kontrollierte Generierung der Directions, hier wird auch random generiert aber verhindert, dass nach der Generierung in eine Richtung direkt in die entgegengesetzte generiert wird
         else if (generateControlledRandomDirections) GenerateControlledRandomDirections();
 
@@ -313,13 +263,12 @@ public class GenerateLevel : MonoBehaviour
 
                 Debug.Log(platform.transform.position);
 
-                // PGOscript.worldAxisTargetPoint = platform.transform.position.z + randomRelocation;
 
                 // setze Achse des PGOs 
 
                 switch (platformScript.currentAxis)
                 {
-                    case Platform.CurrentAxis.xPositive:
+                    case Platform.CurrentAxis.XPositive:
 
                         PGOscript.worldAxis = PGO.WorldAxis.PGOxPositive;
 
@@ -332,7 +281,7 @@ public class GenerateLevel : MonoBehaviour
 
 
 
-                    case Platform.CurrentAxis.zPositive:
+                    case Platform.CurrentAxis.ZPositive:
 
                         PGOscript.worldAxis = PGO.WorldAxis.PGOzPositive;
 
@@ -345,7 +294,7 @@ public class GenerateLevel : MonoBehaviour
                         break;
 
 
-                    case Platform.CurrentAxis.xNegative:
+                    case Platform.CurrentAxis.XNegative:
 
 
                         PGOscript.worldAxis = PGO.WorldAxis.PGOxNegative;
@@ -358,7 +307,7 @@ public class GenerateLevel : MonoBehaviour
 
                         break;
 
-                    case Platform.CurrentAxis.zNegative:
+                    case Platform.CurrentAxis.ZNegative:
 
                         PGOscript.worldAxis = PGO.WorldAxis.PGOzNegative;
 
@@ -393,9 +342,6 @@ public class GenerateLevel : MonoBehaviour
 
         lastPlatform.transform.Find("Cube").gameObject.GetComponent<MeshRenderer>().material = _goalMaterial;
 
-        // Hier noch Collider in "Ziel" ändern, damit Szene neu geladen wird
-
-        //Object.GetComponent<MeshRenderer> ().material = Material1;Object.GetComponent<MeshRenderer> ().material = Material1;
 
     }
 
@@ -433,7 +379,7 @@ public class GenerateLevel : MonoBehaviour
 
                     switch (platformScript.currentAxis)
                     {
-                        case Platform.CurrentAxis.xPositive:
+                        case Platform.CurrentAxis.XPositive:
 
 
                             if (platform.name == "ShortLengthPlatform(Clone)")
@@ -462,7 +408,6 @@ public class GenerateLevel : MonoBehaviour
                             }
 
 
-                            //else if(platform.name == "LongLengthPlatform(Clone)") return; // Plattform in 5 Teile teilen, dann bei 2/5 spikes generieren und bei 4/5
 
                             else
                             {
@@ -476,7 +421,7 @@ public class GenerateLevel : MonoBehaviour
 
 
 
-                        case Platform.CurrentAxis.zPositive:
+                        case Platform.CurrentAxis.ZPositive:
 
 
                             if (platform.name == "ShortLengthPlatform(Clone)")
@@ -519,7 +464,7 @@ public class GenerateLevel : MonoBehaviour
                             break;
 
 
-                        case Platform.CurrentAxis.xNegative:
+                        case Platform.CurrentAxis.XNegative:
 
 
                             if (platform.name == "ShortLengthPlatform(Clone)")
@@ -557,7 +502,7 @@ public class GenerateLevel : MonoBehaviour
 
                             break;
 
-                        case Platform.CurrentAxis.zNegative:
+                        case Platform.CurrentAxis.ZNegative:
 
 
                             if (platform.name == "ShortLengthPlatform(Clone)")
@@ -677,7 +622,7 @@ public class GenerateLevel : MonoBehaviour
     {
 
         SetSpawnAxis();
-        
+
         segmentGenerated = false;
 
         _countSegmentLength = 0;
@@ -712,14 +657,14 @@ public class GenerateLevel : MonoBehaviour
         {
             _spawnAxis = 0;
 
-            currentAxis = CurrentAxis.xPositive;
+            currentAxis = CurrentAxis.XPositive;
 
         }
         else if (generationOrder[_directionCounter] == 1)
         {
             _spawnAxis = 270;
 
-            currentAxis = CurrentAxis.zPositive;
+            currentAxis = CurrentAxis.ZPositive;
 
 
         }
@@ -727,7 +672,7 @@ public class GenerateLevel : MonoBehaviour
         {
             _spawnAxis = 180;
 
-            currentAxis = CurrentAxis.xNegative;
+            currentAxis = CurrentAxis.XNegative;
 
 
         }
@@ -736,7 +681,7 @@ public class GenerateLevel : MonoBehaviour
         {
             _spawnAxis = 90;
 
-            currentAxis = CurrentAxis.zNegative;
+            currentAxis = CurrentAxis.ZNegative;
 
 
         }
@@ -757,8 +702,6 @@ public class GenerateLevel : MonoBehaviour
         levelGenerated = false;
         _firstPlatformIgnored = false;
         platforms = new List<GameObject>();
-
-        //ResetCameraTransitionScript();
 
     }
 
@@ -814,11 +757,11 @@ public class GenerateLevel : MonoBehaviour
         AddPlatformToList(prefabCopy);
 
 
-        if(!_firstPlatformMarked) {
+        if (!_firstPlatformMarked)
+        {
 
             prefabCopy.GetComponent<Platform>().firstPlatform = true;
 
-            //MarkFirstPlatformOfSegment();
             _firstPlatformMarked = true;
 
         }
@@ -840,9 +783,6 @@ public class GenerateLevel : MonoBehaviour
 
         float _gapLength = RandomNumber(_lowGapLengthAmount, _highGapLengthAmount);
 
-        //prefabCoppy
-        //_myPrefabChild
-
         _myPrefabChild = prefabCopy.transform.Find("Cube").gameObject;
 
 
@@ -851,9 +791,6 @@ public class GenerateLevel : MonoBehaviour
 
         if ((_gapLength + _myPrefabChild.transform.localScale.x + _countSegmentLength) > maxSegmentLength)
         {
-
-            //MarkLastPlatformOfSegment();
-
 
             _gapLength -= ((_gapLength + _myPrefabChild.transform.localScale.x + _countSegmentLength) - maxSegmentLength);
 
@@ -864,11 +801,6 @@ public class GenerateLevel : MonoBehaviour
 
 
         SetSpawnPointAxisDependent(_myPrefabChild, _gapLength);
-
-
-        // AUCH AN Z ANPASSEN DAMIT BERECHNUNG KORREKT IST
-
-        //Debug.Log(platformSpawnPos.x + _myPrefabChild.transform.localScale.x + _gapLength + " = " + platformSpawnPos.x + " + " + _myPrefabChild.transform.localScale.x + " + " + _gapLength);
 
 
         // festlegung Y-Achse: platFormVerticalRange legt fest, wie hoch die Abstände auf der Y-Achse der Plattformen zueinander sein können
@@ -887,34 +819,34 @@ public class GenerateLevel : MonoBehaviour
 
         switch (currentAxis)
         {
-            case CurrentAxis.xPositive:
+            case CurrentAxis.XPositive:
 
-                //prefabCopy.GetComponent<Platform>().currentAxis = Platform.CurrentAxis.xPositive;
 
-                platformScript.currentAxis = Platform.CurrentAxis.xPositive;
 
-                break;
-
-            case CurrentAxis.zPositive:
-
-                //prefabCopy.GetComponent<Platform>().currentAxis = Platform.CurrentAxis.zPositive;
-
-                platformScript.currentAxis = Platform.CurrentAxis.zPositive;
-                break;
-
-            case CurrentAxis.xNegative:
-
-                //prefabCopy.GetComponent<Platform>().currentAxis = Platform.CurrentAxis.xNegative;
-
-                platformScript.currentAxis = Platform.CurrentAxis.xNegative;
+                platformScript.currentAxis = Platform.CurrentAxis.XPositive;
 
                 break;
 
-            case CurrentAxis.zNegative:
+            case CurrentAxis.ZPositive:
 
-                //prefabCopy.GetComponent<Platform>().currentAxis = Platform.CurrentAxis.zNegative;
 
-                platformScript.currentAxis = Platform.CurrentAxis.zNegative;
+
+                platformScript.currentAxis = Platform.CurrentAxis.ZPositive;
+                break;
+
+            case CurrentAxis.XNegative:
+
+
+
+                platformScript.currentAxis = Platform.CurrentAxis.XNegative;
+
+                break;
+
+            case CurrentAxis.ZNegative:
+
+
+
+                platformScript.currentAxis = Platform.CurrentAxis.ZNegative;
 
                 break;
         }
@@ -958,31 +890,29 @@ public class GenerateLevel : MonoBehaviour
     void SetSpawnPointAxisDependent(GameObject platform, float gapLength)
     {
 
-        //platformSpawnPos.x += platform.transform.localScale.x + gapLength;
-
 
 
         switch (currentAxis)
         {
-            case CurrentAxis.xPositive:
+            case CurrentAxis.XPositive:
 
                 platformSpawnPos.x += platform.transform.localScale.x + gapLength;
 
                 break;
 
-            case CurrentAxis.zPositive:
+            case CurrentAxis.ZPositive:
 
                 platformSpawnPos.z += platform.transform.localScale.x + gapLength;
 
                 break;
 
-            case CurrentAxis.xNegative:
+            case CurrentAxis.XNegative:
 
                 platformSpawnPos.x -= platform.transform.localScale.x + gapLength;
 
                 break;
 
-            case CurrentAxis.zNegative:
+            case CurrentAxis.ZNegative:
 
                 platformSpawnPos.z -= platform.transform.localScale.x + gapLength;
 
@@ -992,24 +922,6 @@ public class GenerateLevel : MonoBehaviour
         }
 
     }
-
-    public IEnumerator CountGenerationTime()
-    {
-        float generationTime = 0;
-
-        while (!levelGenerated)
-        {
-            generationTime += Time.deltaTime;
-
-        }
-
-        //if(levelGenerated) 
-        Debug.Log("Generation Time: " + generationTime);
-
-        yield return null;
-    }
-
-
 
 
     public int RandomNumber(int min, int max)

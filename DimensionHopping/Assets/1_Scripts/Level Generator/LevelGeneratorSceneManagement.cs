@@ -12,10 +12,6 @@ public class LevelGeneratorSceneManagement : MonoBehaviour
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
-
-
-
-
     }
 
 }
