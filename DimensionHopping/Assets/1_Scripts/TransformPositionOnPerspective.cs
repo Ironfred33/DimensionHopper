@@ -5,7 +5,6 @@ using UnityEngine;
 // Verschiebt PGOs 
 public class TransformPositionOnPerspective : MonoBehaviour
 {
-
     public enum WorldAxis
     {
 
@@ -19,22 +18,13 @@ public class TransformPositionOnPerspective : MonoBehaviour
     private Material _redGlow;
     private Material _yellowGlow;
     private Material _greenGlow;
-
-
     public WorldAxis worldAxis;
     public float worldAxisTargetPoint;
-
-    //public animCurve transitionCurve;
     public Vector3 transformFirstPoint;
     public Vector3 transformSecondPoint;
-
     private EVCameraTransition _EVcamTransitionScript;
-
     private float _elapsed;
-
     private float _dt;
-
-    private float _transitionTime;
 
 
 
@@ -68,13 +58,8 @@ public class TransformPositionOnPerspective : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        Debug.Log("Duration im PGO Script: " + _EVcamTransitionScript.duration);
-    }
-
     // Lädt Materialien für Glow Effekt
-     void LoadGlows()
+    void LoadGlows()
     {
         _blueGlow = Resources.Load("Materials/Glows/Glow_Blue") as Material;
         _redGlow = Resources.Load("Materials/Glows/Glow_Red") as Material;
@@ -91,7 +76,6 @@ public class TransformPositionOnPerspective : MonoBehaviour
             case (WorldAxis.PGOxPositive):
                 gameObject.tag = "PGOxPositive";
                 GetComponent<Renderer>().material = _blueGlow;
-                
                 break;
 
             case (WorldAxis.PGOxNegative):
@@ -113,7 +97,7 @@ public class TransformPositionOnPerspective : MonoBehaviour
 
     }
 
-   
+
     // Greift Dauer des Perspektivwechsels auf
     void GetDuration()
     {
@@ -134,9 +118,9 @@ public class TransformPositionOnPerspective : MonoBehaviour
             {
                 _dt = Time.deltaTime;
                 _elapsed += _dt;
-                transform.position = Vector3.Lerp(transformFirstPoint, transformSecondPoint, _elapsed /  _EVcamTransitionScript.duration);
+                transform.position = Vector3.Lerp(transformFirstPoint, transformSecondPoint, _elapsed / _EVcamTransitionScript.duration);
 
-               
+
                 yield return null;
             }
 
@@ -149,24 +133,20 @@ public class TransformPositionOnPerspective : MonoBehaviour
                 _elapsed += _dt;
 
                 transform.position = Vector3.Lerp(transformSecondPoint, transformFirstPoint, _elapsed / _EVcamTransitionScript.duration);
-        
+
                 yield return null;
             }
         }
-
-
-
-
     }
 
     void OnCollisionStay(Collision collisionInfo)
     {
-        if(collisionInfo.collider.CompareTag("MovingPlatform"))
+        if (collisionInfo.collider.CompareTag("MovingPlatform"))
         {
             Debug.Log("Parenting");
             transform.SetParent(collisionInfo.collider.transform);
         }
-            
+
     }
 
     void OnCollisionExit(Collision other)

@@ -5,18 +5,12 @@ using UnityEngine;
 // Tastenkürzel für Befehle
 public class SpecialKeys : MonoBehaviour
 {
-    // Start is called before the first frame update
 
     private bool _gamePaused;
-
     public KeyCode pauseGameKey;
-
     public KeyCode restartKey;
-
     public KeyCode loadNextSceneKey;
-
     public KeyCode loadLastSceneKey;
-
     private SceneLoader _sceneLoaderScript;
 
     void Start()
@@ -26,7 +20,7 @@ public class SpecialKeys : MonoBehaviour
 
     
 
-    // Update is called once per frame
+
     void Update()
     {
 

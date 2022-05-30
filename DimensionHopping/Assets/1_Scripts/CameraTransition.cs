@@ -11,33 +11,17 @@ public class CameraTransition : MonoBehaviour
     public CameraController cameraControl;
     public PlayerController playerControl;
     private Quaternion _rotation2DP;
-
     public GameObject[] arrayPGOxPositive;
     public GameObject[] arrayPGOxNegative;
     public GameObject[] arrayPGOzPositive;
     public GameObject[] arrayPGOzNegative;
-
     public GameObject compass;
-
     public GameObject crossHair;
-
-    private TransformPositionOnPerspective _transformPGOScript;
-
-    /*
-    public GameObject block;
-    public GameObject crane;
-    public RedButton rb;
-    */
-
     public GameObject player;
-
     public AnimCurve curve2DToFPP;
     public AnimCurve curveFPPTo2D;
-
     private float _transitionTime;
-
     private bool _levelGenerator;
-
     public bool switchingFrom2DtoFPP = false;
     public bool switchingFromFPPto2D = false;
 
@@ -89,7 +73,6 @@ public class CameraTransition : MonoBehaviour
     public void PGOSetup()
     {
 
-        Debug.Log("PGO SETUP IN CAM TRANS TRIGGERED");
         GetAllPGOs();
         GetAllPGOScriptsGenerator();
     }
@@ -162,7 +145,6 @@ public class CameraTransition : MonoBehaviour
         if (switchingFrom2DtoFPP)
         {
             TogglePlayerControl();
-            //TransformPGOPositions();
 
 
             while (_elapsed <= extVars.duration)
@@ -198,15 +180,11 @@ public class CameraTransition : MonoBehaviour
             DisableObject(compass);
             DisableObject(crossHair);
             TogglePlayerControl();
-            //TransformPGOPositions();
 
             while (_elapsed <= extVars.duration)
             {
                 _dt = Time.deltaTime;
                 _elapsed = _elapsed + _dt;
-                //Debug.Log("Running");
-
-
 
                 // Interpoliert Position und Rotation
 
@@ -335,7 +313,7 @@ public class CameraTransition : MonoBehaviour
     void TransformPGOPositions()
     {
 
-        if (transformScriptsPGOxPositive != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.xPositive)
+        if (transformScriptsPGOxPositive != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.XPositive)
         {
             foreach (TransformPositionOnPerspective script in transformScriptsPGOxPositive)
             {
@@ -344,7 +322,7 @@ public class CameraTransition : MonoBehaviour
             }
         }
 
-        if (transformScriptsPGOxNegative != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.xNegative)
+        if (transformScriptsPGOxNegative != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.XNegative)
         {
             foreach (TransformPositionOnPerspective script in transformScriptsPGOxNegative)
             {
@@ -352,7 +330,7 @@ public class CameraTransition : MonoBehaviour
             }
         }
 
-        if (transformScriptsPGOzPositive != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.zPositive)
+        if (transformScriptsPGOzPositive != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.ZPositive)
         {
             foreach (TransformPositionOnPerspective script in transformScriptsPGOzPositive)
             {
@@ -360,7 +338,7 @@ public class CameraTransition : MonoBehaviour
             }
         }
 
-        if (transformScriptsPGOzNegative != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.zNegative)
+        if (transformScriptsPGOzNegative != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.ZNegative)
         {
             foreach (TransformPositionOnPerspective script in transformScriptsPGOzNegative)
             {
@@ -374,7 +352,7 @@ public class CameraTransition : MonoBehaviour
 
     void TransformPGOPositionsGenerator()
     {
-        if (transformScriptsPGOxPositiveGenerator != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.xPositive)
+        if (transformScriptsPGOxPositiveGenerator != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.XPositive)
         {
             foreach (PGO script in transformScriptsPGOxPositiveGenerator)
             {
@@ -383,7 +361,7 @@ public class CameraTransition : MonoBehaviour
             }
         }
 
-        if (transformScriptsPGOxNegativeGenerator != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.xNegative)
+        if (transformScriptsPGOxNegativeGenerator != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.XNegative)
         {
             foreach (PGO script in transformScriptsPGOxNegativeGenerator)
             {
@@ -391,7 +369,7 @@ public class CameraTransition : MonoBehaviour
             }
         }
 
-        if (transformScriptsPGOzPositiveGenerator != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.zPositive)
+        if (transformScriptsPGOzPositiveGenerator != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.ZPositive)
         {
             foreach (PGO script in transformScriptsPGOzPositiveGenerator)
             {
@@ -399,7 +377,7 @@ public class CameraTransition : MonoBehaviour
             }
         }
 
-        if (transformScriptsPGOzNegativeGenerator != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.zNegative)
+        if (transformScriptsPGOzNegativeGenerator != null && cameraControl.playerOrientation == CameraController.PlayerOrientation.ZNegative)
         {
             foreach (PGO script in transformScriptsPGOzNegativeGenerator)
             {

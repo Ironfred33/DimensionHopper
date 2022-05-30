@@ -7,29 +7,24 @@ public class CameraController : MonoBehaviour
 {
 
     public Transform trackingTarget;
-
     public GameObject externalVariables;
     public EVCamera extVars;
     public GameObject fpPosition;
     public GameObject player;
     public Vector3 current2DPosition;
     public Vector3 current2DEulerAngles;
-
     float xRotationFPP = 0f;
     float yRotationFPP = 0f;
-
     public bool is2DView;
     private Vector3 _cameraFirstPersonPosition;
-
     public float smoothing = 0.05f;
-
     public enum PlayerOrientation
     {
 
-        xPositive,
-        xNegative,
-        zPositive,
-        zNegative
+        XPositive,
+        XNegative,
+        ZPositive,
+        ZNegative
 
 
     }
@@ -50,12 +45,6 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-
-        // Debug.Log("CAMERACONTROLLER UPDATE TRIGGERED");
-
-        //Debug.Log("Tracking Target: " + trackingTarget.position);
-
-        //Debug.Log("FPP Position: " + FPPposition.position.x, FPPposition.y)
 
 
         if(GameObject.FindGameObjectWithTag("Player") != null) _cameraFirstPersonPosition = fpPosition.transform.position;
@@ -131,20 +120,8 @@ public class CameraController : MonoBehaviour
 
             player.transform.rotation = Quaternion.Euler(0, 90, 0);
 
-            //  if (!playerIsFlipped)
-            // {
-            //     yRotationFPP = 0;
-            //     playerOrientation = PlayerOrientation.xPositive;
-            // }
-            // else if (playerIsFlipped)
-            // {
-            //     yRotationFPP = 180;
-            //     playerOrientation = PlayerOrientation.xNegative;
-            // }
-
-
             yRotationFPP = 0;
-            playerOrientation = PlayerOrientation.xPositive;
+            playerOrientation = PlayerOrientation.XPositive;
 
 
 
@@ -160,7 +137,7 @@ public class CameraController : MonoBehaviour
 
             player.transform.rotation = Quaternion.Euler(0, 180, 0);
             yRotationFPP = 270;
-            playerOrientation = PlayerOrientation.zNegative;
+            playerOrientation = PlayerOrientation.ZNegative;
 
         }
 
@@ -175,7 +152,7 @@ public class CameraController : MonoBehaviour
             player.transform.rotation = Quaternion.Euler(0, 270, 0);
 
             yRotationFPP = 180;
-            playerOrientation = PlayerOrientation.xNegative;
+            playerOrientation = PlayerOrientation.XNegative;
 
         }
 
@@ -188,7 +165,7 @@ public class CameraController : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, current2DPosition , smoothing);
             player.transform.rotation = Quaternion.Euler(0, 0, 0);
             yRotationFPP = 90;
-            playerOrientation = PlayerOrientation.zPositive;
+            playerOrientation = PlayerOrientation.ZPositive;
         }
 
 
@@ -198,9 +175,7 @@ public class CameraController : MonoBehaviour
     void TrackingInFP()
     {
 
-        // Der Code hier steuert die Maus in der FPP. Das mit dem Pitch und Yaw hab ich aus dem Internet, soll verhindern dass sich die
-        // z-Achse auch verschiebt. Frag mich nicht wie das funktioniert, aber davor hat sich auch öfter mal die z-Achse verschoben
-        // dafür gibts eventuell auch noch eine bessere Lösung mit gimbal lock.
+        // Der Code hier steuert die Maus in der FPP
 
 
         float pitch = Input.GetAxis("Mouse Y") * extVars.mouseSensitivityFP * Time.deltaTime;
@@ -213,13 +188,6 @@ public class CameraController : MonoBehaviour
         yRotationFPP -= yaw;
         xRotationFPP -= pitch;
         xRotationFPP = Mathf.Clamp(xRotationFPP, -60f, 60f);
-
-        //Debug.Log("XRotation = " + pitch);
-
-        //float yaw = Input.GetAxis("Mouse X") * extVars.mouseSensitivityFP;
-
-
-        // ------------------------------------ HIER BUG ------------------------------
 
         player.transform.Rotate(yaw * Vector3.up);
 
