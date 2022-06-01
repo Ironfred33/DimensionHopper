@@ -6,7 +6,8 @@ public enum UIState
 {
         MainGame,
         GameOver,
-        LevelCompleted
+        LevelCompleted,
+        LevelGenerator
 }
 
 public class UIManager : MonoBehaviour
@@ -15,6 +16,7 @@ public class UIManager : MonoBehaviour
     public GameObject mainGameScreen;
     public GameObject gameOverScreen;
     public GameObject levelCompletedScreen;
+    public GameObject levelGeneratorScreen;
     public UIState state;
     public SceneLoader sceneLoad;
 
@@ -23,6 +25,7 @@ public class UIManager : MonoBehaviour
         mainGameScreen = this.transform.Find("MainGame").gameObject;
         gameOverScreen = this.transform.Find("GameOver").gameObject;
         levelCompletedScreen = this.transform.Find("LevelCompleted").gameObject;
+        levelGeneratorScreen = this.transform.Find("LevelGenerator").gameObject;
     }
 
     void Update()
@@ -52,6 +55,11 @@ public class UIManager : MonoBehaviour
             case UIState.LevelCompleted:
                 mainGameScreen.SetActive(false);
                 levelCompletedScreen.SetActive(true);
+                Cursor.visible = true;
+                break;
+            case UIState.LevelGenerator:
+                mainGameScreen.SetActive(false);
+                levelGeneratorScreen.SetActive(true);
                 Cursor.visible = true;
                 break;
         }

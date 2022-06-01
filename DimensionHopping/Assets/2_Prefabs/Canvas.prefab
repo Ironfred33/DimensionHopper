@@ -334,7 +334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1180137880151851505
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1985,7 +1985,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8546237361852122947
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2583,7 +2583,8 @@ MonoBehaviour:
   mainGameScreen: {fileID: 8167750682975157286}
   gameOverScreen: {fileID: 1559869706180477135}
   levelCompletedScreen: {fileID: 732761750070352156}
-  state: 1
+  levelGeneratorScreen: {fileID: 0}
+  state: 0
   sceneLoad: {fileID: 2250018989694539813, guid: a76078d6a6aa4ea4c960a37a6182c679,
     type: 3}
 --- !u!1 &8762688224038735567
