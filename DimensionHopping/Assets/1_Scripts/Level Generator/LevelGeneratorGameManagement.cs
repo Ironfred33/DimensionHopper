@@ -46,7 +46,7 @@ public class LevelGeneratorGameManagement : MonoBehaviour
         _extVarsPlayer = GameObject.FindGameObjectWithTag("ExternalVariables").GetComponent<EVPlayer>();
 
         _player = Resources.Load("Prefabs/character_v2") as GameObject;
-        spawnCoordinates = new Vector3(1, 2, 0);
+        spawnCoordinates = new Vector3(1, 0, 0);
 
     }
 
@@ -108,7 +108,7 @@ public class LevelGeneratorGameManagement : MonoBehaviour
         _buttons.SetActive(true);
     }
 
-    void SpawnPlayer()
+    public void SpawnPlayer()
     {
 
         _playerPrefab = Instantiate(_player, spawnCoordinates, Quaternion.identity);

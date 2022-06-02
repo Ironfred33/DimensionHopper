@@ -3209,6 +3209,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mover: {fileID: 0}
+--- !u!1 &426840549 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4944779151268460431, guid: 186d6350790e79f4ab3901e4b08e80d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 612146586}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &428463167
 Mesh:
   m_ObjectHideFlags: 0
@@ -4227,6 +4233,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1168294405947620735, guid: 186d6350790e79f4ab3901e4b08e80d0,
+        type: 3}
+      propertyPath: crossHair
+      value: 
+      objectReference: {fileID: 426840549}
     - target: {fileID: 3336433437684698387, guid: 186d6350790e79f4ab3901e4b08e80d0,
         type: 3}
       propertyPath: state
@@ -4237,6 +4248,11 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4944779151909280880, guid: 186d6350790e79f4ab3901e4b08e80d0,
+        type: 3}
+      propertyPath: camControl
+      value: 
+      objectReference: {fileID: 1463839253}
     - target: {fileID: 5402708711731069897, guid: 186d6350790e79f4ab3901e4b08e80d0,
         type: 3}
       propertyPath: camControl
