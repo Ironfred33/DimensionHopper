@@ -17,6 +17,8 @@ public class StateBar : MonoBehaviour
     {
         _activatedColor.a = 1f;
         _deactivedColor.a = 0.5f;
+
+        camControl = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
         
     }
     void Update()

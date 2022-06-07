@@ -19,8 +19,16 @@ public class Compass : MonoBehaviour
 
     void Update()
     {
-        _direction.z = _playerTransform.eulerAngles.y;
-        transform.localEulerAngles = _direction;
+        if(_playerTransform == null)
+        {
+            _playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>(); 
+        }
 
+        else
+        {
+            _direction.z = _playerTransform.eulerAngles.y;
+            transform.localEulerAngles = _direction;
+        }
+        
     }
 }
