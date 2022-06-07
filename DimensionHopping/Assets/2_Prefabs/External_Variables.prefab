@@ -58,6 +58,7 @@ MonoBehaviour:
   gravityScale: 1
   fallMultiplier: 5
   knockBackForce: 3
+  invincibleTime: 2
   linearDrag: 2
   maxCollectibles: 0
 --- !u!114 &7123726539426643508

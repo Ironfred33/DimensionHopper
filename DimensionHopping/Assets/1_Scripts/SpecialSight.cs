@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -50,10 +50,16 @@ public class SpecialSight : MonoBehaviour
 
                 Debug.Log(hit.transform.tag);
 
-                scriptPGO = hit.transform.GetComponent<TransformPositionOnPerspective>();
+                
 
-                transformFirstPoint = scriptPGO.transformFirstPoint;
-                transformSecondPoint = scriptPGO.transformSecondPoint;
+
+                
+                    scriptPGO = hit.transform.GetComponent<TransformPositionOnPerspective>();
+                    
+                    transformFirstPoint = scriptPGO.transformFirstPoint;
+                    transformSecondPoint = scriptPGO.transformSecondPoint;
+                
+                
 
                 CreateCopy(hit);
                 StartCoroutine(TrackCoolDown());
