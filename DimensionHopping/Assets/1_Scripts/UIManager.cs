@@ -30,12 +30,11 @@ public class UIManager : MonoBehaviour
         levelCompletedScreen = this.transform.Find("LevelCompleted").gameObject;
         levelGeneratorScreen = this.transform.Find("LevelGenerator").gameObject;
 
-        _levelGenerationScript =  GameObject.FindGameObjectWithTag("LevelGenerator").GetComponent<GenerateLevel>();
-        _levelGenerationManagement =  GameObject.FindGameObjectWithTag("LevelGenerationManager").GetComponent<LevelGeneratorGameManagement>();
-
         if(SceneManager.GetActiveScene().name == "LevelGeneratorFred")
         {
             state = UIState.LevelGenerator;
+            _levelGenerationScript =  GameObject.FindGameObjectWithTag("LevelGenerator").GetComponent<GenerateLevel>();
+            _levelGenerationManagement =  GameObject.FindGameObjectWithTag("LevelGenerationManager").GetComponent<LevelGeneratorGameManagement>();
         }
 
         else

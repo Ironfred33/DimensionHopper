@@ -184,19 +184,23 @@ public class CameraController : MonoBehaviour
 
 
 
-        // Clampt die vertikale Rotation der Kamera
-        yRotationFPP -= yaw;
-        xRotationFPP -= pitch;
-        xRotationFPP = Mathf.Clamp(xRotationFPP, -60f, 60f);
+        if(!player.GetComponent<WallRun_v2>().isWallRunning)
+        {
+            // Clampt die vertikale Rotation der Kamera
+            yRotationFPP -= yaw;
+            xRotationFPP -= pitch;
+            xRotationFPP = Mathf.Clamp(xRotationFPP, -60f, 60f);
 
-        player.transform.Rotate(yaw * Vector3.up);
+            player.transform.Rotate(yaw * Vector3.up);
 
-        transform.rotation = Quaternion.Euler(xRotationFPP, (-yRotationFPP + 90), 0f);
+            transform.rotation = Quaternion.Euler(xRotationFPP, (-yRotationFPP + 90), 0f);
 
-        // Kamera transformt die Position und bleibt immer an der Position des Empty Gameobjects "FPPPosition", das ein Child des Players ist 
+            // Kamera transformt die Position und bleibt immer an der Position des Empty Gameobjects "FPPPosition", das ein Child des Players ist 
 
+        }
+        
         transform.position = _cameraFirstPersonPosition;
-
+        
     }
 
 

@@ -29,6 +29,11 @@ public class EVPlayer : MonoBehaviour
 
     public int maxCollectibles;
 
+    public float wallRunDistance;
+    public float wallJumpSideForce;
+    public float wallRunHeight;
+    public float wallRunKnockback;
+
 
 
 

@@ -259,7 +259,14 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if(!isOnGround)
+        else if(player.GetComponent<WallRun_v2>().isWallRunning && Input.GetKey(KeyCode.W))
+        {
+            extVars.gravityScale = 0.5f;
+        }
+
+
+
+        else if(!isOnGround)
         {
             extVars.gravityScale = 1;
             if(_rb.velocity.y < 0)
