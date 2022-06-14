@@ -1245,13 +1245,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 8554892796048905220}
   cam: {fileID: 7123726539426643510, guid: 79f23514fd86ce741a716663f5b47813, type: 3}
-  wallDistance: 1
   _wallLeft: 0
   _wallRight: 0
   isWallRunning: 0
-  upForce: 450
-  sideForce: 10
-  minHeight: 1
   soundEffects: {fileID: 8444326190716264463}
 --- !u!1 &9041653901627227994
 GameObject:

@@ -23,6 +23,7 @@ TagManager:
   - SceneManager
   - LevelGenerator
   - LevelGenerationManager
+  - Pushable
   layers:
   - Default
   - TransparentFX
