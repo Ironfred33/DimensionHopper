@@ -7,16 +7,17 @@ public class SpecialSight : MonoBehaviour
 {
 
     public Camera camera;
-    public TransformPositionOnPerspective scriptPGO;
-    public Vector3 transformFirstPoint;
-    public Vector3 transformSecondPoint;
-    public GameObject copy;
-    public bool activeCoolDown;
-    public bool activeSightTime;
+    [HideInInspector] public TransformPositionOnPerspective scriptPGO;
+    [HideInInspector] public PGO scriptPGOGenerator;
+    [HideInInspector] public Vector3 transformFirstPoint;
+    [HideInInspector] public Vector3 transformSecondPoint;
+    [HideInInspector] public GameObject copy;
+    [HideInInspector] public bool activeCoolDown;
+    [HideInInspector] public bool activeSightTime;
     private float _elapsed;
-    public GameObject instantiatedCopy;
-    public GameObject instantiatedMovingCopy;
-    public EVSpecialSight specialSightEV;
+    [HideInInspector] public GameObject instantiatedCopy;
+    [HideInInspector] public GameObject instantiatedMovingCopy;
+    [HideInInspector] public EVSpecialSight specialSightEV;
 
     void Start()
     {
@@ -50,16 +51,29 @@ public class SpecialSight : MonoBehaviour
 
                 Debug.Log(hit.transform.tag);
 
+
+                // if (GameObject.FindGameObjectWithTag("LevelGenerator") != null)
+                // {
+
+                //     scriptPGOGenerator = hit.transform.GetChild(0).GetComponent<PGO>();
                 
 
+                //     transformFirstPoint = scriptPGOGenerator.transformFirstPoint;
+                //     transformSecondPoint = scriptPGOGenerator.transformSecondPoint;
 
+
+                // }
                 
                     scriptPGO = hit.transform.GetComponent<TransformPositionOnPerspective>();
-                    
+
                     transformFirstPoint = scriptPGO.transformFirstPoint;
                     transformSecondPoint = scriptPGO.transformSecondPoint;
+
                 
-                
+
+
+
+
 
                 CreateCopy(hit);
                 StartCoroutine(TrackCoolDown());
@@ -75,7 +89,7 @@ public class SpecialSight : MonoBehaviour
     // Erstellt PGO-Kopie
     void CreateCopy(RaycastHit hit)
     {
-    
+
 
         copy = hit.transform.gameObject;
 
@@ -153,7 +167,7 @@ public class SpecialSight : MonoBehaviour
         Destroy(copy.gameObject.transform.GetChild(0).gameObject);
     }
 
-    
+
 
 
     // Überwacht Cooldown

@@ -9,45 +9,45 @@ public class CameraTransition : MonoBehaviour
     public GameObject externalVariables;
     EVCameraTransition extVars;
     public CameraController cameraControl;
-    public PlayerController playerControl;
+    [HideInInspector] public PlayerController playerControl;
     private Quaternion _rotation2DP;
-    public GameObject[] arrayPGOxPositive;
-    public GameObject[] arrayPGOxNegative;
-    public GameObject[] arrayPGOzPositive;
-    public GameObject[] arrayPGOzNegative;
+    [HideInInspector] public GameObject[] arrayPGOxPositive;
+    [HideInInspector] public GameObject[] arrayPGOxNegative;
+    [HideInInspector] public GameObject[] arrayPGOzPositive;
+    [HideInInspector] public GameObject[] arrayPGOzNegative;
     public GameObject compass;
     public GameObject crossHair;
-    public GameObject player;
+    [HideInInspector] public GameObject player;
     public AnimCurve curve2DToFPP;
     public AnimCurve curveFPPTo2D;
     public AudioSource droneSound;
     private float _transitionTime;
     private bool _levelGenerator;
-    public bool switchingFrom2DtoFPP = false;
-    public bool switchingFromFPPto2D = false;
+    [HideInInspector] public bool switchingFrom2DtoFPP = false;
+    [HideInInspector] public bool switchingFromFPPto2D = false;
 
 
 
     // PGOskripte in bereits existierendem Level
-    public List<TransformPositionOnPerspective> transformScriptsPGOxPositive = new List<TransformPositionOnPerspective>();
-    public List<TransformPositionOnPerspective> transformScriptsPGOxNegative = new List<TransformPositionOnPerspective>();
-    public List<TransformPositionOnPerspective> transformScriptsPGOzPositive = new List<TransformPositionOnPerspective>();
-    public List<TransformPositionOnPerspective> transformScriptsPGOzNegative = new List<TransformPositionOnPerspective>();
+    [HideInInspector] public List<TransformPositionOnPerspective> transformScriptsPGOxPositive = new List<TransformPositionOnPerspective>();
+    [HideInInspector] public List<TransformPositionOnPerspective> transformScriptsPGOxNegative = new List<TransformPositionOnPerspective>();
+    [HideInInspector] public List<TransformPositionOnPerspective> transformScriptsPGOzPositive = new List<TransformPositionOnPerspective>();
+    [HideInInspector] public List<TransformPositionOnPerspective> transformScriptsPGOzNegative = new List<TransformPositionOnPerspective>();
 
 
     // PGOskripte für den Level Generator
 
-    public List<PGO> transformScriptsPGOxPositiveGenerator = new List<PGO>();
-    public List<PGO> transformScriptsPGOxNegativeGenerator = new List<PGO>();
-    public List<PGO> transformScriptsPGOzPositiveGenerator = new List<PGO>();
-    public List<PGO> transformScriptsPGOzNegativeGenerator = new List<PGO>();
+    [HideInInspector] public List<PGO> transformScriptsPGOxPositiveGenerator = new List<PGO>();
+    [HideInInspector] public List<PGO> transformScriptsPGOxNegativeGenerator = new List<PGO>();
+    [HideInInspector] public List<PGO> transformScriptsPGOzPositiveGenerator = new List<PGO>();
+    [HideInInspector] public List<PGO> transformScriptsPGOzNegativeGenerator = new List<PGO>();
 
 
     //public TransformPositionOnPerspective[] transformPos;
     private float _elapsed;
     private float _dt;
 
-    public bool transitionInProgress;
+    [HideInInspector] public bool transitionInProgress;
 
     private void Start()
     {

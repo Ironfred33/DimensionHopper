@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1200,6 +1200,11 @@ PrefabInstance:
       propertyPath: crossHair
       value: 
       objectReference: {fileID: 669540814}
+    - target: {fileID: 6100688518035928246, guid: 2fcf0bcf5adc4d649bae97eafc5fc882,
+        type: 3}
+      propertyPath: droneSound
+      value: 
+      objectReference: {fileID: 528291216}
     - target: {fileID: 6100688518035928247, guid: 2fcf0bcf5adc4d649bae97eafc5fc882,
         type: 3}
       propertyPath: m_Name
@@ -1239,7 +1244,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 528291212}
   scriptPGO: {fileID: 0}
-  scriptPGOGenerator: {fileID: 0}
   transformFirstPoint: {x: 0, y: 0, z: 0}
   transformSecondPoint: {x: 0, y: 0, z: 0}
   copy: {fileID: 0}
@@ -1248,7 +1252,6 @@ MonoBehaviour:
   instantiatedCopy: {fileID: 0}
   instantiatedMovingCopy: {fileID: 0}
   specialSightEV: {fileID: 0}
-  parent: {fileID: 0}
 --- !u!114 &528291215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3259,16 +3262,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttons: {fileID: 659856309}
-  _sceneReloaded: 0
   restartButton: 290
   pauseButton: 289
   playerRespawn: 287
   spawnCoordinates: {x: 0, y: 0, z: 0}
-  _camControlScript: {fileID: 0}
-  _camTransitionScript: {fileID: 0}
-  _playerControlScript: {fileID: 0}
-  _playerPrefab: {fileID: 0}
-  _extVarsPlayer: {fileID: 0}
 --- !u!4 &1180623715
 Transform:
   m_ObjectHideFlags: 0
@@ -4100,24 +4097,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generationOrder: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   myPrefab: {fileID: 0}
-  _shortLengthPlatform: {fileID: 0}
-  _midLengthPlatform: {fileID: 0}
-  _longLengthPlatform: {fileID: 0}
-  _spike: {fileID: 0}
-  _fourSpikes: {fileID: 0}
   platforms: []
   maxSegmentLength: 15
-  _countSegmentLength: 0
   segmentAmount: 100
   platformVerticalRange: 2
   verticalAlignment: 2
   platformSpawnPos: {x: 0, y: 0, z: 0}
-  _generatedSegments: 0
   levelGenerated: 0
   segmentGenerated: 0
-  _spawnAxis: 0
   platformScript: {fileID: 0}
-  _cameraTransitionScript: {fileID: 0}
   generateRandomDirections: 0
   generateControlledRandomDirections: 1
   prefabCopy: {fileID: 0}

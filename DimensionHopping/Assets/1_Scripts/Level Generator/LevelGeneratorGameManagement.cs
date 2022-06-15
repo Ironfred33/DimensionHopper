@@ -14,12 +14,12 @@ public class LevelGeneratorGameManagement : MonoBehaviour
     public KeyCode pauseButton;
     public KeyCode playerRespawn;
     public Vector3 spawnCoordinates;
-    [SerializeField] private CameraController _camControlScript;
-    [SerializeField] private CameraTransition _camTransitionScript;
-    [SerializeField] private PlayerController _playerControlScript;
+    private CameraController _camControlScript;
+    private CameraTransition _camTransitionScript;
+    private PlayerController _playerControlScript;
     private GameObject _player;
-    [SerializeField] private GameObject _playerPrefab;
-    [SerializeField] private EVPlayer _extVarsPlayer;
+    private GameObject _playerPrefab;
+    private EVPlayer _extVarsPlayer;
     private PlayerHealth _playerHealthScript;
     private bool _paused;
 

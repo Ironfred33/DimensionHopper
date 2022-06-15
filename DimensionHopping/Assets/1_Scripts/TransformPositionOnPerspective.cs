@@ -20,8 +20,8 @@ public class TransformPositionOnPerspective : MonoBehaviour
     private Material _greenGlow;
     public WorldAxis worldAxis;
     public float worldAxisTargetPoint;
-    public Vector3 transformFirstPoint;
-    public Vector3 transformSecondPoint;
+    [HideInInspector] public Vector3 transformFirstPoint;
+    [HideInInspector] public Vector3 transformSecondPoint;
     private EVCameraTransition _EVcamTransitionScript;
     private float _elapsed;
     private float _dt;
