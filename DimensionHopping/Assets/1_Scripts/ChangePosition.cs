@@ -7,6 +7,8 @@ public class ChangePosition : MonoBehaviour
     public float transitionDuration;
     public float transitionLength;
 
+    public int transitionDirIndex;
+
     public enum TransitionDirection
     {
         xPositive,
@@ -21,9 +23,9 @@ public class ChangePosition : MonoBehaviour
 
     public KeyCode transitionButton;
 
-    [SerializeField] private Vector3 _firstPosition;
-    [SerializeField] private Vector3 _secondPosition;
-    private float _elapsed;
+    [HideInInspector] public Vector3 firstPosition;
+    [HideInInspector] public Vector3 secondPosition;
+    public float elapsed;
     [SerializeField] private bool _transitioned;
     [SerializeField] private bool _transitionInProgress;
 
@@ -40,7 +42,7 @@ public class ChangePosition : MonoBehaviour
     private void Setup()
     {
 
-        _firstPosition = this.transform.position;
+        firstPosition = this.transform.position;
 
         GetSecondPosition();
 
@@ -54,12 +56,12 @@ public class ChangePosition : MonoBehaviour
 
             if (Input.GetKeyDown(transitionButton) && !_transitioned)
             {
-                StartCoroutine(Transition(_firstPosition, _secondPosition, transitionDuration));
+                StartCoroutine(Transition(firstPosition, secondPosition, transitionDuration));
             }
 
             if (Input.GetKeyDown(transitionButton) && _transitioned)
             {
-                StartCoroutine(Transition(_secondPosition, _firstPosition, transitionDuration));
+                StartCoroutine(Transition(secondPosition, firstPosition, transitionDuration));
             }
 
 
@@ -75,14 +77,14 @@ public class ChangePosition : MonoBehaviour
 
     public IEnumerator Transition(Vector3 currentPosition, Vector3 newPosition, float transitionDuration)
     {
-        _elapsed = 0f;
+        elapsed = 0f;
 
 
-        while (_elapsed <= transitionDuration)
+        while (elapsed <= transitionDuration)
         {
-            _elapsed = _elapsed + Time.deltaTime;
+            elapsed = elapsed + Time.deltaTime;
 
-            this.transform.position = Vector3.Lerp(currentPosition, newPosition, _elapsed / transitionDuration);
+            this.transform.position = Vector3.Lerp(currentPosition, newPosition, elapsed / transitionDuration);
 
             _transitionInProgress = true;
 
@@ -122,37 +124,49 @@ public class ChangePosition : MonoBehaviour
         {
             case (TransitionDirection.xPositive):
 
-                _secondPosition = new Vector3(_firstPosition.x + transitionLength, _firstPosition.y, _firstPosition.z);
+                secondPosition = new Vector3(firstPosition.x + transitionLength, firstPosition.y, firstPosition.z);
+
+                transitionDirIndex = 0;
 
                 break;
 
             case (TransitionDirection.xNegative):
 
-                _secondPosition = new Vector3(_firstPosition.x - transitionLength, _firstPosition.y, _firstPosition.z);
+                secondPosition = new Vector3(firstPosition.x - transitionLength, firstPosition.y, firstPosition.z);
+
+                transitionDirIndex = 1;
 
                 break;
 
             case (TransitionDirection.zPositive):
 
-                _secondPosition = new Vector3(_firstPosition.x, _firstPosition.y, _firstPosition.z + transitionLength);
+                secondPosition = new Vector3(firstPosition.x, firstPosition.y, firstPosition.z + transitionLength);
+
+                transitionDirIndex = 2;
 
                 break;
 
             case (TransitionDirection.zNegative):
 
-                _secondPosition = new Vector3(_firstPosition.x, _firstPosition.y, _firstPosition.z - transitionLength);
+                secondPosition = new Vector3(firstPosition.x, firstPosition.y, firstPosition.z - transitionLength);
+
+                transitionDirIndex = 3;
 
                 break;
 
             case (TransitionDirection.yPositive):
 
-                _secondPosition = new Vector3(_firstPosition.x, _firstPosition.y + transitionLength, _firstPosition.z);
+                secondPosition = new Vector3(firstPosition.x, firstPosition.y + transitionLength, firstPosition.z);
+
+                transitionDirIndex = 4;
 
                 break;
 
             case (TransitionDirection.yNegative):
 
-                _secondPosition = new Vector3(_firstPosition.x, _firstPosition.y - transitionLength, _firstPosition.z);
+                secondPosition = new Vector3(firstPosition.x, firstPosition.y - transitionLength, firstPosition.z);
+
+                transitionDirIndex = 5;
 
                 break;
         }
