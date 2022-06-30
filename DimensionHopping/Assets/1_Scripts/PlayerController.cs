@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
         {
 
             player.transform.Translate(0, 0, horizontalMovement * extVars.speed2D *  Time.deltaTime);
-            player.transform.localScale = new Vector3(1, 1, 1);
+            player.transform.localScale = new Vector3(player.transform.localScale.x, player.transform.localScale.y, Mathf.Abs(player.transform.localScale.z));
           
 
             playerIsFlipped = false;
@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
         {
 
             player.transform.Translate(0, 0, horizontalMovement * extVars.speed2D * Time.deltaTime);
-            player.transform.localScale = new Vector3(1, 1, -1);
+            player.transform.localScale = new Vector3(player.transform.localScale.x, player.transform.localScale.y, -Mathf.Abs(player.transform.localScale.z));
             
 
             playerIsFlipped = true;

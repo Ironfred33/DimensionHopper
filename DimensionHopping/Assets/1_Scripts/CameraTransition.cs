@@ -117,7 +117,7 @@ public class CameraTransition : MonoBehaviour
 
                 if (playerControl.playerIsFlipped)
                 {
-                    player.transform.localScale = new Vector3(1, 1, 1);
+                    player.transform.localScale = new Vector3(player.transform.localScale.x, player.transform.localScale.y, Mathf.Abs(player.transform.localScale.z));
                     playerControl.playerIsFlipped = false;
                 }
 
