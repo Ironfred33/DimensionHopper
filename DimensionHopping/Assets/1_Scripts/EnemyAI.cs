@@ -6,9 +6,9 @@ using UnityEngine.AI;
 // Steuert die Gegner-KI
 public class EnemyAI : MonoBehaviour
 {
-    public Vector3[] waypoints;
-    public int destPoint = 0;
-    public float stoppingDistance = 0.5f;
+    [SerializeField] private Vector3[] _waypoints;
+    [SerializeField] private int _destPoint;
+    [SerializeField] private float stoppingDistance;
 
     private NavMeshAgent _enemyAgent;
 
@@ -25,7 +25,7 @@ public class EnemyAI : MonoBehaviour
 
         // enemyAgent.autoBraking = false;
 
-        waypoints[0] = transform.position;
+        _waypoints[0] = transform.position;
 
         GoToNextDestination();
 
@@ -46,14 +46,14 @@ public class EnemyAI : MonoBehaviour
     {
         // Falls keine Waypoints eingestellt sind 
         
-        if(waypoints.Length == 0)
+        if(_waypoints.Length == 0)
         {
             return;
         }
 
-        _enemyAgent.destination = waypoints[destPoint];
+        _enemyAgent.destination = _waypoints[_destPoint];
 
-        destPoint = (destPoint + 1) % waypoints.Length;
+        _destPoint = (_destPoint + 1) % _waypoints.Length;
     }
 
     void OnCollisionEnter(Collision collision)

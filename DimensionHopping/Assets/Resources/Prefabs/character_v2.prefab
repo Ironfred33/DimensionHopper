@@ -1200,8 +1200,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  fullHeart: {fileID: 21300000, guid: 509ddd4d5a6295a4786b84a23c25a82a, type: 3}
-  emptyHeart: {fileID: 21300000, guid: 2c81d802bbe18ae418e17786ed7b5981, type: 3}
+  _fullHeart: {fileID: 21300000, guid: 509ddd4d5a6295a4786b84a23c25a82a, type: 3}
+  _emptyHeart: {fileID: 21300000, guid: 2c81d802bbe18ae418e17786ed7b5981, type: 3}
 --- !u!114 &8554892795707864834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1350,6 +1350,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8157053365127418858}
     m_Modifications:
+    - target: {fileID: 3781597558956619652, guid: a8eb6727ddbed0445b8532f3bb182bbf,
+        type: 3}
+      propertyPath: _effects.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3781597558956619652, guid: a8eb6727ddbed0445b8532f3bb182bbf,
+        type: 3}
+      propertyPath: _effects.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 385b66e80a3a7094aa72f9d27242a40c, type: 3}
+    - target: {fileID: 3781597558956619652, guid: a8eb6727ddbed0445b8532f3bb182bbf,
+        type: 3}
+      propertyPath: _effects.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: c5ef29c883c86f345baf8ae0efaa3f84, type: 3}
+    - target: {fileID: 3781597558956619652, guid: a8eb6727ddbed0445b8532f3bb182bbf,
+        type: 3}
+      propertyPath: _effects.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 613b4728316c9ca4b8700fbcacbc83b8, type: 3}
+    - target: {fileID: 3781597558956619652, guid: a8eb6727ddbed0445b8532f3bb182bbf,
+        type: 3}
+      propertyPath: _effects.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1e0a26eb9734e264d9e7a196e3603606, type: 3}
     - target: {fileID: 3781597558956619655, guid: a8eb6727ddbed0445b8532f3bb182bbf,
         type: 3}
       propertyPath: m_Name

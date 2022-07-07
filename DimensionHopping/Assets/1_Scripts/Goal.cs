@@ -5,13 +5,13 @@ using UnityEngine;
 // Lädt nächste Szene, sobald das Ziel erreicht wird
 public class Goal : MonoBehaviour
 {
-    public GameObject canvas;
+    [SerializeField] private GameObject _canvas;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            canvas.GetComponent<UIManager>().state = UIState.LevelCompleted;
+            _canvas.GetComponent<UIManager>().state = UIState.LevelCompleted;
 
         }
     }

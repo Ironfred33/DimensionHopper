@@ -5,15 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class LevelCompleted : MonoBehaviour
 {
-    public SceneLoader sceneLoad;
+    [SerializeField] private SceneLoader _sceneLoad;
 
     public void NextLevel()
     {
-        sceneLoad.LoadNextScene();
+        _sceneLoad.LoadNextScene();
     }
 
     public void RepeatLevel()
     {
-        sceneLoad.ReLoadCurrentScene();
+        _sceneLoad.ReLoadCurrentScene();
     }
 }

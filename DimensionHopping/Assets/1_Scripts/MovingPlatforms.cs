@@ -13,8 +13,8 @@ public class MovingPlatforms : MonoBehaviour
     private bool _movingToTarget;
     private Vector3 _offset;
 
-    public float waitTime;
-    public float elapsedWaitTime;
+    [SerializeField] private float _waitTime;
+    [SerializeField] private float _elapsedWaitTime;
 
     void Start()
     {
@@ -32,10 +32,10 @@ public class MovingPlatforms : MonoBehaviour
 
             if(_elapsed >= movementTime)
             {
-                elapsedWaitTime += Time.deltaTime;
-                if(elapsedWaitTime >= waitTime)
+                _elapsedWaitTime += Time.deltaTime;
+                if(_elapsedWaitTime >= _waitTime)
                 {
-                    elapsedWaitTime = 0f;
+                    _elapsedWaitTime = 0f;
                     _elapsed = 0f;
                     _movingToTarget = false;
                 }           
@@ -49,10 +49,10 @@ public class MovingPlatforms : MonoBehaviour
 
             if(_elapsed >= movementTime)
             {
-                elapsedWaitTime += Time.deltaTime;
-                if(elapsedWaitTime >= waitTime)
+                _elapsedWaitTime += Time.deltaTime;
+                if(_elapsedWaitTime >= _waitTime)
                 {
-                    elapsedWaitTime = 0f;
+                    _elapsedWaitTime = 0f;
                     _elapsed = 0f;
                     _movingToTarget = true;
                 }   

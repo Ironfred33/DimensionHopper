@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerSpotlight : MonoBehaviour
 {
     private Transform _target;
-    public Vector3 Offset;
+    [SerializeField] private Vector3 _offset;
 
     void Start()
     {
@@ -16,6 +16,6 @@ public class PlayerSpotlight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = _target.position + Offset;
+        transform.position = _target.position + _offset;
     }
 }

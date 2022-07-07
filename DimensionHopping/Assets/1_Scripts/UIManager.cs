@@ -14,21 +14,21 @@ public enum UIState
 public class UIManager : MonoBehaviour
 {
     
-    public GameObject mainGameScreen;
-    public GameObject gameOverScreen;
-    public GameObject levelCompletedScreen;
-    public GameObject levelGeneratorScreen;
+    [SerializeField] private GameObject _mainGameScreen;
+    [SerializeField] private GameObject _gameOverScreen;
+    [SerializeField] private GameObject _levelCompletedScreen;
+    [SerializeField] private GameObject _levelGeneratorScreen;
     public UIState state;
-    public SceneLoader sceneLoad;
+    private SceneLoader sceneLoad;
     private GenerateLevel _levelGenerationScript;
     private LevelGeneratorGameManagement _levelGenerationManagement;
 
     void Start()
     {
-        mainGameScreen = this.transform.Find("MainGame").gameObject;
-        gameOverScreen = this.transform.Find("GameOver").gameObject;
-        levelCompletedScreen = this.transform.Find("LevelCompleted").gameObject;
-        levelGeneratorScreen = this.transform.Find("LevelGenerator").gameObject;
+        _mainGameScreen = this.transform.Find("MainGame").gameObject;
+        _gameOverScreen = this.transform.Find("GameOver").gameObject;
+        _levelCompletedScreen = this.transform.Find("LevelCompleted").gameObject;
+        _levelGeneratorScreen = this.transform.Find("LevelGenerator").gameObject;
 
         if(SceneManager.GetActiveScene().name == "LevelGeneratorFred")
         {
@@ -54,29 +54,29 @@ public class UIManager : MonoBehaviour
         switch (state)
         {
             case UIState.MainGame:
-                gameOverScreen.SetActive(false);
-                levelCompletedScreen.SetActive(false);
-                levelGeneratorScreen.SetActive(false);
-                mainGameScreen.SetActive(true);
+                _gameOverScreen.SetActive(false);
+                _levelCompletedScreen.SetActive(false);
+                _levelGeneratorScreen.SetActive(false);
+                _mainGameScreen.SetActive(true);
                 Cursor.visible = false;
                 break;
             
             case UIState.GameOver:
-                mainGameScreen.SetActive(false);
-                gameOverScreen.SetActive(true);
+                _mainGameScreen.SetActive(false);
+                _gameOverScreen.SetActive(true);
                 Debug.Log("Activated GO screen");
                 Cursor.visible = true;
                 break;
             
             case UIState.LevelCompleted:
-                mainGameScreen.SetActive(false);
-                levelCompletedScreen.SetActive(true);
+                _mainGameScreen.SetActive(false);
+                _levelCompletedScreen.SetActive(true);
                 Cursor.visible = true;
                 break;
 
             case UIState.LevelGenerator:
-                mainGameScreen.SetActive(false);
-                levelGeneratorScreen.SetActive(true);
+                _mainGameScreen.SetActive(false);
+                _levelGeneratorScreen.SetActive(true);
                 Cursor.visible = true;
                 break;
         }

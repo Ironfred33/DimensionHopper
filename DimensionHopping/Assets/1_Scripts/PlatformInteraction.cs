@@ -5,7 +5,7 @@ using UnityEngine;
 // Verhindert, dass Spieler von beweglichen Plattformen fällt
 public class PlatformInteraction : MonoBehaviour
 {
-    public GameObject _mover;
+    private GameObject _mover;
     private Vector3 _offset;
 
     void LateUpdate()

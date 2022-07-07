@@ -10,8 +10,8 @@ public class PlayerHealth : MonoBehaviour
     public int currentHearts;
 
     public Image[] hearts;
-    public Sprite fullHeart;
-    public Sprite emptyHeart;
+    [SerializeField] private Sprite _fullHeart;
+    [SerializeField] private Sprite _emptyHeart;
 
    
 
@@ -27,11 +27,11 @@ public class PlayerHealth : MonoBehaviour
         {
             if(i < currentHearts)
             {
-                hearts[i].sprite = fullHeart;
+                hearts[i].sprite = _fullHeart;
             }
             else
             {
-                hearts[i].sprite = emptyHeart;
+                hearts[i].sprite = _emptyHeart;
             }
             
             if(i < externalPlayer.maxHearts)

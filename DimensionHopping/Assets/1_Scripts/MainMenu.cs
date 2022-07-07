@@ -5,16 +5,16 @@ using UnityEngine;
 // Steuert das Hauptmenü
 public class MainMenu : MonoBehaviour
 {
-    public SceneLoader sceneLoad;
+    [SerializeField] private SceneLoader _sceneLoad;
     public void StartGame()
     {
         Cursor.visible = true;
-        sceneLoad.LoadNextScene();
+        _sceneLoad.LoadNextScene();
     }
 
     public void LevelGenerator()
     {
-        sceneLoad.LoadLevelGeneratorScene();
+        _sceneLoad.LoadLevelGeneratorScene();
     }
 
 

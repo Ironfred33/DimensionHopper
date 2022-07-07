@@ -8,14 +8,12 @@ using TMPro;
 // Regelt die Optionen in den Einstellungen
 public class OptionsMenu : MonoBehaviour
 {
-    public Slider effectSlider;
-    public Slider musicSlider;
-    public TMP_Dropdown resolutionDropdown;
+    [SerializeField] private TMP_Dropdown _resolutionDropdown;
     private Resolution[] resolutions;
-    public AudioMixer audioMix;
-    public AudioSource source;
-    public AudioClip effectSample;
-    public AudioClip musicSample;
+    [SerializeField] private AudioMixer _audioMix;
+    [SerializeField] private AudioSource _source;
+    [SerializeField] private AudioClip _effectSample;
+    [SerializeField] private AudioClip _musicSample;
 
     private bool _fullscreen;
     void Start()
@@ -25,7 +23,7 @@ public class OptionsMenu : MonoBehaviour
         
         resolutions = Screen.resolutions;
 
-        resolutionDropdown.ClearOptions();
+        _resolutionDropdown.ClearOptions();
 
         int currentResolutionIndex = 0;
 
@@ -42,22 +40,22 @@ public class OptionsMenu : MonoBehaviour
             } 
         }
 
-        resolutionDropdown.AddOptions(resOptions);
-        resolutionDropdown.value = currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue();
+        _resolutionDropdown.AddOptions(resOptions);
+        _resolutionDropdown.value = currentResolutionIndex;
+        _resolutionDropdown.RefreshShownValue();
     }
 
 
     // Anpassung der Musik-Lautstärke
     public void SetMusicVolume(float musicVolume)
     {
-        audioMix.SetFloat("MusicVolume", musicVolume);
+        _audioMix.SetFloat("MusicVolume", musicVolume);
     }
 
     // Anpassung der Effekt-Lautstärke
     public void SetEffectVolume(float effectsVolume)
     {
-        audioMix.SetFloat("SFXVolume", effectsVolume);
+        _audioMix.SetFloat("SFXVolume", effectsVolume);
     }
 
     // Toggle Vollbild-Modus
@@ -84,17 +82,17 @@ public class OptionsMenu : MonoBehaviour
     // Test der Musik-Lautstärke
     public void TestMusicVolume()
     {
-        source.outputAudioMixerGroup = audioMix.FindMatchingGroups("Music")[0];
-        source.clip = musicSample;
-        source.Play();
+        _source.outputAudioMixerGroup = _audioMix.FindMatchingGroups("Music")[0];
+        _source.clip = _musicSample;
+        _source.Play();
     }
 
     // Test der Effekt-Lautstärke
     public void TestEffectVolume()
     {
-        source.outputAudioMixerGroup = audioMix.FindMatchingGroups("SFX")[0];
-        source.clip = effectSample;
-        source.Play();
+        _source.outputAudioMixerGroup = _audioMix.FindMatchingGroups("SFX")[0];
+        _source.clip = _effectSample;
+        _source.Play();
     }
 
 }

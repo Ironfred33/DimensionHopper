@@ -5,18 +5,23 @@ using UnityEngine;
 // Regelt das Aufheben von Collectibles
 public class Collectable_Pickup : MonoBehaviour
 {
-    public CollectablesUI collectableUI;
+    [SerializeField] private CollectablesUI _collectableUI;
 
-    public int collectibleOrder;
+    [SerializeField] private int _collectibleOrder;
 
-    public AudioSource collectSound;
+    private AudioSource _collectSound;
 
+    private void Start() 
+    {
+        _collectSound = GetComponent<AudioSource>();    
+    }
+    
     void OnTriggerEnter(Collider other) 
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            collectSound.Play();
-            collectableUI.FoundCollectable(collectibleOrder);
+            _collectSound.Play();
+            _collectableUI.FoundCollectable(_collectibleOrder);
             this.gameObject.SetActive(false);
             Debug.Log("Collected disk");
 

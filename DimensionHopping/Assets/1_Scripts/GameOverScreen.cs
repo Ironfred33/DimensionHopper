@@ -5,21 +5,18 @@ using UnityEngine.UI;
 
 public class GameOverScreen : MonoBehaviour
 {
-    public GameObject mainUI;
-
-    public GameObject gameOverScreen;
-
-    public SceneLoader sceneLoad;
+    [SerializeField] private GameObject _mainUI;
+    [SerializeField] private SceneLoader _sceneLoad;
 
 
     public void RetryLevel()
     {
         this.gameObject.SetActive(false);
-        mainUI.SetActive(true);
+       _mainUI.SetActive(true);
     }
 
     public void BackToMenu()
     {
-        sceneLoad.LoadStartScene();
+        _sceneLoad.LoadStartScene();
     }
 }

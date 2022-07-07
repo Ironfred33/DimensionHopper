@@ -6,32 +6,32 @@ using UnityEngine.UI;
 // Wechselt UI des Perspektivwechsels
 public class StateBar : MonoBehaviour
 {
-    public CameraController camControl;
-    public Image square;
-    public Image cube;
+    [SerializeField] private CameraController _camControl;
+    [SerializeField] private Image _square;
+    [SerializeField] private Image _cube;
 
-    public Color _activatedColor;
-    public Color _deactivedColor;
+    [SerializeField] private Color _activatedColor;
+    [SerializeField] private Color _deactivedColor;
 
     private void Start()
     {
         _activatedColor.a = 1f;
         _deactivedColor.a = 0.5f;
 
-        camControl = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
+        _camControl = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
         
     }
     void Update()
     {
-        if(camControl.is2DView)
+        if(_camControl.is2DView)
         {
-            square.color = _activatedColor;
-            cube.color = _deactivedColor;
+            _square.color = _activatedColor;
+            _cube.color = _deactivedColor;
         }
         else
         {
-            square.color = _deactivedColor;
-            cube.color = _activatedColor;
+            _square.color = _deactivedColor;
+            _cube.color = _activatedColor;
         }
 
     }

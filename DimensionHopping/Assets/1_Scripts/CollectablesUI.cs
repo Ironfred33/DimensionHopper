@@ -7,29 +7,29 @@ using UnityEngine.UI;
 public class CollectablesUI : MonoBehaviour
 {
 
-    public Image[] disks;
+    [SerializeField] private Image[] _disks;
 
-    public Image[] completedDisks;
+    [SerializeField] private Image[] _completedDisks;
 
-    public Sprite collectedDisk;
+    [SerializeField] private Sprite _collectedDisk;
 
-    public Sprite uncollectedDisk;
+    [SerializeField] private Sprite _uncollectedDisk;
 
-    public List<int> alreadyCollected;
+    private List<int> _alreadyCollected;
 
     void Start() 
     {
-        alreadyCollected = new List<int>();
+        _alreadyCollected = new List<int>();
     }
 
     // Fügt neu gefundenes Collectible der Liste der bereits gefundenen Collectibles hinzu und aktualisiert das UI entsprechend. 
     public void FoundCollectable(int collectNumber)
     {
-        alreadyCollected.Add(collectNumber);
-        if(alreadyCollected.Contains(collectNumber))
+        _alreadyCollected.Add(collectNumber);
+        if(_alreadyCollected.Contains(collectNumber))
             {
-                disks[collectNumber-1].sprite = collectedDisk;
-                completedDisks[collectNumber-1].sprite = collectedDisk;
+                _disks[collectNumber-1].sprite = _collectedDisk;
+                _completedDisks[collectNumber-1].sprite = _collectedDisk;
             }
     }
 
