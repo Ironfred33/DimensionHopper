@@ -48,6 +48,11 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         
+    } 
+
+    public void IndexLoadScene(int index)
+    {
+        SceneManager.LoadScene(index);
     }
 
 

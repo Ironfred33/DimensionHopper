@@ -2478,6 +2478,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 2250018989694539812, guid: a76078d6a6aa4ea4c960a37a6182c679,
+        type: 3}
+      propertyPath: m_TagString
+      value: SceneManager
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a76078d6a6aa4ea4c960a37a6182c679, type: 3}
 --- !u!1 &730732758

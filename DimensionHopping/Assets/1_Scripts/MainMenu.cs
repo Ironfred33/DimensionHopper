@@ -6,8 +6,14 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private SceneLoader _sceneLoad;
+
+    private void Start() 
+    {
+        _sceneLoad = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneLoader>();
+    }
     public void StartGame()
     {
+        
         Cursor.visible = true;
         _sceneLoad.LoadNextScene();
     }
