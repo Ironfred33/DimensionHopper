@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class LevelSelection : MonoBehaviour
 {
     [SerializeField] private GameObject[] levels;
-    [SerializeField] private LevelSelectionData levelData;
 
     // Start is called before the first frame update
     void Start()

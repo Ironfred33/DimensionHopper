@@ -1,40 +1,26 @@
 ﻿using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public static class SaveSystem
 {
-    public static void SaveLevel(LevelSelectionData levelSelectionData)
+    public static void SaveLevel(string saveString)
     {
-        BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/player.saveData";
-        using (FileStream stream = new FileStream(path, FileMode.Create))
-        {
-            SaveData data = new SaveData(levelSelectionData);
-            formatter.Serialize(stream, data);
-        
-        }
-
+        File.WriteAllText(Application.dataPath + "/save.txt", saveString);
         
     }
 
-    public static SaveData LoadSaveData()
+    public static string LoadSaveData()
     {
-        string path = Application.persistentDataPath + "/player.saveData";
-        if(File.Exists(path))
+        if(File.Exists(Application.dataPath + "/save.txt"))
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            using(FileStream stream = new FileStream(path, FileMode.Open))
-            {
-                SaveData data = formatter.Deserialize(stream) as SaveData;
-                return data;
-            }
-
+            string saveString = File.ReadAllText(Application.dataPath + "/save.txt");
+            return saveString;
         }
 
         else
         {
-            Debug.LogError("Save file not found in " + path);
             return null;
         }
 

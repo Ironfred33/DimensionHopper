@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -493,6 +493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 86699699}
   - component: {fileID: 86699700}
+  - component: {fileID: 86699701}
   m_Layer: 5
   m_Name: Level2
   m_TagString: Untagged
@@ -537,7 +538,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelOrder: 1
-  _levelSelectionData: {fileID: 260817462}
+  _saveData: {fileID: 86699701}
+  _collectedDisks: []
+  _fullDisk: {fileID: 0}
+  _emptyDisk: {fileID: 0}
+--- !u!114 &86699701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86699698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545d22023550e6c45b1406f743f2764a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveObject: {fileID: 0}
+  collectablesUI: {fileID: 0}
+  unlockedLevels: 0
+  collectibles: 
 --- !u!1 &101531803
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,7 +715,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 260817461}
-  - component: {fileID: 260817462}
   m_Layer: 5
   m_Name: LevelHolder
   m_TagString: Untagged
@@ -730,20 +749,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &260817462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 260817460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 363a6c0a16a73a340949f44c96bbf5ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unlockedLevels: 1
-  collectibles: 
 --- !u!1 &350953561
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,6 +966,7 @@ GameObject:
   m_Component:
   - component: {fileID: 478299770}
   - component: {fileID: 478299771}
+  - component: {fileID: 478299772}
   m_Layer: 5
   m_Name: Level3
   m_TagString: Untagged
@@ -1005,7 +1011,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelOrder: 2
-  _levelSelectionData: {fileID: 260817462}
+  _saveData: {fileID: 478299772}
+  _collectedDisks: []
+  _fullDisk: {fileID: 0}
+  _emptyDisk: {fileID: 0}
+--- !u!114 &478299772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478299769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545d22023550e6c45b1406f743f2764a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveObject: {fileID: 0}
+  collectablesUI: {fileID: 0}
+  unlockedLevels: 0
+  collectibles: 
 --- !u!1 &549379470
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,6 +1263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 708787354}
   - component: {fileID: 708787355}
+  - component: {fileID: 708787356}
   m_Layer: 5
   m_Name: Level1
   m_TagString: Untagged
@@ -1282,7 +1308,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelOrder: 0
-  _levelSelectionData: {fileID: 260817462}
+  _saveData: {fileID: 708787356}
+  _collectedDisks:
+  - {fileID: 1973853738}
+  - {fileID: 1006922931}
+  - {fileID: 1566260851}
+  _fullDisk: {fileID: 21300000, guid: 93d0be270cad536448c694582856388b, type: 3}
+  _emptyDisk: {fileID: 21300000, guid: 0724769486a147a4fa23f4cb255878f6, type: 3}
+--- !u!114 &708787356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708787353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545d22023550e6c45b1406f743f2764a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveObject: {fileID: 0}
+  collectablesUI: {fileID: 0}
+  unlockedLevels: 0
+  collectibles: 
 --- !u!1 &725150159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1960,6 +2008,7 @@ GameObject:
   m_Component:
   - component: {fileID: 866682150}
   - component: {fileID: 866682151}
+  - component: {fileID: 866682152}
   m_Layer: 5
   m_Name: Level5
   m_TagString: Untagged
@@ -2004,7 +2053,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelOrder: 4
-  _levelSelectionData: {fileID: 260817462}
+  _saveData: {fileID: 866682152}
+  _collectedDisks: []
+  _fullDisk: {fileID: 0}
+  _emptyDisk: {fileID: 0}
+--- !u!114 &866682152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866682149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545d22023550e6c45b1406f743f2764a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveObject: {fileID: 0}
+  collectablesUI: {fileID: 0}
+  unlockedLevels: 0
+  collectibles: 
 --- !u!1 &883972411
 GameObject:
   m_ObjectHideFlags: 0
@@ -2594,6 +2662,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1103604399}
   - component: {fileID: 1103604400}
+  - component: {fileID: 1103604401}
   m_Layer: 5
   m_Name: Level8
   m_TagString: Untagged
@@ -2638,7 +2707,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelOrder: 7
-  _levelSelectionData: {fileID: 260817462}
+  _saveData: {fileID: 1103604401}
+  _collectedDisks: []
+  _fullDisk: {fileID: 0}
+  _emptyDisk: {fileID: 0}
+--- !u!114 &1103604401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103604398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545d22023550e6c45b1406f743f2764a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveObject: {fileID: 0}
+  collectablesUI: {fileID: 0}
+  unlockedLevels: 0
+  collectibles: 
 --- !u!1 &1171053052
 GameObject:
   m_ObjectHideFlags: 0
@@ -2649,6 +2737,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1171053053}
   - component: {fileID: 1171053054}
+  - component: {fileID: 1171053055}
   m_Layer: 5
   m_Name: Level4
   m_TagString: Untagged
@@ -2693,7 +2782,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelOrder: 3
-  _levelSelectionData: {fileID: 260817462}
+  _saveData: {fileID: 1171053055}
+  _collectedDisks: []
+  _fullDisk: {fileID: 0}
+  _emptyDisk: {fileID: 0}
+--- !u!114 &1171053055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171053052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545d22023550e6c45b1406f743f2764a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveObject: {fileID: 0}
+  collectablesUI: {fileID: 0}
+  unlockedLevels: 0
+  collectibles: 
 --- !u!1 &1177269197
 GameObject:
   m_ObjectHideFlags: 0
@@ -2852,6 +2960,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1208307805}
   - component: {fileID: 1208307806}
+  - component: {fileID: 1208307807}
   m_Layer: 5
   m_Name: Level6
   m_TagString: Untagged
@@ -2896,7 +3005,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelOrder: 5
-  _levelSelectionData: {fileID: 260817462}
+  _saveData: {fileID: 1208307807}
+  _collectedDisks: []
+  _fullDisk: {fileID: 0}
+  _emptyDisk: {fileID: 0}
+--- !u!114 &1208307807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208307804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545d22023550e6c45b1406f743f2764a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveObject: {fileID: 0}
+  collectablesUI: {fileID: 0}
+  unlockedLevels: 0
+  collectibles: 
 --- !u!1 &1211040416
 GameObject:
   m_ObjectHideFlags: 0
@@ -5461,6 +5589,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2131716760}
   - component: {fileID: 2131716761}
+  - component: {fileID: 2131716762}
   m_Layer: 5
   m_Name: Level7
   m_TagString: Untagged
@@ -5505,4 +5634,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelOrder: 6
-  _levelSelectionData: {fileID: 260817462}
+  _saveData: {fileID: 2131716762}
+  _collectedDisks: []
+  _fullDisk: {fileID: 0}
+  _emptyDisk: {fileID: 0}
+--- !u!114 &2131716762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131716759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545d22023550e6c45b1406f743f2764a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveObject: {fileID: 0}
+  collectablesUI: {fileID: 0}
+  unlockedLevels: 0
+  collectibles: 
