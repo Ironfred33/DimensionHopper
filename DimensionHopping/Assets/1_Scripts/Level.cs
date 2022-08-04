@@ -11,6 +11,11 @@ public class Level : MonoBehaviour
     [SerializeField] private Sprite _fullDisk;
     [SerializeField] private Sprite _emptyDisk;
 
+    [SerializeField] private Image _previewImage;
+    [SerializeField] private float _unlockedAlpha;
+    [SerializeField] private float _lockedAlpha;
+
+
     void Start()
     {
         
@@ -28,6 +33,9 @@ public class Level : MonoBehaviour
             }
 
         }
+
+        SwitchPreviewAlpha();
+
     }
 
     public void StartLevel()
@@ -36,5 +44,21 @@ public class Level : MonoBehaviour
         {
             SceneManager.LoadScene(_levelOrder + 2);
         }
+    }
+
+    private void SwitchPreviewAlpha()
+    {
+        var previewColors = _previewImage.color;
+        
+        if(_levelOrder<= _saveData.unlockedLevels)
+        {
+            previewColors.a = _unlockedAlpha;
+        }
+        else
+        {
+            previewColors.a = _lockedAlpha;
+        }
+
+        _previewImage.color = previewColors;
     }
 }
