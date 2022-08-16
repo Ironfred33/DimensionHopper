@@ -146,7 +146,7 @@ public class CameraTransition : MonoBehaviour
         if (switchingFrom2DtoFPP)
         {
             TogglePlayerControl();
-            droneSound.Play();
+            if (droneSound != null ) droneSound.Play();
 
 
             while (_elapsed <= extVars.duration)
@@ -182,7 +182,7 @@ public class CameraTransition : MonoBehaviour
             DisableObject(compass);
             DisableObject(crossHair);
             TogglePlayerControl();
-            droneSound.Play();
+            if (droneSound != null ) droneSound.Play();
 
             while (_elapsed <= extVars.duration)
             {

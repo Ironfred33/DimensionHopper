@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -535,6 +535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 528291212}
   scriptPGO: {fileID: 0}
+  scriptPGOGenerator: {fileID: 0}
   transformFirstPoint: {x: 0, y: 0, z: 0}
   transformSecondPoint: {x: 0, y: 0, z: 0}
   copy: {fileID: 0}
@@ -866,11 +867,6 @@ MonoBehaviour:
   pauseButton: 0
   playerRespawn: 0
   spawnCoordinates: {x: 0, y: 0, z: 0}
-  _camControlScript: {fileID: 0}
-  _camTransitionScript: {fileID: 0}
-  _playerControlScript: {fileID: 0}
-  _playerPrefab: {fileID: 0}
-  _extVarsPlayer: {fileID: 0}
 --- !u!4 &1180623715
 Transform:
   m_ObjectHideFlags: 0
@@ -970,6 +966,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1349981520, guid: 9e44f5a600176b5479b9457199f5ce26, type: 3}
+      propertyPath: _cube
+      value: 
+      objectReference: {fileID: 1493553467}
+    - target: {fileID: 1349981520, guid: 9e44f5a600176b5479b9457199f5ce26, type: 3}
+      propertyPath: _square
+      value: 
+      objectReference: {fileID: 1493553468}
     - target: {fileID: 1349981520, guid: 9e44f5a600176b5479b9457199f5ce26, type: 3}
       propertyPath: camControl
       value: 
@@ -1086,6 +1090,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e44f5a600176b5479b9457199f5ce26, type: 3}
+--- !u!114 &1493553467 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 484896426, guid: 9e44f5a600176b5479b9457199f5ce26,
+    type: 3}
+  m_PrefabInstance: {fileID: 1493553466}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1493553468 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1741481851, guid: 9e44f5a600176b5479b9457199f5ce26,
+    type: 3}
+  m_PrefabInstance: {fileID: 1493553466}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1630698389 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8787745757262564475, guid: 9e44f5a600176b5479b9457199f5ce26,
@@ -1178,24 +1206,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generationOrder: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   myPrefab: {fileID: 0}
-  _shortLengthPlatform: {fileID: 0}
-  _midLengthPlatform: {fileID: 0}
-  _longLengthPlatform: {fileID: 0}
-  _spike: {fileID: 0}
-  _fourSpikes: {fileID: 0}
   platforms: []
   maxSegmentLength: 10
-  _countSegmentLength: 0
   segmentAmount: 100
   platformVerticalRange: 2
   verticalAlignment: 1
   platformSpawnPos: {x: 0, y: 0, z: 0}
-  _generatedSegments: 0
   levelGenerated: 0
   segmentGenerated: 0
-  _spawnAxis: 0
   platformScript: {fileID: 0}
-  _cameraTransitionScript: {fileID: 0}
   generateRandomDirections: 0
   generateControlledRandomDirections: 1
   prefabCopy: {fileID: 0}
