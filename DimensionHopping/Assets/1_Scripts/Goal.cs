@@ -14,6 +14,8 @@ public class Goal : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _canvas.GetComponent<UIManager>().state = UIState.LevelCompleted;
+            
+            
             if(_saveData.unlockedLevels < SceneManager.GetActiveScene().buildIndex - 4)
             {
                 _saveData.unlockedLevels += 1;
