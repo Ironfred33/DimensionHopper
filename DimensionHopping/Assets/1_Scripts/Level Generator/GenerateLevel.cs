@@ -13,6 +13,7 @@ public class GenerateLevel : MonoBehaviour
     private GameObject _longLengthPlatform;
     private GameObject _spike;
     private GameObject _fourSpikes;
+    private GameObject _goal;
     [HideInInspector] public List<GameObject> platforms = new List<GameObject>();
     public int maxSegmentLength;
     private float _countSegmentLength;
@@ -188,6 +189,8 @@ public class GenerateLevel : MonoBehaviour
         _spike = Resources.Load("Level Generator/SingleSpike") as GameObject;
         _fourSpikes = Resources.Load("Level Generator/FourSpikes") as GameObject;
         _goalMaterial = Resources.Load("Level Generator/GoalPlatform") as Material;
+
+        _goal = Resources.Load("Level Generator/Goal") as GameObject;
     }
 
 
@@ -338,14 +341,7 @@ public class GenerateLevel : MonoBehaviour
         // weise worldaxistargetpoint im pgoscript zu 
     }
 
-    void GenerateGoal()
-    {
-        GameObject lastPlatform = platforms.Last();
-
-        lastPlatform.transform.Find("Cube").gameObject.GetComponent<MeshRenderer>().material = _goalMaterial;
-
-
-    }
+    
 
     void GenerateSpikes()
     {
@@ -553,6 +549,60 @@ public class GenerateLevel : MonoBehaviour
 
 
         }
+    }
+
+    void GenerateGoal()
+    {
+
+
+        GameObject lastPlatform = platforms.Last();
+
+        platformScript = lastPlatform.GetComponent<Platform>();
+
+        GameObject instantiatedGoal;
+
+        lastPlatform.transform.Find("Cube").gameObject.GetComponent<MeshRenderer>().material = _goalMaterial;
+
+
+        switch (platformScript.currentAxis)
+                {
+                    case Platform.CurrentAxis.XPositive:
+
+                        instantiatedGoal = Instantiate(_goal, new Vector3(lastPlatform.transform.position.x + (lastPlatform.transform.Find("Cube").gameObject.transform.localScale.x / 2), lastPlatform.transform.position.y + 1, lastPlatform.transform.position.z), Quaternion.identity);
+
+                        break;
+
+                    case Platform.CurrentAxis.ZPositive:
+
+                        instantiatedGoal = Instantiate(_goal, new Vector3(lastPlatform.transform.position.x, lastPlatform.transform.position.y + 1, lastPlatform.transform.position.z + (lastPlatform.transform.Find("Cube").gameObject.transform.localScale.x / 2)), Quaternion.identity);
+
+                        //Instantiate(_spike, new Vector3(platform.transform.position.x, platform.transform.position.y + 0.5f, platform.transform.position.z + (platform.transform.Find("Cube").gameObject.transform.localScale.x / 2)), Quaternion.identity);
+
+                        break;
+
+
+                    case Platform.CurrentAxis.XNegative:
+
+                        instantiatedGoal = Instantiate(_goal, new Vector3(lastPlatform.transform.position.x - (lastPlatform.transform.Find("Cube").gameObject.transform.localScale.x / 2), lastPlatform.transform.position.y + 1, lastPlatform.transform.position.z), Quaternion.identity);
+
+                        //Instantiate(_spike, new Vector3(platform.transform.position.x - (platform.transform.Find("Cube").gameObject.transform.localScale.x / 2), platform.transform.position.y + 0.5f, platform.transform.position.z), Quaternion.identity);
+
+                        break;
+
+                    case Platform.CurrentAxis.ZNegative:
+
+                        instantiatedGoal = Instantiate(_goal, new Vector3(lastPlatform.transform.position.x, lastPlatform.transform.position.y + 1, lastPlatform.transform.position.z - (lastPlatform.transform.Find("Cube").gameObject.transform.localScale.x / 2)), Quaternion.identity);
+
+                        //Instantiate(_spike, new Vector3(platform.transform.position.x, platform.transform.position.y + 0.5f, platform.transform.position.z - (platform.transform.Find("Cube").gameObject.transform.localScale.x / 2)), Quaternion.identity);
+
+                        break;
+                }
+
+
+        if(lastPlatform.transform.Find("SingleSpike(Clone)") != null) Destroy(lastPlatform.transform.Find("SingleSpike(Clone)").gameObject);
+        else if (lastPlatform.transform.Find("FourSpikes(Clone)") != null) Destroy(lastPlatform.transform.Find("FourSpikes(Clone)").gameObject);
+        
+
     }
 
     void SetPlatformAsParent(GameObject spike, GameObject platform)

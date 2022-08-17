@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
         _levelCompletedScreen = this.transform.Find("LevelCompleted").gameObject;
         _levelGeneratorScreen = this.transform.Find("LevelGenerator").gameObject;
 
-        if(SceneManager.GetActiveScene().name == "LevelGeneratorFred")
+        if(SceneManager.GetActiveScene().name == "LevelGenerator")
         {
             state = UIState.LevelGenerator;
             _levelGenerationScript =  GameObject.FindGameObjectWithTag("LevelGenerator").GetComponent<GenerateLevel>();

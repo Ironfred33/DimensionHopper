@@ -9,6 +9,16 @@ public class Goal : MonoBehaviour
     [SerializeField] private GameObject _canvas;
     [SerializeField] private SaveData _saveData;
 
+
+    private void Start() {
+
+        _canvas = GameObject.FindGameObjectWithTag("Canvas");
+        
+    }
+
+
+
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

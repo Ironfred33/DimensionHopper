@@ -983,6 +983,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7697222376288076851, guid: 9e44f5a600176b5479b9457199f5ce26,
+        type: 3}
+      propertyPath: state
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167750682975157286, guid: 9e44f5a600176b5479b9457199f5ce26,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8762688223998745802, guid: 9e44f5a600176b5479b9457199f5ce26,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1212,7 +1222,7 @@ MonoBehaviour:
   generationOrder: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   myPrefab: {fileID: 0}
   platforms: []
-  maxSegmentLength: 5
+  maxSegmentLength: 15
   segmentAmount: 10
   platformVerticalRange: 2
   verticalAlignment: 1

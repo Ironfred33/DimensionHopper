@@ -13,7 +13,7 @@ public class Compass : MonoBehaviour
 
     void Start()
     {
-        _playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        if (_playerTransform != null) _playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
 
@@ -21,7 +21,7 @@ public class Compass : MonoBehaviour
     {
         if(_playerTransform == null)
         {
-            _playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>(); 
+            if(GameObject.FindGameObjectWithTag("Player") != null) _playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>(); 
         }
 
         else
