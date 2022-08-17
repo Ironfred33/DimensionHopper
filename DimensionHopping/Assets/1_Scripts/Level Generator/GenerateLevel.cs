@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -75,6 +75,7 @@ public class GenerateLevel : MonoBehaviour
     void Start()
     {
         Setup();
+        
 
 
     }
@@ -115,6 +116,7 @@ public class GenerateLevel : MonoBehaviour
         switch (difficulty)
         {
             case (Difficulty.Easy):
+
 
                 _highGapLengthAmount = 4;
                 _lowGapLengthAmount = 1;
