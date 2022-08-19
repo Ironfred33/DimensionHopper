@@ -11,13 +11,13 @@ public class CheckForScriptInScene : MonoBehaviour
 
     void Start()
     {
-        StateBar[] scriptsOnScene = FindObjectsOfType<StateBar>();
+        SceneLoader[] scriptsOnScene = FindObjectsOfType<SceneLoader>();
 
         if(scriptsOnScene == null) Debug.Log("No Script in Scene");
 
         else {
 
-            foreach(StateBar s in scriptsOnScene)
+            foreach(SceneLoader s in scriptsOnScene)
             {
                 Debug.Log("Script on the GameObject: " + s.gameObject.name);
             }

@@ -10,10 +10,11 @@ public class Goal : MonoBehaviour
     [SerializeField] private SaveData _saveData;
 
 
-    private void Start() {
+    private void Start()
+    {
 
         _canvas = GameObject.FindGameObjectWithTag("Canvas");
-        
+
     }
 
 
@@ -21,19 +22,37 @@ public class Goal : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (SceneManager.GetActiveScene().name == "LevelGenerator")
         {
-            _canvas.GetComponent<UIManager>().state = UIState.LevelCompleted;
-            
-            
-            if(_saveData.unlockedLevels < SceneManager.GetActiveScene().buildIndex - 4)
+            if (other.CompareTag("Player"))
             {
-                _saveData.unlockedLevels += 1;
+                _canvas.GetComponent<UIManager>().state = UIState.LevelCompleted;
+
+                
+
             }
-            _saveData.Save();
-            
+
         }
+        else
+        {
+            if (other.CompareTag("Player"))
+            {
+                _canvas.GetComponent<UIManager>().state = UIState.LevelCompleted;
+
+
+                if (_saveData.unlockedLevels < SceneManager.GetActiveScene().buildIndex - 4)
+                {
+                    _saveData.unlockedLevels += 1;
+                }
+                _saveData.Save();
+
+            }
+
+        }
+
+
+
     }
 
-    
+
 }

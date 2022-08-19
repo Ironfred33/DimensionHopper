@@ -19,7 +19,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _levelCompletedScreen;
     [SerializeField] private GameObject _levelGeneratorScreen;
     public UIState state;
-    private SceneLoader sceneLoad;
+    [SerializeField] private GameObject _manager;
+    [SerializeField] private SceneLoader sceneLoad;
     private GenerateLevel _levelGenerationScript;
     private LevelGeneratorGameManagement _levelGenerationManagement;
 
@@ -29,6 +30,7 @@ public class UIManager : MonoBehaviour
         _gameOverScreen = this.transform.Find("GameOver").gameObject;
         _levelCompletedScreen = this.transform.Find("LevelCompleted").gameObject;
         _levelGeneratorScreen = this.transform.Find("LevelGenerator").gameObject;
+        sceneLoad = _manager.GetComponent<SceneLoader>();
 
         if(SceneManager.GetActiveScene().name == "LevelGenerator")
         {
@@ -85,7 +87,7 @@ public class UIManager : MonoBehaviour
 
     public void RepeatLevel()
     {
-        if(SceneManager.GetActiveScene().name == "LevelGeneratorFred")
+        if(SceneManager.GetActiveScene().name == "LevelGenerator")
         {
             state = UIState.MainGame;
             Debug.Log("Reload Scene");
@@ -117,10 +119,12 @@ public class UIManager : MonoBehaviour
 
         if (!_levelGenerationScript.levelGenerated) _levelGenerationScript.Generate();
 
+        StartGame();
+
 
     }
 
-    public void ButtonStartGame()
+    public void StartGame()
     {
 
         
