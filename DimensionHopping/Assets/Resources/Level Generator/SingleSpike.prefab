@@ -50,6 +50,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3605604410175952392, guid: aae466d2304142143b6958f2cf8dfd3f,
         type: 3}
+      propertyPath: m_Height
+      value: 0.6395482
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605604410175952392, guid: aae466d2304142143b6958f2cf8dfd3f,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.058609106
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605604410175952392, guid: aae466d2304142143b6958f2cf8dfd3f,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.09902916
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605604410175952392, guid: aae466d2304142143b6958f2cf8dfd3f,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.34753424
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605604410175952392, guid: aae466d2304142143b6958f2cf8dfd3f,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.0016349107
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605604410175952392, guid: aae466d2304142143b6958f2cf8dfd3f,
+        type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}

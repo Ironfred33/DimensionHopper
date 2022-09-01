@@ -298,8 +298,13 @@ public class PlayerController : MonoBehaviour
 
         if (collision.collider.CompareTag("Deadly"))
         {
-            soundEffects.PlayDamageSound();
-            if (!_invincible) health.currentHearts -= 1;
+            if (!_invincible) 
+            {
+                soundEffects.PlayDamageSound();
+                health.currentHearts -= 1;
+
+            }
+             
             Debug.Log("Lost a heart");
             StartCoroutine(InvincibleTime());
             PlayerKnockBack();
@@ -310,7 +315,12 @@ public class PlayerController : MonoBehaviour
 
     void PlayerKnockBack()
     {
+
+        
         Debug.Log("KNOCKBACK!");
+
+        //Richtung abhängig von Spielerausrichtung machen
+
         _rb.AddForce(extVars.knockBackForce * Vector3.left, ForceMode.Impulse);
         _rb.AddForce(extVars.knockBackForce * Vector3.up, ForceMode.Impulse);
     }
@@ -318,6 +328,10 @@ public class PlayerController : MonoBehaviour
     public IEnumerator InvincibleTime()
     {
         _invincible = true;
+        
+        //this.transform.Find("Character").GetComponent<SkinnedMeshRenderer>().materials[0].color = new Color(1.0f, 1.0f, 1.0f, 0.2f);
+
+        Debug.Log("MATERIAL: " + this.transform.Find("Character").GetComponent<SkinnedMeshRenderer>().materials[0]);
 
         yield return new WaitForSeconds(extVars.invincibleTime);
 

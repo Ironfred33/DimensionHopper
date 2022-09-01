@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8353253338493946394}
+  - component: {fileID: 6194615466324397441}
   m_Layer: 0
   m_Name: FourSpikes
-  m_TagString: Untagged
+  m_TagString: Deadly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,6 +35,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6194615466324397441
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626181708359241885}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6966724, y: 0.55037236, z: 0.6707633}
+  m_Center: {x: 0.1255509, y: 0.33453333, z: -0.10183278}
 --- !u!1001 &662962693909434699
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -126,7 +140,8 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7984560558950407400, guid: 9dd269186d90533429b033e83c391b18, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9dd269186d90533429b033e83c391b18, type: 3}
 --- !u!4 &5520949965428327524 stripped
 Transform:
@@ -226,7 +241,8 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7984560558950407400, guid: 9dd269186d90533429b033e83c391b18, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9dd269186d90533429b033e83c391b18, type: 3}
 --- !u!4 &5723543826103198449 stripped
 Transform:
@@ -326,7 +342,8 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7984560558950407400, guid: 9dd269186d90533429b033e83c391b18, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9dd269186d90533429b033e83c391b18, type: 3}
 --- !u!4 &5816351437901990138 stripped
 Transform:
@@ -426,7 +443,8 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7984560558950407400, guid: 9dd269186d90533429b033e83c391b18, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9dd269186d90533429b033e83c391b18, type: 3}
 --- !u!4 &7947728663121165878 stripped
 Transform:
