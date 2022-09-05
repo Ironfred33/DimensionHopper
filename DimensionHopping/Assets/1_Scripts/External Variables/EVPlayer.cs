@@ -34,6 +34,8 @@ public class EVPlayer : MonoBehaviour
     public float wallRunHeight;
     public float wallRunKnockback;
 
+    public float invincibleTransparency;
+
 
 
 

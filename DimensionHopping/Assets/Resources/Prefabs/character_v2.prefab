@@ -1215,6 +1215,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  standardMaterial: {fileID: 0}
+  transparencyMaterial: {fileID: 2100000, guid: 2625a02c8f82f5f40b42a83838d8e173,
+    type: 2}
   extVars: {fileID: 0}
   cameraControl: {fileID: 0}
   cameraTransition: {fileID: 0}
