@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
 {
 
     public PlayerState state;
+
+    [SerializeField] private Material standardMaterial;
+    [SerializeField] private Material transparencyMaterial;
     public EVPlayer extVars;
     public CameraController cameraControl;
     public CameraTransition cameraTransition;
@@ -30,10 +33,14 @@ public class PlayerController : MonoBehaviour
     public GameObject canvas;
     private bool _invincible;
 
-    
+
     void Start()
     {
         _rb = player.GetComponent<Rigidbody>();
+
+        standardMaterial = this.transform.Find("Character").GetComponent<SkinnedMeshRenderer>().materials[0];
+
+        transparencyMaterial.color = new Color(1.0f, 1.0f, 1.0f, extVars.invincibleTransparency);
 
         canvas = GameObject.Find("Canvas");
 
@@ -44,7 +51,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // animations
-        if(state == PlayerState.Idle)
+        if (state == PlayerState.Idle)
         {
             anim.SetBool("isRunning", false);
             anim.SetBool("isJumping", false);
@@ -56,7 +63,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isJumping", false);
         }
 
-        else if(state == PlayerState.Jumping)
+        else if (state == PlayerState.Jumping)
         {
             anim.SetBool("isJumping", true);
             anim.SetBool("isRunning", false);
@@ -72,9 +79,9 @@ public class PlayerController : MonoBehaviour
         }
 
 
-    CheckForHearts();
+        CheckForHearts();
 
-        
+
 
     }
     void FixedUpdate()
@@ -87,7 +94,7 @@ public class PlayerController : MonoBehaviour
         _rb.AddForce(gravity, ForceMode.Acceleration);
 
 
-      
+
     }
 
 
@@ -95,26 +102,26 @@ public class PlayerController : MonoBehaviour
     void CheckForHearts()
     {
 
-          if(health.currentHearts <= 0)
-            {
-                GameOver();
-            }
+        if (health.currentHearts <= 0)
+        {
+            GameOver();
+        }
 
     }
 
 
     // Steuert den Charakter in der 2D-Seitenansicht
-    void Controller2DPerspective() 
+    void Controller2DPerspective()
     {
 
         float horizontalMovement = Input.GetAxis("Horizontal");
-    
+
         if (Input.GetKey(KeyCode.D))
         {
 
-            player.transform.Translate(0, 0, horizontalMovement * extVars.speed2D *  Time.deltaTime);
+            player.transform.Translate(0, 0, horizontalMovement * extVars.speed2D * Time.deltaTime);
             player.transform.localScale = new Vector3(player.transform.localScale.x, player.transform.localScale.y, Mathf.Abs(player.transform.localScale.z));
-          
+
 
             playerIsFlipped = false;
 
@@ -126,12 +133,12 @@ public class PlayerController : MonoBehaviour
 
             player.transform.Translate(0, 0, horizontalMovement * extVars.speed2D * Time.deltaTime);
             player.transform.localScale = new Vector3(player.transform.localScale.x, player.transform.localScale.y, -Mathf.Abs(player.transform.localScale.z));
-            
+
 
             playerIsFlipped = true;
 
             state = PlayerState.Running;
-            
+
         }
         else
         {
@@ -139,10 +146,10 @@ public class PlayerController : MonoBehaviour
         }
 
 
-   
+
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
-            
+
             soundEffects.PlayJumpSound();
             _rb.velocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
             _rb.drag = extVars.linearDrag * 0.15f;
@@ -151,27 +158,27 @@ public class PlayerController : MonoBehaviour
             state = PlayerState.Jumping;
         }
 
-        
-        if(!isOnGround)
+
+        if (!isOnGround)
         {
             extVars.gravityScale = 1;
-            if(_rb.velocity.y < 0)
+            if (_rb.velocity.y < 0)
             {
                 extVars.gravityScale = extVars.gravity * extVars.fallMultiplier;
             }
-            else if(_rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+            else if (_rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
             {
                 extVars.gravityScale = extVars.gravity * (extVars.fallMultiplier / 2);
             }
         }
-        
+
         else
         {
             extVars.gravityScale = 0;
             _rb.drag = extVars.linearDrag;
         }
 
-        
+
 
 
     }
@@ -186,47 +193,47 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            
-            if(!playerIsFlipped)
+
+            if (!playerIsFlipped)
             {
                 player.transform.Translate(0, 0, verticalMovement * extVars.speedFP * Time.deltaTime);
                 state = PlayerState.Running;
             }
-            else if(playerIsFlipped)
+            else if (playerIsFlipped)
             {
-                player.transform.Translate(0, 0, - verticalMovement * extVars.speedFP * Time.deltaTime);
+                player.transform.Translate(0, 0, -verticalMovement * extVars.speedFP * Time.deltaTime);
                 state = PlayerState.Running;
             }
-            
-            
+
+
         }
         else if (Input.GetKey(KeyCode.S))
         {
 
-            if(!playerIsFlipped)
+            if (!playerIsFlipped)
             {
                 player.transform.Translate(0, 0, verticalMovement * extVars.speedFP * Time.deltaTime);
                 state = PlayerState.Running;
             }
-            else if(playerIsFlipped)
+            else if (playerIsFlipped)
             {
-                player.transform.Translate(0, 0, - verticalMovement * extVars.speedFP * Time.deltaTime);
+                player.transform.Translate(0, 0, -verticalMovement * extVars.speedFP * Time.deltaTime);
                 state = PlayerState.Running;
             }
-            
+
         }
-        
+
         if (Input.GetKey(KeyCode.D))
         {
 
-            if(!playerIsFlipped)
+            if (!playerIsFlipped)
             {
                 player.transform.Translate(horizontalMovement * extVars.speedFP * Time.deltaTime, 0, 0);
                 state = PlayerState.Running;
             }
-            else if(playerIsFlipped)
+            else if (playerIsFlipped)
             {
-                player.transform.Translate(- horizontalMovement * extVars.speedFP * Time.deltaTime, 0, 0);
+                player.transform.Translate(-horizontalMovement * extVars.speedFP * Time.deltaTime, 0, 0);
                 state = PlayerState.Running;
             }
 
@@ -234,19 +241,19 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKey(KeyCode.A))
         {
 
-            if(!playerIsFlipped)
+            if (!playerIsFlipped)
             {
                 player.transform.Translate(horizontalMovement * extVars.speedFP * Time.deltaTime, 0, 0);
                 state = PlayerState.Running;
             }
-            else if(playerIsFlipped)
+            else if (playerIsFlipped)
             {
-                player.transform.Translate(- horizontalMovement * extVars.speedFP * Time.deltaTime, 0, 0);
+                player.transform.Translate(-horizontalMovement * extVars.speedFP * Time.deltaTime, 0, 0);
                 state = PlayerState.Running;
             }
         }
 
-        
+
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !player.GetComponent<WallRun_v2>().isWallRunning)
         {
             _rb.velocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
@@ -255,37 +262,37 @@ public class PlayerController : MonoBehaviour
             _rb.AddForce(Vector3.up.normalized * extVars.jumpForceFP, ForceMode.Impulse);
             Debug.Log("Addforce!");
             anim.SetBool("isJumping", true);
-            
+
 
         }
 
-        else if(player.GetComponent<WallRun_v2>().isWallRunning && Input.GetKey(KeyCode.W))
+        else if (player.GetComponent<WallRun_v2>().isWallRunning && Input.GetKey(KeyCode.W))
         {
             extVars.gravityScale = 0.5f;
         }
 
 
 
-        else if(!isOnGround)
+        else if (!isOnGround)
         {
             extVars.gravityScale = 1;
-            if(_rb.velocity.y < 0)
+            if (_rb.velocity.y < 0)
             {
                 extVars.gravityScale = extVars.gravity * extVars.fallMultiplier;
             }
-            else if(_rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+            else if (_rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
             {
                 extVars.gravityScale = extVars.gravity * (extVars.fallMultiplier / 2);
             }
         }
-        
+
         else
         {
             extVars.gravityScale = 0;
             _rb.drag = extVars.linearDrag;
         }
 
-        if(!Input.anyKey)
+        if (!Input.anyKey)
         {
             state = PlayerState.Idle;
         }
@@ -298,13 +305,13 @@ public class PlayerController : MonoBehaviour
 
         if (collision.collider.CompareTag("Deadly"))
         {
-            if (!_invincible) 
+            if (!_invincible)
             {
                 soundEffects.PlayDamageSound();
                 health.currentHearts -= 1;
 
             }
-             
+
             Debug.Log("Lost a heart");
             StartCoroutine(InvincibleTime());
             PlayerKnockBack();
@@ -316,7 +323,7 @@ public class PlayerController : MonoBehaviour
     void PlayerKnockBack()
     {
 
-        
+
         Debug.Log("KNOCKBACK!");
 
         //Richtung abhängig von Spielerausrichtung machen
@@ -328,14 +335,34 @@ public class PlayerController : MonoBehaviour
     public IEnumerator InvincibleTime()
     {
         _invincible = true;
-        
-        //this.transform.Find("Character").GetComponent<SkinnedMeshRenderer>().materials[0].color = new Color(1.0f, 1.0f, 1.0f, 0.2f);
+
+        Debug.Log("INVINCIBLE TRIGGERED");
+
+        ChangeMaterial(transparencyMaterial);
 
         Debug.Log("MATERIAL: " + this.transform.Find("Character").GetComponent<SkinnedMeshRenderer>().materials[0]);
 
         yield return new WaitForSeconds(extVars.invincibleTime);
 
+
+        // HIER COROUTINE HIN -> Flackern
+
+
         _invincible = false;
+
+        ChangeMaterial(standardMaterial);
+
+    }
+
+
+    public void ChangeMaterial(Material mat)
+    {
+        var materials = this.transform.Find("Character").GetComponent<SkinnedMeshRenderer>().materials;
+
+        materials[0] = mat;
+
+        this.transform.Find("Character").GetComponent<SkinnedMeshRenderer>().materials = materials;
+
     }
 
     // Aktiviert GameOverScreen und respawnt Spieler
@@ -344,15 +371,15 @@ public class PlayerController : MonoBehaviour
         canvas.GetComponent<UIManager>().state = UIState.GameOver;
         player.transform.position = extVars.spawnPoint;
         health.currentHearts = extVars.maxHearts;
-        
+
     }
 
     // Lets character stay on moving platform
-    
+
     private void OnCollisionStay(Collision collisionInfo)
     {
         Debug.Log("Tag =" + collisionInfo.gameObject.tag);
-        if(collisionInfo.collider.CompareTag("PGOzNegative") || collisionInfo.collider.CompareTag("PGOzPositive") || collisionInfo.collider.CompareTag("PGOxPositive") || collisionInfo.collider.CompareTag("PGOxNegative") || collisionInfo.collider.CompareTag("MovingPlatform"))
+        if (collisionInfo.collider.CompareTag("PGOzNegative") || collisionInfo.collider.CompareTag("PGOzPositive") || collisionInfo.collider.CompareTag("PGOxPositive") || collisionInfo.collider.CompareTag("PGOxNegative") || collisionInfo.collider.CompareTag("MovingPlatform"))
         {
             Debug.Log("Parenting");
             this.transform.SetParent(collisionInfo.collider.transform);
@@ -365,10 +392,10 @@ public class PlayerController : MonoBehaviour
         this.transform.SetParent(null);
         parented = false;
     }
-    
+
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("OutOfBounds"))
+        if (other.gameObject.CompareTag("OutOfBounds"))
         {
             GameOver();
         }
@@ -388,7 +415,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-        
+
 }
 
 

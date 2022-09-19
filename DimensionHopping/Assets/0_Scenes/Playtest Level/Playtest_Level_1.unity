@@ -3663,6 +3663,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2757309063020325805, guid: 186d6350790e79f4ab3901e4b08e80d0,
+        type: 3}
+      propertyPath: invincibleTransparency
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3336433437684698387, guid: 186d6350790e79f4ab3901e4b08e80d0,
         type: 3}
       propertyPath: _gameOverScreen
