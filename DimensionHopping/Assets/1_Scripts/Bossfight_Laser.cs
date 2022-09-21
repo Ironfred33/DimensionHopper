@@ -5,14 +5,14 @@ using UnityEngine;
 public class Bossfight_Laser : MonoBehaviour
 {
     [SerializeField] private GameObject[] laserBalls;
-    [SerializeField] private bool _firing;
     [SerializeField] private float _coolDown;
     [SerializeField] private float _walkSpeed;
     [SerializeField] private List<Transform> _wayPointList;
-
     [SerializeField] private Transform[] _wayPoints;
+    private bool _firing;
     private AudioSource laserAudio;
-    LineRenderer laserLine;
+    private LineRenderer laserLine;  
+    private GameObject _laserOrigin; 
 
     void Awake() 
     {
@@ -29,10 +29,8 @@ public class Bossfight_Laser : MonoBehaviour
         {
             _wayPointList.Add(_wayPoints[i]);
         }
-        Debug.Log(_wayPointList);
     }
 
-    // Update is called once per frame
     void Update()
     {
         float step = _walkSpeed * Time.deltaTime;
@@ -47,6 +45,11 @@ public class Bossfight_Laser : MonoBehaviour
             Attack();
         }
 
+        if(_firing)
+        {
+            laserLine.SetPosition(0,_laserOrigin.transform.position);
+        }
+
     }
 
     private void Attack()
@@ -58,16 +61,14 @@ public class Bossfight_Laser : MonoBehaviour
     {
         laserLine.enabled = true;
         laserAudio.Play();
-        GameObject laserDestination = laserBalls[Random.Range(0, laserBalls.Length)];
-        laserDestination.SetActive(true);
-        laserLine.SetPosition(0,laserDestination.transform.position);
-        Debug.Log("Something happened");
+        _laserOrigin = laserBalls[Random.Range(0, laserBalls.Length)];
+        _laserOrigin.SetActive(true);
         RaycastHit hit;
 
-        if(Physics.Raycast(laserDestination.transform.position, (transform.forward + transform.right).normalized, out hit, Mathf.Infinity))
+        if(Physics.Raycast(_laserOrigin.transform.position, (Vector3.down + transform.forward*10), out hit, Mathf.Infinity))
         {
-            laserLine.SetPosition(1, hit.transform.position);
-            
+            _firing = true;
+            laserLine.SetPosition(1, hit.point);      
         }
         yield return new WaitForSeconds(_coolDown);
     }
