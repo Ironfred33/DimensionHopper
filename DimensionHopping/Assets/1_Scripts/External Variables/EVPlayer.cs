@@ -23,10 +23,7 @@ public class EVPlayer : MonoBehaviour
 
     public float knockBackForce;
 
-    public float invincibleTime;
-
     public float linearDrag;
-
     public int maxCollectibles;
 
     public float wallRunDistance;
@@ -34,6 +31,7 @@ public class EVPlayer : MonoBehaviour
     public float wallRunHeight;
     public float wallRunKnockback;
 
+    public float invincibleTime;
     public float invincibleTransparency;
 
 

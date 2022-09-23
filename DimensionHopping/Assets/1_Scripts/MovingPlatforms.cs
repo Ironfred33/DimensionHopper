@@ -25,7 +25,7 @@ public class MovingPlatforms : MonoBehaviour
     {
         _elapsed += Time.deltaTime;
 
-        Debug.Log(_elapsed);
+        //   Debug.Log(_elapsed);
         if(_movingToTarget)
         {
             transform.position = Vector3.Lerp(firstPosition.position, secondPosition.position, _elapsed/movementTime);

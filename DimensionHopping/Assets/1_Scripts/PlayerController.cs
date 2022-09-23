@@ -33,6 +33,12 @@ public class PlayerController : MonoBehaviour
     public GameObject canvas;
     private bool _invincible;
 
+    private bool _transparentMaterial;
+
+    private float invincibleFlickerSpeed = 0.2f;
+    private float _elapsed;
+    private float _dt;
+
 
     void Start()
     {
@@ -339,6 +345,10 @@ public class PlayerController : MonoBehaviour
         Debug.Log("INVINCIBLE TRIGGERED");
 
         ChangeMaterial(transparencyMaterial);
+        _transparentMaterial = true;
+
+
+        StartCoroutine(Flicker());
 
         Debug.Log("MATERIAL: " + this.transform.Find("Character").GetComponent<SkinnedMeshRenderer>().materials[0]);
 
@@ -347,10 +357,114 @@ public class PlayerController : MonoBehaviour
 
         // HIER COROUTINE HIN -> Flackern
 
-
+        _transparentMaterial = false;
         _invincible = false;
 
         ChangeMaterial(standardMaterial);
+
+    }
+
+    // antagonist  -> hier weiterarbeiten
+
+    private IEnumerator Flicker()
+    {
+
+        //float step = 0.1f;
+
+        bool switcher = false;
+
+        for (int i = 0; i < 10; i ++)
+        {
+
+
+            if (switcher == false)
+            {
+                
+                transparencyMaterial.color = new Color(1.0f, 1.0f, 1.0f, extVars.invincibleTransparency);
+
+                ChangeMaterial(transparencyMaterial);
+
+                Debug.Log("1 Triggered");
+
+            }
+
+            else if (switcher == true)
+            {
+                transparencyMaterial.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+
+                ChangeMaterial(transparencyMaterial);
+
+                Debug.Log("2 Triggered");
+
+
+            }
+
+            if (switcher == true) switcher = false;
+            else if (switcher == false) switcher = true;
+
+            yield return new WaitForSeconds(0.2f);
+            
+
+            Debug.Log(switcher);
+
+
+        }
+
+
+
+
+        // _elapsed = 0f;
+
+        // Color c = material.color;
+
+        // bool fullAlpha = false;
+
+
+        // while (_elapsed <= extVars.invincibleTime)
+        // {
+        //     _dt = Time.deltaTime;
+        //     _elapsed = _elapsed + _dt;
+
+        //     Debug.Log(_elapsed);
+
+        //     if(!fullAlpha) 
+        //     {
+        //         material.color = new Color(1.0f, 1.0f, 1.0f, extVars.invincibleTransparency);
+        //         yield return new WaitForSeconds(0.1f);
+        //         fullAlpha = false;
+        //     }
+        //     else if (fullAlpha)
+        //     {
+        //         material.color = new Color(1.0f, 1.0f, 1.0f, 1);
+        //         yield return new WaitForSeconds(0.1f);
+        //         fullAlpha = true;
+
+        //     }
+
+        //     yield return null;
+        // }
+
+        // while (_transparentMaterial)
+        // {
+
+        //     material.color = new Color(1.0f, 1.0f, 1.0f, extVars.invincibleTransparency);
+
+        //     yield return new WaitForSeconds(invincibleFlickerSpeed);
+
+        //     material.color = new Color(1.0f, 1.0f, 1.0f, 1);
+
+        //     yield return null;
+
+        // }
+
+        yield return null;
+
+    }
+
+    public void SwitchBool(bool boolean)
+    {
+        if (boolean == true) boolean = false;
+        else if (boolean == false) boolean = true;
 
     }
 
@@ -378,7 +492,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionStay(Collision collisionInfo)
     {
-        Debug.Log("Tag =" + collisionInfo.gameObject.tag);
+        // Debug.Log("Tag =" + collisionInfo.gameObject.tag);
         if (collisionInfo.collider.CompareTag("PGOzNegative") || collisionInfo.collider.CompareTag("PGOzPositive") || collisionInfo.collider.CompareTag("PGOxPositive") || collisionInfo.collider.CompareTag("PGOxNegative") || collisionInfo.collider.CompareTag("MovingPlatform"))
         {
             Debug.Log("Parenting");

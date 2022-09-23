@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("current state: " + state);
+       // Debug.Log("current state: " + state);
         EvaluateState();
     }
 
