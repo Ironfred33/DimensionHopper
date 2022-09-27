@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public GameObject canvas;
     private bool _invincible;
 
+    private bool _flickering;
     private bool _transparentMaterial;
 
     private float invincibleFlickerSpeed = 0.2f;
@@ -352,8 +353,9 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log("MATERIAL: " + this.transform.Find("Character").GetComponent<SkinnedMeshRenderer>().materials[0]);
 
-        yield return new WaitForSeconds(extVars.invincibleTime);
+        //yield return new WaitForSeconds(extVars.invincibleTime);
 
+        yield return Flicker();
 
         // HIER COROUTINE HIN -> Flackern
 
@@ -369,13 +371,14 @@ public class PlayerController : MonoBehaviour
     private IEnumerator Flicker()
     {
 
-        //float step = 0.1f;
+        _flickering = true;
 
         bool switcher = false;
 
-        for (int i = 0; i < 10; i ++)
-        {
+        float flickerFrequency = extVars.invincibleTime / extVars.flickerSpeed;
 
+        for (int i = 0; i < flickerFrequency; i ++)
+        {
 
             if (switcher == false)
             {
@@ -396,13 +399,12 @@ public class PlayerController : MonoBehaviour
 
                 Debug.Log("2 Triggered");
 
-
             }
 
             if (switcher == true) switcher = false;
             else if (switcher == false) switcher = true;
 
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(extVars.flickerSpeed);
             
 
             Debug.Log(switcher);
@@ -410,61 +412,9 @@ public class PlayerController : MonoBehaviour
 
         }
 
-
-
-
-        // _elapsed = 0f;
-
-        // Color c = material.color;
-
-        // bool fullAlpha = false;
-
-
-        // while (_elapsed <= extVars.invincibleTime)
-        // {
-        //     _dt = Time.deltaTime;
-        //     _elapsed = _elapsed + _dt;
-
-        //     Debug.Log(_elapsed);
-
-        //     if(!fullAlpha) 
-        //     {
-        //         material.color = new Color(1.0f, 1.0f, 1.0f, extVars.invincibleTransparency);
-        //         yield return new WaitForSeconds(0.1f);
-        //         fullAlpha = false;
-        //     }
-        //     else if (fullAlpha)
-        //     {
-        //         material.color = new Color(1.0f, 1.0f, 1.0f, 1);
-        //         yield return new WaitForSeconds(0.1f);
-        //         fullAlpha = true;
-
-        //     }
-
-        //     yield return null;
-        // }
-
-        // while (_transparentMaterial)
-        // {
-
-        //     material.color = new Color(1.0f, 1.0f, 1.0f, extVars.invincibleTransparency);
-
-        //     yield return new WaitForSeconds(invincibleFlickerSpeed);
-
-        //     material.color = new Color(1.0f, 1.0f, 1.0f, 1);
-
-        //     yield return null;
-
-        // }
+        _flickering = false;
 
         yield return null;
-
-    }
-
-    public void SwitchBool(bool boolean)
-    {
-        if (boolean == true) boolean = false;
-        else if (boolean == false) boolean = true;
 
     }
 

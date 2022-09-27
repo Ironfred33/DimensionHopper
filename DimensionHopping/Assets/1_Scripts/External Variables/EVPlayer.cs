@@ -33,6 +33,7 @@ public class EVPlayer : MonoBehaviour
 
     public float invincibleTime;
     public float invincibleTransparency;
+    public float flickerSpeed;
 
 
 
