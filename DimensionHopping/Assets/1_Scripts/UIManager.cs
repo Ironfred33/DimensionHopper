@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     public UIState state;
     [SerializeField] private GameObject _manager;
     [SerializeField] private SceneLoader sceneLoad;
+    [SerializeField] private GeneratorOptions _generatorOptions;
     private GenerateLevel _levelGenerationScript;
     private LevelGeneratorGameManagement _levelGenerationManagement;
 
@@ -127,7 +128,15 @@ public class UIManager : MonoBehaviour
     public void ButtonGenerate()
     {
 
-        if (!_levelGenerationScript.levelGenerated) _levelGenerationScript.Generate();
+        if (!_levelGenerationScript.levelGenerated) 
+        
+        {
+            _generatorOptions.OverWriteGenerationOptions();
+            _levelGenerationScript.Setup();
+            _levelGenerationScript.Generate();
+
+        }
+
 
         StartGame();
 
