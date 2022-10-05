@@ -71,34 +71,18 @@ public class GenerateLevel : MonoBehaviour
 
 
 
-
-
-    void Start()
-    {
-        Setup();
-        
-
-
-    }
-
-    private void Update()
+    public void Setup()
     {
 
-        SetDifficulty();
-
-
-
-    }
-
-    void Setup()
-    {
-
+        Debug.Log("Setup");
 
         LoadPrefabs();
 
         GetAllComponents();
 
         SetDifficulty();
+
+        generationOrder = new int[segmentAmount];
 
 
 
@@ -613,6 +597,9 @@ public class GenerateLevel : MonoBehaviour
     void GenerateRandomDirections()
     {
         Debug.Log("Random Generationorder gesetzt");
+
+        //generationOrder.Length = 10;
+
 
         generationOrder[0] = 0;
 
