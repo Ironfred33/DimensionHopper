@@ -69,12 +69,6 @@ public class SpecialSight : MonoBehaviour
                     transformFirstPoint = scriptPGO.transformFirstPoint;
                     transformSecondPoint = scriptPGO.transformSecondPoint;
 
-                
-
-
-
-
-
                 CreateCopy(hit);
                 StartCoroutine(TrackCoolDown());
                 StartCoroutine(TrackSightTime());
