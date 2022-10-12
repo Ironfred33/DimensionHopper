@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GeneratorOptions : MonoBehaviour
 {
 
     public GenerateLevel levelGeneration;
-    public Dropdown difficulty;
-    public Dropdown verticalAlignment;
+    // public Dropdown difficulty;
+    // public Dropdown verticalAlignment;
+
+    public TMP_Dropdown difficulty;
+
+    public TMP_Dropdown verticalAlignment;
+
 
 
     // Start is called before the first frame update
