@@ -12,6 +12,7 @@ public class SpecialKeys : MonoBehaviour
     public KeyCode loadNextSceneKey;
     public KeyCode loadLastSceneKey;
     private SceneLoader _sceneLoaderScript;
+    [SerializeField] private UIManager _uiManager;
 
     void Start()
     {
@@ -63,6 +64,7 @@ public class SpecialKeys : MonoBehaviour
     {
         Time.timeScale = 0;
         _gamePaused = true;
+        _uiManager.state = UIState.Pause;
     }
 
     // Setzt das Spiel fort
@@ -70,6 +72,7 @@ public class SpecialKeys : MonoBehaviour
     {
         Time.timeScale = 1;
         _gamePaused = false;
+        _uiManager.state = UIState.MainGame;
     }
 
     // Lädt die nächste Szene

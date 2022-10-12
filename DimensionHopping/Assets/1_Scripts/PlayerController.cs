@@ -156,13 +156,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
-
+            state = PlayerState.Jumping;
             soundEffects.PlayJumpSound();
             _rb.velocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
             _rb.drag = extVars.linearDrag * 0.15f;
             Debug.Log("Jumped" + Vector3.up.normalized * extVars.jumpForce2D);
             _rb.AddForce(Vector3.up.normalized * extVars.jumpForce2D, ForceMode.Impulse);
-            state = PlayerState.Jumping;
+            
         }
 
 
@@ -263,12 +263,12 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !player.GetComponent<WallRun_v2>().isWallRunning)
         {
+            anim.SetBool("isJumping", true);
             _rb.velocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
             _rb.drag = extVars.linearDrag * 0.15f;
             soundEffects.PlayJumpSound();
             _rb.AddForce(Vector3.up.normalized * extVars.jumpForceFP, ForceMode.Impulse);
             Debug.Log("Addforce!");
-            anim.SetBool("isJumping", true);
 
 
         }

@@ -8,7 +8,8 @@ public enum UIState
         MainGame,
         GameOver,
         LevelCompleted,
-        LevelGenerator
+        LevelGenerator,
+        Pause
 }
 
 public class UIManager : MonoBehaviour
@@ -18,6 +19,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _gameOverScreen;
     [SerializeField] private GameObject _levelCompletedScreen;
     [SerializeField] private GameObject _levelGeneratorScreen;
+    [SerializeField] private GameObject _pauseScreen;
     public UIState state;
     [SerializeField] private GameObject _manager;
     [SerializeField] private SceneLoader sceneLoad;
@@ -31,6 +33,7 @@ public class UIManager : MonoBehaviour
         _gameOverScreen = this.transform.Find("GameOver").gameObject;
         _levelCompletedScreen = this.transform.Find("LevelCompleted").gameObject;
         _levelGeneratorScreen = this.transform.Find("LevelGenerator").gameObject;
+        _pauseScreen = this.transform.Find("Pause").gameObject;
         sceneLoad = _manager.GetComponent<SceneLoader>();
 
         if(SceneManager.GetActiveScene().name == "LevelGenerator")
@@ -61,6 +64,7 @@ public class UIManager : MonoBehaviour
                 _levelCompletedScreen.SetActive(false);
                 _levelGeneratorScreen.SetActive(false);
                 _mainGameScreen.SetActive(true);
+                _pauseScreen.SetActive(false);
                 Cursor.visible = false;
                 break;
             
@@ -80,6 +84,12 @@ public class UIManager : MonoBehaviour
             case UIState.LevelGenerator:
                 _mainGameScreen.SetActive(false);
                 _levelGeneratorScreen.SetActive(true);
+                Cursor.visible = true;
+                break;
+            case UIState.Pause:
+                _mainGameScreen.SetActive(true);
+                _levelGeneratorScreen.SetActive(false);
+                _pauseScreen.SetActive(true);
                 Cursor.visible = true;
                 break;
         }
