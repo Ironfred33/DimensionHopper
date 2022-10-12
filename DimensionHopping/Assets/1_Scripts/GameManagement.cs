@@ -56,7 +56,7 @@ public class GameManagement : MonoBehaviour
     // Lädt Spieler Prefab
     void LoadPrefab()
     {
-        _playerPrefab = Resources.Load("Prefabs/character_v2") as GameObject;
+        _playerPrefab = Resources.Load("Prefabs/NewCharacter") as GameObject;
 
     }
 
