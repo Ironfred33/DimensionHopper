@@ -27,41 +27,6 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Body
     second: {fileID: 2100000, guid: a316f655e7f912a408f0edab574f9399, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Frame
-    second: {fileID: 2100000, guid: a316f655e7f912a408f0edab574f9399, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Hair
-    second: {fileID: 2100000, guid: a316f655e7f912a408f0edab574f9399, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Hololens
-    second: {fileID: 2100000, guid: 51f628e8069229444bc9323fd5b42175, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Hood
-    second: {fileID: 2100000, guid: a316f655e7f912a408f0edab574f9399, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Hoodie
-    second: {fileID: 2100000, guid: a316f655e7f912a408f0edab574f9399, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Pants
-    second: {fileID: 2100000, guid: a316f655e7f912a408f0edab574f9399, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Ropes
-    second: {fileID: 2100000, guid: 9ebb589c2f40e0b4dbe065172e84e9b7, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -188,7 +153,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

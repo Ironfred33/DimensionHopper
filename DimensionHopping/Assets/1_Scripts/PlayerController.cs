@@ -7,7 +7,8 @@ public enum PlayerState
 {
     Idle,
     Running,
-    Jumping
+    Jumping,
+    Landing
 }
 public class PlayerController : MonoBehaviour
 {
@@ -45,7 +46,7 @@ public class PlayerController : MonoBehaviour
     {
         _rb = player.GetComponent<Rigidbody>();
 
-        standardMaterial = this.transform.Find("Character").GetComponent<SkinnedMeshRenderer>().materials[0];
+        standardMaterial = this.transform.Find("Body").GetComponent<SkinnedMeshRenderer>().materials[0];
 
         transparencyMaterial.color = new Color(1.0f, 1.0f, 1.0f, extVars.invincibleTransparency);
 
@@ -62,6 +63,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("isRunning", false);
             anim.SetBool("isJumping", false);
+            anim.SetBool("isLanding", false);
         }
 
         else if (state == PlayerState.Running)
@@ -75,6 +77,14 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isJumping", true);
             anim.SetBool("isRunning", false);
         }
+
+        else if(state == PlayerState.Landing)
+        {
+            anim.SetBool("isLanding", true);
+            anim.SetBool("isJumping", false);
+        }
+
+        Debug.Log("Current state: " + state);
 
         if (cameraControl.is2DView)
         {
@@ -147,11 +157,11 @@ public class PlayerController : MonoBehaviour
             state = PlayerState.Running;
 
         }
+
         else
         {
             state = PlayerState.Idle;
         }
-
 
 
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
@@ -325,6 +335,11 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        else if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            state = PlayerState.Landing;
+        }
+
     }
 
     void PlayerKnockBack()
@@ -351,7 +366,7 @@ public class PlayerController : MonoBehaviour
 
         StartCoroutine(Flicker());
 
-        Debug.Log("MATERIAL: " + this.transform.Find("Character").GetComponent<SkinnedMeshRenderer>().materials[0]);
+        Debug.Log("MATERIAL: " + this.transform.Find("Body").GetComponent<SkinnedMeshRenderer>().materials[0]);
 
         //yield return new WaitForSeconds(extVars.invincibleTime);
 
@@ -421,11 +436,11 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeMaterial(Material mat)
     {
-        var materials = this.transform.Find("Character").GetComponent<SkinnedMeshRenderer>().materials;
+        var materials = this.transform.Find("Body").GetComponent<SkinnedMeshRenderer>().materials;
 
         materials[0] = mat;
 
-        this.transform.Find("Character").GetComponent<SkinnedMeshRenderer>().materials = materials;
+        this.transform.Find("Body").GetComponent<SkinnedMeshRenderer>().materials = materials;
 
     }
 
