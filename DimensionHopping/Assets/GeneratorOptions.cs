@@ -3,21 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class GeneratorOptions : MonoBehaviour
 {
 
     public GenerateLevel levelGeneration;
-    // public Dropdown difficulty;
-    // public Dropdown verticalAlignment;
 
     public TMP_Dropdown difficulty;
 
     public TMP_Dropdown verticalAlignment;
 
+    public TMP_InputField segmentAmount;
+    public TMP_InputField segmentLength;
 
-
-    // Start is called before the first frame update
   
 
 
@@ -25,6 +24,34 @@ public class GeneratorOptions : MonoBehaviour
     {
         SetDifficulty();
         SetVerticalAlignment();
+        SetSegmentAmount();
+        SetSegmentLength();
+    }
+
+
+
+    void SetSegmentAmount()
+    {
+        levelGeneration.segmentAmount =  StringToInt(segmentAmount.text);
+
+    }
+
+    void SetSegmentLength()
+    {
+        levelGeneration.maxSegmentLength =  StringToInt(segmentLength.text);
+
+    }
+
+
+    int StringToInt(string text)
+    {
+        int amount = 0;
+
+        if(int.TryParse(text, out amount)) amount = Convert.ToInt32(text);
+        else amount = 10;
+
+        return amount;
+
     }
 
     void SetDifficulty()

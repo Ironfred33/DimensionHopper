@@ -45,7 +45,7 @@ public class LevelGeneratorGameManagement : MonoBehaviour
         _levelGenerationScript = GameObject.FindGameObjectWithTag("LevelGenerator").GetComponent<GenerateLevel>();
         _extVarsPlayer = GameObject.FindGameObjectWithTag("ExternalVariables").GetComponent<EVPlayer>();
 
-        _player = Resources.Load("Prefabs/character_v2") as GameObject;
+        _player = Resources.Load("Prefabs/NewCharacter") as GameObject;
         spawnCoordinates = new Vector3(1, 0, 0);
 
     }
