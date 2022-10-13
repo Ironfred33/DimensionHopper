@@ -49,7 +49,9 @@ public class GenerateLevel : MonoBehaviour
     private Material _goalMaterial;
     public Difficulty difficulty;
     private CurrentAxis currentAxis;
-    [SerializeField] private GameObject _deathZone;
+    private GameObject _deathZone;
+    private GameObject _deathZoneInstantiated;
+    private GameObject _clouds;
     public float deathZoneDepth;
     public enum Difficulty
     {
@@ -175,6 +177,7 @@ public class GenerateLevel : MonoBehaviour
         _fourSpikes = Resources.Load("Level Generator/FourSpikes") as GameObject;
         _goalMaterial = Resources.Load("Level Generator/GoalPlatform") as Material;
         _deathZone = Resources.Load("Level Generator/DeathZone") as GameObject;
+        _clouds = Resources.Load("Level Generator/SkyDisk") as GameObject;
 
 
         _goal = Resources.Load("Level Generator/Goal") as GameObject;
@@ -221,12 +224,19 @@ public class GenerateLevel : MonoBehaviour
 
         GenerateDeathZone();
 
+        GenerateClouds();
+
 
         _isGenerating = false;
         levelGenerated = true;
         Debug.Log("Level Generated");
 
 
+    }
+
+    void GenerateClouds()
+    {
+        Instantiate(_clouds, new Vector3(_deathZoneInstantiated.transform.position.x, _deathZoneInstantiated.transform.position.y - 22, _deathZoneInstantiated.transform.position.z ), Quaternion.identity );
     }
 
     void GenerateDeathZone()
@@ -237,8 +247,7 @@ public class GenerateLevel : MonoBehaviour
         {
             case (VerticalAlignment.Upwards):
 
-
-            Instantiate(_deathZone, new Vector3(platforms[0].transform.position.x, platforms[0].transform.position.y - deathZoneDepth, platforms[0].transform.position.z), Quaternion.identity);
+            _deathZoneInstantiated = Instantiate(_deathZone, new Vector3(platforms[0].transform.position.x, platforms[0].transform.position.y - deathZoneDepth, platforms[0].transform.position.z), Quaternion.identity);
             
             // generiere death zone an punkt von erster plattform -y wert
 
@@ -246,7 +255,7 @@ public class GenerateLevel : MonoBehaviour
 
             case (VerticalAlignment.Even):
 
-            Instantiate(_deathZone, new Vector3(platforms[0].transform.position.x, platforms[0].transform.position.y - deathZoneDepth, platforms[0].transform.position.z), Quaternion.identity);
+            _deathZoneInstantiated = Instantiate(_deathZone, new Vector3(platforms[0].transform.position.x, platforms[0].transform.position.y - deathZoneDepth, platforms[0].transform.position.z), Quaternion.identity);
 
             // generiere death zone an punkt von erster plattform -y wert
 
@@ -254,7 +263,7 @@ public class GenerateLevel : MonoBehaviour
 
             case (VerticalAlignment.Downwards):
             
-            Instantiate(_deathZone, new Vector3(platforms.Last().transform.position.x, platforms.Last().transform.position.y - deathZoneDepth, platforms.Last().transform.position.z), Quaternion.identity);
+            _deathZoneInstantiated = Instantiate(_deathZone, new Vector3(platforms.Last().transform.position.x, platforms.Last().transform.position.y - deathZoneDepth, platforms.Last().transform.position.z), Quaternion.identity);
 
 
             // generiere death zone an punkt von letzter plattform -y wert

@@ -6455,7 +6455,6 @@ MonoBehaviour:
   generateControlledRandomDirections: 1
   prefabCopy: {fileID: 0}
   difficulty: 1
-  _deathZone: {fileID: 0}
   deathZoneDepth: 20
 --- !u!4 &1840093657
 Transform:
@@ -8312,7 +8311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2696141282465824835
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9763,7 +9762,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &7403279014235119473
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10408,7 +10407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &8732848861863856856
 GameObject:
   m_ObjectHideFlags: 0
