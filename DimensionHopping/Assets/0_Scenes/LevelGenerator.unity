@@ -3212,7 +3212,7 @@ PrefabInstance:
     - target: {fileID: 6380644708603304071, guid: 001d3dfbd74f8c5459df77050ade6c46,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6380644708603304071, guid: 001d3dfbd74f8c5459df77050ade6c46,
         type: 3}
@@ -3555,50 +3555,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
---- !u!1 &951176384
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 951176386}
-  - component: {fileID: 951176385}
-  m_Layer: 0
-  m_Name: Death
-  m_TagString: OutOfBounds
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &951176385
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 951176384}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 19.693604, z: 0.99999976}
-  m_Center: {x: 0, y: -4.7502136, z: 0}
---- !u!4 &951176386
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 951176384}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.4, y: -38.4, z: 27}
-  m_LocalScale: {x: 510, y: 1, z: 436}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &953405001
 GameObject:
   m_ObjectHideFlags: 0
@@ -6499,6 +6455,8 @@ MonoBehaviour:
   generateControlledRandomDirections: 1
   prefabCopy: {fileID: 0}
   difficulty: 1
+  _deathZone: {fileID: 0}
+  deathZoneDepth: 20
 --- !u!4 &1840093657
 Transform:
   m_ObjectHideFlags: 0
@@ -10486,7 +10444,7 @@ RectTransform:
   - {fileID: 2045262154306523083}
   - {fileID: 1680124159}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

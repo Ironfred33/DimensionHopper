@@ -49,6 +49,8 @@ public class GenerateLevel : MonoBehaviour
     private Material _goalMaterial;
     public Difficulty difficulty;
     private CurrentAxis currentAxis;
+    [SerializeField] private GameObject _deathZone;
+    public float deathZoneDepth;
     public enum Difficulty
     {
         Easy,
@@ -83,7 +85,6 @@ public class GenerateLevel : MonoBehaviour
         SetDifficulty();
 
         generationOrder = new int[segmentAmount];
-
 
 
     }
@@ -173,6 +174,8 @@ public class GenerateLevel : MonoBehaviour
         _spike = Resources.Load("Level Generator/SingleSpike") as GameObject;
         _fourSpikes = Resources.Load("Level Generator/FourSpikes") as GameObject;
         _goalMaterial = Resources.Load("Level Generator/GoalPlatform") as Material;
+        _deathZone = Resources.Load("Level Generator/DeathZone") as GameObject;
+
 
         _goal = Resources.Load("Level Generator/Goal") as GameObject;
     }
@@ -216,11 +219,49 @@ public class GenerateLevel : MonoBehaviour
 
         Debug.Log(platforms.Last().name);
 
+        GenerateDeathZone();
+
 
         _isGenerating = false;
         levelGenerated = true;
         Debug.Log("Level Generated");
 
+
+    }
+
+    void GenerateDeathZone()
+    {
+
+
+        switch(verticalAlignment)
+        {
+            case (VerticalAlignment.Upwards):
+
+
+            Instantiate(_deathZone, new Vector3(platforms[0].transform.position.x, platforms[0].transform.position.y - deathZoneDepth, platforms[0].transform.position.z), Quaternion.identity);
+            
+            // generiere death zone an punkt von erster plattform -y wert
+
+            break;
+
+            case (VerticalAlignment.Even):
+
+            Instantiate(_deathZone, new Vector3(platforms[0].transform.position.x, platforms[0].transform.position.y - deathZoneDepth, platforms[0].transform.position.z), Quaternion.identity);
+
+            // generiere death zone an punkt von erster plattform -y wert
+
+            break;
+
+            case (VerticalAlignment.Downwards):
+            
+            Instantiate(_deathZone, new Vector3(platforms.Last().transform.position.x, platforms.Last().transform.position.y - deathZoneDepth, platforms.Last().transform.position.z), Quaternion.identity);
+
+
+            // generiere death zone an punkt von letzter plattform -y wert
+
+            break;
+
+        }
 
     }
 
