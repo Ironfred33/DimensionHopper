@@ -5,8 +5,8 @@ using UnityEngine;
 // Kontrolliert bewegliche Plattformen
 public class MovingPlatforms : MonoBehaviour
 {
-    public Transform firstPosition;
-    public Transform secondPosition;
+    public Vector3 firstPosition;
+    public Vector3 secondPosition;
 
     public float movementTime;
     private float _elapsed;
@@ -28,7 +28,7 @@ public class MovingPlatforms : MonoBehaviour
         //   Debug.Log(_elapsed);
         if(_movingToTarget)
         {
-            transform.position = Vector3.Lerp(firstPosition.position, secondPosition.position, _elapsed/movementTime);
+            transform.position = Vector3.Lerp(firstPosition, secondPosition, _elapsed/movementTime);
 
             if(_elapsed >= movementTime)
             {
@@ -45,7 +45,7 @@ public class MovingPlatforms : MonoBehaviour
 
         else
         {
-            transform.position = Vector3.Lerp(secondPosition.position, firstPosition.position, _elapsed/movementTime);
+            transform.position = Vector3.Lerp(secondPosition, firstPosition, _elapsed/movementTime);
 
             if(_elapsed >= movementTime)
             {

@@ -18,7 +18,7 @@ public class Squeezing : MonoBehaviour
     {   
         _squeezable = false;
         _squeezed = false;
-        _squeezeDuration = Vector3.Distance(GetComponent<MovingPlatforms>().firstPosition.position, GetComponent<MovingPlatforms>().secondPosition.position) / GetComponent<MovingPlatforms>().movementTime;
+        _squeezeDuration = Vector3.Distance(GetComponent<MovingPlatforms>().firstPosition, GetComponent<MovingPlatforms>().secondPosition) / GetComponent<MovingPlatforms>().movementTime;
     }
 
     void FixedUpdate()
