@@ -374,6 +374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionDuration: 1
   transitionLength: 1
+  transitionDirIndex: 0
   transitionDir: 3
   transitionButton: 256
   firstPosition: {x: 0, y: 0, z: 0}
@@ -506,7 +507,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1d865814f8d611145859435fd411845e, type: 2}
+  - {fileID: 2100000, guid: dc9b74a6725bf994eadfd81e8bb46d34, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -772,6 +773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionDuration: 1
   transitionLength: 1
+  transitionDirIndex: 0
   transitionDir: 2
   transitionButton: 0
   firstPosition: {x: 0, y: 0, z: 0}

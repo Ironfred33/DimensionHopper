@@ -46,7 +46,9 @@ public class SceneLoader : MonoBehaviour
     // Lädt die derzeit laufende Szene neu
     public void ReLoadCurrentScene()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
         
     } 
 

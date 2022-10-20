@@ -27,7 +27,7 @@ public class ChangePosition : MonoBehaviour
     [HideInInspector] public Vector3 secondPosition;
     public float elapsed;
     [SerializeField] private bool _transitioned;
-    [SerializeField] private bool _transitionInProgress;
+    public bool transitionInProgress;
 
 
     // Start is called before the first frame update
@@ -51,7 +51,7 @@ public class ChangePosition : MonoBehaviour
     private void Update()
     {
 
-        if (!_transitionInProgress)
+        if (!transitionInProgress)
         {
 
             if (Input.GetKeyDown(transitionButton) && !_transitioned)
@@ -86,7 +86,7 @@ public class ChangePosition : MonoBehaviour
 
             this.transform.position = Vector3.Lerp(currentPosition, newPosition, elapsed / transitionDuration);
 
-            _transitionInProgress = true;
+            transitionInProgress = true;
 
             yield return null;
 
@@ -94,7 +94,7 @@ public class ChangePosition : MonoBehaviour
 
         }
 
-        _transitionInProgress = false;
+        transitionInProgress = false;
         if (!_transitioned) _transitioned = true;
         else if (_transitioned) _transitioned = false;
 
