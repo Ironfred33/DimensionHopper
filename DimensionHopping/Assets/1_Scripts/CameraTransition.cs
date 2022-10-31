@@ -26,6 +26,9 @@ public class CameraTransition : MonoBehaviour
     [HideInInspector] public bool switchingFrom2DtoFPP = false;
     [HideInInspector] public bool switchingFromFPPto2D = false;
 
+    [SerializeField] private LayerMask _cullingMaskFp;
+    [SerializeField] private LayerMask _cullingMask2D;
+
 
 
     // PGOskripte in bereits existierendem Level
@@ -52,6 +55,7 @@ public class CameraTransition : MonoBehaviour
     private void Start()
     {
 
+        this.GetComponent<Camera>().cullingMask = _cullingMask2D;
         extVars = externalVariables.GetComponent<EVCameraTransition>();
 
         CheckForLevelGeneratorInScene();
@@ -172,6 +176,7 @@ public class CameraTransition : MonoBehaviour
             EnableObject(compass);
             EnableObject(crossHair);
             TogglePlayerControl();
+            this.GetComponent<Camera>().cullingMask = _cullingMaskFp;
         }
 
         // Wechselt von FPP zu 2D
@@ -183,6 +188,7 @@ public class CameraTransition : MonoBehaviour
             DisableObject(crossHair);
             TogglePlayerControl();
             if (droneSound != null ) droneSound.Play();
+            this.GetComponent<Camera>().cullingMask = _cullingMask2D;
 
             while (_elapsed <= extVars.duration)
             {
@@ -202,6 +208,7 @@ public class CameraTransition : MonoBehaviour
             cameraControl.is2DView = true;
             transitionInProgress = false;
             TogglePlayerControl();
+            
         }
 
 

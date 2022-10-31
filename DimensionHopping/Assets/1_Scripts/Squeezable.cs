@@ -16,9 +16,14 @@ public class Squeezable : MonoBehaviour
 
     private Vector3 _secondPosition;
 
+    private Rigidbody _rb;
+
+    private bool _isParented;
+
 
     void Start()
-    {
+    {   
+        Setup();
 
     }
 
@@ -26,11 +31,36 @@ public class Squeezable : MonoBehaviour
     void Update()
     {
 
+       CheckForSqueeze();
+
+        
+
+
+
+        
+
     }
 
     void Setup()
     {
+        _rb = this.GetComponent<Rigidbody>();
 
+    }
+
+    void CheckForSqueeze()
+    {
+         if(changePosScript != null)
+        {
+            if(!changePosScript.transitionInProgress)
+            {
+                if(!CheckForMovement(_rb) && _isParented) 
+                {
+                    UnparentThis();
+                    changePosScript = null;
+                }
+                
+            }
+        }
     }
 
 
@@ -41,42 +71,31 @@ public class Squeezable : MonoBehaviour
         if (other.transform.tag == "Squeezer")
         {
 
-            //if (!_isSqueezing)
-            //{
-                changePosScript = other.transform.GetComponent<ChangePosition>();
+            ParentThis(other.gameObject);
 
-                GetSecondPosition();
+            changePosScript = other.transform.GetComponent<ChangePosition>();
 
-                _elapsed = changePosScript.elapsed;
+            _isSqueezing = true;
 
+            if (!_isSqueezing)
+            {
                 StartCoroutine(Squeeze());
 
-                Debug.Log("SQUEEEZE");
+                // GetSecondPosition();
 
-            //}
+                // _elapsed = changePosScript.elapsed;
 
-        }
-    }
+                
 
-    private void OnTriggerStay(Collider other)
-    {
+                // Debug.Log("SQUEEEZE");
 
-        if (other.transform.tag == "Squeezer")
-        {
-
+            }
 
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.transform.tag == "Squeezer")
-        {
-            //changePosScript = null;
 
-            Debug.Log("NON SQUEEZE");
-        }
-    }
+
 
 
     IEnumerator Squeeze()
@@ -84,6 +103,12 @@ public class Squeezable : MonoBehaviour
 
         _isSqueezing = true;
 
+
+        if(_isSqueezing)
+        {
+            this.transform.localScale = new Vector3(this.transform.localScale.x * -0.1f * Time.deltaTime, this.transform.localScale.y * -0.1f * Time.deltaTime,  this.transform.localScale.z * -0.1f * Time.deltaTime ); 
+        }
+        
         //_elapsed = 0f;
 
         while (_elapsed <= changePosScript.transitionDuration)
@@ -106,62 +131,88 @@ public class Squeezable : MonoBehaviour
 
     }
 
+      void ParentThis(GameObject parent)
+    {
+        this.transform.parent = parent.transform;
+
+        _isParented = true;
 
 
+    }
 
-    void GetSecondPosition()
+    void UnparentThis()
     {
 
-        // 0 - xPos, 1 - xNeg
-        // 2 - zPos, 3 - zNeg
-        // 4 - yPos, 5 - yNeg
+        if (this.transform.parent != null) this.transform.parent = null;
 
-
-        switch (changePosScript.transitionDirIndex)
-        {
-            case 0:
-
-                _secondPosition = new Vector3(changePosScript.secondPosition.x + this.transform.localScale.x, this.transform.position.y, this.transform.position.z);
-
-                break;
-
-            case 1:
-
-                _secondPosition = new Vector3(changePosScript.secondPosition.x - this.transform.localScale.x, this.transform.position.y, this.transform.position.z);
-
-                break;
-
-
-            case 2:
-
-                _secondPosition = new Vector3(changePosScript.secondPosition.x, this.transform.position.y, this.transform.position.z + this.transform.localScale.z);
-
-                break;
-
-
-            case 3:
-
-                _secondPosition = new Vector3(changePosScript.secondPosition.x, this.transform.position.y, this.transform.position.z - this.transform.localScale.z);
-
-                break;
-
-
-            case 4:
-
-                _secondPosition = new Vector3(changePosScript.secondPosition.x, this.transform.position.y + this.transform.localScale.y, this.transform.position.z);
-
-                break;
-
-
-            case 5:
-
-                _secondPosition = new Vector3(changePosScript.secondPosition.x, this.transform.position.y - this.transform.localScale.y, this.transform.position.z);
-
-                break;
-
-
-        }
     }
+
+    bool CheckForMovement(Rigidbody rb)
+    {
+
+        if(rb.velocity.magnitude > 0.1) return true;
+        else return false;
+
+    }
+
+
+
+
+    // void GetSecondPosition()
+    // {
+
+    //     // 0 - xPos, 1 - xNeg
+    //     // 2 - zPos, 3 - zNeg
+    //     // 4 - yPos, 5 - yNeg
+
+
+    //     switch (changePosScript.transitionDirIndex)
+    //     {
+    //         case 0:
+
+    //             _secondPosition = new Vector3(changePosScript.secondPosition.x + this.transform.localScale.x, this.transform.position.y, this.transform.position.z);
+
+    //             break;
+
+    //         case 1:
+
+    //             _secondPosition = new Vector3(changePosScript.secondPosition.x - this.transform.localScale.x, this.transform.position.y, this.transform.position.z);
+
+    //             break;
+
+
+    //         case 2:
+
+    //             _secondPosition = new Vector3(changePosScript.secondPosition.x, this.transform.position.y, this.transform.position.z + this.transform.localScale.z);
+
+    //             break;
+
+
+    //         case 3:
+
+    //             _secondPosition = new Vector3(changePosScript.secondPosition.x, this.transform.position.y, this.transform.position.z - this.transform.localScale.z);
+
+    //             break;
+
+
+    //         case 4:
+
+    //             _secondPosition = new Vector3(changePosScript.secondPosition.x, this.transform.position.y + this.transform.localScale.y, this.transform.position.z);
+
+    //             break;
+
+
+    //         case 5:
+
+    //             _secondPosition = new Vector3(changePosScript.secondPosition.x, this.transform.position.y - this.transform.localScale.y, this.transform.position.z);
+
+    //             break;
+
+
+    //     }
+    // }
+
+  
 
 }
 

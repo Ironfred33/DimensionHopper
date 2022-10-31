@@ -4172,6 +4172,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 608444209668921818, guid: 186d6350790e79f4ab3901e4b08e80d0,
+        type: 3}
+      propertyPath: SpawnCoords.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1168294405947620730, guid: 186d6350790e79f4ab3901e4b08e80d0,
         type: 3}
       propertyPath: m_ClearFlags
