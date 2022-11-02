@@ -21,8 +21,14 @@ public class PushableObject : MonoBehaviour
         {
             _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
             Vector3 pushDirection = transform.position - other.transform.position;
-            pushDirection.y = 0;
-            pushDirection.Normalize();
+            if(Mathf.Abs(pushDirection.x) > Mathf.Abs(pushDirection.z))
+            {
+                pushDirection = new Vector3(1,0,0);
+            }
+            else if(Mathf.Abs(pushDirection.z) >= Mathf.Abs(pushDirection.x))
+            {
+                pushDirection = new Vector3(0,0,1);
+            }
 
             _rb.MovePosition(transform.position + pushDirection * _pushForce * Time.deltaTime);
             Debug.Log("Pushing");
