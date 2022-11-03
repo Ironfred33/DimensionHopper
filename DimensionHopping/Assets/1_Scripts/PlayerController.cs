@@ -191,7 +191,7 @@ public class PlayerController : MonoBehaviour
 
         else
         {
-            extVars.gravityScale = 0;
+            extVars.gravityScale = 1;
             _rb.drag = extVars.linearDrag;
         }
 

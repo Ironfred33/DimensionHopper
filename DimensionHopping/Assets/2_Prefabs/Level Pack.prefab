@@ -2101,6 +2101,16 @@ PrefabInstance:
       propertyPath: droneSound
       value: 
       objectReference: {fileID: 3590443024677134893}
+    - target: {fileID: 6100688518035928246, guid: 2fcf0bcf5adc4d649bae97eafc5fc882,
+        type: 3}
+      propertyPath: _cullingMask2D.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100688518035928246, guid: 2fcf0bcf5adc4d649bae97eafc5fc882,
+        type: 3}
+      propertyPath: _cullingMaskFp.m_Bits
+      value: 823
+      objectReference: {fileID: 0}
     - target: {fileID: 6100688518035928247, guid: 2fcf0bcf5adc4d649bae97eafc5fc882,
         type: 3}
       propertyPath: m_Name
