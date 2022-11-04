@@ -7,8 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: BlueLight
+    second: {fileID: 2100000, guid: 51f628e8069229444bc9323fd5b42175, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Endesga
     second: {fileID: 2100000, guid: a316f655e7f912a408f0edab574f9399, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light
+    second: {fileID: 2100000, guid: 3ec6779c19f1a1547bed114b423cdba7, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
