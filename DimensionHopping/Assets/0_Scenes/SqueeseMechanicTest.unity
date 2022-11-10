@@ -245,8 +245,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
-  loweringAmount: 2
+  loweringTime: 0.1
+  raisingTime: 0.1
+  loweringAmount: 1
   _playerTouching: 0
+  _standardPosition: {x: 0, y: 0, z: 0}
+  _loweredPosition: {x: 0, y: 0, z: 0}
+  _lowerCoroutineRunning: 0
 --- !u!1001 &1006465600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -258,6 +263,16 @@ PrefabInstance:
         type: 3}
       propertyPath: SpawnCoords.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1168294405947620735, guid: 186d6350790e79f4ab3901e4b08e80d0,
+        type: 3}
+      propertyPath: _cullingMask2D.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1168294405947620735, guid: 186d6350790e79f4ab3901e4b08e80d0,
+        type: 3}
+      propertyPath: _cullingMaskFp.m_Bits
+      value: 823
       objectReference: {fileID: 0}
     - target: {fileID: 7385626095287557057, guid: 186d6350790e79f4ab3901e4b08e80d0,
         type: 3}
@@ -490,7 +505,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-230074
+  m_Name: pb_Mesh16860
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
