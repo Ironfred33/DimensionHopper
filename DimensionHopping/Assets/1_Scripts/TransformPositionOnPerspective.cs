@@ -75,22 +75,22 @@ public class TransformPositionOnPerspective : MonoBehaviour
         {
             case (WorldAxis.PGOxPositive):
                 gameObject.tag = "PGOxPositive";
-                GetComponent<Renderer>().material = _blueGlow;
+                transform.Find("EnergyField").GetComponent<Renderer>().material = _blueGlow;
                 break;
 
             case (WorldAxis.PGOxNegative):
                 gameObject.tag = "PGOxNegative";
-                GetComponent<Renderer>().material = _redGlow;
+                transform.Find("EnergyField").GetComponent<Renderer>().material = _redGlow;
                 break;
 
             case (WorldAxis.PGOzPositive):
                 gameObject.tag = "PGOzPositive";
-                GetComponent<Renderer>().material = _greenGlow;
+                transform.Find("EnergyField").GetComponent<Renderer>().material = _greenGlow;
                 break;
 
             case (WorldAxis.PGOzNegative):
                 gameObject.tag = "PGOzNegative";
-                GetComponent<Renderer>().material = _yellowGlow;
+                transform.Find("EnergyField").GetComponent<Renderer>().material = _yellowGlow;
                 break;
 
         }
