@@ -25,6 +25,7 @@ TagManager:
   - LevelGenerationManager
   - Pushable
   - Squeezer
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
