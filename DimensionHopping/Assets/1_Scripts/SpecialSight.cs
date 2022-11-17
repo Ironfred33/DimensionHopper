@@ -147,18 +147,28 @@ public class SpecialSight : MonoBehaviour
     // Löscht Child-Objekte der PGOs, sofern vorhanden
     void CheckForChild(GameObject copy)
     {
-        if (copy.transform.childCount == 1)
+
+        // "EnergyField"
+
+        foreach (Transform g in copy.transform.GetComponentsInChildren<Transform>())
         {
-            DeleteChild(copy);
+            if(g.name != "EnergyField") DeleteChild(g.gameObject);
+            Debug.Log(g.name);
         }
-        else Debug.Log("No Child");
+        //else Debug.Log("NO CHILD");
+
+        // if (copy.transform.childCount == 1)
+        // {
+        //     DeleteChild(copy);
+        // }
+        // else Debug.Log("No Child");
 
     }
 
     // Löscht Child-Objekte der PGOs
-    void DeleteChild(GameObject copy)
+    void DeleteChild(GameObject gameObject)
     {
-        Destroy(copy.gameObject.transform.GetChild(0).gameObject);
+        Destroy(gameObject);
     }
 
 

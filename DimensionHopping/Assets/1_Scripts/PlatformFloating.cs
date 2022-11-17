@@ -11,10 +11,14 @@ public class PlatformFloating : MonoBehaviour
     public float loweringTime;
     public float raisingTime;
 
+    public float wobblingTime;
+    public float wobblingAmount;
+
     public float loweringAmount;
     [SerializeField] private bool _playerTouching;
     [SerializeField] private bool _platformLowering;
     [SerializeField] private bool _platformRaising;
+    private bool _platformWobbling;
     private Vector3 _standardPosition;
     private Vector3 _loweredPosition;
 
@@ -31,8 +35,6 @@ public class PlatformFloating : MonoBehaviour
         _playerControls = _player.GetComponent<PlayerController>();
         _standardPosition = this.transform.position;
         _loweredPosition = new Vector3(_standardPosition.x, _standardPosition.y - loweringAmount, _standardPosition.z);
-        _lowerPlatform = LowerPlatform();
-        _raisePlatform = RaisePlatform();
 
 
     }
@@ -43,16 +45,20 @@ public class PlatformFloating : MonoBehaviour
     {
         if (_playerTouching && !_platformLowering)
         {
-            StartCoroutine(_lowerPlatform);
             _platformLowering = true;
+            StartCoroutine(LowerPlatform());
+            
 
         }
 
         if ((!_playerTouching && !_platformRaising) && (this.transform.position != _standardPosition) )
         {
-            StartCoroutine(_raisePlatform);
             _platformRaising = true;
+            StartCoroutine(RaisePlatform());
+            
         }
+
+        if(!_playerTouching) _platformWobbling = false;
 
         // if (!_playerTouching && _lowerCoroutineRunning)
         // {
@@ -103,7 +109,18 @@ public class PlatformFloating : MonoBehaviour
         Debug.Log("PIEP PIEP PIEP");
         _platformLowering = false;
 
+
+        
+
         yield return null;
+
+        if(!_platformWobbling)
+        {
+            _platformWobbling = true;
+            StartCoroutine(Wobbling());
+
+        }
+        
 
 
         //_lowerCoroutineRunning = false;
@@ -113,13 +130,15 @@ public class PlatformFloating : MonoBehaviour
     {
         //_raiseCoroutineRunning = true;
 
+        Debug.Log("PLATFORM RAISING COROUTINE START");
+
         _elapsed = 0f;
 
 
         _player.transform.parent = this.transform;
 
 
-        while (_elapsed <= loweringTime)
+        while (_elapsed <= raisingTime)
         {
             _dt = Time.deltaTime;
             _elapsed = _elapsed + _dt;
@@ -142,6 +161,30 @@ public class PlatformFloating : MonoBehaviour
 
 
         //_lowerCoroutineRunning = false;
+    }
+
+    IEnumerator Wobbling()
+    {
+        _elapsed = 0f;
+
+
+        _player.transform.parent = this.transform;
+
+
+        while (_elapsed <= loweringTime)
+        {
+            _dt = Time.deltaTime;
+            _elapsed = _elapsed + _dt;
+
+
+            this.transform.position = Vector3.Lerp(transform.position, new Vector3 (transform.position.x, transform.position.y + wobblingAmount, transform.position.z), _elapsed / wobblingTime);
+
+            yield return null;
+
+
+        }
+
+        yield return null;
     }
 
 
