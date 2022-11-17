@@ -61,10 +61,10 @@ public class TransformPositionOnPerspective : MonoBehaviour
     // Lädt Materialien für Glow Effekt
     void LoadGlows()
     {
-        _blueGlow = Resources.Load("Materials/Glows/Glow_Blue") as Material;
-        _redGlow = Resources.Load("Materials/Glows/Glow_Red") as Material;
-        _yellowGlow = Resources.Load("Materials/Glows/Glow_Yellow") as Material;
-        _greenGlow = Resources.Load("Materials/Glows/Glow_Green") as Material;
+        _blueGlow = Resources.Load("Materials/Glows/FloatEffect_Blue") as Material;
+        _redGlow = Resources.Load("Materials/Glows/FloatEffect_Red") as Material;
+        _yellowGlow = Resources.Load("Materials/Glows/FloatEffect_Yellow") as Material;
+        _greenGlow = Resources.Load("Materials/Glows/FloatEffect_Green") as Material;
     }
 
     // Vergibt Tags an PGOs und weist Materialien entsprechend zu
