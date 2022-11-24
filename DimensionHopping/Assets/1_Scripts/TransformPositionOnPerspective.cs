@@ -22,7 +22,11 @@ public class TransformPositionOnPerspective : MonoBehaviour
     public float worldAxisTargetPoint;
     [HideInInspector] public Vector3 transformFirstPoint;
     [HideInInspector] public Vector3 transformSecondPoint;
+
+    [HideInInspector] public Vector3 transformFirstPointLowered;
+    [HideInInspector] public Vector3 transformSecondPointLowered;
     private EVCameraTransition _EVcamTransitionScript;
+    private PlatformFloating _floatingScript;
     private float _elapsed;
     private float _dt;
 
@@ -35,6 +39,19 @@ public class TransformPositionOnPerspective : MonoBehaviour
         LoadGlows();
         TagThisAndGetGlow();
         GetDuration();
+        CalculateNewPositions();
+
+    }
+
+    void CalculateNewPositions()
+    {
+
+        if (this.GetComponent<PlatformFloating>() == true) _floatingScript = this.GetComponent<PlatformFloating>();
+
+        transformFirstPointLowered = new Vector3(transformFirstPoint.x, transformFirstPoint.y - _floatingScript.loweringAmount, transformFirstPoint.z);
+
+        transformSecondPointLowered = new Vector3(transformSecondPoint.x, transformSecondPoint.y - _floatingScript.loweringAmount, transformSecondPoint.z);
+
 
     }
 
@@ -125,7 +142,7 @@ public class TransformPositionOnPerspective : MonoBehaviour
             }
 
         }
-        else if (transform.position == transformSecondPoint)
+        else if (transform.position == transformSecondPoint )
         {
             while (_elapsed <= _EVcamTransitionScript.duration)
             {
@@ -137,6 +154,38 @@ public class TransformPositionOnPerspective : MonoBehaviour
                 yield return null;
             }
         }
+
+        if (transform.position == transformFirstPointLowered)
+        {
+
+            while (_elapsed <= _EVcamTransitionScript.duration)
+            {
+                _dt = Time.deltaTime;
+                _elapsed += _dt;
+                transform.position = Vector3.Lerp(transformFirstPointLowered, transformSecondPointLowered, _elapsed / _EVcamTransitionScript.duration);
+
+
+                yield return null;
+            }
+
+        }
+        else if (transform.position == transformSecondPointLowered)
+        {
+
+             while (_elapsed <= _EVcamTransitionScript.duration)
+            {
+                _dt = Time.deltaTime;
+                _elapsed += _dt;
+
+                transform.position = Vector3.Lerp(transformSecondPointLowered, transformFirstPointLowered, _elapsed / _EVcamTransitionScript.duration);
+
+                yield return null;
+            }
+
+        }
+
+
+
     }
 
     void OnCollisionStay(Collision collisionInfo)
