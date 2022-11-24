@@ -125,6 +125,12 @@ public class UIManager : MonoBehaviour
         state = UIState.MainGame;
         Debug.Log("Reload Scene");
     }
+    public void ResetState()
+    {
+        Debug.Log("Changed state");
+        this.state = UIState.MainGame;
+        
+    }
 
     public void ButtonGenerate()
     {
