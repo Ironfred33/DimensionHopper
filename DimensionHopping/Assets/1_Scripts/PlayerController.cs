@@ -491,7 +491,23 @@ public class PlayerController : MonoBehaviour
         //     }
         // }
 
+    }
 
+    private void OnParticleCollision(GameObject other) 
+    {
+        if(other.CompareTag("Deadly"))
+        {
+            if (!_invincible)
+            {
+                soundEffects.PlayDamageSound();
+                health.currentHearts -= 1;
+
+            }
+
+            Debug.Log("Lost a heart");
+            StartCoroutine(InvincibleTime());
+            PlayerKnockBack();
+        }    
     }
 
 
