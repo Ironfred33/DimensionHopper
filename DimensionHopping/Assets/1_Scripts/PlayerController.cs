@@ -41,6 +41,9 @@ public class PlayerController : MonoBehaviour
     private float _elapsed;
     private float _dt;
 
+    private Vector3 _correctScale; 
+
+
 
     void Start()
     {
@@ -320,6 +323,7 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
 
+        _correctScale = transform.localScale;
         if (collision.collider.CompareTag("Deadly"))
         {
             if (!_invincible)
@@ -491,7 +495,24 @@ public class PlayerController : MonoBehaviour
         //     }
         // }
 
+    }
 
+    private void OnParticleCollision(GameObject other) 
+    {
+        if(other.CompareTag("Deadly"))
+        {
+            if (!_invincible)
+            {
+                soundEffects.PlayDamageSound();
+                health.currentHearts -= 1;
+
+            }
+
+            Debug.Log("Lost a heart");
+            StartCoroutine(InvincibleTime());
+            PlayerKnockBack();
+        }
+        
     }
 
 
