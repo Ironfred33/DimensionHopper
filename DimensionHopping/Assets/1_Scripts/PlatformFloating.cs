@@ -29,12 +29,10 @@ public class PlatformFloating : MonoBehaviour
     // PROBLEM 2: Wenn Spieler sich nicht auf PGO befindet, bewegt sie sich, aber wird wieder zurückgesetzt. Theorie: Coroutine Positionsänderung sticht sich mit
     // der PGO Positionsänderung
 
-    // PGO: standardposition in position A + lowered UND standardposition in position B + lowered
-
-    // PGO: transform auch anpassen, je nach lowered oder nicht lowered
-
-
     // In PGO Script: if (transform.position == transformFirstPoint) <---- PROBLEM
+
+
+    // Variablen externalisieren!
     
 
     void Start()
@@ -97,7 +95,7 @@ public class PlatformFloating : MonoBehaviour
 
         }
 
-        this.transform.position = loweredPosition;
+        //this.transform.position = loweredPosition;
 
 
         Debug.Log("PIEP PIEP PIEP");
@@ -108,12 +106,12 @@ public class PlatformFloating : MonoBehaviour
 
         yield return null;
 
-        if(!_platformWobbling)
-        {
-            _platformWobbling = true;
-            StartCoroutine(Wobbling());
+        // if(!_platformWobbling)
+        // {
+        //     _platformWobbling = true;
+        //     StartCoroutine(Wobbling());
 
-        }
+        // }
     
 
     }
@@ -128,7 +126,7 @@ public class PlatformFloating : MonoBehaviour
         //_player.transform.parent = this.transform;
 
 
-        while (_elapsed <= raisingTime)
+        while (_elapsed <= raisingTime) 
         {
             _dt = Time.deltaTime;
             _elapsed = _elapsed + _dt;
@@ -140,7 +138,7 @@ public class PlatformFloating : MonoBehaviour
 
         }
 
-        this.transform.position = standardPosition;
+        //this.transform.position = standardPosition;
 
         _platformRaising = false;
 

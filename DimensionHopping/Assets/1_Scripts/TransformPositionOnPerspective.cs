@@ -29,12 +29,14 @@ public class TransformPositionOnPerspective : MonoBehaviour
     private PlatformFloating _floatingScript;
     private float _elapsed;
     private float _dt;
+    public bool originalPosition;
 
 
 
     void Awake()
     {
-
+        
+        originalPosition = true;
         AssignPoints();
         LoadGlows();
         TagThisAndGetGlow();
@@ -125,6 +127,9 @@ public class TransformPositionOnPerspective : MonoBehaviour
     // Verschiebt PGOs 
     public IEnumerator TransformPosition()
     {
+
+        originalPosition = SwitchBool(originalPosition);
+
         _elapsed = 0f;
 
 
@@ -184,8 +189,6 @@ public class TransformPositionOnPerspective : MonoBehaviour
 
         }
 
-
-
     }
 
     void OnCollisionStay(Collision collisionInfo)
@@ -201,6 +204,14 @@ public class TransformPositionOnPerspective : MonoBehaviour
     void OnCollisionExit(Collision other)
     {
         transform.SetParent(null);
+    }
+
+    bool SwitchBool(bool b)
+    {
+        if (b == true) b = false;
+        else if (b == false) b = true;
+
+        return b;
     }
 
 }
