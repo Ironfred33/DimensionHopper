@@ -6,6 +6,7 @@ public class PlatformFloating : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
     private PlayerController _playerControls;
+    private TransformPositionOnPerspective _pgoScript;
     public float loweringTime;
     public float raisingTime;
     public float wobblingTime;
@@ -25,11 +26,10 @@ public class PlatformFloating : MonoBehaviour
 
 
 
-    // PROBLEM 1: PGO bewegt sich nicht mehr, wenn PLayer auf ihm steht
     // PROBLEM 2: Wenn Spieler sich nicht auf PGO befindet, bewegt sie sich, aber wird wieder zurückgesetzt. Theorie: Coroutine Positionsänderung sticht sich mit
     // der PGO Positionsänderung
 
-    // In PGO Script: if (transform.position == transformFirstPoint) <---- PROBLEM
+    // DAS PROBLEM LIEGT IN DIESEM SCRIPT DIOS MIOS COROUTINE UFF OH NEIN
 
 
     // Variablen externalisieren!
@@ -41,20 +41,21 @@ public class PlatformFloating : MonoBehaviour
         _playerControls = _player.GetComponent<PlayerController>();
         standardPosition = this.transform.position;
         loweredPosition = new Vector3(standardPosition.x, standardPosition.y - loweringAmount, standardPosition.z);
+        _pgoScript = this.GetComponent<TransformPositionOnPerspective>();
 
     }
 
 
     void Update()
     {
-        if (_playerTouching && !_platformLowering)
+        if ((_playerTouching && !_platformLowering) && (this.transform.position == standardPosition) || (_playerTouching && !_platformLowering) && (this.transform.position == _pgoScript.transformSecondPoint))
         {
             _platformLowering = true;
             StartCoroutine(LowerPlatform());
             
         }
 
-        if ((!_playerTouching && !_platformRaising) && (this.transform.position != standardPosition) )
+        if (((!_playerTouching && !_platformRaising) && (this.transform.position == loweredPosition)) || (!_playerTouching && !_platformRaising) && (this.transform.position == _pgoScript.transformSecondPointLowered) )  // <------- HIER FEHLER
         {
             _platformRaising = true;
             StartCoroutine(RaisePlatform());

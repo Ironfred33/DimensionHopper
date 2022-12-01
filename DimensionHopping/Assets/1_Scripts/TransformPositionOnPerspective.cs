@@ -160,7 +160,7 @@ public class TransformPositionOnPerspective : MonoBehaviour
             }
         }
 
-        if (transform.position == transformFirstPointLowered)
+        else if (transform.position == transformFirstPointLowered)
         {
 
             while (_elapsed <= _EVcamTransitionScript.duration)
