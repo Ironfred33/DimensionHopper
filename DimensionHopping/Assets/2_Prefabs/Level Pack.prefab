@@ -1817,7 +1817,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3336433437684698387}
-        m_MethodName: RepeatLevel
+        m_MethodName: ResumeGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2486,6 +2486,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3779650676789220214, guid: 9e44f5a600176b5479b9457199f5ce26,
+        type: 3}
+      propertyPath: m_Name
+      value: TryAgainButton
+      objectReference: {fileID: 0}
     - target: {fileID: 4585786363964659890, guid: 9e44f5a600176b5479b9457199f5ce26,
         type: 3}
       propertyPath: m_text
@@ -2500,6 +2505,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936794008129569293, guid: 9e44f5a600176b5479b9457199f5ce26,
+        type: 3}
+      propertyPath: m_Name
+      value: BackToMenuButton
       objectReference: {fileID: 0}
     - target: {fileID: 7153777103274047546, guid: 9e44f5a600176b5479b9457199f5ce26,
         type: 3}
@@ -2530,7 +2540,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 4f900e905b73b154d8e9bc2fff5d6537,
+      objectReference: {fileID: 21300000, guid: ff01aebc453841f4dbc9199025fd36ef,
         type: 3}
     - target: {fileID: 8167750682975157286, guid: 9e44f5a600176b5479b9457199f5ce26,
         type: 3}
