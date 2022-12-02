@@ -6,6 +6,7 @@ public class PlatformFloating : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
     private PlayerController _playerControls;
+    private TransformPositionOnPerspective _pgoScript;
     public float loweringTime;
     public float raisingTime;
     public float wobblingTime;
@@ -25,16 +26,13 @@ public class PlatformFloating : MonoBehaviour
 
 
 
-    // PROBLEM 1: PGO bewegt sich nicht mehr, wenn PLayer auf ihm steht
     // PROBLEM 2: Wenn Spieler sich nicht auf PGO befindet, bewegt sie sich, aber wird wieder zurückgesetzt. Theorie: Coroutine Positionsänderung sticht sich mit
     // der PGO Positionsänderung
 
-    // PGO: standardposition in position A + lowered UND standardposition in position B + lowered
-
-    // PGO: transform auch anpassen, je nach lowered oder nicht lowered
+    // DAS PROBLEM LIEGT IN DIESEM SCRIPT DIOS MIOS COROUTINE UFF OH NEIN
 
 
-    // In PGO Script: if (transform.position == transformFirstPoint) <---- PROBLEM
+    // Variablen externalisieren!
     
 
     void Start()
@@ -43,20 +41,21 @@ public class PlatformFloating : MonoBehaviour
         _playerControls = _player.GetComponent<PlayerController>();
         standardPosition = this.transform.position;
         loweredPosition = new Vector3(standardPosition.x, standardPosition.y - loweringAmount, standardPosition.z);
+        _pgoScript = this.GetComponent<TransformPositionOnPerspective>();
 
     }
 
 
     void Update()
     {
-        if (_playerTouching && !_platformLowering)
+        if ((_playerTouching && !_platformLowering) && (this.transform.position == standardPosition) || (_playerTouching && !_platformLowering) && (this.transform.position == _pgoScript.transformSecondPoint))
         {
             _platformLowering = true;
             StartCoroutine(LowerPlatform());
             
         }
 
-        if ((!_playerTouching && !_platformRaising) && (this.transform.position != standardPosition) )
+        if (((!_playerTouching && !_platformRaising) && (this.transform.position == loweredPosition)) || (!_playerTouching && !_platformRaising) && (this.transform.position == _pgoScript.transformSecondPointLowered) )  // <------- HIER FEHLER
         {
             _platformRaising = true;
             StartCoroutine(RaisePlatform());
@@ -97,7 +96,7 @@ public class PlatformFloating : MonoBehaviour
 
         }
 
-        this.transform.position = loweredPosition;
+        //this.transform.position = loweredPosition;
 
 
         Debug.Log("PIEP PIEP PIEP");
@@ -108,12 +107,12 @@ public class PlatformFloating : MonoBehaviour
 
         yield return null;
 
-        if(!_platformWobbling)
-        {
-            _platformWobbling = true;
-            StartCoroutine(Wobbling());
+        // if(!_platformWobbling)
+        // {
+        //     _platformWobbling = true;
+        //     StartCoroutine(Wobbling());
 
-        }
+        // }
     
 
     }
@@ -128,7 +127,7 @@ public class PlatformFloating : MonoBehaviour
         //_player.transform.parent = this.transform;
 
 
-        while (_elapsed <= raisingTime)
+        while (_elapsed <= raisingTime) 
         {
             _dt = Time.deltaTime;
             _elapsed = _elapsed + _dt;
@@ -140,7 +139,7 @@ public class PlatformFloating : MonoBehaviour
 
         }
 
-        this.transform.position = standardPosition;
+        //this.transform.position = standardPosition;
 
         _platformRaising = false;
 
