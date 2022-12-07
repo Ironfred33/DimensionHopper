@@ -26,6 +26,7 @@ public class TransformPositionOnPerspective : MonoBehaviour
     [HideInInspector] public Vector3 transformFirstPointLowered;
     [HideInInspector] public Vector3 transformSecondPointLowered;
     private EVCameraTransition _EVcamTransitionScript;
+    private EVPlatformFloating _floating;
     private PlatformFloating _floatingScript;
     private float _elapsed;
     private float _dt;
@@ -34,8 +35,8 @@ public class TransformPositionOnPerspective : MonoBehaviour
 
 
     void Awake()
-    {
-        
+    {   
+        _floating = GameObject.FindGameObjectWithTag("ExternalVariables").GetComponent<EVPlatformFloating>();
         originalPosition = true;
         AssignPoints();
         LoadGlows();
@@ -50,9 +51,9 @@ public class TransformPositionOnPerspective : MonoBehaviour
 
         if (this.GetComponent<PlatformFloating>() == true) _floatingScript = this.GetComponent<PlatformFloating>();
 
-        transformFirstPointLowered = new Vector3(transformFirstPoint.x, transformFirstPoint.y - _floatingScript.loweringAmount, transformFirstPoint.z);
+        transformFirstPointLowered = new Vector3(transformFirstPoint.x, transformFirstPoint.y - _floating.loweringAmount, transformFirstPoint.z);
 
-        transformSecondPointLowered = new Vector3(transformSecondPoint.x, transformSecondPoint.y - _floatingScript.loweringAmount, transformSecondPoint.z);
+        transformSecondPointLowered = new Vector3(transformSecondPoint.x, transformSecondPoint.y - _floating.loweringAmount, transformSecondPoint.z);
 
 
     }

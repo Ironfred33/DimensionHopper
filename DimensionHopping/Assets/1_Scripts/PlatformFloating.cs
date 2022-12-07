@@ -7,21 +7,18 @@ public class PlatformFloating : MonoBehaviour
     [SerializeField] private GameObject _player;
     private PlayerController _playerControls;
     private TransformPositionOnPerspective _pgoScript;
-    public float loweringTime;
-    public float raisingTime;
+    [SerializeField] private EVPlatformFloating _floating;
     public float wobblingTime;
     public float wobblingAmount;
-    public float loweringAmount;
     [SerializeField] private bool _playerTouching;
     [SerializeField] private bool _platformLowering;
     [SerializeField] private bool _platformRaising;
     private bool _platformWobbling;
     public Vector3 standardPosition;
     public Vector3 loweredPosition;
-    private IEnumerator _lowerPlatform;
-    private IEnumerator _raisePlatform;
     private float _elapsed;
     private float _dt;
+    private bool _isPGO;
 
 
 
@@ -33,36 +30,58 @@ public class PlatformFloating : MonoBehaviour
 
 
     // Variablen externalisieren!
-    
+
 
     void Start()
     {
+        AssignComponents();
+
+        SetPositions();
+    }
+
+    void SetPositions()
+    {
+
+        standardPosition = this.transform.position;
+        loweredPosition = new Vector3(standardPosition.x, standardPosition.y - _floating.loweringAmount, standardPosition.z);
+
+    }
+
+    void AssignComponents()
+    {
         _player = GameObject.FindGameObjectWithTag("Player");
         _playerControls = _player.GetComponent<PlayerController>();
-        standardPosition = this.transform.position;
-        loweredPosition = new Vector3(standardPosition.x, standardPosition.y - loweringAmount, standardPosition.z);
+        if (this.GetComponent<TransformPositionOnPerspective>() == true)  
+       {
+        _isPGO = true;
         _pgoScript = this.GetComponent<TransformPositionOnPerspective>();
+       } 
+        
+        
+        _floating = GameObject.FindGameObjectWithTag("ExternalVariables").GetComponent<EVPlatformFloating>();
 
     }
 
 
     void Update()
     {
-        if ((_playerTouching && !_platformLowering) && (this.transform.position == standardPosition) || (_playerTouching && !_platformLowering) && (this.transform.position == _pgoScript.transformSecondPoint))
+
+        // HIER WEITERMACHEN FÜR ZUKUNFTSCHRIS 
+        if ((_playerTouching && !_platformLowering) && (this.transform.position == standardPosition) || !_isPGO || (_playerTouching && !_platformLowering) && ( this.transform.position == _pgoScript.transformSecondPoint))
         {
             _platformLowering = true;
             StartCoroutine(LowerPlatform());
-            
+
         }
 
-        if (((!_playerTouching && !_platformRaising) && (this.transform.position == loweredPosition)) || (!_playerTouching && !_platformRaising) && (this.transform.position == _pgoScript.transformSecondPointLowered) )  // <------- HIER FEHLER
+        if (((!_playerTouching && !_platformRaising) && (this.transform.position == loweredPosition)) || (!_playerTouching && !_platformRaising) && (this.transform.position == _pgoScript.transformSecondPointLowered))  // <------- HIER FEHLER
         {
             _platformRaising = true;
             StartCoroutine(RaisePlatform());
-            
+
         }
 
-        if(!_playerTouching) _platformWobbling = false;
+        if (!_playerTouching) _platformWobbling = false;
 
         // if (!_playerTouching && _lowerCoroutineRunning)
         // {
@@ -85,12 +104,12 @@ public class PlatformFloating : MonoBehaviour
         //_player.transform.parent = this.transform;
 
 
-        while (_elapsed <= loweringTime)
+        while (_elapsed <= _floating.loweringTime)
         {
             _dt = Time.deltaTime;
             _elapsed = _elapsed + _dt;
 
-            this.transform.position = Vector3.Lerp(transform.position, loweredPosition, _elapsed / loweringTime);
+            this.transform.position = Vector3.Lerp(transform.position, loweredPosition, _elapsed / _floating.loweringTime);
 
             yield return null;
 
@@ -103,7 +122,7 @@ public class PlatformFloating : MonoBehaviour
         _platformLowering = false;
 
 
-        
+
 
         yield return null;
 
@@ -113,7 +132,7 @@ public class PlatformFloating : MonoBehaviour
         //     StartCoroutine(Wobbling());
 
         // }
-    
+
 
     }
 
@@ -127,12 +146,12 @@ public class PlatformFloating : MonoBehaviour
         //_player.transform.parent = this.transform;
 
 
-        while (_elapsed <= raisingTime) 
+        while (_elapsed <= _floating.raisingTime)
         {
             _dt = Time.deltaTime;
             _elapsed = _elapsed + _dt;
 
-            this.transform.position = Vector3.Lerp(transform.position, standardPosition, _elapsed / raisingTime);
+            this.transform.position = Vector3.Lerp(transform.position, standardPosition, _elapsed / _floating.raisingTime);
 
             yield return null;
 
@@ -156,12 +175,12 @@ public class PlatformFloating : MonoBehaviour
         _player.transform.parent = this.transform;
 
 
-        while (_elapsed <= loweringTime)
+        while (_elapsed <= _floating.loweringTime)
         {
             _dt = Time.deltaTime;
             _elapsed = _elapsed + _dt;
 
-            this.transform.position = Vector3.Lerp(transform.position, new Vector3 (transform.position.x, transform.position.y + wobblingAmount, transform.position.z), _elapsed / wobblingTime);
+            this.transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y + wobblingAmount, transform.position.z), _elapsed / wobblingTime);
 
             yield return null;
 

@@ -590,11 +590,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
-  loweringTime: 0.1
-  raisingTime: 0.1
+  _floating: {fileID: 0}
   wobblingTime: 0.1
   wobblingAmount: 0.1
-  loweringAmount: 0.25
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
@@ -607,25 +605,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 608444209668921818, guid: 186d6350790e79f4ab3901e4b08e80d0,
-        type: 3}
-      propertyPath: SpawnCoords.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 608444209668921818, guid: 186d6350790e79f4ab3901e4b08e80d0,
-        type: 3}
-      propertyPath: SpawnCoords.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1168294405947620735, guid: 186d6350790e79f4ab3901e4b08e80d0,
-        type: 3}
-      propertyPath: _cullingMask2D.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1168294405947620735, guid: 186d6350790e79f4ab3901e4b08e80d0,
-        type: 3}
-      propertyPath: _cullingMaskFp.m_Bits
-      value: 823
+    - target: {fileID: 1006465602, guid: 186d6350790e79f4ab3901e4b08e80d0, type: 3}
+      propertyPath: loweringAmount
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7385626095287557057, guid: 186d6350790e79f4ab3901e4b08e80d0,
         type: 3}
@@ -858,7 +840,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh18692
+  m_Name: pb_Mesh16874
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1217,11 +1199,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
-  loweringTime: 0.1
-  raisingTime: 0.45
+  _floating: {fileID: 0}
   wobblingTime: 0.1
   wobblingAmount: 0.1
-  loweringAmount: 0.25
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
@@ -1580,11 +1560,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
-  loweringTime: 0.1
-  raisingTime: 0.1
+  _floating: {fileID: 0}
   wobblingTime: 0
   wobblingAmount: 0
-  loweringAmount: 0.25
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
