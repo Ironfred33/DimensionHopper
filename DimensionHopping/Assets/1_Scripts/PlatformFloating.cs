@@ -51,13 +51,13 @@ public class PlatformFloating : MonoBehaviour
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         _playerControls = _player.GetComponent<PlayerController>();
-        if (this.GetComponent<TransformPositionOnPerspective>() == true)  
-       {
-        _isPGO = true;
-        _pgoScript = this.GetComponent<TransformPositionOnPerspective>();
-       } 
-        
-        
+        if (this.GetComponent<TransformPositionOnPerspective>() == true)
+        {
+            _isPGO = true;
+            _pgoScript = this.GetComponent<TransformPositionOnPerspective>();
+        }
+
+
         _floating = GameObject.FindGameObjectWithTag("ExternalVariables").GetComponent<EVPlatformFloating>();
 
     }
@@ -66,22 +66,67 @@ public class PlatformFloating : MonoBehaviour
     void Update()
     {
 
-        // HIER WEITERMACHEN FÜR ZUKUNFTSCHRIS 
-        if ((_playerTouching && !_platformLowering) && (this.transform.position == standardPosition) || !_isPGO || (_playerTouching && !_platformLowering) && ( this.transform.position == _pgoScript.transformSecondPoint))
+        if (_isPGO)
         {
-            _platformLowering = true;
-            StartCoroutine(LowerPlatform());
+            if ((_playerTouching && !_platformLowering) && (this.transform.position == standardPosition) || !_isPGO || (_playerTouching && !_platformLowering) && (this.transform.position == _pgoScript.transformSecondPoint))
+            {
+                _platformLowering = true;
+                StartCoroutine(LowerPlatform());
+
+            }
+
+            if (((!_playerTouching && !_platformRaising) && (this.transform.position == loweredPosition)) || (!_playerTouching && !_platformRaising) && (this.transform.position == _pgoScript.transformSecondPointLowered))  // <------- HIER FEHLER
+            {
+                _platformRaising = true;
+                StartCoroutine(RaisePlatform());
+
+            }
+
+            if (!_playerTouching) _platformWobbling = false;
+
+        }
+        else if (!_isPGO)
+        {
+
+            if ((_playerTouching && !_platformLowering) && (this.transform.position == standardPosition))
+            {
+                _platformLowering = true;
+                StartCoroutine(LowerPlatform());
+
+            }
+
+            if (((!_playerTouching && !_platformRaising) && (this.transform.position == loweredPosition)))
+            {
+                _platformRaising = true;
+                StartCoroutine(RaisePlatform());
+
+            }
+
+            if (!_playerTouching) _platformWobbling = false;
+
+
 
         }
 
-        if (((!_playerTouching && !_platformRaising) && (this.transform.position == loweredPosition)) || (!_playerTouching && !_platformRaising) && (this.transform.position == _pgoScript.transformSecondPointLowered))  // <------- HIER FEHLER
-        {
-            _platformRaising = true;
-            StartCoroutine(RaisePlatform());
 
-        }
 
-        if (!_playerTouching) _platformWobbling = false;
+
+        // // HIER WEITERMACHEN FÜR ZUKUNFTSCHRIS 
+        // if ((_playerTouching && !_platformLowering) && (this.transform.position == standardPosition) || !_isPGO || (_playerTouching && !_platformLowering) && (this.transform.position == _pgoScript.transformSecondPoint))
+        // {
+        //     _platformLowering = true;
+        //     StartCoroutine(LowerPlatform());
+
+        // }
+
+        // if (((!_playerTouching && !_platformRaising) && (this.transform.position == loweredPosition)) || (!_playerTouching && !_platformRaising) && (this.transform.position == _pgoScript.transformSecondPointLowered))  // <------- HIER FEHLER
+        // {
+        //     _platformRaising = true;
+        //     StartCoroutine(RaisePlatform());
+
+        // }
+
+        // if (!_playerTouching) _platformWobbling = false;
 
         // if (!_playerTouching && _lowerCoroutineRunning)
         // {
