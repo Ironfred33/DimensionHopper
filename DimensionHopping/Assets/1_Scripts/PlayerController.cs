@@ -341,6 +341,7 @@ public class PlayerController : MonoBehaviour
 
         else if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
+            soundEffects.PlayLandingSound();
             state = PlayerState.Landing;
         }
 
