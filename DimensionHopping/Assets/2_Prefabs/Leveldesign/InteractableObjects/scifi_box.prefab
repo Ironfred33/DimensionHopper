@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1ea677af99ecb944a72c2ae3bf44bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pushForce: 5
+  _pushForce: 1
   _startCoordinates: {x: 0, y: 0, z: 0}
   isOnGround: 0
   groundCheck: {fileID: 8970268741610337408}
