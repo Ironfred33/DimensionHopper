@@ -171,7 +171,7 @@ public class UIManager : MonoBehaviour
         state = UIState.LevelGenerator;
     }
 
-    void ResumeGame()
+    public void ResumeGame()
     {
         Time.timeScale = 1;
         state = UIState.MainGame;

@@ -35,17 +35,23 @@ public class SFX : MonoBehaviour
         _source.Play();
     }
 
+    public void PlayLandingSound()
+    {
+        _source.clip = _effects[2];
+        _source.Play();
+    }
+
     // Spielt Sound, wenn Spieler getroffen wird
     public void PlayDamageSound()
     {
-        _source.clip = _effects[2];
+        _source.clip = _effects[3];
         _source.Play();
     }
 
     // Spielt Sound, wenn die Perspektive gewechselt wird
     public void PlayPerspectiveSwitchSound()
     {
-        _source.clip = _effects[3];
+        _source.clip = _effects[4];
         _source.Play();
     }
 }

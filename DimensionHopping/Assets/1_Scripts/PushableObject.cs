@@ -24,6 +24,7 @@ public class PushableObject : MonoBehaviour
         isOnGround = Physics.CheckSphere(groundCheck.position, groundRadius, groundMask);
     }
 
+
     void OnCollisionStay(Collision other)
     {
         if(Input.GetKey(KeyCode.E) && other.gameObject.CompareTag("Player"))
