@@ -110,31 +110,6 @@ public class PlatformFloating : MonoBehaviour
 
 
 
-
-        // // HIER WEITERMACHEN FÜR ZUKUNFTSCHRIS 
-        // if ((_playerTouching && !_platformLowering) && (this.transform.position == standardPosition) || !_isPGO || (_playerTouching && !_platformLowering) && (this.transform.position == _pgoScript.transformSecondPoint))
-        // {
-        //     _platformLowering = true;
-        //     StartCoroutine(LowerPlatform());
-
-        // }
-
-        // if (((!_playerTouching && !_platformRaising) && (this.transform.position == loweredPosition)) || (!_playerTouching && !_platformRaising) && (this.transform.position == _pgoScript.transformSecondPointLowered))  // <------- HIER FEHLER
-        // {
-        //     _platformRaising = true;
-        //     StartCoroutine(RaisePlatform());
-
-        // }
-
-        // if (!_playerTouching) _platformWobbling = false;
-
-        // if (!_playerTouching && _lowerCoroutineRunning)
-        // {
-        //     StopCoroutine(_lowerPlatform);
-        //     _platformLowering = false;
-        //     _platformRaising = false;
-        // }
-
     }
 
 
