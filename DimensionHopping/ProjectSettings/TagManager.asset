@@ -26,6 +26,7 @@ TagManager:
   - Pushable
   - Squeezer
   - Checkpoint
+  - PGOCollider
   layers:
   - Default
   - TransparentFX

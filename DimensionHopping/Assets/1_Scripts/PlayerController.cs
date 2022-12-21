@@ -471,7 +471,7 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionStay(Collision collisionInfo)
     {
         // Debug.Log("Tag =" + collisionInfo.gameObject.tag);
-        if (collisionInfo.collider.CompareTag("PGOzNegative") || collisionInfo.collider.CompareTag("PGOzPositive") || collisionInfo.collider.CompareTag("PGOxPositive") || collisionInfo.collider.CompareTag("PGOxNegative") || collisionInfo.collider.CompareTag("MovingPlatform") || collisionInfo.collider.CompareTag("Pushable"))
+        if (collisionInfo.collider.CompareTag("PGOxPositive") || collisionInfo.collider.CompareTag("PGOzPositive") || collisionInfo.collider.CompareTag("PGOxNegative") || collisionInfo.collider.CompareTag("PGOzNegative") || collisionInfo.collider.CompareTag("MovingPlatform") || collisionInfo.collider.CompareTag("Pushable"))
         {
             Debug.Log("Parenting");
             this.transform.SetParent(collisionInfo.collider.transform);

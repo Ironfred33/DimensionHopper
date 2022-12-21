@@ -7,7 +7,7 @@ public class SpecialSight : MonoBehaviour
 {
 
     public Camera camera;
-    [HideInInspector] public TransformPositionOnPerspective scriptPGO;
+     public TransformPositionOnPerspective scriptPGO;
     [HideInInspector] public PGO scriptPGOGenerator;
     [HideInInspector] public Vector3 transformFirstPoint;
     [HideInInspector] public Vector3 transformSecondPoint;
@@ -49,25 +49,25 @@ public class SpecialSight : MonoBehaviour
             if (hit.transform.tag == "PGOxPositive" || hit.transform.tag == "PGOzPositive" || hit.transform.tag == "PGOxNegative" || hit.transform.tag == "PGOzNegative")
             {
 
-                Debug.Log(hit.transform.tag);
+                Debug.Log("hit the PGO: " + hit.transform.tag);
 
 
                 // if (GameObject.FindGameObjectWithTag("LevelGenerator") != null)
                 // {
 
                 //     scriptPGOGenerator = hit.transform.GetChild(0).GetComponent<PGO>();
-                
+
 
                 //     transformFirstPoint = scriptPGOGenerator.transformFirstPoint;
                 //     transformSecondPoint = scriptPGOGenerator.transformSecondPoint;
 
 
                 // }
-                
-                    scriptPGO = hit.transform.GetComponent<TransformPositionOnPerspective>();
 
-                    transformFirstPoint = scriptPGO.transformFirstPoint;
-                    transformSecondPoint = scriptPGO.transformSecondPoint;
+                scriptPGO = hit.transform.GetComponent<TransformPositionOnPerspective>();
+
+                transformFirstPoint = scriptPGO.transformFirstPoint;
+                transformSecondPoint = scriptPGO.transformSecondPoint;
 
                 CreateCopy(hit);
                 StartCoroutine(TrackCoolDown());
@@ -80,6 +80,19 @@ public class SpecialSight : MonoBehaviour
 
     }
 
+
+
+    // neues Skript
+    void CreateNewCopy(RaycastHit hit)
+    {
+
+
+
+
+    }
+
+
+    // altes Skript
     // Erstellt PGO-Kopie
     void CreateCopy(RaycastHit hit)
     {
@@ -118,7 +131,7 @@ public class SpecialSight : MonoBehaviour
     void HandleCopies()
     {
 
-
+        // Macht Copies leicht transparent
         instantiatedCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
         instantiatedMovingCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
 
@@ -152,7 +165,9 @@ public class SpecialSight : MonoBehaviour
 
         foreach (Transform g in copy.transform.GetComponentsInChildren<Transform>())
         {
-            if(g.name != "EnergyField") DeleteChild(g.gameObject);
+            if (g.name != "EnergyField") DeleteChild(g.gameObject);
+
+            // LÖSCHT  CHILD NICHT, AUCH WENN ES NICHT ENERGYFIELD HEIßt
             Debug.Log(g.name);
         }
         //else Debug.Log("NO CHILD");

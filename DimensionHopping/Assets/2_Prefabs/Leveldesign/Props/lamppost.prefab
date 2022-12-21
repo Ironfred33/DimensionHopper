@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 4486968122852409806}
   - component: {fileID: 714720119138389611}
   - component: {fileID: 3319088469539650209}
+  - component: {fileID: 3828423214668145401}
   m_Layer: 0
   m_Name: lamppost
   m_TagString: Untagged
@@ -172,3 +173,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3828423214668145401
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3823337351752375156}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.677125, y: 4.0107784, z: 0.6186489}
+  m_Center: {x: -0.00024473667, y: 2.0184298, z: -0.034386814}

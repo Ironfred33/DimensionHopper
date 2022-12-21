@@ -1923,17 +1923,17 @@ PrefabInstance:
     - target: {fileID: 7217913848739336225, guid: f4868fb42f5fff441b428922de2ed651,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: -44
       objectReference: {fileID: 0}
     - target: {fileID: 7217913848739336225, guid: f4868fb42f5fff441b428922de2ed651,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 69.85
       objectReference: {fileID: 0}
     - target: {fileID: 7217913848739336225, guid: f4868fb42f5fff441b428922de2ed651,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.59
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 7217913848739336225, guid: f4868fb42f5fff441b428922de2ed651,
         type: 3}
@@ -1990,6 +1990,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7385626095287557057}
     m_Modifications:
+    - target: {fileID: 7123726539426643508, guid: 79f23514fd86ce741a716663f5b47813,
+        type: 3}
+      propertyPath: smoothing
+      value: 0.02
+      objectReference: {fileID: 0}
     - target: {fileID: 7123726539426643509, guid: 79f23514fd86ce741a716663f5b47813,
         type: 3}
       propertyPath: gravity
@@ -2014,6 +2019,16 @@ PrefabInstance:
         type: 3}
       propertyPath: flickerSpeed
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7123726539426643509, guid: 79f23514fd86ce741a716663f5b47813,
+        type: 3}
+      propertyPath: spawnPoint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7123726539426643509, guid: 79f23514fd86ce741a716663f5b47813,
+        type: 3}
+      propertyPath: spawnPoint.z
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7123726539426643509, guid: 79f23514fd86ce741a716663f5b47813,
         type: 3}
@@ -2205,6 +2220,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6100688518035928243, guid: 2fcf0bcf5adc4d649bae97eafc5fc882,
         type: 3}
+      propertyPath: near clip plane
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100688518035928243, guid: 2fcf0bcf5adc4d649bae97eafc5fc882,
+        type: 3}
       propertyPath: m_BackGroundColor.b
       value: 0.2924528
       objectReference: {fileID: 0}
@@ -2350,12 +2370,12 @@ PrefabInstance:
     - target: {fileID: 5543582286888644867, guid: f461602cb81303e4191144134be15392,
         type: 3}
       propertyPath: SpawnCoords.y
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5543582286888644867, guid: f461602cb81303e4191144134be15392,
         type: 3}
       propertyPath: SpawnCoords.z
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5543582286888644867, guid: f461602cb81303e4191144134be15392,
         type: 3}
@@ -2447,7 +2467,7 @@ PrefabInstance:
     - target: {fileID: 925715864979075392, guid: 9e44f5a600176b5479b9457199f5ce26,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BackToMenu
+      value: ResetState
       objectReference: {fileID: 0}
     - target: {fileID: 1559869706180477135, guid: 9e44f5a600176b5479b9457199f5ce26,
         type: 3}
@@ -2458,12 +2478,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7697222376288076851, guid: 9e44f5a600176b5479b9457199f5ce26,
-        type: 3}
+      objectReference: {fileID: 3336433437684698387}
     - target: {fileID: 1953222727532874099, guid: 9e44f5a600176b5479b9457199f5ce26,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RepeatLevel
+      value: ResetState
       objectReference: {fileID: 0}
     - target: {fileID: 2045262153081446129, guid: 9e44f5a600176b5479b9457199f5ce26,
         type: 3}
@@ -2510,6 +2529,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TryAgainButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4114118193769275797, guid: 9e44f5a600176b5479b9457199f5ce26,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 99.21085
+      objectReference: {fileID: 0}
+    - target: {fileID: 4114118193769275797, guid: 9e44f5a600176b5479b9457199f5ce26,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -150.15974
       objectReference: {fileID: 0}
     - target: {fileID: 4585786363964659890, guid: 9e44f5a600176b5479b9457199f5ce26,
         type: 3}
