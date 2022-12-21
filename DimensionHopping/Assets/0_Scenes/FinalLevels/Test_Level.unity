@@ -6395,6 +6395,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackToMenuButton
       objectReference: {fileID: 0}
+    - target: {fileID: 2757309063020325794, guid: 186d6350790e79f4ab3901e4b08e80d0,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2757309063020325805, guid: 186d6350790e79f4ab3901e4b08e80d0,
         type: 3}
       propertyPath: spawnPoint.x
