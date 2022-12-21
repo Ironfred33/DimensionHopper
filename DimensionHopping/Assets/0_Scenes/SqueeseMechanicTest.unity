@@ -146,7 +146,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh18900
+  m_Name: pb_Mesh16864
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -401,7 +401,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3748
+  m_Name: pb_Mesh-1850
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1014,11 +1014,21 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 600414509}
+    - target: {fileID: 131074323538004453, guid: 6cea114b113dbf04f937528653a7cac1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 131074325079925670, guid: 6cea114b113dbf04f937528653a7cac1,
         type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 394163209}
+    - target: {fileID: 131074325079925670, guid: 6cea114b113dbf04f937528653a7cac1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1905362037373638178, guid: 6cea114b113dbf04f937528653a7cac1,
         type: 3}
       propertyPath: worldAxis
