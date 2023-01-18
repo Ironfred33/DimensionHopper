@@ -24,6 +24,8 @@ public class SpecialSight : MonoBehaviour
 
     [SerializeField] private MeshRenderer _mesh;
 
+    [SerializeField] private Material _transparencyMaterial;
+
     private Vector3 _hitSize;
     [SerializeField] private GameObject _pivot;
     private Vector3 _hitPosition;
@@ -34,6 +36,8 @@ public class SpecialSight : MonoBehaviour
     {
 
         specialSightEV = GameObject.FindGameObjectWithTag("ExternalVariables").GetComponent<EVSpecialSight>();
+
+        _transparencyMaterial.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
 
         _pivot = Resources.Load<GameObject>("Prefabs/Pivot");
 
@@ -144,6 +148,7 @@ public class SpecialSight : MonoBehaviour
 
             instantiatedMovingCopy = Instantiate(copy, transformFirstPoint, Quaternion.identity);
 
+
             HandleCopies();
 
 
@@ -162,6 +167,16 @@ public class SpecialSight : MonoBehaviour
 
     }
 
+    public void MakeTransparent(Material mat, GameObject obj)
+    {
+        var materials = obj.GetComponent<MeshRenderer>().materials;
+
+        materials[0] = mat;
+
+        obj.GetComponent<MeshRenderer>().materials = materials;
+
+    }
+
     // Managet PGO-Kopien
     void HandleCopies()
     {
@@ -170,8 +185,12 @@ public class SpecialSight : MonoBehaviour
 
         _mesh = instantiatedCopy.GetComponent<MeshRenderer>();
 
-        instantiatedCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
-        instantiatedMovingCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
+
+        MakeTransparent(_transparencyMaterial, instantiatedCopy);
+        MakeTransparent(_transparencyMaterial, instantiatedMovingCopy);
+
+        // instantiatedCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
+        // instantiatedMovingCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
 
         DeleteAllColliders(instantiatedCopy);
         DeleteAllColliders(instantiatedMovingCopy);
