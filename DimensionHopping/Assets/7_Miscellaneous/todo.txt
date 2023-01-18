@@ -1,3 +1,3 @@
 
 
-Specialsight: Cube in runtime generieren lassen, siehe Lesezeichen
+Specialsight: sind alle Pivots der Prefabs an der selben stelle? (links unten)
