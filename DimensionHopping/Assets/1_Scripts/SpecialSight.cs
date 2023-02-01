@@ -21,6 +21,8 @@ public class SpecialSight : MonoBehaviour
     [HideInInspector] public GameObject instantiatedMovingCopy;
     [HideInInspector] public EVSpecialSight specialSightEV;
 
+    public float platformCopyDecreaseAmount;
+
 
     [SerializeField] private MeshRenderer _mesh;
 
@@ -200,6 +202,23 @@ public class SpecialSight : MonoBehaviour
         DeleteAllChildren(instantiatedMovingCopy);
 
 
+        // XXX - hier weitermachen
+    
+        MakeSlightlySmaller(instantiatedMovingCopy);
+
+
+    }
+
+
+    // um die Anzeige-Bugs zu vermeiden wenn 2 Materials direkt auf der selben Ebene sind
+    void MakeSlightlySmaller(GameObject obj)
+    {
+        obj.transform.localScale = new Vector3(obj.transform.localScale.x * platformCopyDecreaseAmount, obj.transform.localScale.y * platformCopyDecreaseAmount, obj.transform.localScale.z * platformCopyDecreaseAmount);
+
+        //obj.transform.position = new Vector3(obj.transform.position.x + ((1.0f-platformCopyDecreaseAmount) / 2f), obj.transform.position.y + ((1.0f-platformCopyDecreaseAmount) / 2f),obj.transform.position.z (1.0f-platformCopyDecreaseAmount) / 2f );
+        
+  
+
     }
 
     // Löscht Collider auf PGO-Kopien, damit der Spieler nicht auf diesen laufen kann
@@ -322,8 +341,6 @@ public class SpecialSight : MonoBehaviour
     // neues Skript
     void CreateCopies(RaycastHit hit)
     {
-
-
 
 
         copiedCubeImmobile = GameObject.CreatePrimitive(PrimitiveType.Cube);
