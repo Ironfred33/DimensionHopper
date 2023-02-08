@@ -10,11 +10,12 @@ public enum PlayerState
     Jumping,
     Landing
 }
+
+
 public class PlayerController : MonoBehaviour
 {
 
     public PlayerState state;
-
     [SerializeField] private Material standardMaterial;
     [SerializeField] private Material transparencyMaterial;
     public EVPlayer extVars;
@@ -54,6 +55,7 @@ public class PlayerController : MonoBehaviour
         transparencyMaterial.color = new Color(1.0f, 1.0f, 1.0f, extVars.invincibleTransparency);
 
         canvas = GameObject.Find("Canvas");
+
 
 
     }

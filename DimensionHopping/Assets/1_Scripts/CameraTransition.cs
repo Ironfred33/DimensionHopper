@@ -176,6 +176,7 @@ public class CameraTransition : MonoBehaviour
             EnableObject(compass);
             EnableObject(crossHair);
             TogglePlayerControl();
+
             this.GetComponent<Camera>().cullingMask = _cullingMaskFp;
         }
 
