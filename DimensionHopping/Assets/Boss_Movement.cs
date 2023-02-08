@@ -40,7 +40,7 @@ public class Boss_Movement : MonoBehaviour
 
         _floatingMaxPos = new Vector3(this.transform.position.x, this.transform.position.y + floatingRange, this.transform.position.z);
 
-        StartCoroutine(Floating());
+        //StartCoroutine(Floating());
 
 
     }
@@ -50,7 +50,7 @@ public class Boss_Movement : MonoBehaviour
     void Update()
     {
 
-        //FollowPlayer();
+        FollowPlayer();
         // Floating();
 
     }
