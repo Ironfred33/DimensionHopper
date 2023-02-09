@@ -1846,7 +1846,7 @@ MonoBehaviour:
   _wallLeft: 0
   _wallRight: 0
   isWallRunning: 0
-  soundEffects: {fileID: 0}
+  soundEffects: {fileID: 6630410205475939545}
 --- !u!1 &6994370157810011519
 GameObject:
   m_ObjectHideFlags: 0

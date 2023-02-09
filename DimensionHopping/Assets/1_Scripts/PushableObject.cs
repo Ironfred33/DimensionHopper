@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PushableObject : MonoBehaviour
 {
@@ -11,12 +12,16 @@ public class PushableObject : MonoBehaviour
     public Transform groundCheck;
     public float groundRadius;
     public LayerMask groundMask;
+    [SerializeField] private GameObject _tipDisplay;
+    [SerializeField] private string _tipText; 
+    [SerializeField] private float _tipDisplayTime;
 
     void Start()
     {
         _startCoordinates = transform.position;
         _rb = GetComponent<Rigidbody>();
         _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+        _tipDisplay.GetComponent<TMP_Text>().text = _tipText;
     }
 
     void FixedUpdate()
@@ -86,5 +91,18 @@ public class PushableObject : MonoBehaviour
             this.gameObject.SetActive(true);
 
         }
+
+        else if(other.transform.CompareTag("Player"))
+        {
+            StartCoroutine(DisplayTip());
+        }
     }
+
+    private IEnumerator DisplayTip()
+    {
+        _tipDisplay.SetActive(true);
+        yield return new WaitForSeconds(_tipDisplayTime);
+        _tipDisplay.SetActive(false);
+    }
+    
 }

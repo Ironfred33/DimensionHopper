@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/0_Scenes/LevelSelection.unity
     guid: ec34c938ef1e7c244a9d6e27ca0d6708
   - enabled: 1
-    path: Assets/0_Scenes/FinalLevels/Test_Level.unity
+    path: Assets/0_Scenes/FinalLevels/Level1.unity
     guid: 164ba90eba1a3db4e95b17ed91a20e53
   - enabled: 1
     path: Assets/0_Scenes/Playtest Level/EndScreen.unity

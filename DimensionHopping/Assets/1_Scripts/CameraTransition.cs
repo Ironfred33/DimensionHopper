@@ -11,10 +11,10 @@ public class CameraTransition : MonoBehaviour
     public CameraController cameraControl;
     [HideInInspector] public PlayerController playerControl;
     private Quaternion _rotation2DP;
-     public GameObject[] arrayPGOxPositive;
-     public GameObject[] arrayPGOxNegative;
-     public GameObject[] arrayPGOzPositive;
-     public GameObject[] arrayPGOzNegative;
+    public GameObject[] arrayPGOxPositive;
+    public GameObject[] arrayPGOxNegative;
+    public GameObject[] arrayPGOzPositive;
+    public GameObject[] arrayPGOzNegative;
     public GameObject compass;
     public GameObject crossHair;
     [HideInInspector] public GameObject player;

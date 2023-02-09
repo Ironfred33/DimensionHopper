@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 3371167937518007427}
   - component: {fileID: 1706507306943856544}
   - component: {fileID: 2517558617881282613}
+  - component: {fileID: -4861554450900613550}
   m_Layer: 8
   m_Name: scifi_box
   m_TagString: Pushable
@@ -217,8 +218,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.9999999, z: 1}
-  m_Center: {x: 0, y: 0.49805683, z: 0}
+  m_Size: {x: 1, y: 0.9999999, z: 0.9940069}
+  m_Center: {x: 0, y: 0.49805683, z: -0.002996564}
 --- !u!114 &1706507306943856544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,6 +240,9 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
+  _tipDisplay: {fileID: 0}
+  _tipText: Hold E to push
+  _tipDisplayTime: 1
 --- !u!54 &2517558617881282613
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -255,3 +259,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &-4861554450900613550
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7864257357561843797}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4939137, y: 1.0000001, z: 1.4546293}
+  m_Center: {x: 0.0070557594, y: 0.49490172, z: 0.017071784}

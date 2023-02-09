@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8596228489139774308}
   m_Layer: 8
   m_Name: square_building_roof
-  m_TagString: RunnableWall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
