@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:DimensionHopping/Assets/0_Scenes/FinalLevels/Level2.unity.meta
 guid: 1e16cd3251bf8f74b8697260b61a73dd
+========
+guid: bf8b9663baa20604ca564af5390fddb4
+folderAsset: yes
+>>>>>>>> c1bc500bb6e14679a52461f7bd2dd56b88fb2b93:DimensionHopping/Assets/Resources/Bossfight.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

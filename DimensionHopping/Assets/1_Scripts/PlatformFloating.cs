@@ -21,8 +21,6 @@ public class PlatformFloating : MonoBehaviour
     private bool _isPGO;
 
 
-
-
     // PROBLEM 2: Wenn Spieler sich nicht auf PGO befindet, bewegt sie sich, aber wird wieder zurückgesetzt. Theorie: Coroutine Positionsänderung sticht sich mit
     // der PGO Positionsänderung
 
@@ -57,7 +55,6 @@ public class PlatformFloating : MonoBehaviour
             _pgoScript = this.GetComponent<TransformPositionOnPerspective>();
         }
 
-
         _floating = GameObject.FindGameObjectWithTag("ExternalVariables").GetComponent<EVPlatformFloating>();
 
     }
@@ -68,19 +65,34 @@ public class PlatformFloating : MonoBehaviour
 
         if (_isPGO)
         {
-            if ((_playerTouching && !_platformLowering) && (this.transform.position == standardPosition) || !_isPGO || (_playerTouching && !_platformLowering) && (this.transform.position == _pgoScript.transformSecondPoint))
+            if ((_playerTouching && !_platformLowering) && (this.transform.position == standardPosition))
             {
                 _platformLowering = true;
-                StartCoroutine(LowerPlatform());
+                StartCoroutine(LowerPlatform(loweredPosition));
+
+            }
+            else if ((_playerTouching && !_platformLowering) && (this.transform.position == _pgoScript.transformSecondPoint))
+            {
+                _platformLowering = true;
+                StartCoroutine(LowerPlatform(_pgoScript.transformSecondPointLowered));
 
             }
 
-            if (((!_playerTouching && !_platformRaising) && (this.transform.position == loweredPosition)) || (!_playerTouching && !_platformRaising) && (this.transform.position == _pgoScript.transformSecondPointLowered))  // <------- HIER FEHLER
+
+            if ((!_playerTouching && !_platformRaising) && (this.transform.position == loweredPosition))  // <------- HIER FEHLER
             {
                 _platformRaising = true;
-                StartCoroutine(RaisePlatform());
+                StartCoroutine(RaisePlatform(standardPosition));
 
             }
+            else if((!_playerTouching && !_platformRaising) && (this.transform.position == _pgoScript.transformSecondPointLowered))
+            {
+                _platformRaising = true;
+                StartCoroutine(RaisePlatform(_pgoScript.transformSecondPointLowered));
+            }
+
+
+
 
             if (!_playerTouching) _platformWobbling = false;
 
@@ -91,37 +103,31 @@ public class PlatformFloating : MonoBehaviour
             if ((_playerTouching && !_platformLowering) && (this.transform.position == standardPosition))
             {
                 _platformLowering = true;
-                StartCoroutine(LowerPlatform());
+                StartCoroutine(LowerPlatform(loweredPosition));
 
             }
 
             if (((!_playerTouching && !_platformRaising) && (this.transform.position == loweredPosition)))
             {
                 _platformRaising = true;
-                StartCoroutine(RaisePlatform());
+                StartCoroutine(RaisePlatform(standardPosition));
 
             }
 
             if (!_playerTouching) _platformWobbling = false;
 
 
-
         }
-
 
 
     }
 
 
-    IEnumerator LowerPlatform()
+    IEnumerator LowerPlatform(Vector3 loweredPosition)
     {
         //_lowerCoroutineRunning = true;
 
         _elapsed = 0f;
-
-        // PLayer wird zum Child
-
-        //_player.transform.parent = this.transform;
 
 
         while (_elapsed <= _floating.loweringTime)
@@ -156,7 +162,10 @@ public class PlatformFloating : MonoBehaviour
 
     }
 
-    IEnumerator RaisePlatform()
+
+
+    // HIER IST DER FEHLER XXXX
+    IEnumerator RaisePlatform(Vector3 standardPosition)
     {
 
         Debug.Log("PLATFORM RAISING COROUTINE START");
@@ -174,7 +183,6 @@ public class PlatformFloating : MonoBehaviour
             this.transform.position = Vector3.Lerp(transform.position, standardPosition, _elapsed / _floating.raisingTime);
 
             yield return null;
-
 
         }
 

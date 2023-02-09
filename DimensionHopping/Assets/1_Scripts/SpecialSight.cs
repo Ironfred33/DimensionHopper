@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 // Steuert die Vorschau des Perspektivwechsels
@@ -7,7 +6,7 @@ public class SpecialSight : MonoBehaviour
 {
 
     public Camera camera;
-     public TransformPositionOnPerspective scriptPGO;
+    public TransformPositionOnPerspective scriptPGO;
     [HideInInspector] public PGO scriptPGOGenerator;
     [HideInInspector] public Vector3 transformFirstPoint;
     [HideInInspector] public Vector3 transformSecondPoint;
@@ -15,14 +14,34 @@ public class SpecialSight : MonoBehaviour
     [HideInInspector] public bool activeCoolDown;
     [HideInInspector] public bool activeSightTime;
     private float _elapsed;
+
+    public GameObject copiedCubeImmobile;
+    public GameObject copiedCubeMoving;
     [HideInInspector] public GameObject instantiatedCopy;
     [HideInInspector] public GameObject instantiatedMovingCopy;
     [HideInInspector] public EVSpecialSight specialSightEV;
+
+    public float platformCopyDecreaseAmount;
+
+
+    [SerializeField] private MeshRenderer _mesh;
+
+    [SerializeField] private Material _transparencyMaterial;
+
+    private Vector3 _hitSize;
+    [SerializeField] private GameObject _pivot;
+    private Vector3 _hitPosition;
+
+    private GameObject _pivotCopy;
 
     void Start()
     {
 
         specialSightEV = GameObject.FindGameObjectWithTag("ExternalVariables").GetComponent<EVSpecialSight>();
+
+        _transparencyMaterial.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
+
+        _pivot = Resources.Load<GameObject>("Prefabs/Pivot");
 
     }
 
@@ -51,6 +70,8 @@ public class SpecialSight : MonoBehaviour
 
                 Debug.Log("hit the PGO: " + hit.transform.tag);
 
+                _hitSize = hit.collider.gameObject.GetComponent<Renderer>().bounds.size;
+
 
                 // if (GameObject.FindGameObjectWithTag("LevelGenerator") != null)
                 // {
@@ -66,10 +87,19 @@ public class SpecialSight : MonoBehaviour
 
                 scriptPGO = hit.transform.GetComponent<TransformPositionOnPerspective>();
 
+
                 transformFirstPoint = scriptPGO.transformFirstPoint;
                 transformSecondPoint = scriptPGO.transformSecondPoint;
 
+
+
+                // neuer Ansatz unten, könnte aber zu heeeeeeeeeeftigsten Komplikationen führen, deshalb wird jetzt doch wieder zur alten Methode geswitcht
+                // CreateCopies(hit);
+
+
+
                 CreateCopy(hit);
+
                 StartCoroutine(TrackCoolDown());
                 StartCoroutine(TrackSightTime());
                 StartCoroutine(TransformCopyPosition());
@@ -82,11 +112,22 @@ public class SpecialSight : MonoBehaviour
 
 
 
-    // neues Skript
-    void CreateNewCopy(RaycastHit hit)
+
+    void AlignCopy(GameObject copy, Vector3 hitPosition)
     {
+        copy.transform.position = hitPosition;
+
+        copy.transform.position = new Vector3(copy.transform.position.x + (0.5f * _hitSize.x), copy.transform.position.y + (0.5f * _hitSize.y), copy.transform.position.z - (0.5f * _hitSize.z));
+
+        SetNewPivot(copy);
 
 
+    }
+
+    void SetNewPivot(GameObject copy)
+    {
+        _pivotCopy = Instantiate(_pivot, _hitPosition, Quaternion.identity);
+        copy.gameObject.transform.SetParent(_pivotCopy.transform);
 
 
     }
@@ -109,6 +150,7 @@ public class SpecialSight : MonoBehaviour
 
             instantiatedMovingCopy = Instantiate(copy, transformFirstPoint, Quaternion.identity);
 
+
             HandleCopies();
 
 
@@ -127,67 +169,85 @@ public class SpecialSight : MonoBehaviour
 
     }
 
+    public void MakeTransparent(Material mat, GameObject obj)
+    {
+        var materials = obj.GetComponent<MeshRenderer>().materials;
+
+        materials[0] = mat;
+
+        obj.GetComponent<MeshRenderer>().materials = materials;
+
+    }
+
     // Managet PGO-Kopien
     void HandleCopies()
     {
 
         // Macht Copies leicht transparent
-        instantiatedCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
-        instantiatedMovingCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
 
-        DeleteColliders();
-        CheckForChild(instantiatedCopy);
-        CheckForChild(instantiatedMovingCopy);
+        _mesh = instantiatedCopy.GetComponent<MeshRenderer>();
+
+
+        MakeTransparent(_transparencyMaterial, instantiatedCopy);
+        MakeTransparent(_transparencyMaterial, instantiatedMovingCopy);
+
+        // instantiatedCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
+        // instantiatedMovingCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
+
+        DeleteAllColliders(instantiatedCopy);
+        DeleteAllColliders(instantiatedMovingCopy);
+
+
+        DeleteAllChildren(instantiatedCopy);
+        DeleteAllChildren(instantiatedMovingCopy);
+
+
+        // XXX - hier weitermachen
+    
+        MakeSlightlySmaller(instantiatedMovingCopy);
+
+
+    }
+
+
+    // um die Anzeige-Bugs zu vermeiden wenn 2 Materials direkt auf der selben Ebene sind
+    void MakeSlightlySmaller(GameObject obj)
+    {
+        obj.transform.localScale = new Vector3(obj.transform.localScale.x * platformCopyDecreaseAmount, obj.transform.localScale.y * platformCopyDecreaseAmount, obj.transform.localScale.z * platformCopyDecreaseAmount);
+
+        //obj.transform.position = new Vector3(obj.transform.position.x + ((1.0f-platformCopyDecreaseAmount) / 2f), obj.transform.position.y + ((1.0f-platformCopyDecreaseAmount) / 2f),obj.transform.position.z (1.0f-platformCopyDecreaseAmount) / 2f );
+        
+  
 
     }
 
     // Löscht Collider auf PGO-Kopien, damit der Spieler nicht auf diesen laufen kann
-    void DeleteColliders()
+    void DeleteAllColliders(GameObject copy)
     {
-        Collider col;
 
-        col = instantiatedCopy.GetComponent<Collider>();
+        Component[] colliders;
 
-        Destroy(col);
+        colliders = copy.GetComponents(typeof(Collider));
 
-        col = instantiatedMovingCopy.GetComponent<Collider>();
-
-        Destroy(col);
+        foreach (Collider collider in colliders)
+        {
+            Destroy(collider);
+        }
 
     }
 
 
     // Löscht Child-Objekte der PGOs, sofern vorhanden
-    void CheckForChild(GameObject copy)
+    void DeleteAllChildren(GameObject copy)
     {
 
-        // "EnergyField"
 
-        foreach (Transform g in copy.transform.GetComponentsInChildren<Transform>())
+        while (copy.transform.childCount > 0)
         {
-            if (g.name != "EnergyField") DeleteChild(g.gameObject);
-
-            // LÖSCHT  CHILD NICHT, AUCH WENN ES NICHT ENERGYFIELD HEIßt
-            Debug.Log(g.name);
+            DestroyImmediate(copy.transform.GetChild(0).gameObject);
         }
-        //else Debug.Log("NO CHILD");
-
-        // if (copy.transform.childCount == 1)
-        // {
-        //     DeleteChild(copy);
-        // }
-        // else Debug.Log("No Child");
 
     }
-
-    // Löscht Child-Objekte der PGOs
-    void DeleteChild(GameObject gameObject)
-    {
-        Destroy(gameObject);
-    }
-
-
-
 
     // Überwacht Cooldown
     IEnumerator TrackCoolDown()
@@ -274,9 +334,54 @@ public class SpecialSight : MonoBehaviour
 
         Destroy(instantiatedMovingCopy);
 
-
     }
 
 
 
+    // neues Skript
+    void CreateCopies(RaycastHit hit)
+    {
+
+
+        copiedCubeImmobile = GameObject.CreatePrimitive(PrimitiveType.Cube);
+
+        _hitPosition = hit.transform.position;
+
+        copiedCubeImmobile.transform.localScale = _hitSize;
+
+        Debug.Log("hitPos: " + _hitPosition);
+
+        AlignCopy(copiedCubeImmobile, _hitPosition);
+
+
+
+        Debug.Log(hit.collider.gameObject.GetComponent<Renderer>().bounds.size);
+
+        //copiedCubeImmobile = _proBuilderScript.o
+        //copiedCubeImmobile.transform.localScale = hit.transform.localScale;
+
+
+        // hier sind noch die "alten" Positionen. Muss angepasst werden an generierten Cube mit anderem Pivot 
+        // oder Empty GAmeobject aus Resources generieren und als parent setzen nach AlignCopy (Z 115)
+
+        if (hit.collider.gameObject.transform.position == transformFirstPoint)
+        {
+            _pivotCopy.transform.position = transformSecondPoint;
+            //copiedCubeImmobile.transform.position = transformSecondPoint;
+
+        }
+        else if (hit.collider.gameObject.transform.position == transformSecondPoint)
+        {
+            _pivotCopy.transform.position = transformFirstPoint;
+            //copiedCubeImmobile.transform.position = transformFirstPoint;
+
+        }
+
+
+
+
+    }
+
 }
+
+

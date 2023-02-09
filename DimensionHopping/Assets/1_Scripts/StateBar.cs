@@ -15,10 +15,12 @@ public class StateBar : MonoBehaviour
 
     private void Start()
     {
+
         _activatedColor.a = 1f;
         _deactivedColor.a = 0.5f;
 
         _camControl = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
+        
     }
     
     void Update()

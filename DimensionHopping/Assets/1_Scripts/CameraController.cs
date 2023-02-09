@@ -28,7 +28,7 @@ public class CameraController : MonoBehaviour
 
     }
 
-    [HideInInspector] public PlayerOrientation playerOrientation;
+     public PlayerOrientation playerOrientation;
 
 
     private void Start()
