@@ -7,7 +7,6 @@ public class Boss_Attack : MonoBehaviour
     public GameObject cannon;
     private CameraController _camScript;
     private GameObject _player;
-
     private Rigidbody _playerRb;
 
     [Range(3f, 10f)]
@@ -20,10 +19,7 @@ public class Boss_Attack : MonoBehaviour
 
     [SerializeField] private GameObject _bullet;
     private GameObject _bulletInstance;
-
     public float bulletSpeed;
-
-    //public List <Transform> targets = new List<Transform>();
 
     [SerializeField] private GameObject _target;
     // Start is called before the first frame update
@@ -44,6 +40,11 @@ public class Boss_Attack : MonoBehaviour
         _playerRb = _player.GetComponent<Rigidbody>();
 
     }
+
+
+    // TODO
+    // 
+    // - Boss floatet nicht nach oben und unten
 
 
 
@@ -81,51 +82,6 @@ public class Boss_Attack : MonoBehaviour
         float randomAttackRange = Random.Range(0, attackRange);
 
 
-
-
-
-
-        // if(_playerRb.velocity.x == 0)
-        // {
-        //     targetPoint = _player.transform.position;
-        // }
-        // else if(_playerRb.velocity.x > 0)
-        // {
-        //     targetPoint = new Vector3(_player.transform.position.x + randomAttackRange, _player.transform.position.y, _player.transform.position.z);
-        // }
-        // else if(_playerRb.velocity.x < 0)
-        // {
-        //     targetPoint = new Vector3(_player.transform.position.x - randomAttackRange, _player.transform.position.y, _player.transform.position.z);
-        // }
-
-
-
-        // switch (_player.GetComponent<Rigidbody>().velocity.x)
-        // {
-
-        //     case (0):
-
-        //         targetPoint = _player.transform.position;
-
-        //         break;
-
-        //     case (> 0):
-
-        //         targetPoint = new Vector3(_player.transform.position.x + randomAttackRange, _player.transform.position.y, _player.transform.position.z);
-
-        //         break;
-
-
-        //     case (< 0):
-
-        //         targetPoint = new Vector3(_player.transform.position.x - randomAttackRange, _player.transform.position.y, _player.transform.position.z);
-
-        //         break;
-        // }
-
-
-
-
         if (_player.GetComponent<PlayerController>().state == PlayerState.Idle)
         {
             targetPoint = _player.transform.position;
@@ -141,11 +97,7 @@ public class Boss_Attack : MonoBehaviour
 
                     break;
 
-                // case (CameraController.PlayerOrientation.XNegative):
-
-                //     targetPoint = new Vector3(_player.transform.position.x - randomAttackRange, _player.transform.position.y, _player.transform.position.z);
-
-                //     break;
+       
             }
 
         }
@@ -166,9 +118,13 @@ public class Boss_Attack : MonoBehaviour
 
         Vector3 pointToShootAt = CalculateTargetPoint();
 
+        _bulletInstance = Instantiate(_bullet, cannon.transform.position, Quaternion.identity);
+
+        Vector3 startPos = cannon.transform.position;
+
         _target.transform.position = pointToShootAt;
 
-        _bulletInstance = Instantiate(_bullet, cannon.transform.position, Quaternion.identity);
+        
 
         //CalculateTargetPoint();
 
@@ -178,7 +134,7 @@ public class Boss_Attack : MonoBehaviour
         {
 
 
-            _bulletInstance.transform.position = Vector3.Lerp(_bulletInstance.transform.position, _target.transform.position, (elapsedTime / bulletSpeed));
+            _bulletInstance.transform.position = Vector3.Lerp(startPos, _target.transform.position, (elapsedTime / bulletSpeed));
 
 
 
