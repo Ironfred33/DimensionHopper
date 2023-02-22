@@ -73,12 +73,14 @@ public class WallRun_v2 : MonoBehaviour
         {
             _wallLeft = true;
             Debug.DrawRay(transform.position, -orientation.right, Color.green);
+            _wallRight = false;
         }
         
         else if(Physics.Raycast(transform.position, orientation.right, out _rightWallHit, _playerVariables.wallRunDistance))
         {
             _wallRight = true;
             Debug.DrawRay(transform.position, orientation.right, Color.red);
+            _wallLeft = false;
         }
 
         else

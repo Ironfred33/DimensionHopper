@@ -148,6 +148,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4767414504145117421, guid: 9f1b3fc24f3285a4fb588cf2b3c3b7e9,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767414504145117421, guid: 9f1b3fc24f3285a4fb588cf2b3c3b7e9,
+        type: 3}
+      propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6557487626276056713, guid: 9f1b3fc24f3285a4fb588cf2b3c3b7e9,
         type: 3}
       propertyPath: m_Layer
@@ -253,6 +263,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4767414504145117421, guid: 9f1b3fc24f3285a4fb588cf2b3c3b7e9,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767414504145117421, guid: 9f1b3fc24f3285a4fb588cf2b3c3b7e9,
+        type: 3}
+      propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6557487626276056713, guid: 9f1b3fc24f3285a4fb588cf2b3c3b7e9,
         type: 3}
       propertyPath: m_Layer
@@ -357,6 +377,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767414504145117421, guid: 9f1b3fc24f3285a4fb588cf2b3c3b7e9,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767414504145117421, guid: 9f1b3fc24f3285a4fb588cf2b3c3b7e9,
+        type: 3}
+      propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6557487626276056713, guid: 9f1b3fc24f3285a4fb588cf2b3c3b7e9,
         type: 3}
@@ -465,6 +495,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4767414504145117421, guid: 9f1b3fc24f3285a4fb588cf2b3c3b7e9,
         type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767414504145117421, guid: 9f1b3fc24f3285a4fb588cf2b3c3b7e9,
+        type: 3}
       propertyPath: InitialModule.startColor.maxGradient.ctime0
       value: 193
       objectReference: {fileID: 0}
@@ -481,6 +516,11 @@ PrefabInstance:
     - target: {fileID: 4767414504145117421, guid: 9f1b3fc24f3285a4fb588cf2b3c3b7e9,
         type: 3}
       propertyPath: InitialModule.startColor.maxGradient.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767414504145117421, guid: 9f1b3fc24f3285a4fb588cf2b3c3b7e9,
+        type: 3}
+      propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6557487626276056713, guid: 9f1b3fc24f3285a4fb588cf2b3c3b7e9,
