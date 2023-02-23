@@ -112,17 +112,12 @@ public class SpecialSight : MonoBehaviour
 
 
 
-
-
     // altes Skript
     // Erstellt PGO-Kopie
     void CreateCopy(RaycastHit hit)
     {
 
-
         copy = hit.transform.gameObject;
-
-
 
         if (hit.collider.gameObject.transform.position == transformFirstPoint)
         {
@@ -317,12 +312,9 @@ public class SpecialSight : MonoBehaviour
     }
 
 
-
-
     // // neues Skript
     // void CreateCopies(RaycastHit hit)
     // {
-
 
     //     copiedCubeImmobile = GameObject.CreatePrimitive(PrimitiveType.Cube);
 
@@ -358,12 +350,8 @@ public class SpecialSight : MonoBehaviour
 
     //     }
 
-
-
-
     // }
 
-    
 
     // void AlignCopy(GameObject copy, Vector3 hitPosition)
     // {

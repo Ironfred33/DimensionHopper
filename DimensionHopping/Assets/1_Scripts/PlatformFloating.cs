@@ -88,7 +88,7 @@ public class PlatformFloating : MonoBehaviour
             else if((!_playerTouching && !_platformRaising) && (this.transform.position == _pgoScript.transformSecondPointLowered))
             {
                 _platformRaising = true;
-                StartCoroutine(RaisePlatform(_pgoScript.transformSecondPointLowered));
+                StartCoroutine(RaisePlatform(_pgoScript.transformSecondPoint));
             }
 
 

@@ -1929,7 +1929,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 528291211}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ee3d9aacf1cf084fac7045a655963bf, type: 3}
   m_Name: 
@@ -1942,9 +1942,15 @@ MonoBehaviour:
   copy: {fileID: 0}
   activeCoolDown: 0
   activeSightTime: 0
+  copiedCubeImmobile: {fileID: 0}
+  copiedCubeMoving: {fileID: 0}
   instantiatedCopy: {fileID: 0}
   instantiatedMovingCopy: {fileID: 0}
   specialSightEV: {fileID: 0}
+  platformCopyDecreaseAmount: 0
+  _mesh: {fileID: 0}
+  _transparencyMaterial: {fileID: 0}
+  _pivot: {fileID: 0}
 --- !u!114 &528291215
 MonoBehaviour:
   m_ObjectHideFlags: 0
