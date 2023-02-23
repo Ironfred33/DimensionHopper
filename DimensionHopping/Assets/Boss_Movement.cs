@@ -10,6 +10,9 @@ public class Boss_Movement : MonoBehaviour
     public float floatingRange;
     public float floatingSpeed;
 
+    private float _floatingMin;
+    private float _floatingMax;
+
     private GameObject _player;
     public float followDelay;
 
@@ -18,8 +21,13 @@ public class Boss_Movement : MonoBehaviour
 
     // FALSE = UNTERSTER PUNKT AN DEM FLOATING GESTARTET WIRD ---- TRUE = OBERSTER PUNKT, ABHÄNGIG VON FLOATINGRANGE
     [SerializeField] private bool _floated;
-    private Vector3 _floatingMinPos;
-    private Vector3 _floatingMaxPos;
+    public float floatingAmount;
+
+
+
+
+    // ------------------------------------------------TODO
+    // floatingAmount mit Kurve geilo machen?
 
 
 
@@ -30,17 +38,12 @@ public class Boss_Movement : MonoBehaviour
 
         _player = GameObject.FindGameObjectWithTag("Player");
 
-        // _floatMax = new Vector3(this.transform.position.x, this.transform.position.y + (0.5f * floatingRange), this.transform.position.z);
 
-        // _floatMin = new Vector3(this.transform.position.x, this.transform.position.y - (0.5f * floatingRange), this.transform.position.z);
+        _floatingMax = floatingAmount / 2;
+        _floatingMin = -1 * (floatingAmount / 2);
 
-        // this.transform.position = _floatMax;
 
-        _floatingMinPos = this.transform.position;
-
-        _floatingMaxPos = new Vector3(this.transform.position.x, this.transform.position.y + floatingRange, this.transform.position.z);
-
-        //StartCoroutine(Floating());
+        StartCoroutine(FloatingCoroutine());
 
 
     }
@@ -51,23 +54,31 @@ public class Boss_Movement : MonoBehaviour
     {
 
         FollowPlayer();
-        // Floating();
 
     }
-
 
 
     void FollowPlayer()
     {
 
-        this.transform.position = Vector3.Lerp(transform.position, new Vector3(_player.transform.position.x, _player.transform.position.y, _player.transform.position.z + distanceToPlayer), followDelay);
 
-        // this.transform.position = new Vector3 (_player.transform.position.x, _player.transform.position.y, _player.transform.position.z + distanceToPlayer);
+        // POSITION 
 
+        this.transform.position = Vector3.Lerp(transform.position, new Vector3(_player.transform.position.x, _player.transform.position.y + floatingAmount, _player.transform.position.z + distanceToPlayer), followDelay);
+
+        //this.transform.rotation = new Quaternion(0, 90, 0, 0);
+        
+       //(new Vector3(0, 0, 0));
+        
+      
+
+        //this.transform.rotation = new Quaternion( 0, _player.transform.rotation.y, 0, 0);
+
+        
 
     }
 
-    IEnumerator Floating()
+    IEnumerator FloatingCoroutine()
     {
         float elapsedTime = 0;
 
@@ -79,7 +90,12 @@ public class Boss_Movement : MonoBehaviour
             while (elapsedTime < floatingSpeed)
             {
 
-                this.transform.position = Vector3.Lerp(_floatingMinPos, _floatingMaxPos, (elapsedTime / floatingSpeed));
+
+                floatingAmount = Mathf.Lerp(_floatingMin, _floatingMax, floatingSpeed);
+
+                
+
+                //this.transform.position = Vector3.Lerp(_floatingMinPos, _floatingMaxPos, (elapsedTime / floatingSpeed));
 
 
                 elapsedTime += Time.deltaTime;
@@ -94,7 +110,9 @@ public class Boss_Movement : MonoBehaviour
             while (elapsedTime < floatingSpeed)
             {
 
-                this.transform.position = Vector3.Lerp(_floatingMaxPos, _floatingMinPos, (elapsedTime / floatingSpeed));
+                floatingAmount = Mathf.Lerp(_floatingMax, _floatingMin, floatingSpeed);
+
+                // this.transform.position = Vector3.Lerp(_floatingMaxPos, _floatingMinPos, (elapsedTime / floatingSpeed));
 
 
                 elapsedTime += Time.deltaTime;
@@ -105,57 +123,34 @@ public class Boss_Movement : MonoBehaviour
 
         }
 
-        if(_floated) _floated = false;
+        if (_floated) _floated = false;
         else if (!_floated) _floated = true;
 
 
-        //ToggleBool(_floated);
-
-        StartCoroutine(Floating());
-
-
-    
-
-
-    // while (elapsedTime < floatTime)
-    // {
+        StartCoroutine(FloatingCoroutine());
 
 
 
-
-    //     elapsedTime += Time.deltaTime;
-
-    //     yield return null;
-
-    // }
-
-
-    yield return null;
+        yield return null;
     }
 
 
-    bool ToggleBool(bool boolean)
+    void Floating()
     {
-        if(boolean) boolean = false;
-        else if (!boolean) boolean = true;
+        if (!_floated)
+        {
+            floatingAmount = Mathf.Lerp(_floatingMin, _floatingMax, floatingSpeed);
+            _floated = true;
+        }
+        else if (_floated)
+        {
+            floatingAmount = Mathf.Lerp(_floatingMax, _floatingMin, floatingSpeed);
+            _floated = false;
+        }
 
-        return boolean;
+
     }
 
-    // void Floating()
-    // {
-    //     if(this.transform.position == _floatMax)
-    //     {
-    //         this.transform.position = Vector3.Lerp(transform.position, _floatMin, floatingSpeed);
-    //     }
-    //     else if (this.transform.position == _floatMax)
-    //     {
-    //         this.transform.position = Vector3.Lerp(transform.position, _floatMax, floatingSpeed);
-    //     }
 
 
-
-    // }
-
-   
 }

@@ -113,25 +113,6 @@ public class SpecialSight : MonoBehaviour
 
 
 
-    void AlignCopy(GameObject copy, Vector3 hitPosition)
-    {
-        copy.transform.position = hitPosition;
-
-        copy.transform.position = new Vector3(copy.transform.position.x + (0.5f * _hitSize.x), copy.transform.position.y + (0.5f * _hitSize.y), copy.transform.position.z - (0.5f * _hitSize.z));
-
-        SetNewPivot(copy);
-
-
-    }
-
-    void SetNewPivot(GameObject copy)
-    {
-        _pivotCopy = Instantiate(_pivot, _hitPosition, Quaternion.identity);
-        copy.gameObject.transform.SetParent(_pivotCopy.transform);
-
-
-    }
-
 
     // altes Skript
     // Erstellt PGO-Kopie
@@ -241,7 +222,6 @@ public class SpecialSight : MonoBehaviour
     void DeleteAllChildren(GameObject copy)
     {
 
-
         while (copy.transform.childCount > 0)
         {
             DestroyImmediate(copy.transform.GetChild(0).gameObject);
@@ -310,7 +290,6 @@ public class SpecialSight : MonoBehaviour
                 instantiatedMovingCopy.transform.position = Vector3.Lerp(transformFirstPoint, transformSecondPoint, _elapsed / specialSightEV.sightTime);
 
 
-
                 yield return null;
             }
 
@@ -338,49 +317,71 @@ public class SpecialSight : MonoBehaviour
 
 
 
-    // neues Skript
-    void CreateCopies(RaycastHit hit)
-    {
+
+    // // neues Skript
+    // void CreateCopies(RaycastHit hit)
+    // {
 
 
-        copiedCubeImmobile = GameObject.CreatePrimitive(PrimitiveType.Cube);
+    //     copiedCubeImmobile = GameObject.CreatePrimitive(PrimitiveType.Cube);
 
-        _hitPosition = hit.transform.position;
+    //     _hitPosition = hit.transform.position;
 
-        copiedCubeImmobile.transform.localScale = _hitSize;
+    //     copiedCubeImmobile.transform.localScale = _hitSize;
 
-        Debug.Log("hitPos: " + _hitPosition);
+    //     Debug.Log("hitPos: " + _hitPosition);
 
-        AlignCopy(copiedCubeImmobile, _hitPosition);
-
-
-
-        Debug.Log(hit.collider.gameObject.GetComponent<Renderer>().bounds.size);
-
-        //copiedCubeImmobile = _proBuilderScript.o
-        //copiedCubeImmobile.transform.localScale = hit.transform.localScale;
-
-
-        // hier sind noch die "alten" Positionen. Muss angepasst werden an generierten Cube mit anderem Pivot 
-        // oder Empty GAmeobject aus Resources generieren und als parent setzen nach AlignCopy (Z 115)
-
-        if (hit.collider.gameObject.transform.position == transformFirstPoint)
-        {
-            _pivotCopy.transform.position = transformSecondPoint;
-            //copiedCubeImmobile.transform.position = transformSecondPoint;
-
-        }
-        else if (hit.collider.gameObject.transform.position == transformSecondPoint)
-        {
-            _pivotCopy.transform.position = transformFirstPoint;
-            //copiedCubeImmobile.transform.position = transformFirstPoint;
-
-        }
+    //     AlignCopy(copiedCubeImmobile, _hitPosition);
 
 
 
+    //     Debug.Log(hit.collider.gameObject.GetComponent<Renderer>().bounds.size);
 
-    }
+    //     //copiedCubeImmobile = _proBuilderScript.o
+    //     //copiedCubeImmobile.transform.localScale = hit.transform.localScale;
+
+
+    //     // hier sind noch die "alten" Positionen. Muss angepasst werden an generierten Cube mit anderem Pivot 
+    //     // oder Empty GAmeobject aus Resources generieren und als parent setzen nach AlignCopy (Z 115)
+
+    //     if (hit.collider.gameObject.transform.position == transformFirstPoint)
+    //     {
+    //         _pivotCopy.transform.position = transformSecondPoint;
+    //         //copiedCubeImmobile.transform.position = transformSecondPoint;
+
+    //     }
+    //     else if (hit.collider.gameObject.transform.position == transformSecondPoint)
+    //     {
+    //         _pivotCopy.transform.position = transformFirstPoint;
+    //         //copiedCubeImmobile.transform.position = transformFirstPoint;
+
+    //     }
+
+
+
+
+    // }
+
+    
+
+    // void AlignCopy(GameObject copy, Vector3 hitPosition)
+    // {
+    //     copy.transform.position = hitPosition;
+
+    //     copy.transform.position = new Vector3(copy.transform.position.x + (0.5f * _hitSize.x), copy.transform.position.y + (0.5f * _hitSize.y), copy.transform.position.z - (0.5f * _hitSize.z));
+
+    //     SetNewPivot(copy);
+
+
+    // }
+
+    // void SetNewPivot(GameObject copy)
+    // {
+    //     _pivotCopy = Instantiate(_pivot, _hitPosition, Quaternion.identity);
+    //     copy.gameObject.transform.SetParent(_pivotCopy.transform);
+
+
+    // }
 
 }
 
