@@ -285,7 +285,6 @@ public class SpecialSight : MonoBehaviour
                 instantiatedMovingCopy.transform.position = Vector3.Lerp(transformFirstPoint, transformSecondPoint, _elapsed / specialSightEV.sightTime);
 
 
-
                 yield return null;
             }
 
