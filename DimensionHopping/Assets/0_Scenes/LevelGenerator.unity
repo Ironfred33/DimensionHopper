@@ -1942,9 +1942,16 @@ MonoBehaviour:
   copy: {fileID: 0}
   activeCoolDown: 0
   activeSightTime: 0
+  copiedCubeImmobile: {fileID: 0}
+  copiedCubeMoving: {fileID: 0}
   instantiatedCopy: {fileID: 0}
   instantiatedMovingCopy: {fileID: 0}
   specialSightEV: {fileID: 0}
+  platformCopyDecreaseAmount: 0
+  _mesh: {fileID: 0}
+  _transparencyMaterial: {fileID: 2100000, guid: 2625a02c8f82f5f40b42a83838d8e173,
+    type: 2}
+  _pivot: {fileID: 0}
 --- !u!114 &528291215
 MonoBehaviour:
   m_ObjectHideFlags: 0
