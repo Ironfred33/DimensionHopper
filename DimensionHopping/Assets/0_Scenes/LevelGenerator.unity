@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1957,7 +1957,7 @@ MonoBehaviour:
   instantiatedCopy: {fileID: 0}
   instantiatedMovingCopy: {fileID: 0}
   specialSightEV: {fileID: 0}
-  platformCopyDecreaseAmount: 0
+  platformCopyDecreaseAmount: 0.99
   _mesh: {fileID: 0}
   _transparencyMaterial: {fileID: 2100000, guid: 2625a02c8f82f5f40b42a83838d8e173,
     type: 2}
