@@ -109,12 +109,7 @@ public class SpecialSight : MonoBehaviour
                         break;
                 }
 
-
-
-                // neuer Ansatz unten, könnte aber zu heeeeeeeeeeftigsten Komplikationen führen, deshalb wird jetzt doch wieder zur alten Methode geswitcht
                 // CreateCopies(hit);
-
-
 
                 CreateCopy(hit);
 
