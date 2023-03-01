@@ -86,7 +86,6 @@ public class SpecialSight : MonoBehaviour
 
                 scriptPGO = hit.transform.GetComponent<TransformPositionOnPerspective>();
 
-                // asd
                 transformFirstPoint = scriptPGO.transformFirstPoint;
                 transformSecondPoint = scriptPGO.transformSecondPoint;
 
