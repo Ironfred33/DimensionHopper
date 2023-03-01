@@ -19,7 +19,7 @@ public class SpecialSight : MonoBehaviour
     public GameObject copiedCubeImmobile;
     public GameObject copiedCubeMoving;
     [HideInInspector] public GameObject instantiatedCopy;
-    [HideInInspector] public GameObject instantiatedMovingCopy; 
+    [HideInInspector] public GameObject instantiatedMovingCopy;
     [HideInInspector] public EVSpecialSight specialSightEV;
 
     public float platformCopyDecreaseAmount;
@@ -39,7 +39,7 @@ public class SpecialSight : MonoBehaviour
     {
 
         specialSightEV = GameObject.FindGameObjectWithTag("ExternalVariables").GetComponent<EVSpecialSight>();
-        
+
         _pivot = Resources.Load<GameObject>("Prefabs/Pivot");
 
     }
@@ -86,25 +86,25 @@ public class SpecialSight : MonoBehaviour
 
                 scriptPGO = hit.transform.GetComponent<TransformPositionOnPerspective>();
 
-
+                // asd
                 transformFirstPoint = scriptPGO.transformFirstPoint;
                 transformSecondPoint = scriptPGO.transformSecondPoint;
 
-                switch(hit.transform.tag)
+                switch (hit.transform.tag)
                 {
-                    case "PGOxPositive": 
+                    case "PGOxPositive":
                         _transparencyMaterial.color = new Color(0.0f, 1.8f, 6.0f, specialSightEV.platformTransparency);
                         break;
-                    case "PGOxNegative": 
+                    case "PGOxNegative":
                         _transparencyMaterial.color = new Color(8.0f, 0.0f, 0.0f, specialSightEV.platformTransparency);
                         break;
-                    case "PGOzPositive": 
+                    case "PGOzPositive":
                         _transparencyMaterial.color = new Color(0.0f, 6.0f, 0.0f, specialSightEV.platformTransparency);
                         break;
-                    case "PGOzNegative": 
+                    case "PGOzNegative":
                         _transparencyMaterial.color = new Color(750.0f, 760.0f, 1.0f, specialSightEV.platformTransparency);
                         break;
-                    default: 
+                    default:
                         Debug.Log("No Tag");
                         break;
                 }
@@ -133,11 +133,11 @@ public class SpecialSight : MonoBehaviour
     {
 
 
-        if(SceneManager.GetActiveScene().name == "LevelGenerator")
+        if (SceneManager.GetActiveScene().name == "LevelGenerator")
         {
             copy = hit.transform.Find("Cube").gameObject;
-        } 
-        else 
+        }
+        else
         {
             copy = hit.transform.Find("CopyTarget").gameObject;
         }
@@ -205,7 +205,7 @@ public class SpecialSight : MonoBehaviour
 
 
         // XXX - hier weitermachen
-    
+
         MakeSlightlySmaller(instantiatedMovingCopy);
 
 
@@ -218,8 +218,8 @@ public class SpecialSight : MonoBehaviour
         obj.transform.localScale = new Vector3(obj.transform.localScale.x * platformCopyDecreaseAmount, obj.transform.localScale.y * platformCopyDecreaseAmount, obj.transform.localScale.z * platformCopyDecreaseAmount);
 
         //obj.transform.position = new Vector3(obj.transform.position.x + ((1.0f-platformCopyDecreaseAmount) / 2f), obj.transform.position.y + ((1.0f-platformCopyDecreaseAmount) / 2f),obj.transform.position.z (1.0f-platformCopyDecreaseAmount) / 2f );
-        
-  
+
+
 
     }
 
@@ -383,7 +383,7 @@ public class SpecialSight : MonoBehaviour
 
     // }
 
-    
+
 
     // void AlignCopy(GameObject copy, Vector3 hitPosition)
     // {
