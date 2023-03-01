@@ -18,7 +18,7 @@ public class SpecialSight : MonoBehaviour
     public GameObject copiedCubeImmobile;
     public GameObject copiedCubeMoving;
     [HideInInspector] public GameObject instantiatedCopy;
-    [HideInInspector] public GameObject instantiatedMovingCopy;
+    [HideInInspector] public GameObject instantiatedMovingCopy; 
     [HideInInspector] public EVSpecialSight specialSightEV;
 
     public float platformCopyDecreaseAmount;
