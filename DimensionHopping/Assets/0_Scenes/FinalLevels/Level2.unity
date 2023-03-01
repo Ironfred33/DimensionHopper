@@ -10537,6 +10537,11 @@ PrefabInstance:
       propertyPath: wallJumpSideForce
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4944779151605877165, guid: 186d6350790e79f4ab3901e4b08e80d0,
+        type: 3}
+      propertyPath: sightTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7217913849438909904, guid: 186d6350790e79f4ab3901e4b08e80d0,
         type: 3}
       propertyPath: m_LocalPosition.x
