@@ -20,16 +20,6 @@ public class PlatformFloating : MonoBehaviour
     private float _dt;
     private bool _isPGO;
 
-
-    // PROBLEM 2: Wenn Spieler sich nicht auf PGO befindet, bewegt sie sich, aber wird wieder zurückgesetzt. Theorie: Coroutine Positionsänderung sticht sich mit
-    // der PGO Positionsänderung
-
-    // DAS PROBLEM LIEGT IN DIESEM SCRIPT DIOS MIOS COROUTINE UFF OH NEIN
-
-
-    // Variablen externalisieren!
-
-
     void Start()
     {
         AssignComponents();
@@ -85,10 +75,10 @@ public class PlatformFloating : MonoBehaviour
                 StartCoroutine(RaisePlatform(standardPosition));
 
             }
-            else if((!_playerTouching && !_platformRaising) && (this.transform.position == _pgoScript.transformSecondPointLowered))
+            else if ((!_playerTouching && !_platformRaising) && (this.transform.position == _pgoScript.transformSecondPointLowered))
             {
                 _platformRaising = true;
-                StartCoroutine(RaisePlatform(_pgoScript.transformSecondPointLowered));
+                StartCoroutine(RaisePlatform(_pgoScript.transformSecondPoint));
             }
 
 

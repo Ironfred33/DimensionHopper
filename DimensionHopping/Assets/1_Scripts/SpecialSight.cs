@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Steuert die Vorschau des Perspektivwechsels
 public class SpecialSight : MonoBehaviour
@@ -38,9 +39,7 @@ public class SpecialSight : MonoBehaviour
     {
 
         specialSightEV = GameObject.FindGameObjectWithTag("ExternalVariables").GetComponent<EVSpecialSight>();
-
-        _transparencyMaterial.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
-
+        
         _pivot = Resources.Load<GameObject>("Prefabs/Pivot");
 
     }
@@ -91,6 +90,25 @@ public class SpecialSight : MonoBehaviour
                 transformFirstPoint = scriptPGO.transformFirstPoint;
                 transformSecondPoint = scriptPGO.transformSecondPoint;
 
+                switch(hit.transform.tag)
+                {
+                    case "PGOxPositive": 
+                        _transparencyMaterial.color = new Color(0.0f, 1.8f, 6.0f, specialSightEV.platformTransparency);
+                        break;
+                    case "PGOxNegative": 
+                        _transparencyMaterial.color = new Color(8.0f, 0.0f, 0.0f, specialSightEV.platformTransparency);
+                        break;
+                    case "PGOzPositive": 
+                        _transparencyMaterial.color = new Color(0.0f, 6.0f, 0.0f, specialSightEV.platformTransparency);
+                        break;
+                    case "PGOzNegative": 
+                        _transparencyMaterial.color = new Color(750.0f, 760.0f, 1.0f, specialSightEV.platformTransparency);
+                        break;
+                    default: 
+                        Debug.Log("No Tag");
+                        break;
+                }
+
 
 
                 // neuer Ansatz unten, könnte aber zu heeeeeeeeeeftigsten Komplikationen führen, deshalb wird jetzt doch wieder zur alten Methode geswitcht
@@ -120,7 +138,14 @@ public class SpecialSight : MonoBehaviour
     {
 
 
-        copy = hit.transform.gameObject;
+        if(SceneManager.GetActiveScene().name == "LevelGenerator")
+        {
+            copy = hit.transform.Find("Cube").gameObject;
+        } 
+        else 
+        {
+            copy = hit.transform.Find("CopyTarget").gameObject;
+        }
 
 
 
@@ -152,6 +177,7 @@ public class SpecialSight : MonoBehaviour
 
     public void MakeTransparent(Material mat, GameObject obj)
     {
+
         var materials = obj.GetComponent<MeshRenderer>().materials;
 
         materials[0] = mat;
