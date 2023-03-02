@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 7648551523147050126}
   - component: {fileID: -4409383123778993108}
   - component: {fileID: 3420256743715131085}
+  - component: {fileID: -5503483651201004536}
   m_Layer: 8
   m_Name: LongLengthPlatform
   m_TagString: Untagged
@@ -151,5 +152,26 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.989662, y: 0.33621764, z: 2.0257912}
-  m_Center: {x: 4.0252676, y: 0.7281089, z: -0.008747101}
+  m_Size: {x: 7.989662, y: 1.4020822, z: 2.0257912}
+  m_Center: {x: 4.0252676, y: 0.1951766, z: -0.008747101}
+--- !u!114 &-5503483651201004536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6682483206176545258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 0}
+  _floating: {fileID: 0}
+  wobblingTime: 0
+  wobblingAmount: 0
+  _playerTouching: 0
+  _platformLowering: 0
+  _platformRaising: 0
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8506637953582064133}
   - component: {fileID: 384333838606329427}
   - component: {fileID: 2743219453417625261}
+  - component: {fileID: -3539790736774988579}
   m_Layer: 8
   m_Name: MidLengthPlatform
   m_TagString: Untagged
@@ -58,8 +59,29 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.981504, y: 0.39, z: 1.9981397}
-  m_Center: {x: 2.0065482, y: 0.66, z: -0.0045936704}
+  m_Size: {x: 3.981504, y: 1.3525678, z: 1.9981397}
+  m_Center: {x: 2.0065482, y: 0.17871612, z: -0.0045936704}
+--- !u!114 &-3539790736774988579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5608297958360862576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 0}
+  _floating: {fileID: 0}
+  wobblingTime: 0
+  wobblingAmount: 0
+  _playerTouching: 0
+  _platformLowering: 0
+  _platformRaising: 0
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &8668105284474488290
 GameObject:
   m_ObjectHideFlags: 0

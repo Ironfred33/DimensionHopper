@@ -1667,6 +1667,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 520051765, guid: 79f23514fd86ce741a716663f5b47813, type: 3}
+      propertyPath: sightRange
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 7123726539426643509, guid: 79f23514fd86ce741a716663f5b47813,
         type: 3}
       propertyPath: flickerSpeed
@@ -1754,6 +1758,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79f23514fd86ce741a716663f5b47813, type: 3}
+--- !u!1 &520051764 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7123726539426643510, guid: 79f23514fd86ce741a716663f5b47813,
+    type: 3}
+  m_PrefabInstance: {fileID: 520051763}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &520051765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520051764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 562309000b93d7245a46f97623be645b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loweringTime: 0.1
+  raisingTime: 0.1
+  loweringAmount: 0.15
 --- !u!1 &526814125
 GameObject:
   m_ObjectHideFlags: 0
@@ -1946,6 +1971,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 528291212}
   scriptPGO: {fileID: 0}
+  scriptPGOLG: {fileID: 0}
   scriptPGOGenerator: {fileID: 0}
   transformFirstPoint: {x: 0, y: 0, z: 0}
   transformSecondPoint: {x: 0, y: 0, z: 0}
@@ -4578,8 +4604,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buttons: {fileID: 0}
   restartButton: 0
-  pauseButton: 0
-  playerRespawn: 0
+  pauseButton: 282
+  playerRespawn: 283
   spawnCoordinates: {x: 0, y: 0, z: 0}
 --- !u!4 &1180623715
 Transform:
@@ -6142,7 +6168,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 520051763}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 520051764}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff0ccdd8ff327f148a23bd3220fb7745, type: 3}
