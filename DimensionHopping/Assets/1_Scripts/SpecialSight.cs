@@ -8,10 +8,11 @@ public class SpecialSight : MonoBehaviour
 
     public Camera camera;
     public TransformPositionOnPerspective scriptPGO;
+    public PGO scriptPGOLG;
     [HideInInspector] public PGO scriptPGOGenerator;
     [HideInInspector] public Vector3 transformFirstPoint;
     [HideInInspector] public Vector3 transformSecondPoint;
-    [HideInInspector] public GameObject copy;
+    public GameObject copy;
     [HideInInspector] public bool activeCoolDown;
     [HideInInspector] public bool activeSightTime;
     private float _elapsed;
@@ -69,7 +70,7 @@ public class SpecialSight : MonoBehaviour
 
                 Debug.Log("hit the PGO: " + hit.transform.tag);
 
-                _hitSize = hit.collider.gameObject.GetComponent<Renderer>().bounds.size;
+                //_hitSize = hit.collider.gameObject.GetComponent<Renderer>().bounds.size;
 
 
                 // if (GameObject.FindGameObjectWithTag("LevelGenerator") != null)
@@ -84,10 +85,29 @@ public class SpecialSight : MonoBehaviour
 
                 // }
 
-                scriptPGO = hit.transform.GetComponent<TransformPositionOnPerspective>();
 
-                transformFirstPoint = scriptPGO.transformFirstPoint;
-                transformSecondPoint = scriptPGO.transformSecondPoint;
+                if (GameObject.FindGameObjectWithTag("LevelGenerator"))
+                {
+
+                    scriptPGOLG = hit.transform.GetComponent<PGO>();
+                    transformFirstPoint = scriptPGOLG.transformFirstPoint;
+                    transformSecondPoint = scriptPGOLG.transformSecondPoint;
+
+                }
+                else
+                {
+
+                    scriptPGO = hit.transform.GetComponent<TransformPositionOnPerspective>();
+                    transformFirstPoint = scriptPGO.transformFirstPoint;
+                    transformSecondPoint = scriptPGO.transformSecondPoint;
+
+                }
+
+
+
+
+                // transformFirstPoint = scriptPGO.transformFirstPoint;
+                // transformSecondPoint = scriptPGO.transformSecondPoint;
 
                 switch (hit.transform.tag)
                 {
@@ -131,8 +151,13 @@ public class SpecialSight : MonoBehaviour
     void CreateCopy(RaycastHit hit)
     {
 
+        // if (SceneManager.GetActiveScene().name == "LevelGenerator")
+        // {
+        //     copy = hit.transform.Find("Cube").gameObject;
+        // }
 
-        if (SceneManager.GetActiveScene().name == "LevelGenerator")
+
+        if (GameObject.FindGameObjectWithTag("LevelGenerator"))
         {
             copy = hit.transform.Find("Cube").gameObject;
         }
