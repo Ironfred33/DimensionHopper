@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class RedButton : MonoBehaviour
 {
-    public GameObject player;
-    public float interactionRadius;
+
+    public CameraController camControl;
+
+
     public KeyCode buttonPress;
     private Rigidbody blockRigidbody;
-
     public GameObject block;
-    public CameraController camControl;
+    public GameObject player;
+
+
+    public float interactionRadius;
     public bool enemiesDefeated = false;
+
+
     void Start()
     {
         blockRigidbody = block.GetComponent<Rigidbody>();
