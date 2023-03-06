@@ -13,22 +13,38 @@ public class Squeezing : MonoBehaviour
     private float _squeezeDuration;
     private bool _squeezable;
     private GameObject _player;
+    private Vector3 _squeezeVector;
 
     void Start()
     {   
         _squeezable = false;
         _squeezed = false;
         _squeezeDuration = Vector3.Distance(GetComponent<MovingPlatforms>().firstPosition, GetComponent<MovingPlatforms>().secondPosition) / GetComponent<MovingPlatforms>().movementTime;
+
+        switch(_squeezeDimension)
+        {
+            case 0:
+                _squeezeVector = new Vector3(1,0,0);
+                break;
+            case 1:
+                _squeezeVector = new Vector3(0,1,0);
+                break; 
+            case 2:
+                _squeezeVector = new Vector3(0,0,1);
+                break;  
+        }
+
+
     }
 
     void FixedUpdate()
     {
 
-        Debug.DrawRay(transform.position, Vector3.forward*_minDistance, Color.magenta);
+        Debug.DrawRay(transform.position, _squeezeVector*_minDistance, Color.magenta);
 
         RaycastHit hit;
 
-        if(Physics.Raycast(transform.position, Vector3.forward, out hit, _minDistance) && _squeezable)
+        if(Physics.Raycast(transform.position, _squeezeVector, out hit, _minDistance) && _squeezable)
         {
             if(hit.collider.gameObject.CompareTag("Squeezer"))
             {

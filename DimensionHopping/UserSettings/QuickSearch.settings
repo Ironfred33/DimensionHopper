@@ -29,14 +29,19 @@ providers = {
 		priority = 100
 		defaultAction = null
 	}
+	packages = {
+		active = true
+		priority = 90
+		defaultAction = null
+	}
 	settings = {
 		active = true
 		priority = 100
 		defaultAction = null
 	}
-	res = {
+	calculator = {
 		active = true
-		priority = 100
+		priority = 10
 		defaultAction = null
 	}
 	menu = {
@@ -49,9 +54,9 @@ providers = {
 		priority = 50
 		defaultAction = null
 	}
-	object = {
+	res = {
 		active = true
-		priority = 55
+		priority = 100
 		defaultAction = null
 	}
 	static_methods = {
@@ -64,19 +69,14 @@ providers = {
 		priority = -1
 		defaultAction = null
 	}
-	packages = {
-		active = true
-		priority = 90
-		defaultAction = null
-	}
 	log = {
 		active = false
 		priority = 210
 		defaultAction = null
 	}
-	calculator = {
+	object = {
 		active = true
-		priority = 10
+		priority = 55
 		defaultAction = null
 	}
 }
