@@ -9,22 +9,21 @@ public class LevelGeneratorGameManagement : MonoBehaviour
 
     private LevelGeneratorSceneManagement _sceneManagementScript;
     private GenerateLevel _levelGenerationScript;
-    [SerializeField] private GameObject _buttons;
+    private CameraController _camControlScript;
+    private CameraTransition _camTransitionScript;
+    private PlayerController _playerControlScript;
+    private EVPlayer _extVarsPlayer;
+    private PlayerHealth _playerHealthScript;
+
+    private GameObject _buttons;
+    private GameObject _player;
+    private GameObject _playerPrefab;
     public KeyCode restartButton;
     public KeyCode pauseButton;
     public KeyCode playerRespawn;
     public Vector3 spawnCoordinates;
-    private CameraController _camControlScript;
-    private CameraTransition _camTransitionScript;
-    private PlayerController _playerControlScript;
-    private GameObject _player;
-    private GameObject _playerPrefab;
-    private EVPlayer _extVarsPlayer;
-    private PlayerHealth _playerHealthScript;
+
     private bool _paused;
-
-
-
 
     void Awake()
     {
@@ -32,7 +31,7 @@ public class LevelGeneratorGameManagement : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         GetInput();
@@ -122,7 +121,6 @@ public class LevelGeneratorGameManagement : MonoBehaviour
     void AssignComponents()
     {
 
-        Debug.Log("ASSIGNCOMPONENTS TRIGGERED");
         _camControlScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
         _camTransitionScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraTransition>();
         _playerControlScript = _playerPrefab.GetComponent<PlayerController>();
@@ -149,14 +147,6 @@ public class LevelGeneratorGameManagement : MonoBehaviour
 
         
     }
-
-
-    IEnumerator WaitTime(float time)
-    {
-
-        yield return new WaitForSeconds(time);
-    }
-
 
     void  Pause()
     {

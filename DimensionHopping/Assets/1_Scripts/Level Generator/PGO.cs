@@ -4,6 +4,22 @@ using UnityEngine;
 
 public class PGO : MonoBehaviour
 {
+    private CameraTransition _camTransitionScript;
+
+    private Material _blueGlow;
+    private Material _redGlow;
+    private Material _yellowGlow;
+    private Material _greenGlow;
+    private GameObject _platformChild;
+    public WorldAxis worldAxis;
+    public Vector3 transformFirstPoint;
+    public Vector3 transformSecondPoint;
+
+    [HideInInspector] public float worldAxisTargetPoint;
+    private float _elapsed;
+    private float _dt;
+    [HideInInspector] public float transitionDuration = 1f;
+
     public enum WorldAxis
     {
 
@@ -14,19 +30,7 @@ public class PGO : MonoBehaviour
 
     }
 
-    private Material _blueGlow;
-    private Material _redGlow;
-    private Material _yellowGlow;
-    private Material _greenGlow;
-    public WorldAxis worldAxis;
-    public float worldAxisTargetPoint;
-    public Vector3 transformFirstPoint;
-    public Vector3 transformSecondPoint;
-    private CameraTransition _camTransitionScript;
-    private float _elapsed;
-    private float _dt;
-    private GameObject _platformChild;
-    public float transitionDuration = 1f;
+    
 
 
     public void PlatformSetup()
@@ -36,7 +40,7 @@ public class PGO : MonoBehaviour
         LoadGlows();
         TagThisAndGetGlow();
 
-        if(worldAxis != WorldAxis.PGOxPositive) SwapTransformPoints();
+        if (worldAxis != WorldAxis.PGOxPositive) SwapTransformPoints();
 
     }
 
@@ -154,7 +158,6 @@ public class PGO : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
 
         if (other.gameObject.tag == "Player")
         {

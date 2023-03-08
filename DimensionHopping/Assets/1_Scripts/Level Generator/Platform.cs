@@ -5,10 +5,8 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
 
-
     public enum CurrentAxis
     {
-
         NoAxis,
         XPositive,
         ZPositive,
@@ -16,7 +14,6 @@ public class Platform : MonoBehaviour
         ZNegative
     }
 
-    public bool firstPlatform;
-
-    public CurrentAxis currentAxis;
+    [HideInInspector] public bool firstPlatform;
+    [HideInInspector] public CurrentAxis currentAxis;
 }

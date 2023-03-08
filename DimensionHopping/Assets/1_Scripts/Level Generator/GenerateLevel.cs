@@ -6,7 +6,10 @@ using System.Linq;
 public class GenerateLevel : MonoBehaviour
 {
 
-    public int[] generationOrder;
+    public VerticalAlignment verticalAlignment;
+    [HideInInspector] public Platform platformScript;
+    private CameraTransition _cameraTransitionScript;
+
     [HideInInspector] public GameObject myPrefab;
     private GameObject _shortLengthPlatform;
     private GameObject _midLengthPlatform;
@@ -14,15 +17,23 @@ public class GenerateLevel : MonoBehaviour
     private GameObject _spike;
     private GameObject _fourSpikes;
     private GameObject _goal;
+    private GameObject _deathZone;
+    private GameObject _deathZoneInstantiated;
+    private GameObject _clouds;
+    [HideInInspector] public GameObject prefabCopy;
     [HideInInspector] public List<GameObject> platforms = new List<GameObject>();
-    public int maxSegmentLength;
-    private float _countSegmentLength;
+    [HideInInspector] public Vector3 platformSpawnPos;
+     private Material _goalMaterial;
+    public Difficulty difficulty;
+    private CurrentAxis currentAxis;
     private GameObject _myPrefabChild;
+
     public int segmentAmount;
     public int platformVerticalRange;
-    public VerticalAlignment verticalAlignment;
-    private int _randomNumber;
-    [HideInInspector] public Vector3 platformSpawnPos;
+    public int[] generationOrder;
+     public int maxSegmentLength;
+    private float _countSegmentLength;
+    private int _randomNumber; 
     private int _highGapLengthAmount;
     private int _lowGapLengthAmount;
     private int _generatedSegments;
@@ -32,11 +43,8 @@ public class GenerateLevel : MonoBehaviour
     [HideInInspector] public bool levelGenerated;
     [HideInInspector] public bool segmentGenerated;
     private float _spawnAxis;
-    [HideInInspector] public Platform platformScript;
-    private CameraTransition _cameraTransitionScript;
     public bool generateRandomDirections;
     public bool generateControlledRandomDirections;
-    public GameObject prefabCopy;
     private int _spikeFrequencyHighAmount;
     private int _spikeFrequencyLowAmount;
     private int _spikeFrequency;
@@ -46,12 +54,6 @@ public class GenerateLevel : MonoBehaviour
     private bool _firstPlatformIgnored;
     private bool _firstPlatformMarked;
     private int _spawnSecondSpikeChance;
-    private Material _goalMaterial;
-    public Difficulty difficulty;
-    private CurrentAxis currentAxis;
-    private GameObject _deathZone;
-    private GameObject _deathZoneInstantiated;
-    private GameObject _clouds;
     public float deathZoneDepth;
     public enum Difficulty
     {
@@ -610,7 +612,7 @@ public class GenerateLevel : MonoBehaviour
 
                         instantiatedGoal = Instantiate(_goal, new Vector3(lastPlatform.transform.position.x, lastPlatform.transform.position.y + 1, lastPlatform.transform.position.z + (lastPlatform.transform.Find("Cube").gameObject.transform.localScale.x / 2)), Quaternion.identity);
 
-                        //Instantiate(_spike, new Vector3(platform.transform.position.x, platform.transform.position.y + 0.5f, platform.transform.position.z + (platform.transform.Find("Cube").gameObject.transform.localScale.x / 2)), Quaternion.identity);
+                      
 
                         break;
 
@@ -619,7 +621,7 @@ public class GenerateLevel : MonoBehaviour
 
                         instantiatedGoal = Instantiate(_goal, new Vector3(lastPlatform.transform.position.x - (lastPlatform.transform.Find("Cube").gameObject.transform.localScale.x / 2), lastPlatform.transform.position.y + 1, lastPlatform.transform.position.z), Quaternion.identity);
 
-                        //Instantiate(_spike, new Vector3(platform.transform.position.x - (platform.transform.Find("Cube").gameObject.transform.localScale.x / 2), platform.transform.position.y + 0.5f, platform.transform.position.z), Quaternion.identity);
+                       
 
                         break;
 
@@ -627,7 +629,7 @@ public class GenerateLevel : MonoBehaviour
 
                         instantiatedGoal = Instantiate(_goal, new Vector3(lastPlatform.transform.position.x, lastPlatform.transform.position.y + 1, lastPlatform.transform.position.z - (lastPlatform.transform.Find("Cube").gameObject.transform.localScale.x / 2)), Quaternion.identity);
 
-                        //Instantiate(_spike, new Vector3(platform.transform.position.x, platform.transform.position.y + 0.5f, platform.transform.position.z - (platform.transform.Find("Cube").gameObject.transform.localScale.x / 2)), Quaternion.identity);
+                        
 
                         break;
                 }
@@ -647,8 +649,6 @@ public class GenerateLevel : MonoBehaviour
     void GenerateRandomDirections()
     {
         Debug.Log("Random Generationorder gesetzt");
-
-        //generationOrder.Length = 10;
 
 
         generationOrder[0] = 0;
@@ -700,8 +700,6 @@ public class GenerateLevel : MonoBehaviour
 
 
         }
-
-
 
 
 
@@ -876,7 +874,6 @@ public class GenerateLevel : MonoBehaviour
 
 
         // prüft, ob Gap zu groß ist. Wenn ja, wird gap verringert
-        // BUG: wenn gap verringert wird, wird die PF aus dem nächsten Segment manchmal vertikal versetzt an die Stelle des Anfangs des nächsten Segments gespawnt. Segmente überlappen sich teilweise (schlecht?)
 
         if ((_gapLength + _myPrefabChild.transform.localScale.x + _countSegmentLength) > maxSegmentLength)
         {
