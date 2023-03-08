@@ -8,13 +8,9 @@ public class CollectablesUI : MonoBehaviour
 {
 
     [SerializeField] private Image[] _disks;
-
     [SerializeField] private Image[] _completedDisks;
-
     [SerializeField] private Sprite _collectedDisk;
-
-    [SerializeField] private Sprite _uncollectedDisk;
-
+ 
     public List<int> alreadyCollected;
 
     void Start() 

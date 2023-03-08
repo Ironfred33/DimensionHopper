@@ -6,10 +6,10 @@ using UnityEngine;
 public class Collectable_Pickup : MonoBehaviour
 {
     [SerializeField] private CollectablesUI _collectableUI;
-
-    [SerializeField] private int _collectibleOrder;
-
     private AudioSource _collectSound;
+    
+    [SerializeField] private int _collectibleOrder;
+    
 
     private void Start() 
     {

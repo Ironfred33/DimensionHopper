@@ -7,8 +7,6 @@ public class CheckForScriptInScene : MonoBehaviour
     
     // Hier Skript einfügen, das gesucht werden soll
     
-
-
     void Start()
     {
         SceneLoader[] scriptsOnScene = FindObjectsOfType<SceneLoader>();

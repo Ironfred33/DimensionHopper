@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class ChangePosition : MonoBehaviour
 {
-    public float transitionDuration;
-    public float transitionLength;
-
-    public int transitionDirIndex;
-
+    public TransitionDirection transitionDir;
     public enum TransitionDirection
     {
         xPositive,
@@ -18,13 +14,14 @@ public class ChangePosition : MonoBehaviour
         yPositive,
         yNegative
     }
-
-    public TransitionDirection transitionDir;
-
     public KeyCode transitionButton;
-
     [HideInInspector] public Vector3 firstPosition;
     [HideInInspector] public Vector3 secondPosition;
+
+
+    public float transitionDuration;
+    public float transitionLength;
+    public int transitionDirIndex;
     public float elapsed;
     [SerializeField] private bool _transitioned;
     public bool transitionInProgress;
@@ -71,10 +68,6 @@ public class ChangePosition : MonoBehaviour
     }
 
 
-
-
-
-
     public IEnumerator Transition(Vector3 currentPosition, Vector3 newPosition, float transitionDuration)
     {
         elapsed = 0f;
@@ -98,25 +91,7 @@ public class ChangePosition : MonoBehaviour
         if (!_transitioned) _transitioned = true;
         else if (_transitioned) _transitioned = false;
 
-
-
-
-
     }
-
-
-    public IEnumerator ReverseSqueezing()
-    {
-
-
-        _transitioned = false;
-
-        return null;
-    }
-
-
-
-
 
     void GetSecondPosition()
     {
