@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class Boss_Attack : MonoBehaviour
 {
-    public GameObject cannon;
     private CameraController _camScript;
+
+    public GameObject cannon;
     private GameObject _player;
     private Rigidbody _playerRb;
+    [SerializeField] private GameObject _bullet;
+    private GameObject _bulletInstance;
+    [SerializeField] private GameObject _target;
 
     [Range(3f, 10f)]
     public float attackRange;
     public float coolDown;
-
+    [SerializeField] private bool _playerMovingRight;
+    [SerializeField] private bool _playerMovingLeft;
     public bool randomBullets;
-   [SerializeField] private bool _playerMovingRight;
-   [SerializeField] private bool _playerMovingLeft;
-
-    [SerializeField] private GameObject _bullet;
-    private GameObject _bulletInstance;
     public float bulletSpeed;
 
-    [SerializeField] private GameObject _target;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -42,26 +42,21 @@ public class Boss_Attack : MonoBehaviour
     }
 
 
-    // TODO
-    // 
-    // - Boss floatet nicht nach oben und unten
+    private void Update()
+    {
 
-
-
-    private void Update() {
-        
-        if(Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             _playerMovingRight = true;
 
         }
-        else if(Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A))
         {
             _playerMovingLeft = true;
 
         }
 
-        if(Input.GetKeyUp(KeyCode.D))
+        if (Input.GetKeyUp(KeyCode.D))
         {
             _playerMovingRight = false;
         }
@@ -69,7 +64,7 @@ public class Boss_Attack : MonoBehaviour
         {
             _playerMovingLeft = false;
         }
-        
+
 
 
     }
@@ -92,12 +87,12 @@ public class Boss_Attack : MonoBehaviour
             {
                 case (CameraController.PlayerOrientation.XPositive):
 
-                    if(_playerMovingRight) targetPoint = new Vector3(_player.transform.position.x + randomAttackRange, _player.transform.position.y, _player.transform.position.z);
-                    else if(_playerMovingLeft) targetPoint = new Vector3(_player.transform.position.x - randomAttackRange, _player.transform.position.y, _player.transform.position.z);
+                    if (_playerMovingRight) targetPoint = new Vector3(_player.transform.position.x + randomAttackRange, _player.transform.position.y, _player.transform.position.z);
+                    else if (_playerMovingLeft) targetPoint = new Vector3(_player.transform.position.x - randomAttackRange, _player.transform.position.y, _player.transform.position.z);
 
                     break;
 
-       
+
             }
 
         }
@@ -106,10 +101,6 @@ public class Boss_Attack : MonoBehaviour
         return targetPoint;
 
     }
-
-
-
-
 
 
     IEnumerator ShootBullet()
@@ -123,11 +114,6 @@ public class Boss_Attack : MonoBehaviour
         Vector3 startPos = cannon.transform.position;
 
         _target.transform.position = pointToShootAt;
-
-        
-
-        //CalculateTargetPoint();
-
 
 
         while (elapsedTime < bulletSpeed)
@@ -145,7 +131,6 @@ public class Boss_Attack : MonoBehaviour
 
         }
 
-        //_bulletInstance.transform.position = targets[0].transform.position;
 
         yield return new WaitForSeconds(coolDown);
 

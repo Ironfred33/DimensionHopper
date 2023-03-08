@@ -5,18 +5,16 @@ using UnityEngine;
 // Steuerung der Kamera
 public class CameraController : MonoBehaviour
 {
+    [HideInInspector] public EVCamera extVars;
 
     [HideInInspector] public Transform trackingTarget;
     [HideInInspector] public GameObject externalVariables;
-    [HideInInspector] public EVCamera extVars;
     [HideInInspector] public GameObject fpPosition;
     [HideInInspector] public GameObject player;
     [HideInInspector] public Vector3 current2DPosition;
     [HideInInspector] public Vector3 current2DEulerAngles;
-    float xRotationFPP = 0f;
-    float yRotationFPP = 0f;
-    [HideInInspector] public bool is2DView;
     private Vector3 _cameraFirstPersonPosition;
+    public PlayerOrientation playerOrientation;
     public enum PlayerOrientation
     {
 
@@ -27,8 +25,13 @@ public class CameraController : MonoBehaviour
 
 
     }
+    
+    float xRotationFPP = 0f;
+    float yRotationFPP = 0f;
+    [HideInInspector] public bool is2DView;
 
-     public PlayerOrientation playerOrientation;
+
+
 
 
     private void Start()
@@ -46,7 +49,7 @@ public class CameraController : MonoBehaviour
     {
 
 
-        if(GameObject.FindGameObjectWithTag("Player") != null) _cameraFirstPersonPosition = fpPosition.transform.position;
+        if (GameObject.FindGameObjectWithTag("Player") != null) _cameraFirstPersonPosition = fpPosition.transform.position;
 
 
 
@@ -79,7 +82,7 @@ public class CameraController : MonoBehaviour
         {
 
             current2DPosition = new Vector3(trackingTarget.position.x - extVars.cameraDistance2DP, trackingTarget.position.y + extVars.cameraHeight2DP, trackingTarget.position.z);
-            
+
 
         }
 
@@ -112,10 +115,7 @@ public class CameraController : MonoBehaviour
         if (player.transform.rotation.eulerAngles.y > 45.1 && player.transform.rotation.eulerAngles.y <= 135.0)
         {
 
-
-            //transform.position = current2DPosition;
-
-            transform.position = Vector3.Lerp(transform.position, current2DPosition , extVars.smoothing);
+            transform.position = Vector3.Lerp(transform.position, current2DPosition, extVars.smoothing);
 
             player.transform.rotation = Quaternion.Euler(0, 90, 0);
 
@@ -129,10 +129,7 @@ public class CameraController : MonoBehaviour
         else if (player.transform.rotation.eulerAngles.y > 135.1 && player.transform.rotation.eulerAngles.y <= 225)
         {
 
-            
-            //transform.position = current2DPosition;
-
-            transform.position = Vector3.Lerp(transform.position, current2DPosition , extVars.smoothing);
+            transform.position = Vector3.Lerp(transform.position, current2DPosition, extVars.smoothing);
 
             player.transform.rotation = Quaternion.Euler(0, 180, 0);
             yRotationFPP = 270;
@@ -145,8 +142,7 @@ public class CameraController : MonoBehaviour
         else if ((player.transform.rotation.eulerAngles.y > 225.1 && player.transform.rotation.eulerAngles.y <= 315))
         {
 
-            //transform.position = current2DPosition;
-            transform.position = Vector3.Lerp(transform.position, current2DPosition , extVars.smoothing);
+            transform.position = Vector3.Lerp(transform.position, current2DPosition, extVars.smoothing);
 
             player.transform.rotation = Quaternion.Euler(0, 270, 0);
 
@@ -160,8 +156,7 @@ public class CameraController : MonoBehaviour
         else if (player.transform.rotation.eulerAngles.y >= 315.1 && player.transform.rotation.eulerAngles.y <= 359.9 || player.transform.rotation.eulerAngles.y >= 0 && player.transform.rotation.eulerAngles.y <= 45)
         {
 
-            //transform.position = current2DPosition;
-            transform.position = Vector3.Lerp(transform.position, current2DPosition , extVars.smoothing);
+            transform.position = Vector3.Lerp(transform.position, current2DPosition, extVars.smoothing);
             player.transform.rotation = Quaternion.Euler(0, 0, 0);
             yRotationFPP = 90;
             playerOrientation = PlayerOrientation.ZPositive;
@@ -183,7 +178,7 @@ public class CameraController : MonoBehaviour
 
 
 
-        if(!player.GetComponent<WallRun_v2>().isWallRunning)
+        if (!player.GetComponent<WallRun_v2>().isWallRunning)
         {
             // Clampt die vertikale Rotation der Kamera
             yRotationFPP -= yaw;
@@ -197,9 +192,9 @@ public class CameraController : MonoBehaviour
             // Kamera transformt die Position und bleibt immer an der Position des Empty Gameobjects "FPPPosition", das ein Child des Players ist 
 
         }
-        
+
         transform.position = _cameraFirstPersonPosition;
-        
+
     }
 
 

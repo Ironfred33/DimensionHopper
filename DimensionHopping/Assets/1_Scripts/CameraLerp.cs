@@ -5,13 +5,13 @@ using UnityEngine;
 // Regelt die Interpolation des Perspektivwechsels
 public class CameraLerp : MonoBehaviour
 {
+
+    private AnimationCurve _mCurve;
     [SerializeField] private Transform _positionFPP;
     [SerializeField] private Transform _position2D;
 
-    private AnimationCurve _mCurve;
-
+    
     [SerializeField] private float _duration = 3f;
-
     private float _timer = 0f;
 
     private void Update()

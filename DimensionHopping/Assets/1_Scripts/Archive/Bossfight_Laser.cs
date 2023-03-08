@@ -5,27 +5,29 @@ using UnityEngine;
 public class Bossfight_Laser : MonoBehaviour
 {
     [SerializeField] private GameObject[] laserBalls;
-    [SerializeField] private float _coolDown;
-    [SerializeField] private float _walkSpeed;
     [SerializeField] private List<Transform> _wayPointList;
     [SerializeField] private Transform[] _wayPoints;
-    private bool _firing;
     private AudioSource laserAudio;
-    private LineRenderer laserLine;  
-    private GameObject _laserOrigin; 
+    private LineRenderer laserLine;
+    private GameObject _laserOrigin;
+    
+    [SerializeField] private float _coolDown;
+    [SerializeField] private float _walkSpeed;
+    private bool _firing;
 
-    void Awake() 
+
+    void Awake()
     {
         laserLine = GetComponent<LineRenderer>();
         laserAudio = GetComponent<AudioSource>();
-    
+
     }
 
     void Start()
     {
         laserLine.enabled = false;
         _wayPointList = new List<Transform>();
-        for(int i = 0; i < _wayPoints.Length; i++)
+        for (int i = 0; i < _wayPoints.Length; i++)
         {
             _wayPointList.Add(_wayPoints[i]);
         }
@@ -35,19 +37,19 @@ public class Bossfight_Laser : MonoBehaviour
     {
         float step = _walkSpeed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, _wayPointList[0].position, step);
-        if(transform.position == _wayPointList[0].position)
+        if (transform.position == _wayPointList[0].position)
         {
             _wayPointList.RemoveAt(0);
         }
 
-        if(Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             Attack();
         }
 
-        if(_firing)
+        if (_firing)
         {
-            laserLine.SetPosition(0,_laserOrigin.transform.position);
+            laserLine.SetPosition(0, _laserOrigin.transform.position);
         }
 
     }
@@ -65,10 +67,10 @@ public class Bossfight_Laser : MonoBehaviour
         _laserOrigin.SetActive(true);
         RaycastHit hit;
 
-        if(Physics.Raycast(_laserOrigin.transform.position, (Vector3.down + transform.forward*10), out hit, Mathf.Infinity))
+        if (Physics.Raycast(_laserOrigin.transform.position, (Vector3.down + transform.forward * 10), out hit, Mathf.Infinity))
         {
             _firing = true;
-            laserLine.SetPosition(1, hit.point);      
+            laserLine.SetPosition(1, hit.point);
         }
         yield return new WaitForSeconds(_coolDown);
     }

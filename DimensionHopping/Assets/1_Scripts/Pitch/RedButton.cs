@@ -7,12 +7,10 @@ public class RedButton : MonoBehaviour
 
     public CameraController camControl;
 
-
     public KeyCode buttonPress;
     private Rigidbody blockRigidbody;
     public GameObject block;
     public GameObject player;
-
 
     public float interactionRadius;
     public bool enemiesDefeated = false;
