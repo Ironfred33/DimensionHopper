@@ -30,12 +30,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1349981519}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10.600011, y: 15.300002}
-  m_SizeDelta: {x: 18, y: 18}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 10.600002, y: 15.300003}
+  m_SizeDelta: {x: -82, y: -12}
   m_Pivot: {x: 0.50000006, y: 0.5}
 --- !u!222 &484896427
 CanvasRenderer:
@@ -104,7 +104,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1349981519}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -178,7 +178,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1349981519}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -252,7 +252,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1349981519}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -383,6 +383,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 8742454278681905370}
   - {fileID: 729047284}
   - {fileID: 1741481850}
   - {fileID: 484896425}
@@ -408,9 +409,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec30a07005f08042bcb1c72af1dac66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camControl: {fileID: 0}
-  square: {fileID: 1741481851}
-  cube: {fileID: 484896426}
+  _camControl: {fileID: 0}
+  _square: {fileID: 0}
+  _cube: {fileID: 0}
   _activatedColor: {r: 0, g: 1, b: 0.30826735, a: 0}
   _deactivedColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!1 &1741481849
@@ -443,12 +444,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1349981519}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14, y: 15.3}
-  m_SizeDelta: {x: 18, y: 18}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -14, y: 15.299999}
+  m_SizeDelta: {x: -82, y: -12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1741481852
 CanvasRenderer:
@@ -2656,6 +2657,80 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &6346807681522397154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8742454278681905370}
+  - component: {fileID: 3034602449013525383}
+  - component: {fileID: 987629790001395323}
+  m_Layer: 5
+  m_Name: Background (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8742454278681905370
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6346807681522397154}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1349981519}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -1.6799946, y: 30.301987}
+  m_SizeDelta: {x: 50, y: 23}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3034602449013525383
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6346807681522397154}
+  m_CullTransparentMesh: 0
+--- !u!114 &987629790001395323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6346807681522397154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.56078434}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &6388642804530046862
 GameObject:
   m_ObjectHideFlags: 0
@@ -3950,16 +4025,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb751a9405e09d43b0e4df013ebe104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disks:
-  - {fileID: 3049239132345350480}
-  - {fileID: 5541551969034933508}
-  - {fileID: 1254930026287115969}
-  completedDisks:
-  - {fileID: 4294651496220332066}
-  - {fileID: 1990213422802229517}
-  - {fileID: 1420998226158819485}
-  collectedDisk: {fileID: 21300000, guid: 93d0be270cad536448c694582856388b, type: 3}
-  uncollectedDisk: {fileID: 21300000, guid: 0724769486a147a4fa23f4cb255878f6, type: 3}
+  _disks: []
+  _completedDisks: []
+  _collectedDisk: {fileID: 0}
+  _uncollectedDisk: {fileID: 0}
   alreadyCollected: 
 --- !u!114 &7697222376288076851
 MonoBehaviour:
@@ -3973,13 +4042,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb69324bd9b296944b71be06e367dfed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainGameScreen: {fileID: 8167750682975157286}
-  gameOverScreen: {fileID: 1559869706180477135}
-  levelCompletedScreen: {fileID: 732761750070352156}
-  levelGeneratorScreen: {fileID: 5574175918178186604}
+  _mainGameScreen: {fileID: 0}
+  _gameOverScreen: {fileID: 0}
+  _levelCompletedScreen: {fileID: 0}
+  _levelGeneratorScreen: {fileID: 0}
+  _pauseScreen: {fileID: 0}
   state: 0
+  _manager: {fileID: 0}
   sceneLoad: {fileID: 2250018989694539813, guid: a76078d6a6aa4ea4c960a37a6182c679,
     type: 3}
+  _generatorOptions: {fileID: 0}
 --- !u!1 &8762688224038735567
 GameObject:
   m_ObjectHideFlags: 0
