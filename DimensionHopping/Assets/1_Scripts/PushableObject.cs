@@ -5,15 +5,16 @@ using TMPro;
 
 public class PushableObject : MonoBehaviour
 {
-    [SerializeField] private float _pushForce;
-    [SerializeField] private Vector3 _startCoordinates;
-    private Rigidbody _rb;
-    [SerializeField] private bool isOnGround;
-    public Transform groundCheck;
-    public float groundRadius;
     public LayerMask groundMask;
+    public Transform groundCheck;
+    private Rigidbody _rb;
     [SerializeField] private GameObject _tipDisplay;
-    [SerializeField] private string _tipText; 
+    [SerializeField] private Vector3 _startCoordinates;
+    
+    [SerializeField] private float _pushForce;
+    [SerializeField] private bool isOnGround;
+    public float groundRadius;
+    [SerializeField] private string _tipText;
     [SerializeField] private float _tipDisplayTime;
 
     void Start()
@@ -32,30 +33,30 @@ public class PushableObject : MonoBehaviour
 
     void OnCollisionStay(Collision other)
     {
-        if(Input.GetKey(KeyCode.E) && other.gameObject.CompareTag("Player"))
+        if (Input.GetKey(KeyCode.E) && other.gameObject.CompareTag("Player"))
         {
             _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
             Vector3 pushDirection = transform.position - other.transform.position;
-            if(Mathf.Abs(pushDirection.x) > Mathf.Abs(pushDirection.z))
+            if (Mathf.Abs(pushDirection.x) > Mathf.Abs(pushDirection.z))
             {
-                if(pushDirection.x >= 0)
+                if (pushDirection.x >= 0)
                 {
-                    pushDirection = new Vector3(1,0,0);
+                    pushDirection = new Vector3(1, 0, 0);
                 }
-                else if(pushDirection.x < 0)
+                else if (pushDirection.x < 0)
                 {
-                    pushDirection = new Vector3(-1,0,0);
+                    pushDirection = new Vector3(-1, 0, 0);
                 }
             }
-            else if(Mathf.Abs(pushDirection.z) >= Mathf.Abs(pushDirection.x))
+            else if (Mathf.Abs(pushDirection.z) >= Mathf.Abs(pushDirection.x))
             {
-                if(pushDirection.z >= 0)
+                if (pushDirection.z >= 0)
                 {
-                    pushDirection = new Vector3(0,0,1);
+                    pushDirection = new Vector3(0, 0, 1);
                 }
-                else if(pushDirection.z < 0)
+                else if (pushDirection.z < 0)
                 {
-                    pushDirection = new Vector3(0,0,-1);
+                    pushDirection = new Vector3(0, 0, -1);
                 }
             }
 
@@ -72,19 +73,19 @@ public class PushableObject : MonoBehaviour
 
     void OnCollisionExit(Collision other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
-            _rb.velocity = new Vector3(0,0,0);
+            _rb.velocity = new Vector3(0, 0, 0);
         }
 
         this.transform.SetParent(null);
-        
+
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.transform.CompareTag("OutOfBounds"))
+        if (other.transform.CompareTag("OutOfBounds"))
         {
             this.gameObject.SetActive(false);
             transform.position = _startCoordinates;
@@ -92,7 +93,7 @@ public class PushableObject : MonoBehaviour
 
         }
 
-        else if(other.transform.CompareTag("Player"))
+        else if (other.transform.CompareTag("Player"))
         {
             StartCoroutine(DisplayTip());
         }
@@ -104,5 +105,5 @@ public class PushableObject : MonoBehaviour
         yield return new WaitForSeconds(_tipDisplayTime);
         _tipDisplay.SetActive(false);
     }
-    
+
 }

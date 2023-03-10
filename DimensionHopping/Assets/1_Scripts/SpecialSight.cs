@@ -5,36 +5,30 @@ using UnityEngine.SceneManagement;
 // Steuert die Vorschau des Perspektivwechsels
 public class SpecialSight : MonoBehaviour
 {
-
-    public Camera camera;
     public TransformPositionOnPerspective scriptPGO;
     public PGO scriptPGOLG;
     [HideInInspector] public PGO scriptPGOGenerator;
+    public Camera camera;
+    [HideInInspector] public EVSpecialSight specialSightEV;
+
     [HideInInspector] public Vector3 transformFirstPoint;
     [HideInInspector] public Vector3 transformSecondPoint;
     public GameObject copy;
     [HideInInspector] public bool activeCoolDown;
     [HideInInspector] public bool activeSightTime;
-    private float _elapsed;
-
     public GameObject copiedCubeImmobile;
     public GameObject copiedCubeMoving;
     [HideInInspector] public GameObject instantiatedCopy;
     [HideInInspector] public GameObject instantiatedMovingCopy;
-    [HideInInspector] public EVSpecialSight specialSightEV;
-
-    public float platformCopyDecreaseAmount;
-
-
     [SerializeField] private MeshRenderer _mesh;
-
     [SerializeField] private Material _transparencyMaterial;
-
     private Vector3 _hitSize;
     [SerializeField] private GameObject _pivot;
     private Vector3 _hitPosition;
-
     private GameObject _pivotCopy;
+
+    public float platformCopyDecreaseAmount;
+    private float _elapsed;
 
     void Start()
     {
@@ -70,21 +64,6 @@ public class SpecialSight : MonoBehaviour
 
                 Debug.Log("hit the PGO: " + hit.transform.tag);
 
-                //_hitSize = hit.collider.gameObject.GetComponent<Renderer>().bounds.size;
-
-
-                // if (GameObject.FindGameObjectWithTag("LevelGenerator") != null)
-                // {
-
-                //     scriptPGOGenerator = hit.transform.GetChild(0).GetComponent<PGO>();
-
-
-                //     transformFirstPoint = scriptPGOGenerator.transformFirstPoint;
-                //     transformSecondPoint = scriptPGOGenerator.transformSecondPoint;
-
-
-                // }
-
 
                 if (GameObject.FindGameObjectWithTag("LevelGenerator"))
                 {
@@ -103,11 +82,6 @@ public class SpecialSight : MonoBehaviour
 
                 }
 
-
-
-
-                // transformFirstPoint = scriptPGO.transformFirstPoint;
-                // transformSecondPoint = scriptPGO.transformSecondPoint;
 
                 switch (hit.transform.tag)
                 {
@@ -128,7 +102,6 @@ public class SpecialSight : MonoBehaviour
                         break;
                 }
 
-                // CreateCopies(hit);
 
                 CreateCopy(hit);
 
@@ -151,10 +124,6 @@ public class SpecialSight : MonoBehaviour
     void CreateCopy(RaycastHit hit)
     {
 
-        // if (SceneManager.GetActiveScene().name == "LevelGenerator")
-        // {
-        //     copy = hit.transform.Find("Cube").gameObject;
-        // }
 
 
         if (GameObject.FindGameObjectWithTag("LevelGenerator"))
@@ -217,9 +186,6 @@ public class SpecialSight : MonoBehaviour
         MakeTransparent(_transparencyMaterial, instantiatedCopy);
         MakeTransparent(_transparencyMaterial, instantiatedMovingCopy);
 
-        // instantiatedCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
-        // instantiatedMovingCopy.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, specialSightEV.platformTransparency);
-
         DeleteAllColliders(instantiatedCopy);
         DeleteAllColliders(instantiatedMovingCopy);
 
@@ -227,8 +193,6 @@ public class SpecialSight : MonoBehaviour
         DeleteAllChildren(instantiatedCopy);
         DeleteAllChildren(instantiatedMovingCopy);
 
-
-        // XXX - hier weitermachen
 
         MakeSlightlySmaller(instantiatedMovingCopy);
 
@@ -240,9 +204,6 @@ public class SpecialSight : MonoBehaviour
     void MakeSlightlySmaller(GameObject obj)
     {
         obj.transform.localScale = new Vector3(obj.transform.localScale.x * platformCopyDecreaseAmount, obj.transform.localScale.y * platformCopyDecreaseAmount, obj.transform.localScale.z * platformCopyDecreaseAmount);
-
-        //obj.transform.position = new Vector3(obj.transform.position.x + ((1.0f-platformCopyDecreaseAmount) / 2f), obj.transform.position.y + ((1.0f-platformCopyDecreaseAmount) / 2f),obj.transform.position.z (1.0f-platformCopyDecreaseAmount) / 2f );
-
 
 
     }
@@ -359,74 +320,6 @@ public class SpecialSight : MonoBehaviour
         Destroy(instantiatedMovingCopy);
 
     }
-
-
-
-
-    // // neues Skript
-    // void CreateCopies(RaycastHit hit)
-    // {
-
-
-    //     copiedCubeImmobile = GameObject.CreatePrimitive(PrimitiveType.Cube);
-
-    //     _hitPosition = hit.transform.position;
-
-    //     copiedCubeImmobile.transform.localScale = _hitSize;
-
-    //     Debug.Log("hitPos: " + _hitPosition);
-
-    //     AlignCopy(copiedCubeImmobile, _hitPosition);
-
-
-
-    //     Debug.Log(hit.collider.gameObject.GetComponent<Renderer>().bounds.size);
-
-    //     //copiedCubeImmobile = _proBuilderScript.o
-    //     //copiedCubeImmobile.transform.localScale = hit.transform.localScale;
-
-
-    //     // hier sind noch die "alten" Positionen. Muss angepasst werden an generierten Cube mit anderem Pivot 
-    //     // oder Empty GAmeobject aus Resources generieren und als parent setzen nach AlignCopy (Z 115)
-
-    //     if (hit.collider.gameObject.transform.position == transformFirstPoint)
-    //     {
-    //         _pivotCopy.transform.position = transformSecondPoint;
-    //         //copiedCubeImmobile.transform.position = transformSecondPoint;
-
-    //     }
-    //     else if (hit.collider.gameObject.transform.position == transformSecondPoint)
-    //     {
-    //         _pivotCopy.transform.position = transformFirstPoint;
-    //         //copiedCubeImmobile.transform.position = transformFirstPoint;
-
-    //     }
-
-
-
-
-    // }
-
-
-
-    // void AlignCopy(GameObject copy, Vector3 hitPosition)
-    // {
-    //     copy.transform.position = hitPosition;
-
-    //     copy.transform.position = new Vector3(copy.transform.position.x + (0.5f * _hitSize.x), copy.transform.position.y + (0.5f * _hitSize.y), copy.transform.position.z - (0.5f * _hitSize.z));
-
-    //     SetNewPivot(copy);
-
-
-    // }
-
-    // void SetNewPivot(GameObject copy)
-    // {
-    //     _pivotCopy = Instantiate(_pivot, _hitPosition, Quaternion.identity);
-    //     copy.gameObject.transform.SetParent(_pivotCopy.transform);
-
-
-    // }
 
 }
 

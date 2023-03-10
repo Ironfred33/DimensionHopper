@@ -15,18 +15,21 @@ public enum UIState
 
 public class UIManager : MonoBehaviour
 {
+
+    [SerializeField] private SceneLoader sceneLoad;
+    [SerializeField] private GeneratorOptions _generatorOptions;
+    private GenerateLevel _levelGenerationScript;
+    private LevelGeneratorGameManagement _levelGenerationManagement;
     
     [SerializeField] private GameObject _mainGameScreen;
     [SerializeField] private GameObject _gameOverScreen;
     [SerializeField] private GameObject _levelCompletedScreen;
     [SerializeField] private GameObject _levelGeneratorScreen;
     [SerializeField] private GameObject _pauseScreen;
-    public UIState state;
     [SerializeField] private GameObject _manager;
-    [SerializeField] private SceneLoader sceneLoad;
-    [SerializeField] private GeneratorOptions _generatorOptions;
-    private GenerateLevel _levelGenerationScript;
-    private LevelGeneratorGameManagement _levelGenerationManagement;
+    public UIState state;
+    
+    
 
     void Start()
     {
@@ -52,7 +55,7 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-       // Debug.Log("current state: " + state);
+       
         EvaluateState();
     }
 

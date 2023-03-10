@@ -7,19 +7,11 @@ public class SFX : MonoBehaviour
 {
     private AudioSource _source;
     [SerializeField] private AudioClip[] _effects;
+    
     void Start()
     {
         _source = GetComponent<AudioSource>();
     }
-
-    /*void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            PlayJumpSound();
-        }
-    }
-    */
 
     // Spielt Game Over Sound ab
     public void PlayGameOverSound()

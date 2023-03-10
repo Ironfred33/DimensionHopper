@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class StateBar : MonoBehaviour
 {
     [SerializeField] private CameraController _camControl;
+
     [SerializeField] private Image _square;
     [SerializeField] private Image _cube;
-
     [SerializeField] private Color _activatedColor;
     [SerializeField] private Color _deactivedColor;
 

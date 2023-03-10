@@ -5,20 +5,19 @@ using UnityEngine;
 // Steuert Wallrun des Spieler-Charakters
 public class WallRun_v2 : MonoBehaviour
 {
+    private EVPlayer _playerVariables;
     public Transform orientation;
     public GameObject cam;
+    private RaycastHit _leftWallHit;
+    private RaycastHit _rightWallHit;
+    private Rigidbody _rb;
+    public SFX soundEffects;
 
     public bool _wallLeft = false;
     public bool _wallRight = false;
     public bool isWallRunning = false;
 
-    private RaycastHit _leftWallHit;
-    private RaycastHit _rightWallHit;
-
-    private Rigidbody _rb;
-
-    public SFX soundEffects;
-    private EVPlayer _playerVariables;
+    
 
     void Start()
     {
