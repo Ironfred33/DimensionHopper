@@ -7,13 +7,12 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public EVPlayer externalPlayer;
-    public int currentHearts;
-
     public Image[] hearts;
     [SerializeField] private Sprite _fullHeart;
     [SerializeField] private Sprite _emptyHeart;
 
-   
+    public int currentHearts;
+
 
     // Update is called once per frame
     void Update()

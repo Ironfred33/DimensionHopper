@@ -5,11 +5,12 @@ using UnityEngine;
 // Regelt den Perspektivwechsel
 public class CameraTransition : MonoBehaviour
 {
-    public GameObject cam;
-    public GameObject externalVariables;
-    EVCameraTransition extVars;
     public CameraController cameraControl;
     [HideInInspector] public PlayerController playerControl;
+    EVCameraTransition extVars;
+
+    public GameObject cam;
+    public GameObject externalVariables;
     private Quaternion _rotation2DP;
     public GameObject[] arrayPGOxPositive;
     public GameObject[] arrayPGOxNegative;
@@ -21,35 +22,25 @@ public class CameraTransition : MonoBehaviour
     public AnimCurve curve2DToFPP;
     public AnimCurve curveFPPTo2D;
     public AudioSource droneSound;
-    private float _transitionTime;
-    private bool _levelGenerator;
-    [HideInInspector] public bool switchingFrom2DtoFPP = false;
-    [HideInInspector] public bool switchingFromFPPto2D = false;
-
     [SerializeField] private LayerMask _cullingMaskFp;
     [SerializeField] private LayerMask _cullingMask2D;
-
-
-
-    // PGOskripte in bereits existierendem Level
+     // PGOskripte in bereits existierendem Level
     [HideInInspector] public List<TransformPositionOnPerspective> transformScriptsPGOxPositive = new List<TransformPositionOnPerspective>();
     [HideInInspector] public List<TransformPositionOnPerspective> transformScriptsPGOxNegative = new List<TransformPositionOnPerspective>();
     [HideInInspector] public List<TransformPositionOnPerspective> transformScriptsPGOzPositive = new List<TransformPositionOnPerspective>();
     [HideInInspector] public List<TransformPositionOnPerspective> transformScriptsPGOzNegative = new List<TransformPositionOnPerspective>();
-
-
     // PGOskripte für den Level Generator
-
     [HideInInspector] public List<PGO> transformScriptsPGOxPositiveGenerator = new List<PGO>();
     [HideInInspector] public List<PGO> transformScriptsPGOxNegativeGenerator = new List<PGO>();
     [HideInInspector] public List<PGO> transformScriptsPGOzPositiveGenerator = new List<PGO>();
     [HideInInspector] public List<PGO> transformScriptsPGOzNegativeGenerator = new List<PGO>();
 
-
-    //public TransformPositionOnPerspective[] transformPos;
+    private float _transitionTime;
+    private bool _levelGenerator;
+    [HideInInspector] public bool switchingFrom2DtoFPP = false;
+    [HideInInspector] public bool switchingFromFPPto2D = false;
     private float _elapsed;
     private float _dt;
-
     [HideInInspector] public bool transitionInProgress;
 
     private void Start()
@@ -59,8 +50,6 @@ public class CameraTransition : MonoBehaviour
         extVars = externalVariables.GetComponent<EVCameraTransition>();
 
         CheckForLevelGeneratorInScene();
-        
-
         // wenn kein levelgenerator in Szene
         if (!_levelGenerator)
         {
@@ -69,7 +58,7 @@ public class CameraTransition : MonoBehaviour
 
         }
 
-       
+
     }
 
 
@@ -85,7 +74,7 @@ public class CameraTransition : MonoBehaviour
     // überprüft, ob ein levelgenerator in der szene ist
     void CheckForLevelGeneratorInScene()
     {
-        if(GameObject.FindGameObjectWithTag("LevelGenerator") != null) _levelGenerator = true;
+        if (GameObject.FindGameObjectWithTag("LevelGenerator") != null) _levelGenerator = true;
         else _levelGenerator = false;
     }
 
@@ -128,15 +117,15 @@ public class CameraTransition : MonoBehaviour
             }
             StartCoroutine(CamTransition());
 
-            if(!_levelGenerator) TransformPGOPositions();
-            else if(_levelGenerator) TransformPGOPositionsGenerator();
+            if (!_levelGenerator) TransformPGOPositions();
+            else if (_levelGenerator) TransformPGOPositionsGenerator();
 
         }
 
 
     }
 
-  
+
 
 
     // Regelt die Camera Transition zwischen 2D und FPP
@@ -150,7 +139,7 @@ public class CameraTransition : MonoBehaviour
         if (switchingFrom2DtoFPP)
         {
             TogglePlayerControl();
-            if (droneSound != null ) droneSound.Play();
+            if (droneSound != null) droneSound.Play();
 
 
             while (_elapsed <= extVars.duration)
@@ -188,7 +177,7 @@ public class CameraTransition : MonoBehaviour
             DisableObject(compass);
             DisableObject(crossHair);
             TogglePlayerControl();
-            if (droneSound != null ) droneSound.Play();
+            if (droneSound != null) droneSound.Play();
             this.GetComponent<Camera>().cullingMask = _cullingMask2D;
 
             while (_elapsed <= extVars.duration)
@@ -209,7 +198,7 @@ public class CameraTransition : MonoBehaviour
             cameraControl.is2DView = true;
             transitionInProgress = false;
             TogglePlayerControl();
-            
+
         }
 
 

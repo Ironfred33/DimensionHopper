@@ -16,33 +16,32 @@ public class PlayerController : MonoBehaviour
 {
 
     public PlayerState state;
-    [SerializeField] private Material standardMaterial;
-    [SerializeField] private Material transparencyMaterial;
     public EVPlayer extVars;
     public CameraController cameraControl;
     public CameraTransition cameraTransition;
+    public PlayerHealth health;
+
+    [SerializeField] private Material standardMaterial;
+    [SerializeField] private Material transparencyMaterial;
     public Transform groundCheck;
-    public float groundRadius;
     public LayerMask groundMask;
-    public bool isOnGround;
     public GameObject player;
     private Rigidbody _rb;
-    public PlayerHealth health;
     public Animator anim;
-    public bool playerIsFlipped;
     public SFX soundEffects;
-    public bool parented;
     public GameObject canvas;
-    private bool _invincible;
+    private Vector3 _correctScale; 
 
+    public float groundRadius;
+    public bool isOnGround;
+    public bool playerIsFlipped;
+    public bool parented;
+    private bool _invincible;
     private bool _flickering;
     private bool _transparentMaterial;
-
     private float invincibleFlickerSpeed = 0.2f;
     private float _elapsed;
     private float _dt;
-
-    private Vector3 _correctScale; 
 
 
 
@@ -383,8 +382,6 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log("MATERIAL: " + this.transform.Find("Body").GetComponent<SkinnedMeshRenderer>().materials[0]);
 
-        //yield return new WaitForSeconds(extVars.invincibleTime);
-
         yield return Flicker();
 
         // HIER COROUTINE HIN -> Flackern
@@ -396,7 +393,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // antagonist  -> hier weiterarbeiten
+
 
     private IEnumerator Flicker()
     {
@@ -472,7 +469,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionStay(Collision collisionInfo)
     {
-        // Debug.Log("Tag =" + collisionInfo.gameObject.tag);
+       
         if (collisionInfo.collider.CompareTag("PGOxPositive") || collisionInfo.collider.CompareTag("PGOzPositive") || collisionInfo.collider.CompareTag("PGOxNegative") || collisionInfo.collider.CompareTag("PGOzNegative") || collisionInfo.collider.CompareTag("MovingPlatform") || collisionInfo.collider.CompareTag("Pushable"))
         {
             Debug.Log("Parenting");
@@ -494,17 +491,6 @@ public class PlayerController : MonoBehaviour
             GameOver();
         }
 
-        // if (other.gameObject.CompareTag("Deadly"))
-        // {
-        //     soundEffects.PlayDamageSound();
-        //     health.currentHearts -= 1;
-
-        //     if(health.currentHearts <= 0)
-        //     {
-        //         player.transform.position = extVars.spawnPoint;
-        //         health.currentHearts = extVars.maxHearts;
-        //     }
-        // }
 
     }
 
