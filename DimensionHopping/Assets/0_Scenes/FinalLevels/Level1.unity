@@ -6672,6 +6672,11 @@ PrefabInstance:
       propertyPath: SpawnCoords.z
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5671202485874167868, guid: 186d6350790e79f4ab3901e4b08e80d0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7385626095287557057, guid: 186d6350790e79f4ab3901e4b08e80d0,
         type: 3}
       propertyPath: m_RootOrder

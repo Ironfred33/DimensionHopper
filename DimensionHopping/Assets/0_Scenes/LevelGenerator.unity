@@ -4608,7 +4608,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1223403feb57cf843821f2cb2f0f788c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttons: {fileID: 0}
   restartButton: 0
   pauseButton: 282
   playerRespawn: 283
@@ -6493,21 +6492,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e3692848435ec143bb70dcf956a8788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generationOrder: 
+  verticalAlignment: 2
+  platformScript: {fileID: 0}
   myPrefab: {fileID: 0}
+  prefabCopy: {fileID: 0}
   platforms: []
-  maxSegmentLength: 15
+  platformSpawnPos: {x: 0, y: 0, z: 0}
+  difficulty: 1
   segmentAmount: 10
   platformVerticalRange: 2
-  verticalAlignment: 2
-  platformSpawnPos: {x: 0, y: 0, z: 0}
+  generationOrder: 
+  maxSegmentLength: 15
   levelGenerated: 0
   segmentGenerated: 0
-  platformScript: {fileID: 0}
   generateRandomDirections: 0
   generateControlledRandomDirections: 1
-  prefabCopy: {fileID: 0}
-  difficulty: 1
   deathZoneDepth: 20
 --- !u!4 &1840093657
 Transform:
@@ -7354,7 +7353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &852491189011699373
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9800,7 +9799,6 @@ MonoBehaviour:
   _disks: []
   _completedDisks: []
   _collectedDisk: {fileID: 0}
-  _uncollectedDisk: {fileID: 0}
   alreadyCollected: 
 --- !u!1 &7361490905544201828
 GameObject:
