@@ -8,14 +8,15 @@ using TMPro;
 // Regelt die Optionen in den Einstellungen
 public class OptionsMenu : MonoBehaviour
 {
-    [SerializeField] private TMP_Dropdown _resolutionDropdown;
-    private Resolution[] resolutions;
     [SerializeField] private AudioMixer _audioMix;
     [SerializeField] private AudioSource _source;
     [SerializeField] private AudioClip _effectSample;
     [SerializeField] private AudioClip _musicSample;
-
+    [SerializeField] private TMP_Dropdown _resolutionDropdown;
+    private Resolution[] resolutions;
+    
     private bool _fullscreen;
+    
     void Start()
     {
         _fullscreen = true;

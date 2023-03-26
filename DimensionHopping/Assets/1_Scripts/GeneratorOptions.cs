@@ -7,17 +7,11 @@ using System;
 
 public class GeneratorOptions : MonoBehaviour
 {
-
     public GenerateLevel levelGeneration;
-
     public TMP_Dropdown difficulty;
-
     public TMP_Dropdown verticalAlignment;
-
     public TMP_InputField segmentAmount;
     public TMP_InputField segmentLength;
-
-  
 
 
     public void OverWriteGenerationOptions()
@@ -27,7 +21,6 @@ public class GeneratorOptions : MonoBehaviour
         SetSegmentAmount();
         SetSegmentLength();
     }
-
 
 
     void SetSegmentAmount()

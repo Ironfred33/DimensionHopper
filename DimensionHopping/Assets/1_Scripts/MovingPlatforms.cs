@@ -7,12 +7,11 @@ public class MovingPlatforms : MonoBehaviour
 {
     public Vector3 firstPosition;
     public Vector3 secondPosition;
+    private Vector3 _offset;
 
     public float movementTime;
     private float _elapsed;
     private bool _movingToTarget;
-    private Vector3 _offset;
-
     [SerializeField] private float _waitTime;
     [SerializeField] private float _elapsedWaitTime;
 
@@ -25,7 +24,7 @@ public class MovingPlatforms : MonoBehaviour
     {
         _elapsed += Time.deltaTime;
 
-        //   Debug.Log(_elapsed);
+       
         if(_movingToTarget)
         {
             transform.position = Vector3.Lerp(firstPosition, secondPosition, _elapsed/movementTime);

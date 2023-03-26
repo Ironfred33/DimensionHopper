@@ -5,8 +5,6 @@ using UnityEngine;
 // Tastenkürzel für Befehle
 public class SpecialKeys : MonoBehaviour
 {
-
-    private bool _gamePaused;
     public KeyCode pauseGameKey;
     public KeyCode restartKey;
     public KeyCode loadNextSceneKey;
@@ -14,47 +12,47 @@ public class SpecialKeys : MonoBehaviour
     private SceneLoader _sceneLoaderScript;
     [SerializeField] private UIManager _uiManager;
 
+    private bool _gamePaused;
+
     void Start()
     {
         _sceneLoaderScript = GetComponent<SceneLoader>();
     }
 
-    
-
 
     void Update()
     {
 
-        if(Input.GetKeyDown(pauseGameKey) && !_gamePaused)
+        if (Input.GetKeyDown(pauseGameKey) && !_gamePaused)
         {
             PauseGame();
         }
 
-        else if(Input.GetKeyDown(pauseGameKey) && _gamePaused)
+        else if (Input.GetKeyDown(pauseGameKey) && _gamePaused)
         {
             ResumeGame();
         }
 
-        if(Input.GetKeyDown(restartKey))
+        if (Input.GetKeyDown(restartKey))
         {
             ReloadScene();
         }
 
-        if(Input.GetKeyDown(loadNextSceneKey))
+        if (Input.GetKeyDown(loadNextSceneKey))
         {
             LoadNextScene();
         }
 
-        if(Input.GetKeyDown(loadLastSceneKey))
+        if (Input.GetKeyDown(loadLastSceneKey))
         {
             LoadLastScene();
         }
-        
+
     }
 
     // Lädt derzeit laufende Szene neu
     void ReloadScene()
-    {   
+    {
         _sceneLoaderScript.ReLoadCurrentScene();
     }
 

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Electricity : MonoBehaviour
 {
-    [SerializeField] private float _minEmission;
-    [SerializeField] private float _maxEmission;
-    [SerializeField] private float _timeBetween;
-    private float _emission;
     private MeshRenderer _renderer;
     private Material _flickerMaterial;
     private Color _emissionColor;
 
+    [SerializeField] private float _minEmission;
+    [SerializeField] private float _maxEmission;
+    [SerializeField] private float _timeBetween;
+    private float _emission;
     private void Start() 
     {
         _renderer = GetComponent<MeshRenderer>();

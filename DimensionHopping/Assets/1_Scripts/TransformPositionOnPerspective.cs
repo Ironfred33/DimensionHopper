@@ -5,37 +5,39 @@ using UnityEngine;
 // Verschiebt PGOs 
 public class TransformPositionOnPerspective : MonoBehaviour
 {
+
+    private EVCameraTransition _EVcamTransitionScript;
+    private EVPlatformFloating _floating;
+    private PlatformFloating _floatingScript;
+
     public enum WorldAxis
     {
-
         PGOxPositive,
         PGOxNegative,
         PGOzPositive,
         PGOzNegative,
 
     }
+
     private Material _blueGlow;
     private Material _redGlow;
     private Material _yellowGlow;
     private Material _greenGlow;
     public WorldAxis worldAxis;
-    public float worldAxisTargetPoint;
     [HideInInspector] public Vector3 transformFirstPoint;
     [HideInInspector] public Vector3 transformSecondPoint;
 
     [HideInInspector] public Vector3 transformFirstPointLowered;
     [HideInInspector] public Vector3 transformSecondPointLowered;
-    private EVCameraTransition _EVcamTransitionScript;
-    private EVPlatformFloating _floating;
-    private PlatformFloating _floatingScript;
+
+    public float worldAxisTargetPoint;
     private float _elapsed;
     private float _dt;
     public bool originalPosition;
 
 
-
     void Awake()
-    {   
+    {
         _floating = GameObject.FindGameObjectWithTag("ExternalVariables").GetComponent<EVPlatformFloating>();
         originalPosition = true;
         AssignPoints();
@@ -148,7 +150,7 @@ public class TransformPositionOnPerspective : MonoBehaviour
             }
 
         }
-        else if (transform.position == transformSecondPoint )
+        else if (transform.position == transformSecondPoint)
         {
             while (_elapsed <= _EVcamTransitionScript.duration)
             {
@@ -178,7 +180,7 @@ public class TransformPositionOnPerspective : MonoBehaviour
         else if (transform.position == transformSecondPointLowered)
         {
 
-             while (_elapsed <= _EVcamTransitionScript.duration)
+            while (_elapsed <= _EVcamTransitionScript.duration)
             {
                 _dt = Time.deltaTime;
                 _elapsed += _dt;

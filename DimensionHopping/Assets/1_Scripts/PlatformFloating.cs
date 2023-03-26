@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class PlatformFloating : MonoBehaviour
 {
-    [SerializeField] private GameObject _player;
     private PlayerController _playerControls;
     private TransformPositionOnPerspective _pgoScript;
     [SerializeField] private EVPlatformFloating _floating;
+    [SerializeField] private GameObject _player;
+    public Vector3 standardPosition;
+    public Vector3 loweredPosition;
+
     public float wobblingTime;
     public float wobblingAmount;
     [SerializeField] private bool _playerTouching;
     [SerializeField] private bool _platformLowering;
     [SerializeField] private bool _platformRaising;
     private bool _platformWobbling;
-    public Vector3 standardPosition;
-    public Vector3 loweredPosition;
     private float _elapsed;
     private float _dt;
     private bool _isPGO;
@@ -81,9 +82,6 @@ public class PlatformFloating : MonoBehaviour
                 StartCoroutine(RaisePlatform(_pgoScript.transformSecondPoint));
             }
 
-
-
-
             if (!_playerTouching) _platformWobbling = false;
 
         }
@@ -109,13 +107,11 @@ public class PlatformFloating : MonoBehaviour
 
         }
 
-
     }
 
 
     IEnumerator LowerPlatform(Vector3 loweredPosition)
     {
-        //_lowerCoroutineRunning = true;
 
         _elapsed = 0f;
 
@@ -131,23 +127,10 @@ public class PlatformFloating : MonoBehaviour
 
         }
 
-        //this.transform.position = loweredPosition;
-
-
         Debug.Log("PIEP PIEP PIEP");
         _platformLowering = false;
 
-
-
-
         yield return null;
-
-        // if(!_platformWobbling)
-        // {
-        //     _platformWobbling = true;
-        //     StartCoroutine(Wobbling());
-
-        // }
 
 
     }
@@ -162,8 +145,6 @@ public class PlatformFloating : MonoBehaviour
 
         _elapsed = 0f;
 
-        //_player.transform.parent = this.transform;
-
 
         while (_elapsed <= _floating.raisingTime)
         {
@@ -176,13 +157,10 @@ public class PlatformFloating : MonoBehaviour
 
         }
 
-        //this.transform.position = standardPosition;
-
         _platformRaising = false;
 
         yield return null;
 
-        //_lowerCoroutineRunning = false;
     }
 
     IEnumerator Wobbling()

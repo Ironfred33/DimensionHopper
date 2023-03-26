@@ -5,11 +5,10 @@ using UnityEngine;
 // Steuert Tooltips im Tutorial
 public class TutorialToolTips : MonoBehaviour
 {
-
-    private bool _insideCollider;
     public GameObject textToShow;
 
-
+    private bool _insideCollider;
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -34,8 +33,6 @@ public class TutorialToolTips : MonoBehaviour
 
 
     }
-
-
 
     void DisableObject(GameObject obj)
     {

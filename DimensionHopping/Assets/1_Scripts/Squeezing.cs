@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Squeezing : MonoBehaviour
 {
+    private GameObject _player;
+    private Vector3 _squeezeVector;
 
     [SerializeField] private float _minDistance;
     [SerializeField] private float _minSize;
@@ -12,8 +14,7 @@ public class Squeezing : MonoBehaviour
     private bool _squeezed;
     private float _squeezeDuration;
     private bool _squeezable;
-    private GameObject _player;
-    private Vector3 _squeezeVector;
+    
 
     void Start()
     {   

@@ -5,7 +5,6 @@ using UnityEngine;
 // Lässt am Ende der Playtest-Session Nachricht auftauchen
 public class FinishMessage : MonoBehaviour
 {
-
     public GameObject uiObject;
 
     void Start()

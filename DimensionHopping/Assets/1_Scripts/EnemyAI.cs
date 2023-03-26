@@ -6,13 +6,14 @@ using UnityEngine.AI;
 // Steuert die Gegner-KI
 public class EnemyAI : MonoBehaviour
 {
+    private NavMeshAgent _enemyAgent;
+    private GameObject _fireParticles;
+
     [SerializeField] private Vector3[] _waypoints;
     [SerializeField] private int _destPoint;
     [SerializeField] private float stoppingDistance;
 
-    private NavMeshAgent _enemyAgent;
-
-    private GameObject _fireParticles;
+    
 
     void Start()
     {
@@ -20,10 +21,7 @@ public class EnemyAI : MonoBehaviour
         
         _enemyAgent = GetComponent<NavMeshAgent>();
 
-        
         // AutoBraking macht den Gegner langsamer, wenn er kurz vor seinem Zielpunkt ist
-
-        // enemyAgent.autoBraking = false;
 
         _waypoints[0] = transform.position;
 

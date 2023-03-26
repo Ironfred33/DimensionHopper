@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class SaveData : MonoBehaviour
 {
-    [SerializeField] private GameObject saveObject;
-
     [SerializeField] private CollectablesUI collectablesUI;
+
+    [SerializeField] private GameObject saveObject;
     public int unlockedLevels;
     public int[] collectibles;
     

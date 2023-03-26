@@ -5,24 +5,21 @@ using UnityEngine;
 public class Squeezable : MonoBehaviour
 {
 
+    public ChangePosition changePosScript;
+    
+    private Vector3 _secondPosition;
+    private Rigidbody _rb;
+
     public float maximumSqueeze;
     public float squeezeSpeed;
     public float squeezeAmount;
-
     private float _elapsed;
     private bool _isSqueezing;
-
-    public ChangePosition changePosScript;
-
-    private Vector3 _secondPosition;
-
-    private Rigidbody _rb;
-
     private bool _isParented;
 
 
     void Start()
-    {   
+    {
         Setup();
 
     }
@@ -31,13 +28,9 @@ public class Squeezable : MonoBehaviour
     void Update()
     {
 
-       CheckForSqueeze();
-
-        
+        CheckForSqueeze();
 
 
-
-        
 
     }
 
@@ -49,16 +42,16 @@ public class Squeezable : MonoBehaviour
 
     void CheckForSqueeze()
     {
-         if(changePosScript != null)
+        if (changePosScript != null)
         {
-            if(!changePosScript.transitionInProgress)
+            if (!changePosScript.transitionInProgress)
             {
-                if(!CheckForMovement(_rb) && _isParented) 
+                if (!CheckForMovement(_rb) && _isParented)
                 {
                     UnparentThis();
                     changePosScript = null;
                 }
-                
+
             }
         }
     }
@@ -81,20 +74,10 @@ public class Squeezable : MonoBehaviour
             {
                 StartCoroutine(Squeeze());
 
-                // GetSecondPosition();
-
-                // _elapsed = changePosScript.elapsed;
-
-                
-
-                // Debug.Log("SQUEEEZE");
-
             }
 
         }
     }
-
-
 
 
 
@@ -104,12 +87,11 @@ public class Squeezable : MonoBehaviour
         _isSqueezing = true;
 
 
-        if(_isSqueezing)
+        if (_isSqueezing)
         {
-            this.transform.localScale = new Vector3(this.transform.localScale.x * -0.1f * Time.deltaTime, this.transform.localScale.y * -0.1f * Time.deltaTime,  this.transform.localScale.z * -0.1f * Time.deltaTime ); 
+            this.transform.localScale = new Vector3(this.transform.localScale.x * -0.1f * Time.deltaTime, this.transform.localScale.y * -0.1f * Time.deltaTime, this.transform.localScale.z * -0.1f * Time.deltaTime);
         }
-        
-        //_elapsed = 0f;
+
 
         while (_elapsed <= changePosScript.transitionDuration)
         {
@@ -117,7 +99,6 @@ public class Squeezable : MonoBehaviour
 
             this.transform.position = Vector3.Lerp(this.transform.position, _secondPosition, _elapsed / changePosScript.transitionDuration);
 
-            // _transitionInProgress = true;
 
             yield return null;
 
@@ -131,7 +112,7 @@ public class Squeezable : MonoBehaviour
 
     }
 
-      void ParentThis(GameObject parent)
+    void ParentThis(GameObject parent)
     {
         this.transform.parent = parent.transform;
 
@@ -150,69 +131,12 @@ public class Squeezable : MonoBehaviour
     bool CheckForMovement(Rigidbody rb)
     {
 
-        if(rb.velocity.magnitude > 0.1) return true;
+        if (rb.velocity.magnitude > 0.1) return true;
         else return false;
 
     }
 
 
-
-
-    // void GetSecondPosition()
-    // {
-
-    //     // 0 - xPos, 1 - xNeg
-    //     // 2 - zPos, 3 - zNeg
-    //     // 4 - yPos, 5 - yNeg
-
-
-    //     switch (changePosScript.transitionDirIndex)
-    //     {
-    //         case 0:
-
-    //             _secondPosition = new Vector3(changePosScript.secondPosition.x + this.transform.localScale.x, this.transform.position.y, this.transform.position.z);
-
-    //             break;
-
-    //         case 1:
-
-    //             _secondPosition = new Vector3(changePosScript.secondPosition.x - this.transform.localScale.x, this.transform.position.y, this.transform.position.z);
-
-    //             break;
-
-
-    //         case 2:
-
-    //             _secondPosition = new Vector3(changePosScript.secondPosition.x, this.transform.position.y, this.transform.position.z + this.transform.localScale.z);
-
-    //             break;
-
-
-    //         case 3:
-
-    //             _secondPosition = new Vector3(changePosScript.secondPosition.x, this.transform.position.y, this.transform.position.z - this.transform.localScale.z);
-
-    //             break;
-
-
-    //         case 4:
-
-    //             _secondPosition = new Vector3(changePosScript.secondPosition.x, this.transform.position.y + this.transform.localScale.y, this.transform.position.z);
-
-    //             break;
-
-
-    //         case 5:
-
-    //             _secondPosition = new Vector3(changePosScript.secondPosition.x, this.transform.position.y - this.transform.localScale.y, this.transform.position.z);
-
-    //             break;
-
-
-    //     }
-    // }
-
-  
 
 }
 

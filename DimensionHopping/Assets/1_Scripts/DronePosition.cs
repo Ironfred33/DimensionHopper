@@ -5,13 +5,14 @@ using UnityEngine;
 // Updated die Position der Drohne
 public class DronePosition : MonoBehaviour
 {
-    private Vector3 _clippingVector;
-    [SerializeField] private float _clippingValue;
     public EVCamera cameraEV;
-
     public CameraController camControl;
+
+    private Vector3 _clippingVector;
     private Vector3 _newDronePosition;
     private Quaternion _newDroneRotation;
+
+    [SerializeField] private float _clippingValue;
 
     // Start is called before the first frame update
     void Start()

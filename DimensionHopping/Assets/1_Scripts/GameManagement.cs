@@ -6,23 +6,23 @@ using UnityEngine.UI;
 // Greift Skripts auf und weist sie den entsprechenden Game Objekten zu
 public class GameManagement : MonoBehaviour
 {
-
-    public Vector3 SpawnCoords;
-    private GameObject _externalVariables;
-    private GameObject _playerPrefab;
-    private GameObject _player;
     private EVPlayer _externalVariablesPlayerScript;
     private PlayerHealth _playerHealthScript;
     private PlayerController _playerControllerScript;
     private CameraTransition _cameraTransitionScript;
     private CameraController _cameraControlScript;
     private DronePosition _dronePositionScript;
+    private SceneLoader _sceneLoaderScript;
+    private Goal _goalScript;
+
+    private GameObject _externalVariables;
+    private GameObject _playerPrefab;
+    private GameObject _player;
+    public Vector3 SpawnCoords;
     private Transform _trackingTarget;
     private GameObject _trackingPoint;
     private GameObject _canvas;
     private GameObject _drone;
-    private SceneLoader _sceneLoaderScript;
-    private Goal _goalScript;
     private List<GameObject> _heartImages = new List<GameObject>();
 
     void Awake()
@@ -121,7 +121,6 @@ public class GameManagement : MonoBehaviour
         // Player Health Script
 
         _playerHealthScript.externalPlayer = _externalVariablesPlayerScript;
-
 
         // Herz-Images des Canvas hinzufügen
         // Falls es jemals mehr Herzen geben sollte, unten optimieren. Ist noch mit maximal 3 Children gehardcoded
