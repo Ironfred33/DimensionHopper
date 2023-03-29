@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -407,15 +407,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!43 &30432503
 Mesh:
   m_ObjectHideFlags: 0
@@ -1107,11 +1107,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldAxis: 1
-  worldAxisTargetPoint: 158
   transformFirstPoint: {x: 0, y: 0, z: 0}
   transformSecondPoint: {x: 0, y: 0, z: 0}
   transformFirstPointLowered: {x: 0, y: 0, z: 0}
   transformSecondPointLowered: {x: 0, y: 0, z: 0}
+  worldAxisTargetPoint: 158
   originalPosition: 0
 --- !u!114 &61102524
 MonoBehaviour:
@@ -1125,15 +1125,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!65 &61102525
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1386,15 +1386,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!43 &117692418
 Mesh:
   m_ObjectHideFlags: 0
@@ -3055,15 +3055,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &204458147
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4207,15 +4207,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &263956440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5238,15 +5238,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!43 &312014168
 Mesh:
   m_ObjectHideFlags: 0
@@ -5796,11 +5796,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldAxis: 1
-  worldAxisTargetPoint: 188
   transformFirstPoint: {x: 0, y: 0, z: 0}
   transformSecondPoint: {x: 0, y: 0, z: 0}
   transformFirstPointLowered: {x: 0, y: 0, z: 0}
   transformSecondPointLowered: {x: 0, y: 0, z: 0}
+  worldAxisTargetPoint: 188
   originalPosition: 0
 --- !u!114 &337688454
 MonoBehaviour:
@@ -5814,15 +5814,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!65 &337688455
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6770,15 +6770,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!43 &380150055
 Mesh:
   m_ObjectHideFlags: 0
@@ -7082,15 +7082,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!43 &382670340
 Mesh:
   m_ObjectHideFlags: 0
@@ -7441,15 +7441,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!43 &407035315
 Mesh:
   m_ObjectHideFlags: 0
@@ -8655,15 +8655,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!43 &467866088
 Mesh:
   m_ObjectHideFlags: 0
@@ -9412,15 +9412,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &517003915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9434,11 +9434,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldAxis: 2
-  worldAxisTargetPoint: -3.5
   transformFirstPoint: {x: 0, y: 0, z: 0}
   transformSecondPoint: {x: 0, y: 0, z: 0}
   transformFirstPointLowered: {x: 0, y: 0, z: 0}
   transformSecondPointLowered: {x: 0, y: 0, z: 0}
+  worldAxisTargetPoint: -3.5
   originalPosition: 0
 --- !u!23 &517003916
 MeshRenderer:
@@ -10050,11 +10050,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldAxis: 1
-  worldAxisTargetPoint: 147
   transformFirstPoint: {x: 0, y: 0, z: 0}
   transformSecondPoint: {x: 0, y: 0, z: 0}
   transformFirstPointLowered: {x: 0, y: 0, z: 0}
   transformSecondPointLowered: {x: 0, y: 0, z: 0}
+  worldAxisTargetPoint: 147
   originalPosition: 0
 --- !u!114 &574866583
 MonoBehaviour:
@@ -10068,15 +10068,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!65 &574866584
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10962,15 +10962,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &611955773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11124,6 +11124,11 @@ PrefabInstance:
         type: 3}
       propertyPath: spawnPoint.z
       value: 115.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757309063020325805, guid: 186d6350790e79f4ab3901e4b08e80d0,
+        type: 3}
+      propertyPath: wallRunKnockback
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 2757309063020325805, guid: 186d6350790e79f4ab3901e4b08e80d0,
         type: 3}
@@ -11836,15 +11841,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!43 &651537680
 Mesh:
   m_ObjectHideFlags: 0
@@ -13747,15 +13752,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!65 &738302575
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15066,15 +15071,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &803796596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16235,15 +16240,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &836025752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18259,15 +18264,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!65 &1044599549
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18671,15 +18676,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!43 &1086267264
 Mesh:
   m_ObjectHideFlags: 0
@@ -19279,15 +19284,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1177326440 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3847131957942594034, guid: 97567a9efa81a7e40bf545792d640ea2,
@@ -19312,15 +19317,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1177326443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19334,11 +19339,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldAxis: 1
-  worldAxisTargetPoint: 124
   transformFirstPoint: {x: 0, y: 0, z: 0}
   transformSecondPoint: {x: 0, y: 0, z: 0}
   transformFirstPointLowered: {x: 0, y: 0, z: 0}
   transformSecondPointLowered: {x: 0, y: 0, z: 0}
+  worldAxisTargetPoint: 124
   originalPosition: 0
 --- !u!65 &1177326444
 BoxCollider:
@@ -19537,15 +19542,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1186197527 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8547661910315847535, guid: 186d6350790e79f4ab3901e4b08e80d0,
@@ -21462,11 +21467,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldAxis: 2
-  worldAxisTargetPoint: 32
   transformFirstPoint: {x: 0, y: 0, z: 0}
   transformSecondPoint: {x: 0, y: 0, z: 0}
   transformFirstPointLowered: {x: 0, y: 0, z: 0}
   transformSecondPointLowered: {x: 0, y: 0, z: 0}
+  worldAxisTargetPoint: 32
   originalPosition: 0
 --- !u!114 &1308947573
 MonoBehaviour:
@@ -21480,15 +21485,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!65 &1308947574
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22583,15 +22588,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!43 &1415615741
 Mesh:
   m_ObjectHideFlags: 0
@@ -22956,15 +22961,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1440407434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22978,11 +22983,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldAxis: 2
-  worldAxisTargetPoint: 34
   transformFirstPoint: {x: 0, y: 0, z: 0}
   transformSecondPoint: {x: 0, y: 0, z: 0}
   transformFirstPointLowered: {x: 0, y: 0, z: 0}
   transformSecondPointLowered: {x: 0, y: 0, z: 0}
+  worldAxisTargetPoint: 34
   originalPosition: 0
 --- !u!65 &1440407435
 BoxCollider:
@@ -23067,15 +23072,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!43 &1453550823
 Mesh:
   m_ObjectHideFlags: 0
@@ -23534,15 +23539,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!65 &1465549925
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24792,11 +24797,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldAxis: 0
-  worldAxisTargetPoint: 153
   transformFirstPoint: {x: 0, y: 0, z: 0}
   transformSecondPoint: {x: 0, y: 0, z: 0}
   transformFirstPointLowered: {x: 0, y: 0, z: 0}
   transformSecondPointLowered: {x: 0, y: 0, z: 0}
+  worldAxisTargetPoint: 153
   originalPosition: 0
 --- !u!114 &1494234720
 MonoBehaviour:
@@ -24810,15 +24815,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!65 &1494234721
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24942,7 +24947,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -25347,15 +25352,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &1512538947
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25782,15 +25787,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1535286529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26596,15 +26601,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &1555466652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26809,15 +26814,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &1596018552
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27160,15 +27165,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!65 &1612542558
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28571,15 +28576,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1700109854 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3847131957942594034, guid: 97567a9efa81a7e40bf545792d640ea2,
@@ -28604,15 +28609,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!65 &1700109857
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28994,15 +28999,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &1719392774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29606,15 +29611,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1767988123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31025,15 +31030,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!43 &1873501492
 Mesh:
   m_ObjectHideFlags: 0
@@ -31424,15 +31429,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &1881650744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31776,15 +31781,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!43 &1896095429
 Mesh:
   m_ObjectHideFlags: 0
@@ -32324,15 +32329,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &1923422148 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2579821944752290072, guid: e3fb0d315290cac43a22975e9be26b56,
@@ -33210,15 +33215,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!65 &1973828354
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35223,15 +35228,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &2057474250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35245,11 +35250,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldAxis: 2
-  worldAxisTargetPoint: 53
   transformFirstPoint: {x: 0, y: 0, z: 0}
   transformSecondPoint: {x: 0, y: 0, z: 0}
   transformFirstPointLowered: {x: 0, y: 0, z: 0}
   transformSecondPointLowered: {x: 0, y: 0, z: 0}
+  worldAxisTargetPoint: 53
   originalPosition: 0
 --- !u!1 &2074602592 stripped
 GameObject:
@@ -35275,15 +35280,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &2086574413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36067,15 +36072,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcbf9245e17d1b47abacfc8ddfba698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _floating: {fileID: 0}
+  _player: {fileID: 0}
+  standardPosition: {x: 0, y: 0, z: 0}
+  loweredPosition: {x: 0, y: 0, z: 0}
   wobblingTime: 0
   wobblingAmount: 0
   _playerTouching: 0
   _platformLowering: 0
   _platformRaising: 0
-  standardPosition: {x: 0, y: 0, z: 0}
-  loweredPosition: {x: 0, y: 0, z: 0}
 --- !u!43 &2134236988
 Mesh:
   m_ObjectHideFlags: 0

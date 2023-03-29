@@ -16,12 +16,20 @@ public class PushableObject : MonoBehaviour
     public float groundRadius;
     [SerializeField] private string _tipText;
     [SerializeField] private float _tipDisplayTime;
+    [SerializeField] private bool _staticStart;
 
     void Start()
     {
         _startCoordinates = transform.position;
         _rb = GetComponent<Rigidbody>();
-        _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+        if(!_staticStart)
+        {
+            _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+        }
+        else
+        {
+            _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+        }
         _tipDisplay.GetComponent<TMP_Text>().text = _tipText;
     }
 

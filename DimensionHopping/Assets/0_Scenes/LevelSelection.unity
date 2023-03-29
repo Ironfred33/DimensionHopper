@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -325,8 +325,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1042f47cf2d2276459b2a747114571d4, type: 2}
-  m_sharedMaterial: {fileID: 8856310052836713401, guid: 1042f47cf2d2276459b2a747114571d4,
+  m_fontAsset: {fileID: 11400000, guid: e16aa46269c030c4684844be156f73b3, type: 2}
+  m_sharedMaterial: {fileID: -4978743378927186811, guid: e16aa46269c030c4684844be156f73b3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -466,7 +466,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
+  m_AllowDynamicResolution: 1
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -590,8 +590,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 545d22023550e6c45b1406f743f2764a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveObject: {fileID: 0}
   collectablesUI: {fileID: 0}
+  saveObject: {fileID: 0}
   unlockedLevels: 0
   collectibles: 
 --- !u!1 &101531803
@@ -917,8 +917,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Back
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1042f47cf2d2276459b2a747114571d4, type: 2}
-  m_sharedMaterial: {fileID: 8856310052836713401, guid: 1042f47cf2d2276459b2a747114571d4,
+  m_fontAsset: {fileID: 11400000, guid: e16aa46269c030c4684844be156f73b3, type: 2}
+  m_sharedMaterial: {fileID: -4978743378927186811, guid: e16aa46269c030c4684844be156f73b3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1067,8 +1067,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 545d22023550e6c45b1406f743f2764a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveObject: {fileID: 0}
   collectablesUI: {fileID: 0}
+  saveObject: {fileID: 0}
   unlockedLevels: 0
   collectibles: 
 --- !u!1 &549379470
@@ -1370,8 +1370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 545d22023550e6c45b1406f743f2764a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveObject: {fileID: 0}
   collectablesUI: {fileID: 0}
+  saveObject: {fileID: 0}
   unlockedLevels: 0
   collectibles: 
 --- !u!1 &725150159
@@ -1678,8 +1678,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1042f47cf2d2276459b2a747114571d4, type: 2}
-  m_sharedMaterial: {fileID: 8856310052836713401, guid: 1042f47cf2d2276459b2a747114571d4,
+  m_fontAsset: {fileID: 11400000, guid: e16aa46269c030c4684844be156f73b3, type: 2}
+  m_sharedMaterial: {fileID: -4978743378927186811, guid: e16aa46269c030c4684844be156f73b3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2097,8 +2097,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 545d22023550e6c45b1406f743f2764a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveObject: {fileID: 0}
   collectablesUI: {fileID: 0}
+  saveObject: {fileID: 0}
   unlockedLevels: 0
   collectibles: 
 --- !u!1 &883972411
@@ -2176,8 +2176,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1042f47cf2d2276459b2a747114571d4, type: 2}
-  m_sharedMaterial: {fileID: 8856310052836713401, guid: 1042f47cf2d2276459b2a747114571d4,
+  m_fontAsset: {fileID: 11400000, guid: e16aa46269c030c4684844be156f73b3, type: 2}
+  m_sharedMaterial: {fileID: -4978743378927186811, guid: e16aa46269c030c4684844be156f73b3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2606,8 +2606,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Select level
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1042f47cf2d2276459b2a747114571d4, type: 2}
-  m_sharedMaterial: {fileID: 8856310052836713401, guid: 1042f47cf2d2276459b2a747114571d4,
+  m_fontAsset: {fileID: 11400000, guid: e16aa46269c030c4684844be156f73b3, type: 2}
+  m_sharedMaterial: {fileID: -4978743378927186811, guid: e16aa46269c030c4684844be156f73b3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2756,8 +2756,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 545d22023550e6c45b1406f743f2764a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveObject: {fileID: 0}
   collectablesUI: {fileID: 0}
+  saveObject: {fileID: 0}
   unlockedLevels: 0
   collectibles: 
 --- !u!1 &1171053052
@@ -2834,8 +2834,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 545d22023550e6c45b1406f743f2764a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveObject: {fileID: 0}
   collectablesUI: {fileID: 0}
+  saveObject: {fileID: 0}
   unlockedLevels: 0
   collectibles: 
 --- !u!1 &1177269197
@@ -3060,8 +3060,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 545d22023550e6c45b1406f743f2764a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveObject: {fileID: 0}
   collectablesUI: {fileID: 0}
+  saveObject: {fileID: 0}
   unlockedLevels: 0
   collectibles: 
 --- !u!1 &1211040416
@@ -3471,8 +3471,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1042f47cf2d2276459b2a747114571d4, type: 2}
-  m_sharedMaterial: {fileID: 8856310052836713401, guid: 1042f47cf2d2276459b2a747114571d4,
+  m_fontAsset: {fileID: 11400000, guid: e16aa46269c030c4684844be156f73b3, type: 2}
+  m_sharedMaterial: {fileID: -4978743378927186811, guid: e16aa46269c030c4684844be156f73b3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3620,8 +3620,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1042f47cf2d2276459b2a747114571d4, type: 2}
-  m_sharedMaterial: {fileID: 8856310052836713401, guid: 1042f47cf2d2276459b2a747114571d4,
+  m_fontAsset: {fileID: 11400000, guid: e16aa46269c030c4684844be156f73b3, type: 2}
+  m_sharedMaterial: {fileID: -4978743378927186811, guid: e16aa46269c030c4684844be156f73b3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4675,8 +4675,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1042f47cf2d2276459b2a747114571d4, type: 2}
-  m_sharedMaterial: {fileID: 8856310052836713401, guid: 1042f47cf2d2276459b2a747114571d4,
+  m_fontAsset: {fileID: 11400000, guid: e16aa46269c030c4684844be156f73b3, type: 2}
+  m_sharedMaterial: {fileID: -4978743378927186811, guid: e16aa46269c030c4684844be156f73b3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5232,8 +5232,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1042f47cf2d2276459b2a747114571d4, type: 2}
-  m_sharedMaterial: {fileID: 8856310052836713401, guid: 1042f47cf2d2276459b2a747114571d4,
+  m_fontAsset: {fileID: 11400000, guid: e16aa46269c030c4684844be156f73b3, type: 2}
+  m_sharedMaterial: {fileID: -4978743378927186811, guid: e16aa46269c030c4684844be156f73b3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5549,8 +5549,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1042f47cf2d2276459b2a747114571d4, type: 2}
-  m_sharedMaterial: {fileID: 8856310052836713401, guid: 1042f47cf2d2276459b2a747114571d4,
+  m_fontAsset: {fileID: 11400000, guid: e16aa46269c030c4684844be156f73b3, type: 2}
+  m_sharedMaterial: {fileID: -4978743378927186811, guid: e16aa46269c030c4684844be156f73b3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5699,7 +5699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 545d22023550e6c45b1406f743f2764a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveObject: {fileID: 0}
   collectablesUI: {fileID: 0}
+  saveObject: {fileID: 0}
   unlockedLevels: 0
   collectibles: 
