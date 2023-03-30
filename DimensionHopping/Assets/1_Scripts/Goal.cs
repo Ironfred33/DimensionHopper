@@ -39,10 +39,10 @@ public class Goal : MonoBehaviour
             {
                 _canvas.GetComponent<UIManager>().state = UIState.LevelCompleted;
 
-
-                if (_saveData.unlockedLevels < SceneManager.GetActiveScene().buildIndex - 4)
+                if (_saveData.unlockedLevels < SceneManager.GetActiveScene().buildIndex - 2)
                 {
                     _saveData.unlockedLevels += 1;
+                    Debug.Log("Saved Level");
                 }
                 _saveData.Save();
 

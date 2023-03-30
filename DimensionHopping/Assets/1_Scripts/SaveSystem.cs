@@ -7,15 +7,15 @@ public static class SaveSystem
 {
     public static void SaveLevel(string saveString)
     {
-        File.WriteAllText(Application.persistentDataPath + "/save.txt", saveString);
+        File.WriteAllText(System.IO.Directory.GetCurrentDirectory() + "/save.txt", saveString);
         
     }
 
     public static string LoadSaveData()
     {
-        if(File.Exists(Application.persistentDataPath + "/save.txt"))
+        if(File.Exists(System.IO.Directory.GetCurrentDirectory() + "/save.txt"))
         {
-            string saveString = File.ReadAllText(Application.persistentDataPath + "/save.txt");
+            string saveString = File.ReadAllText(System.IO.Directory.GetCurrentDirectory() + "/save.txt");
             return saveString;
         }
 

@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     private void Start() 
     {
         _sceneLoad = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneLoader>();
+        Cursor.visible = true;
     }
     public void StartGame()
     {

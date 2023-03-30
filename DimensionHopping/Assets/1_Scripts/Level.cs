@@ -19,8 +19,9 @@ public class Level : MonoBehaviour
     void Start()
     {
         
+        Debug.Log("Collectibles: " + this.gameObject.name + " " + _saveData.collectibles[_levelOrder] + " " + _collectedDisks.Length);
         
-        for(int i = 0; i<_collectedDisks.Length; i++)
+        for(int i = 0; i < _collectedDisks.Length; i++)
         {
             if(i < _saveData.collectibles[_levelOrder])
             {
@@ -42,7 +43,7 @@ public class Level : MonoBehaviour
     {
         if(_levelOrder<= _saveData.unlockedLevels)
         {
-            SceneManager.LoadScene(_levelOrder + 2);
+            SceneManager.LoadScene(_levelOrder + 1);
         }
     }
 
@@ -50,7 +51,7 @@ public class Level : MonoBehaviour
     {
         var previewColors = _previewImage.color;
         
-        if(_levelOrder<= _saveData.unlockedLevels)
+        if(_levelOrder <= _saveData.unlockedLevels)
         {
             previewColors.a = _unlockedAlpha;
         }

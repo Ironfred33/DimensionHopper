@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 public class SaveData : MonoBehaviour
 {
     [SerializeField] private CollectablesUI collectablesUI;
-
-    [SerializeField] private GameObject saveObject;
     public int unlockedLevels;
     public int[] collectibles;
     
@@ -18,13 +16,15 @@ public class SaveData : MonoBehaviour
 
         if(SceneManager.GetActiveScene().name != "LevelSelection")
         {
+            collectablesUI = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CollectablesUI>();
             collectibles = new int[SceneManager.sceneCountInBuildSettings];
         }
         
     }
     public void Save()
     {
-        collectibles[SceneManager.GetActiveScene().buildIndex - 4] = collectablesUI.alreadyCollected.Count;
+        
+        collectibles[SceneManager.GetActiveScene().buildIndex - 1] = collectablesUI.alreadyCollected.Count;
 
         SaveProgress saveProgress = new SaveProgress
         {
