@@ -27,6 +27,7 @@ public class Collectable_Pickup : MonoBehaviour
 
         }
         
-    }        
+    }
+   
 
 }
